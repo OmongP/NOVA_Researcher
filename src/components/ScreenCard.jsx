@@ -30,7 +30,7 @@ export default function ScreenCard({ screen, onOpen, saved, onSave }) {
       <div className="card-body">
         <div className="card-meta">
           {tier && <span className={`chip chip-tier-${tier}`}>{TIERS[tier].label}</span>}
-          <span className={`chip chip-${screen.domain}`}>{screen.domain}</span>
+          <span className={`chip chip-domain chip-${screen.domain}`}>{screen.domain}</span>
         </div>
         <h3 className="card-service">{screen.service}</h3>
         <p className="card-title">{screen.title}</p>

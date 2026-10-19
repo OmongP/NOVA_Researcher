@@ -2209,3 +2209,20 @@ img.brand-mark {
   font-weight: 500;
   letter-spacing: -0.02em;
 }
+
+/* 금융·자동차·모빌리티 외 분류(전체 탭 검색 결과). :where로 낮춰서 분야별 색 점이 우선해요. */
+:where(.chip-domain) {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg);
+  color: var(--text-sub);
+}
+
+:where(.chip-domain)::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-weak);
+}

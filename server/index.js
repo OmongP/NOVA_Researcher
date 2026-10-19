@@ -9,20 +9,35 @@ import { cancelJob, getJob, getProviders, jobImagePath, recoverInterruptedJobs, 
 const PORT = 8787
 const APP_URL = 'http://localhost:5173'
 
-// UI Bowl에는 '자동차' 분류가 없고 자동차 브랜드 앱도 '모빌리티'에 들어 있어요.
-// 아래 앱은 '자동차'로 다시 분류해요.
-const AUTO_APPS = ['마이현대', '마이기아', '기아', '제네시스', '현대캐피탈', '현대자동차', 'KB차차차', '엔카', '헤이딜러', '케이카', '카눈', '차란차']
+// UI Bowl에는 '자동차' 분류가 없고 자동차 브랜드·차량 서비스 앱도 '모빌리티'에 들어 있어요.
+// 아래 앱은 UI Bowl에 실제로 있는 자동차 앱이에요(2026-10 확인). 이 앱들은 '자동차'로 다시 분류해요.
+const AUTO_APPS = ['마이현대', 'Kia', '헤이딜러', '차봇']
 
-const CATEGORIES_BY_DOMAIN = {
-  전체: ['금융', '모빌리티'],
-  금융: ['금융'],
-  자동차: ['모빌리티'],
-  모빌리티: ['모빌리티'],
+// 분야 탭별 검색 범위
+//   전체: UI Bowl 전체(분류 제한 없음) / 금융: 금융 분류 / 모빌리티: 모빌리티 분류(자동차 앱 제외)
+//   자동차: 자동차 앱 안에서만 검색
+const SEARCH_SCOPES = {
+  전체: [{}],
+  금융: [{ category: '금융' }],
+  모빌리티: [{ category: '모빌리티' }],
+  자동차: AUTO_APPS.map((app_name) => ({ app_name })),
+}
+// 분류 제한이 넓은 탭은 2페이지까지 받아 결과를 넉넉하게 보여줘요(페이지당 3개).
+const PAGES_BY_DOMAIN = { 전체: 2, 금융: 2, 모빌리티: 2, 자동차: 1 }
+
+// 한 앱의 화면이 앞쪽을 모두 차지하지 않도록 앱별로 번갈아 섞어요(같은 앱 안의 순서는 유지).
+function interleaveByService(screens) {
+  const groups = new Map()
+  for (const s of screens) groups.set(s.service, [...(groups.get(s.service) ?? []), s])
+  const lists = [...groups.values()]
+  const out = []
+  for (let i = 0; out.length < screens.length; i++) for (const list of lists) if (list[i]) out.push(list[i])
+  return out
 }
 
 function classify(appName, category) {
   if (AUTO_APPS.some((name) => appName.includes(name))) return '자동차'
-  return category === '금융' ? '금융' : '모빌리티'
+  return category || '기타'
 }
 
 // UI Bowl 응답(presentation.groups + results)을 앱 카드 형식으로 바꿔요.
@@ -103,15 +118,17 @@ app.post('/api/search', async (req, res) => {
   const status = await getAuthStatus()
   if (!status.connected) return res.status(401).json(status)
 
-  const categories = CATEGORIES_BY_DOMAIN[domain] ?? CATEGORIES_BY_DOMAIN.전체
+  const scopes = SEARCH_SCOPES[domain] ?? SEARCH_SCOPES.전체
+  const pages = PAGES_BY_DOMAIN[domain] ?? 1
   const calls = []
-  for (const category of categories) {
-    const base = { category, country: '한국' }
+  for (const scope of scopes) {
+    // 앱을 지정한 검색은 국가 제한을 걸지 않아요(Kia처럼 글로벌로 분류된 앱이 있어요).
+    const base = scope.app_name ? { ...scope } : { ...scope, country: '한국' }
     if (query.component) {
       calls.push(['search_components', { ...base, component_type: query.component, limit: 8 }])
       continue
     }
-    calls.push(['search_ui_patterns', { ...base, query: query.uibowl }])
+    for (let page = 1; page <= pages; page++) calls.push(['search_ui_patterns', { ...base, query: query.uibowl, ...(page > 1 && { page }) }])
     // 문구 검색은 '정확히 일치' 화면을 찾는 보조 검색이에요. 섞여 들어온 엉뚱한 화면은 적합도 판정에서 걸러요.
     if (query.ocr) calls.push(['search_by_ocr_text', { ...base, text_query: query.ocr.text, ...(query.ocr.pattern && { pattern: query.ocr.pattern }) }])
   }
@@ -119,7 +136,7 @@ app.post('/api/search', async (req, res) => {
   const settled = await Promise.allSettled(calls.map(([tool, args]) => callTool(tool, args).then((d) => toScreens(d, tool))))
   const screens = mergeScreens(settled.flatMap((r) => (r.status === 'fulfilled' ? r.value : [])))
   const errors = settled.filter((r) => r.status === 'rejected').map((r) => r.reason.message)
-  const filtered = domain === '전체' ? screens : screens.filter((s) => s.domain === domain)
+  const filtered = interleaveByService(domain === '전체' ? screens : screens.filter((s) => s.domain === domain))
 
   res.json({
     query,
