@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { GUIDE, RULES, VERDICTS, ruleById } from '../data/darkPatternRules'
 import { IS_DEMO } from '../lib/demo'
+import { DEMO_SAMPLE_IMAGE, DEMO_SAMPLE_NAME, DEMO_SAMPLE_RUN } from '../data/demoReview'
 
 const VERDICT_ORDER = ['suspect', 'hold', 'pass', 'na']
 const CONFIDENCE = { low: '낮음', medium: '보통', high: '높음' }
@@ -365,7 +366,20 @@ export default function AiReview() {
     }
   }
 
+  // 데모 사이트: 서버 없이 미리 만든 샘플 결과로 검토 화면을 체험해요.
+  function loadDemoSample() {
+    setImage({ dataUrl: DEMO_SAMPLE_IMAGE, name: DEMO_SAMPLE_NAME, width: 360, height: 640 })
+    setContext('')
+    setOverrides({})
+    setCases({})
+    setJob(null)
+    setError(null)
+    setRuns([DEMO_SAMPLE_RUN])
+    setRunIndex(0)
+  }
+
   async function analyze({ rereview = false } = {}) {
+    if (IS_DEMO) return loadDemoSample()
     if (busy || sendingRef.current) return
     sendingRef.current = true
     setSending(true)
@@ -475,13 +489,18 @@ export default function AiReview() {
         </div>
       )}
       <div className="status status-loading">
-        AI 결과는 참고용 1차 검토예요. 법적 위반을 확정하지 않으며, 최종 판단은 검토자가 해요. 올린 스크린샷과 가이드 규칙은 분석을 위해 Claude로 전송돼요. 사내
-        화면은 보안 정책을 먼저 확인해 주세요.
+        AI 결과는 참고용 1차 검토예요. 법적 위반을 확정하지 않으며, 최종 판단은 검토자가 해요.
+        {!IS_DEMO && ' 올린 스크린샷과 가이드 규칙은 분석을 위해 Claude로 전송돼요. 사내 화면은 보안 정책을 먼저 확인해 주세요.'}
       </div>
 
       {IS_DEMO && (
         <div className="status">
-          <span>데모 사이트에서는 AI 1차 검토를 쓸 수 없어요. 스크린샷을 올리면 사내 설치 버전에서 Claude가 규칙과 대조해 판정해요.</span>
+          <span>
+            데모 사이트에서는 서버(Claude) 없이 미리 만든 샘플 결과로 검토 화면을 보여줘요. 올린 스크린샷은 분석하지 않아요.{' '}
+            <button type="button" className="button" onClick={loadDemoSample}>
+              샘플 결과 보기
+            </button>
+          </span>
         </div>
       )}
 
@@ -575,7 +594,7 @@ export default function AiReview() {
                 placeholder="화면 맥락 (선택): 예) 대출 신청 3단계, 직전 화면에서 마케팅 동의를 거절함"
               />
               <div className="detail-actions">
-                <button type="button" className="button button-primary" disabled={busy || !status.active} onClick={() => analyze()}>
+                <button type="button" className="button button-primary" disabled={busy || (!IS_DEMO && !status.active)} onClick={() => analyze()}>
                   {sending ? '요청 보내는 중…' : busy ? '검토 진행 중' : run ? '처음부터 다시 검토' : 'AI 1차 검토 시작'}
                 </button>
                 <button type="button" className="button" disabled={busy} onClick={() => fileInput.current?.click()}>

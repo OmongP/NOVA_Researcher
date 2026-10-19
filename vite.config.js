@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => ({
     // 검색 요청은 로컬 프록시 서버(server/index.js)로 넘겨요.
     proxy: { '/api': 'http://localhost:8787' },
   },
-  // 데모 빌드(npm run build:demo)는 공개 사이트용이라 사내 가이드 대신 예시 규칙을 넣어요.
+  // 데모 빌드(npm run build:demo)는 공개 사이트용이에요. 서버가 없어서 화면 검색은 미리 모은 데이터를 써요.
   ...(mode === 'demo' && {
     resolve: {
       alias: [
@@ -17,10 +17,6 @@ export default defineConfig(({ mode }) => ({
         {
           find: /^(\.\.?\/)+data\/sampleScreens$/,
           replacement: fileURLToPath(new URL('./src/data/demoScreens.js', import.meta.url)),
-        },
-        {
-          find: /^(\.\.?\/)+data\/darkPatternRules$/,
-          replacement: fileURLToPath(new URL('./src/data/darkPatternRules.example.js', import.meta.url)),
         },
       ],
     },
