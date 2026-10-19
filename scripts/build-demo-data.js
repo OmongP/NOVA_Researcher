@@ -44,6 +44,8 @@ for (const term of TERMS) {
         images: (prev?.images ?? s.images).slice(0, MAX_IMAGES),
         uiUrl: s.uiUrl,
         source: 'UI Bowl',
+        // 화면 상태(빈 화면) 검색으로 찾은 화면은 표시해 둬요. 데모의 적합도 판정이 이 표시를 써요.
+        sourceTool: prev?.sourceTool === 'search_components' || s.sourceTool === 'search_components' ? 'search_components' : s.sourceTool,
       })
     }
     console.log(`${term} / ${domain}: ${data.screens.length}개 (누적 ${byKey.size})`)

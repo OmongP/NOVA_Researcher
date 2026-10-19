@@ -23,7 +23,7 @@ function AuthBanner({ auth, onRetry }) {
   if (auth.state === 'demo') {
     return (
       <div className="banner">
-        데모 사이트예요. UI Bowl에서 미리 모아 둔 샘플 화면 {sampleScreens.length}개로 검색해요. 실시간 검색과 AI 검토는 사내 설치 버전에서 쓸 수 있어요.
+        데모 사이트예요. UI Bowl에서 미리 모아 둔 샘플 화면 {sampleScreens.length}개로 검색해요. 실시간 검색과 AI 검토는 설치 버전에서 쓸 수 있어요.
       </div>
     )
   }

@@ -13,6 +13,11 @@ export default defineConfig(({ mode }) => ({
   ...(mode === 'demo' && {
     resolve: {
       alias: [
+        // 데모는 서버가 없어서 UI Bowl에서 미리 모아 둔 화면(demoScreens.js)으로 검색해요.
+        {
+          find: /^(\.\.?\/)+data\/sampleScreens$/,
+          replacement: fileURLToPath(new URL('./src/data/demoScreens.js', import.meta.url)),
+        },
         {
           find: /^(\.\.?\/)+data\/darkPatternRules$/,
           replacement: fileURLToPath(new URL('./src/data/darkPatternRules.example.js', import.meta.url)),
