@@ -3,6 +3,21 @@
 
 const FILLER = /(화면|검색|찾아줘|찾아|보여줘|관련|UI|ui|플로우|페이지)/g
 
+// 띄어쓰기는 비교할 때 무시해요 ("본인 인증" = "본인인증").
+export const squash = (s) => String(s ?? '').replace(/\s+/g, '').toLowerCase()
+
+// 붙여 쓴 말 끝의 행동 단어를 떼어 띄어 쓴 형태를 만들어요 ("주소입력" → "주소 입력").
+// UI Bowl 패턴 검색은 띄어쓰기에 민감해서 붙인 형태와 띄운 형태를 모두 검색해요.
+const ACTION_WORDS = [
+  '납입금', '입력', '등록', '조회', '신청', '인증', '완료', '변경', '설정', '확인', '선택', '검색', '결제', '해지', '가입', '납입', '수정', '삭제', '추가',
+  '연결', '동의', '발급', '비교', '계산', '견적', '예약', '취소', '안내', '알림', '내역', '관리', '실패', '오류',
+]
+function splitCompound(word) {
+  if (word.length < 4 || /\s/.test(word)) return null
+  const suffix = ACTION_WORDS.find((w) => word.endsWith(w) && word.length - w.length >= 2)
+  return suffix ? `${word.slice(0, -suffix.length)} ${suffix}` : null
+}
+
 // 다른 목적의 금융 서비스(가상자산·투자)는 단어가 겹쳐도 관련성 낮음으로 보내요.
 const CRYPTO_INVEST = ['코인', '렌딩', '가상자산', '코빗', '업비트', '빗썸', '코인원', 'Bybit', '바이낸스', '모의투자', '주식', '증권', '부동산']
 
@@ -49,7 +64,7 @@ const DICTIONARY = [
     core: '월 납입금',
     uibowl: '할부',
     ocr: { text: '월 납입' },
-    exact: ['납입', '할부', '리스', '렌트', '월 '],
+    exact: ['납입', '할부', '리스', '렌트', '월납입', '월요금', '월이용료'],
     journey: ['견적', '구독', '요금', '차량'],
     exclude: CRYPTO_INVEST,
     related: ['할부', '리스', '렌트', '견적', '월 납입', '구독'],
@@ -89,25 +104,36 @@ export function interpretQuery(raw) {
   const text = raw.trim()
   if (!text) return null
 
-  const lower = text.toLowerCase()
-  const entry = DICTIONARY.find((d) => d.match.some((m) => lower.includes(m)))
+  const sq = squash(text)
+  const entry = DICTIONARY.find((d) => d.match.some((m) => sq.includes(squash(m))))
   const cleaned = text.replace(FILLER, ' ').replace(/\s+/g, ' ').trim()
-  const first = cleaned.split(' ')[0]
+  const words = cleaned.split(' ').filter(Boolean)
+  const first = words[0]
+
+  // 입력한 그대로, 붙인 형태, 띄운 형태. 띄어쓰기를 어떻게 써도 같은 결과를 찾게 해요.
+  const joined = words.join('')
+  const split = words.length === 1 ? splitCompound(words[0]) : null
+  const phrases = [...new Set([cleaned, joined, split].filter(Boolean))]
+  // 전체 구절로 안 나올 때 넓혀 찾는 앞 단어 ("주소 입력" → "주소")
+  const head = words.length > 1 ? words[0] : split ? split.split(' ')[0] : null
 
   const core = entry ? entry.core : cleaned || text
   const related = entry ? entry.related : []
-  const terms = [...new Set([core, ...related, ...cleaned.split(' ')].filter(Boolean))]
+  // 단어를 따로 떼어 찾지 않아요. 띄어 쓴 입력이 붙여 쓴 입력보다 넓게 걸리지 않게 하려는 거예요.
+  const terms = [...new Set([core, ...related, ...phrases].filter(Boolean))]
 
   return {
     raw: text,
     core,
     related,
     terms,
-    uibowl: entry?.uibowl || first || text,
+    uibowl: entry?.uibowl || phrases[0] || text,
+    phrases,
+    head: head && head.length >= 2 ? head : null,
     component: entry?.component ?? null,
     ocr: entry?.ocr ?? null,
-    exact: entry?.exact ?? (first ? [first] : []),
-    journey: entry?.journey ?? [],
+    exact: entry?.exact ?? (phrases.length ? phrases : first ? [first] : []),
+    journey: entry?.journey ?? (head && head.length >= 2 ? [head] : []),
     exclude: entry?.exclude ?? [],
   }
 }
@@ -118,16 +144,21 @@ export const TIERS = {
   low: { label: '관련성 낮음', rank: 2 },
 }
 
-const hit = (haystack, words) => words.find((w) => haystack.includes(w.toLowerCase()))
+const hit = (haystack, words) => words.find((w) => squash(w) && haystack.includes(squash(w)))
+// 여러 단어로 된 구절("주소 입력")은 단어가 모두 들어 있으면 일치로 봐요. 문구 검색 결과는 단어 조각으로 돌아와요.
+const hitAllWords = (haystack, words) =>
+  words.find((w) => {
+    const parts = w.split(/\s+/).filter(Boolean)
+    return parts.length > 1 && parts.every((x) => haystack.includes(squash(x)))
+  })
 
 // 화면 하나가 검색 의도와 얼마나 맞는지 판정하고, 판정 근거를 함께 돌려줘요.
 export function rateRelevance(screen, query) {
   if (!query) return { tier: 'related', reason: '' }
 
-  const info = [screen.service, screen.pattern, screen.variant, screen.title, ...(screen.components ?? []), ...(screen.keywords ?? [])]
-    .join(' ')
-    .toLowerCase()
-  const texts = (screen.matchedTexts ?? []).join(' ').toLowerCase()
+  // 필드 사이에 '|'를 넣어 서로 다른 필드의 글자가 이어져 매칭되지 않게 해요.
+  const info = squash([screen.service, screen.pattern, screen.variant, screen.title, ...(screen.components ?? []), ...(screen.keywords ?? [])].join('|'))
+  const texts = squash((screen.matchedTexts ?? []).join('|'))
 
   const excluded = hit(`${info} ${texts}`, query.exclude)
   if (excluded) return { tier: 'low', reason: `‘${excluded}’ 관련 서비스라 목적이 달라요` }
@@ -136,16 +167,16 @@ export function rateRelevance(screen, query) {
     return { tier: 'exact', reason: `UI Bowl에서 ‘${query.component}’ 상태로 분류된 화면이에요` }
   }
 
-  const exactInInfo = hit(info, query.exact)
-  if (exactInInfo) return { tier: 'exact', reason: `화면 정보에 ‘${exactInInfo}’가 있어요` }
+  const exactInInfo = hit(info, query.exact) ?? hitAllWords(info, query.exact)
+  if (exactInInfo) return { tier: 'exact', reason: `화면 정보에 ‘${exactInInfo}’ 표기가 있어요` }
   // 문구에만 단어가 있으면(메뉴·FAQ 등) 화면 목적이 다를 수 있어요.
   // 화면 흐름(패턴)도 같은 여정일 때만 "정확히 일치"로 올려요.
-  const exactInText = hit(texts, query.exact)
+  const exactInText = hit(texts, query.exact) ?? hitAllWords(texts, query.exact)
   const journeyInInfo = hit(info, query.journey)
   if (exactInText && journeyInInfo) {
-    return { tier: 'exact', reason: `‘${journeyInInfo}’ 흐름이고 화면 문구에서 ‘${exactInText}’를 확인했어요` }
+    return { tier: 'exact', reason: `‘${journeyInInfo}’ 흐름이고 화면 문구에서 ‘${exactInText}’ 표기를 확인했어요` }
   }
-  if (exactInText) return { tier: 'related', reason: `화면 문구에 ‘${exactInText}’가 있지만 화면 목적은 다를 수 있어요` }
+  if (exactInText) return { tier: 'related', reason: `화면 문구에 ‘${exactInText}’ 표기가 있지만 화면 목적은 다를 수 있어요` }
 
   if (journeyInInfo) return { tier: 'related', reason: `‘${journeyInInfo}’ 여정에 속한 화면이에요` }
 
@@ -153,12 +184,12 @@ export function rateRelevance(screen, query) {
 }
 
 function scoreScreen(screen, terms) {
-  const haystack = [screen.service, screen.pattern, screen.variant, screen.title, ...screen.keywords]
-    .join(' ')
-    .toLowerCase()
+  const haystack = squash([screen.service, screen.pattern, screen.variant, screen.title, ...screen.keywords].join('|'))
   return terms.reduce((score, term) => {
-    const words = term.toLowerCase().split(' ')
-    return score + (words.every((w) => haystack.includes(w)) ? words.length : 0)
+    const words = term.split(' ').filter(Boolean)
+    // 띄어쓰기를 무시한 구절 일치, 또는 모든 단어가 들어 있으면 일치
+    const matched = haystack.includes(squash(term)) || words.every((w) => haystack.includes(squash(w)))
+    return score + (matched ? words.length : 0)
   }, 0)
 }
 

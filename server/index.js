@@ -128,9 +128,22 @@ app.post('/api/search', async (req, res) => {
       calls.push(['search_components', { ...base, component_type: query.component, limit: 8 }])
       continue
     }
-    for (let page = 1; page <= pages; page++) calls.push(['search_ui_patterns', { ...base, query: query.uibowl, ...(page > 1 && { page }) }])
+    // UI Bowl 패턴 검색은 띄어쓰기에 민감해서("본인인증" 29건, "본인 인증" 32건) 붙인 형태·띄운 형태를 모두 검색하고,
+    // 마지막에 앞 단어("주소 입력" → "주소")로 넓혀 찾아요. 어떤 결과가 얼마나 맞는지는 화면의 적합도 판정이 정해요.
+    const patternQueries = [...new Set([query.uibowl, ...query.phrases, query.head].filter(Boolean))].slice(0, 5)
+    patternQueries.forEach((q, i) => {
+      const pagesFor = i === 0 ? pages : 1
+      for (let page = 1; page <= pagesFor; page++) calls.push(['search_ui_patterns', { ...base, query: q, ...(page > 1 && { page }) }])
+    })
     // 문구 검색은 '정확히 일치' 화면을 찾는 보조 검색이에요. 섞여 들어온 엉뚱한 화면은 적합도 판정에서 걸러요.
+    // 사전에 정해 둔 문구가 없으면 여러 단어로 된 입력("주소 입력")에 한해 입력한 구절을 화면 속 문구로 찾아요.
     if (query.ocr) calls.push(['search_by_ocr_text', { ...base, text_query: query.ocr.text, ...(query.ocr.pattern && { pattern: query.ocr.pattern }) }])
+    else if (query.head) {
+      // 입력 순서와 상관없이 같은 결과가 나오도록 띄어 쓴 형태를 먼저 써요.
+      const ordered = [...query.phrases].sort((x, y) => Number(/\s/.test(y)) - Number(/\s/.test(x)))
+      const ocrPhrases = scopes.length > 1 ? ordered.slice(0, 1) : ordered.slice(0, 2)
+      for (const text_query of ocrPhrases) calls.push(['search_by_ocr_text', { ...base, text_query }])
+    }
   }
 
   const settled = await Promise.allSettled(calls.map(([tool, args]) => callTool(tool, args).then((d) => toScreens(d, tool))))

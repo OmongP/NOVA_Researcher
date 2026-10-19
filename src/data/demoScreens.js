@@ -1,5 +1,5 @@
 // 공개 데모 사이트용 화면 데이터 (scripts/build-demo-data.js가 만든 파일이에요. 직접 고치지 마세요)
-// 출처: UI Bowl (https://uibowl.io) · 생성일 2026-10-19 · 화면 묶음 263개
+// 출처: UI Bowl (https://uibowl.io) · 생성일 2026-10-19 · 화면 묶음 349개
 
 export const SOURCE_LABEL = 'UI Bowl'
 
@@ -28,7 +28,8 @@ export const sampleScreens = [
       "대출 한도",
       "대출한도가",
       "최대한도",
-      "자동차담보대출_한도우대"
+      "자동차담보대출_한도우대",
+      "한도 조회"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/cmsml20m300i7jw044qwpcsei/cmsml20mp00i9jw04cuo31j73/1a097148-80ed-40dd-9ad9-f093075214df/app_ShinhanBank_202608_202.png",
     "images": [
@@ -71,7 +72,8 @@ export const sampleScreens = [
     "keywords": [
       "대출한도",
       "대출 한도",
-      "최대한도"
+      "최대한도",
+      "한도 조회"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-0a24ce04-4c7e-4d5a-9aed-4f3c6eacc801/new-61223cd0-7489-4114-98c6-add0d6274e9f/021815ca-0b3b-4920-bc14-b85b4f3cd18f/app_toss_202607_496.png",
     "images": [
@@ -125,7 +127,8 @@ export const sampleScreens = [
       "대출한도",
       "대출 한도",
       "한도",
-      "한도는"
+      "한도는",
+      "한도 조회"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-48a11aae-b337-4c42-bbf4-010086fa8666/new-4ef5e410-a548-4e22-bfe3-c2e59cf32ce5/6c8dcd0d-b885-45d8-acba-95fb271e7a6d/app_korbit_202607_246.png",
     "images": [
@@ -179,7 +182,8 @@ export const sampleScreens = [
     "matchedTexts": [],
     "keywords": [
       "대출한도",
-      "대출 한도"
+      "대출 한도",
+      "한도 조회"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-fd91c5ad-4837-448a-9643-e8e49377a422/new-517fbd99-543d-48e1-9d70-754e9f6b0f7a/1e88d3f9-9593-4d61-aea3-9b3d94ab027e/IMG_1987.png",
     "images": [
@@ -231,7 +235,8 @@ export const sampleScreens = [
     "matchedTexts": [],
     "keywords": [
       "대출한도",
-      "대출 한도"
+      "대출 한도",
+      "한도 조회"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/clpic2u7p0000kw08dtc4cbpd/e703e670-664e-40b5-94db-d129d457fb92/IMG_9585.png",
     "images": [
@@ -277,7 +282,8 @@ export const sampleScreens = [
     "matchedTexts": [],
     "keywords": [
       "대출한도",
-      "대출 한도"
+      "대출 한도",
+      "한도 조회"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-3b661eae-059e-4405-973b-0e6b041c06f7/new-6acff994-5418-438c-b676-07e7c540908c/de019509-069e-44d6-bc81-91931d6a7070/IMG_1474.png",
     "images": [
@@ -303,6 +309,92 @@ export const sampleScreens = [
   },
   {
     "id": "demo-7",
+    "service": "카카오페이",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "메뉴",
+    "variant": "내대출한도",
+    "title": "내대출한도",
+    "dataMonth": "2025-10",
+    "screenCount": 3,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "대출한도",
+      "대출 한도"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-116b1b4d-5879-4ed1-b415-8535f201328c/new-b9442a37-7ae8-4977-b344-090b40dccdd4/8ceabc5a-3986-40b5-a03b-ca8e2291b4c4/IMG_5670%202.png",
+    "images": [
+      {
+        "id": "cmgnmk4uo0003l404sjd4sl8j",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-116b1b4d-5879-4ed1-b415-8535f201328c/new-b9442a37-7ae8-4977-b344-090b40dccdd4/8ceabc5a-3986-40b5-a03b-ca8e2291b4c4/IMG_5670%202.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%8E%98%EC%9D%B4?patterns=%EB%A9%94%EB%89%B4&imgId=cmgnmk4uo0003l404sjd4sl8j"
+      },
+      {
+        "id": "cmgnmk4vo0005l404z6aj372x",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-116b1b4d-5879-4ed1-b415-8535f201328c/new-8250ac66-8bee-4441-bc09-100f704e6df8/af6f9446-25f1-452a-9352-fd4ed5a4f8a3/IMG_5671%202.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%8E%98%EC%9D%B4?patterns=%EB%A9%94%EB%89%B4&imgId=cmgnmk4vo0005l404z6aj372x"
+      },
+      {
+        "id": "cmgnmk4wd0007l404xvzni5gp",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-116b1b4d-5879-4ed1-b415-8535f201328c/new-1094da1f-3f52-435e-b618-9078adc9bbe4/1664b25a-6f60-40d6-9d8f-954fd3199c5c/IMG_5672%202.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%8E%98%EC%9D%B4?patterns=%EB%A9%94%EB%89%B4&imgId=cmgnmk4wd0007l404xvzni5gp"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%8E%98%EC%9D%B4?patterns=%EB%A9%94%EB%89%B4&patternName=%EB%82%B4%EB%8C%80%EC%B6%9C%ED%95%9C%EB%8F%84",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-8",
+    "service": "크플",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "조회하기",
+    "variant": "내 집 대출 한도",
+    "title": "내 집 대출 한도",
+    "dataMonth": "2025-08",
+    "screenCount": 8,
+    "components": [
+      "그래프&차트",
+      "아코디언",
+      "팝업"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "대출한도",
+      "대출 한도",
+      "한도 조회"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-244c4476-e341-4191-8261-3d92fe59f426/new-08c6e963-feaf-47ab-b808-fb368e199d97/4c49ead7-9264-49af-977f-131cd65093b6/s162.png",
+    "images": [
+      {
+        "id": "cmejkq0ba002al2045kgd9asi",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-244c4476-e341-4191-8261-3d92fe59f426/new-08c6e963-feaf-47ab-b808-fb368e199d97/4c49ead7-9264-49af-977f-131cd65093b6/s162.png",
+        "uiUrl": "https://uibowl.io/name/%ED%81%AC%ED%94%8C?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmejkq0ba002al2045kgd9asi"
+      },
+      {
+        "id": "cmejkq0cd002cl204liwmste4",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-244c4476-e341-4191-8261-3d92fe59f426/new-8fda04c0-559c-4f00-ab51-2f816e26718e/8c7ebc1d-3e3f-4826-958f-ed52a7c79d0f/s163.png",
+        "uiUrl": "https://uibowl.io/name/%ED%81%AC%ED%94%8C?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmejkq0cd002cl204liwmste4"
+      },
+      {
+        "id": "cmejkq0d6002el204i0sxfj6o",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-244c4476-e341-4191-8261-3d92fe59f426/new-ebdafcef-dfd8-420c-9649-9f7af4bbe115/9917b15b-c480-4c45-bbc9-ad64f0e22ebd/s164.png",
+        "uiUrl": "https://uibowl.io/name/%ED%81%AC%ED%94%8C?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmejkq0d6002el204i0sxfj6o"
+      },
+      {
+        "id": "cmejkq0dy002gl2048zd5gj0d",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-244c4476-e341-4191-8261-3d92fe59f426/new-93ce7d6d-20ad-4ee3-a446-609757e1d7f0/b41fb865-c9b5-48a6-9a2b-0362807dcb2c/s165.png",
+        "uiUrl": "https://uibowl.io/name/%ED%81%AC%ED%94%8C?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmejkq0dy002gl2048zd5gj0d"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%81%AC%ED%94%8C?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&patternName=%EB%82%B4%20%EC%A7%91%20%EB%8C%80%EC%B6%9C%20%ED%95%9C%EB%8F%84",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-9",
     "service": "하나원큐",
     "domain": "금융",
     "category": "금융",
@@ -315,7 +407,8 @@ export const sampleScreens = [
     "matchedTexts": [],
     "keywords": [
       "자동차 시세 조회",
-      "자동차 시세"
+      "자동차 시세",
+      "시세"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-052e833a-1020-4665-a0cb-035b2314643a/new-45fbe5e5-d4be-44b7-bfab-953541555e98/a9c9d9e7-2ca0-4932-b30f-1f224a2db761/app_Hana1Q_202608_609.png",
     "images": [
@@ -335,7 +428,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-8",
+    "id": "demo-10",
     "service": "네이버페이",
     "domain": "금융",
     "category": "금융",
@@ -351,7 +444,8 @@ export const sampleScreens = [
     "matchedTexts": [],
     "keywords": [
       "자동차 시세 조회",
-      "자동차 시세"
+      "자동차 시세",
+      "시세"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-091c247e-d7bb-4bf6-8464-83725fcd623c/new-8afc78d4-4b80-44ba-8e60-98ee6bda50f7/f4e0d12e-384b-492f-8ffa-9ff0077332ce/mobile_naverpay_202608_119.png",
     "images": [
@@ -381,7 +475,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-9",
+    "id": "demo-11",
     "service": "코빗",
     "domain": "금융",
     "category": "금융",
@@ -397,7 +491,8 @@ export const sampleScreens = [
     "matchedTexts": [],
     "keywords": [
       "자동차 시세 조회",
-      "자동차 시세"
+      "자동차 시세",
+      "시세"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-15a31360-6e73-40af-a7fc-976a5ab419d5/new-01b012d9-92b4-4495-bbee-bfee0b597233/2ea5935d-573e-4fd2-b56b-3605076baa28/app_korbit_202607_91.png",
     "images": [
@@ -417,7 +512,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-10",
+    "id": "demo-12",
     "service": "토스",
     "domain": "금융",
     "category": "금융",
@@ -434,7 +529,8 @@ export const sampleScreens = [
     "matchedTexts": [],
     "keywords": [
       "자동차 시세 조회",
-      "자동차 시세"
+      "자동차 시세",
+      "시세"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-403dd19c-a1b0-49b7-a466-4ded2496402d/new-192566b7-116a-45a5-a23b-e0b9ff7b0d93/aaca42bd-bac5-4902-8b03-027edfc04506/app_toss_202607_351.png",
     "images": [
@@ -459,7 +555,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-11",
+    "id": "demo-13",
     "service": "카카오페이",
     "domain": "금융",
     "category": "금융",
@@ -474,7 +570,8 @@ export const sampleScreens = [
     "matchedTexts": [],
     "keywords": [
       "자동차 시세 조회",
-      "자동차 시세"
+      "자동차 시세",
+      "시세"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-152e8243-7def-48bf-a647-dfc8b660541b/new-1897781e-dbc1-4808-a450-3de32168e17b/cb9a088d-549e-4607-b7a2-17a95a293746/IMG_6343.png",
     "images": [
@@ -504,7 +601,52 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-12",
+    "id": "demo-14",
+    "service": "신한 슈퍼SOL",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "추천",
+    "variant": "자동차대출",
+    "title": "자동차대출",
+    "dataMonth": "2026-08",
+    "screenCount": 9,
+    "components": [
+      "라디오 버튼"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "자동차 시세 조회",
+      "자동차 시세"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new/4a3c920e-ad41-41b2-8075-5cb5fa626813/app_ShinhanBank_202608_491.png",
+    "images": [
+      {
+        "id": "cmsmmm3vi000kla04hd25ptu8",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/4a3c920e-ad41-41b2-8075-5cb5fa626813/app_ShinhanBank_202608_491.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%B6%94%EC%B2%9C&imgId=cmsmmm3vi000kla04hd25ptu8"
+      },
+      {
+        "id": "cmsmmm3wf000mla04gbi48cs9",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-15b8fda1-ef4b-4624-be2d-38ddfe6db1c1/new-be4624c1-7893-4281-87a2-720f52af1546/de50d274-469f-4dd1-88ec-5a13f159df6a/app_ShinhanBank_202608_492.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%B6%94%EC%B2%9C&imgId=cmsmmm3wf000mla04gbi48cs9"
+      },
+      {
+        "id": "cmsmmm3x3000ola048c2vmx68",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-15b8fda1-ef4b-4624-be2d-38ddfe6db1c1/new-ec3afb59-135a-44b2-ae0f-2bf21db3eca1/f3c17d66-4bd2-47ef-ba89-55d1e15c7524/app_ShinhanBank_202608_493.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%B6%94%EC%B2%9C&imgId=cmsmmm3x3000ola048c2vmx68"
+      },
+      {
+        "id": "cmsmmm3xr000qla04zx7qwpup",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-15b8fda1-ef4b-4624-be2d-38ddfe6db1c1/new-d7daface-da70-46b8-ab27-44870a722769/ab8fc134-a8e6-48e2-ad13-e25f7593f0b6/app_ShinhanBank_202608_494.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%B6%94%EC%B2%9C&imgId=cmsmmm3xr000qla04zx7qwpup"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%B6%94%EC%B2%9C&patternName=%EC%9E%90%EB%8F%99%EC%B0%A8%EB%8C%80%EC%B6%9C",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-15",
     "service": "미래에셋증권 M-STOCK",
     "domain": "금융",
     "category": "금융",
@@ -520,7 +662,8 @@ export const sampleScreens = [
     "keywords": [
       "자동차 시세 조회",
       "자동차 시세",
-      "#원유시세"
+      "#원유시세",
+      "시세"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-a5ef409b-6e9d-4927-9ba3-b6f1c85a7748/new-07dab9d1-e287-408e-8e6a-ba9868328e70/60a3a09d-f418-47c3-a725-f2a1ea85802c/app_miraeasset_202607_3.png",
     "images": [
@@ -550,7 +693,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-13",
+    "id": "demo-16",
     "service": "하나원큐",
     "domain": "금융",
     "category": "금융",
@@ -602,7 +745,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-14",
+    "id": "demo-17",
     "service": "네이버페이",
     "domain": "금융",
     "category": "금융",
@@ -651,7 +794,104 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-15",
+    "id": "demo-18",
+    "service": "토스",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "비교하기",
+    "variant": "자동차보험-결과 비교",
+    "title": "자동차보험-결과 비교",
+    "dataMonth": "2026-07",
+    "screenCount": 7,
+    "components": [],
+    "matchedTexts": [
+      "차량번호"
+    ],
+    "keywords": [
+      "자동차 시세 조회",
+      "자동차 시세",
+      "차량 등록",
+      "차량번호",
+      "보험",
+      "차량 관리"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-3b4d9aa6-0626-4ce8-9bae-c3c93b4b8cf8/new-ccd778d6-60bb-42a6-8063-ac5c375d3ccf/57162069-8347-46a0-ad3f-c17d14e4f97b/app_toss_202607_337.png",
+    "images": [
+      {
+        "id": "cmrtw7f1z0007jx04sls82a8w",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3b4d9aa6-0626-4ce8-9bae-c3c93b4b8cf8/new-d1b2ee9b-3936-4c23-b90a-bfcea811a0b1/3ef5e3c5-c0f0-4958-b66e-186e1166173f/app_toss_202607_334.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmrtw7f1z0007jx04sls82a8w"
+      },
+      {
+        "id": "cmrtw7f2l0009jx04w6z9vtiu",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3b4d9aa6-0626-4ce8-9bae-c3c93b4b8cf8/new-f6163043-b4e6-4966-8e3f-167fe0b30893/8901a251-4b54-42a9-8a5a-6ec0888b2602/app_toss_202607_335.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmrtw7f2l0009jx04w6z9vtiu"
+      },
+      {
+        "id": "cmrtw7f37000bjx04fvqjpjo1",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3b4d9aa6-0626-4ce8-9bae-c3c93b4b8cf8/new-ac2343e3-13a5-4ff5-bcdf-d2aeebbd00f8/2b803f85-357d-471f-8bcf-9ed855f8cef0/app_toss_202607_336.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmrtw7f37000bjx04fvqjpjo1"
+      },
+      {
+        "id": "cmrtw7f3u000djx04mwjg1z8f",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3b4d9aa6-0626-4ce8-9bae-c3c93b4b8cf8/new-ccd778d6-60bb-42a6-8063-ac5c375d3ccf/57162069-8347-46a0-ad3f-c17d14e4f97b/app_toss_202607_337.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmrtw7f3u000djx04mwjg1z8f"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmrtw7f3u000djx04mwjg1z8f",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-19",
+    "service": "토스",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "비교하기",
+    "variant": "자동차보험-보험료 조회",
+    "title": "자동차보험-보험료 조회",
+    "dataMonth": "2026-07",
+    "screenCount": 18,
+    "components": [
+      "그래프&차트",
+      "라디오 버튼",
+      "아코디언",
+      "카드"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "자동차 시세 조회",
+      "자동차 시세"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-822b87c4-2575-43fc-ba93-2de9087de5cf/new-d1ea5175-2115-4293-b815-34114bbe165b/effd87eb-12db-4920-b151-d0b1796d322d/app_toss_202607_313.png",
+    "images": [
+      {
+        "id": "cmrtw7zb90005ky04c9c2ekng",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-822b87c4-2575-43fc-ba93-2de9087de5cf/new-d1ea5175-2115-4293-b815-34114bbe165b/effd87eb-12db-4920-b151-d0b1796d322d/app_toss_202607_313.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmrtw7zb90005ky04c9c2ekng"
+      },
+      {
+        "id": "cmrtw7zbw0007ky044mzywlrn",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-822b87c4-2575-43fc-ba93-2de9087de5cf/new-7471a180-7ddc-465a-9ebb-6039de25306c/56a6f712-f919-441a-805a-a25d83e77556/app_toss_202607_314.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmrtw7zbw0007ky044mzywlrn"
+      },
+      {
+        "id": "cmrtw7zck0009ky04ghdiksad",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-822b87c4-2575-43fc-ba93-2de9087de5cf/new-46c7469a-66f8-4ce1-9fc8-a200685825c0/14beb258-0e01-49b8-bbdf-3847123d8192/app_toss_202607_315.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmrtw7zck0009ky04ghdiksad"
+      },
+      {
+        "id": "cmrtw7zd9000bky04zns6v6nj",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-822b87c4-2575-43fc-ba93-2de9087de5cf/new-711dfa23-41ab-4619-8a1d-a4d8b0320308/d99d1b6b-21b0-4aef-937d-7950e3dcb5b4/app_toss_202607_316.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmrtw7zd9000bky04zns6v6nj"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&patternName=%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98-%EB%B3%B4%ED%97%98%EB%A3%8C%20%EC%A1%B0%ED%9A%8C",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-20",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -667,7 +907,8 @@ export const sampleScreens = [
     "keywords": [
       "자동차 시세 조회",
       "자동차 시세",
-      "시세조회"
+      "시세조회",
+      "시세"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-92eb2e67-56fe-4866-8035-c50d80de0c05/new-3540b7a2-2e4a-4d42-bfa3-5b37ea0471ea/93ff3005-be07-43a3-9ba4-0d8102f5669e/s109.png",
     "images": [
@@ -692,7 +933,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-16",
+    "id": "demo-21",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -703,12 +944,20 @@ export const sampleScreens = [
     "screenCount": 8,
     "components": [],
     "matchedTexts": [
-      "시세를"
+      "시세를",
+      "신청",
+      "구매상담신청",
+      "카드키,"
     ],
     "keywords": [
       "자동차 시세 조회",
       "자동차 시세",
-      "시세를"
+      "시세를",
+      "카드 신청",
+      "신청",
+      "구매상담신청",
+      "카드키,",
+      "시세"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-82e841b3-d77e-4ad1-92aa-de90c1ad9678/new-fc476325-98e0-4533-92b5-48c03c550cfa/7c915060-1240-4c1d-802d-81fd370f952c/IMG_3944.png",
     "images": [
@@ -738,7 +987,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-17",
+    "id": "demo-22",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -753,7 +1002,8 @@ export const sampleScreens = [
     "matchedTexts": [],
     "keywords": [
       "자동차 시세 조회",
-      "자동차 시세"
+      "자동차 시세",
+      "시세"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-69b06b5d-48b5-4a2e-9a58-2a8eb74f4d12/new-c5624130-c6b8-4286-93f5-9f6d3b2cf255/7b687304-a06c-4714-9152-e8fd84ed9da8/s51.png",
     "images": [
@@ -783,7 +1033,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-18",
+    "id": "demo-23",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -830,7 +1080,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-19",
+    "id": "demo-24",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -845,7 +1095,8 @@ export const sampleScreens = [
     "matchedTexts": [],
     "keywords": [
       "자동차 시세 조회",
-      "자동차 시세"
+      "자동차 시세",
+      "시세"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-ffa5c201-e886-4e41-aac9-5bceef305532/new-7d600f07-1a06-4155-bd38-d8596fd50cd1/96c8468e-7da8-4436-afa2-3030b80bd5e4/s5.png",
     "images": [
@@ -875,7 +1126,102 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-20",
+    "id": "demo-25",
+    "service": "차봇",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "신청하기",
+    "variant": "자동차보험",
+    "title": "자동차보험",
+    "dataMonth": "2026-08",
+    "screenCount": 4,
+    "components": [],
+    "matchedTexts": [
+      "가입하면",
+      "가입",
+      "회원"
+    ],
+    "keywords": [
+      "자동차 시세 조회",
+      "자동차 시세",
+      "회원가입",
+      "가입하면",
+      "가입",
+      "회원",
+      "보험",
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-770a57b3-01ef-48c2-843d-79f3924bfe56/new-7633df8a-e552-494a-beb5-319d26ca8bbf/a43c3919-4e08-4f99-92e3-199727f16310/app_chabot_202608_160.png",
+    "images": [
+      {
+        "id": "cmtd3bjta0003jy042q1ve3ib",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-770a57b3-01ef-48c2-843d-79f3924bfe56/new-7633df8a-e552-494a-beb5-319d26ca8bbf/a43c3919-4e08-4f99-92e3-199727f16310/app_chabot_202608_160.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3bjta0003jy042q1ve3ib"
+      },
+      {
+        "id": "cmtd3bjuc0005jy04u56dh3s6",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-770a57b3-01ef-48c2-843d-79f3924bfe56/new-477a7861-bd3a-4a45-a987-38abe1f6f14d/6ffb8a3d-d9a8-40b2-b1e0-7f0efdd8a011/app_chabot_202608_161.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3bjuc0005jy04u56dh3s6"
+      },
+      {
+        "id": "cmtd3bjv40007jy04mplohtl8",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-770a57b3-01ef-48c2-843d-79f3924bfe56/new-65ac1f48-5a65-48be-a039-1b6db912259f/f9cce7a7-fdda-428d-adc7-05c0212c3cf2/app_chabot_202608_162.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3bjv40007jy04mplohtl8"
+      },
+      {
+        "id": "cmtd3bjvx0009jy041w0awj0t",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-770a57b3-01ef-48c2-843d-79f3924bfe56/new-2810178b-82e6-41e0-a834-bbc389b84870/8f9384f5-b042-4eb0-8aab-298a312c8e47/app_chabot_202608_163.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3bjvx0009jy041w0awj0t"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-26",
+    "service": "헤이딜러",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "검색",
+    "variant": "자주 묻는 질문",
+    "title": "자주 묻는 질문",
+    "dataMonth": "2026-02",
+    "screenCount": 3,
+    "components": [],
+    "matchedTexts": [
+      "예상시세는"
+    ],
+    "keywords": [
+      "자동차 시세 조회",
+      "자동차 시세",
+      "예상시세는",
+      "시세"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-410e0dc4-0415-42cc-9fbe-31c56dcfdd65/new-28240dab-010f-4ead-ba99-09271680c0e0/ea5312ed-74c3-4432-a362-663a510ee89c/s67.png",
+    "images": [
+      {
+        "id": "cmlippxs8000bl404tu9bny8t",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-410e0dc4-0415-42cc-9fbe-31c56dcfdd65/new-28240dab-010f-4ead-ba99-09271680c0e0/ea5312ed-74c3-4432-a362-663a510ee89c/s67.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EA%B2%80%EC%83%89&imgId=cmlippxs8000bl404tu9bny8t"
+      },
+      {
+        "id": "cmlippxt0000dl404z6pk9uvu",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-410e0dc4-0415-42cc-9fbe-31c56dcfdd65/new-649cdf9e-a585-4c06-ae64-16a2c2dbb89f/2cc2a513-ebf1-429b-a944-37f41781e8a3/s69.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EA%B2%80%EC%83%89&imgId=cmlippxt0000dl404z6pk9uvu"
+      },
+      {
+        "id": "cmlippxtt000fl4042xi89gox",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-410e0dc4-0415-42cc-9fbe-31c56dcfdd65/new-a9833bd6-b8e0-4c35-9eed-b089c120e87d/ea539e40-d033-4a86-980c-29d6cdc6ec77/s70.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EA%B2%80%EC%83%89&imgId=cmlippxtt000fl4042xi89gox"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EA%B2%80%EC%83%89&imgId=cmlippxs8000bl404tu9bny8t",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-27",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -905,20 +1251,20 @@ export const sampleScreens = [
         "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80&imgId=cmtd2z08u00b6l404xqx49bqx"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80&patternName=%EB%82%B4%EC%B0%A8%EA%B4%80%EB%A6%AC",
+    "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80&imgId=cmtd2z08u00b6l404xqx49bqx",
     "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
+    "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-21",
+    "id": "demo-28",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
-    "pattern": "검색",
+    "pattern": "고객센터·FAQ",
     "variant": "자주 묻는 질문",
     "title": "자주 묻는 질문",
     "dataMonth": "2026-02",
-    "screenCount": 3,
+    "screenCount": 2,
     "components": [],
     "matchedTexts": [
       "예상시세는"
@@ -926,32 +1272,28 @@ export const sampleScreens = [
     "keywords": [
       "자동차 시세 조회",
       "자동차 시세",
-      "예상시세는"
+      "예상시세는",
+      "시세"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-410e0dc4-0415-42cc-9fbe-31c56dcfdd65/new-28240dab-010f-4ead-ba99-09271680c0e0/ea5312ed-74c3-4432-a362-663a510ee89c/s67.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-edc7ed98-e697-4239-ae12-f68ec28b56b0/new-30d17285-2caf-4a53-8d62-948b79425b47/7f3de686-ec14-4a8c-bb31-a6cbf0a861b9/s65.png",
     "images": [
       {
-        "id": "cmlippxs8000bl404tu9bny8t",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-410e0dc4-0415-42cc-9fbe-31c56dcfdd65/new-28240dab-010f-4ead-ba99-09271680c0e0/ea5312ed-74c3-4432-a362-663a510ee89c/s67.png",
-        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EA%B2%80%EC%83%89&imgId=cmlippxs8000bl404tu9bny8t"
+        "id": "cmliptjle0007lb048rqj5gug",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-edc7ed98-e697-4239-ae12-f68ec28b56b0/new-30d17285-2caf-4a53-8d62-948b79425b47/7f3de686-ec14-4a8c-bb31-a6cbf0a861b9/s65.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EA%B3%A0%EA%B0%9D%EC%84%BC%ED%84%B0%C2%B7FAQ&imgId=cmliptjle0007lb048rqj5gug"
       },
       {
-        "id": "cmlippxt0000dl404z6pk9uvu",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-410e0dc4-0415-42cc-9fbe-31c56dcfdd65/new-649cdf9e-a585-4c06-ae64-16a2c2dbb89f/2cc2a513-ebf1-429b-a944-37f41781e8a3/s69.png",
-        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EA%B2%80%EC%83%89&imgId=cmlippxt0000dl404z6pk9uvu"
-      },
-      {
-        "id": "cmlippxtt000fl4042xi89gox",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-410e0dc4-0415-42cc-9fbe-31c56dcfdd65/new-a9833bd6-b8e0-4c35-9eed-b089c120e87d/ea539e40-d033-4a86-980c-29d6cdc6ec77/s70.png",
-        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EA%B2%80%EC%83%89&imgId=cmlippxtt000fl4042xi89gox"
+        "id": "cmliptjmj0009lb044toyy1tq",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-edc7ed98-e697-4239-ae12-f68ec28b56b0/new-5e00ab78-b238-4c88-b913-760dc5669d75/c76ac4b8-80cb-4326-897e-a91cd36510ee/s66.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EA%B3%A0%EA%B0%9D%EC%84%BC%ED%84%B0%C2%B7FAQ&imgId=cmliptjmj0009lb044toyy1tq"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EA%B2%80%EC%83%89&imgId=cmlippxs8000bl404tu9bny8t",
+    "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EA%B3%A0%EA%B0%9D%EC%84%BC%ED%84%B0%C2%B7FAQ&imgId=cmliptjle0007lb048rqj5gug",
     "source": "UI Bowl",
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-22",
+    "id": "demo-29",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -962,12 +1304,18 @@ export const sampleScreens = [
     "screenCount": 4,
     "components": [],
     "matchedTexts": [
-      "시세는"
+      "시세는",
+      "회원가입은",
+      "회원"
     ],
     "keywords": [
       "자동차 시세 조회",
       "자동차 시세",
-      "시세는"
+      "시세는",
+      "회원가입",
+      "회원가입은",
+      "회원",
+      "시세"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-cf77f95b-ef13-4c02-80e4-0e1c48af3705/new-70d5b48f-54fc-489c-bda7-6fdcc45b695f/958191f2-d2ae-4401-8f5b-31881172e02f/app_chabot_202608_30.png",
     "images": [
@@ -997,43 +1345,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-23",
-    "service": "헤이딜러",
-    "domain": "자동차",
-    "category": "모빌리티",
-    "pattern": "고객센터·FAQ",
-    "variant": "자주 묻는 질문",
-    "title": "자주 묻는 질문",
-    "dataMonth": "2026-02",
-    "screenCount": 2,
-    "components": [],
-    "matchedTexts": [
-      "예상시세는"
-    ],
-    "keywords": [
-      "자동차 시세 조회",
-      "자동차 시세",
-      "예상시세는"
-    ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-edc7ed98-e697-4239-ae12-f68ec28b56b0/new-30d17285-2caf-4a53-8d62-948b79425b47/7f3de686-ec14-4a8c-bb31-a6cbf0a861b9/s65.png",
-    "images": [
-      {
-        "id": "cmliptjle0007lb048rqj5gug",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-edc7ed98-e697-4239-ae12-f68ec28b56b0/new-30d17285-2caf-4a53-8d62-948b79425b47/7f3de686-ec14-4a8c-bb31-a6cbf0a861b9/s65.png",
-        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EA%B3%A0%EA%B0%9D%EC%84%BC%ED%84%B0%C2%B7FAQ&imgId=cmliptjle0007lb048rqj5gug"
-      },
-      {
-        "id": "cmliptjmj0009lb044toyy1tq",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-edc7ed98-e697-4239-ae12-f68ec28b56b0/new-5e00ab78-b238-4c88-b913-760dc5669d75/c76ac4b8-80cb-4326-897e-a91cd36510ee/s66.png",
-        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EA%B3%A0%EA%B0%9D%EC%84%BC%ED%84%B0%C2%B7FAQ&imgId=cmliptjmj0009lb044toyy1tq"
-      }
-    ],
-    "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EA%B3%A0%EA%B0%9D%EC%84%BC%ED%84%B0%C2%B7FAQ&imgId=cmliptjle0007lb048rqj5gug",
-    "source": "UI Bowl",
-    "sourceTool": "search_by_ocr_text"
-  },
-  {
-    "id": "demo-24",
+    "id": "demo-30",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -1049,7 +1361,8 @@ export const sampleScreens = [
     "keywords": [
       "자동차 시세 조회",
       "자동차 시세",
-      "시세를"
+      "시세를",
+      "시세"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-4488e790-6973-4d3f-9503-c3cbfe90115b/new-8df73c4d-d329-4746-b73e-04543769a921/3016763a-0444-41f9-ba4a-acbf0d51fe8b/s153.png",
     "images": [
@@ -1064,7 +1377,55 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-25",
+    "id": "demo-31",
+    "service": "카카오T",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "상세정보 (PDP)",
+    "variant": "안내-자동차 검사",
+    "title": "안내-자동차 검사",
+    "dataMonth": "2026-04",
+    "screenCount": 5,
+    "components": [
+      "그래프&차트",
+      "그래픽",
+      "리스트",
+      "인터랙션"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "자동차 시세 조회",
+      "자동차 시세"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-0e991ec2-042e-48e8-928e-96fa0ad7fb87/new-d60f7385-ce0b-443a-b9af-92ca66c1e9fa/db5d5fa4-2627-4653-88bf-4ddfdb09d618/t61.png",
+    "images": [
+      {
+        "id": "cmoaqe1ld00fxjz04rj0epdii",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-0e991ec2-042e-48e8-928e-96fa0ad7fb87/new-d60f7385-ce0b-443a-b9af-92ca66c1e9fa/db5d5fa4-2627-4653-88bf-4ddfdb09d618/t61.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmoaqe1ld00fxjz04rj0epdii"
+      },
+      {
+        "id": "cmoaqe1m200fzjz0495j8hssm",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-0e991ec2-042e-48e8-928e-96fa0ad7fb87/new-87a20f65-0b5a-4368-b620-89cf3baf8d6f/f0244a59-b901-4a35-b43b-e102ec7808cb/t62.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmoaqe1m200fzjz0495j8hssm"
+      },
+      {
+        "id": "cmoaqe1mp00g1jz0477mpbmmd",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-0e991ec2-042e-48e8-928e-96fa0ad7fb87/new-e901ae52-22cb-462f-9d94-6fb5b79cd56c/6cc27c6b-8b51-429d-86d9-2d643e59ff1e/t63.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmoaqe1mp00g1jz0477mpbmmd"
+      },
+      {
+        "id": "cmoaqe1nc00g3jz04tqksa8zl",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-0e991ec2-042e-48e8-928e-96fa0ad7fb87/new-0a96fb02-3e6c-4ea1-8f52-23d07c41aae8/135d0157-82c6-4297-8894-4df4e5c0dd6b/t64.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmoaqe1nc00g3jz04tqksa8zl"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&patternName=%EC%95%88%EB%82%B4-%EC%9E%90%EB%8F%99%EC%B0%A8%20%EA%B2%80%EC%82%AC",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-32",
     "service": "카카오T",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -1087,7 +1448,8 @@ export const sampleScreens = [
       "지금 내 차 시세를",
       "시세를",
       "시세",
-      "차량 등록"
+      "차량 등록",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-ff2e8041-fc3d-4fea-afed-0330f8cc3f8c/new-5acbc9d3-0832-4914-ab85-440dfa78cc08/f4cfb43f-6d52-4856-908e-3d5084a8cd23/t66.png",
     "images": [
@@ -1117,7 +1479,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-26",
+    "id": "demo-33",
     "service": "신한 슈퍼SOL",
     "domain": "금융",
     "category": "금융",
@@ -1149,7 +1511,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-27",
+    "id": "demo-34",
     "service": "도미노",
     "domain": "금융",
     "category": "금융",
@@ -1203,7 +1565,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-28",
+    "id": "demo-35",
     "service": "아이쿠카",
     "domain": "금융",
     "category": "금융",
@@ -1248,7 +1610,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-29",
+    "id": "demo-36",
     "service": "Bybit",
     "domain": "금융",
     "category": "금융",
@@ -1290,7 +1652,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-30",
+    "id": "demo-37",
     "service": "페이코",
     "domain": "금융",
     "category": "금융",
@@ -1326,7 +1688,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-31",
+    "id": "demo-38",
     "service": "신한 SOL페이",
     "domain": "금융",
     "category": "금융",
@@ -1374,7 +1736,137 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-32",
+    "id": "demo-39",
+    "service": "미래에셋증권 M-STOCK",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "인증하기",
+    "variant": "본인 인증",
+    "title": "본인 인증",
+    "dataMonth": "2026-07",
+    "screenCount": 11,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "본인인증"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-39dbe7c8-dd16-4f65-a431-c087ac4e10a7/new-58968488-5cec-458d-9213-7ad94e335124/b74d997e-2bdf-4c46-9b3a-21cc043c8532/app_miraeasset_202607_501.png",
+    "images": [
+      {
+        "id": "cmrx9g2nn00aai704vpg5uvzh",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-39dbe7c8-dd16-4f65-a431-c087ac4e10a7/new-58968488-5cec-458d-9213-7ad94e335124/b74d997e-2bdf-4c46-9b3a-21cc043c8532/app_miraeasset_202607_501.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmrx9g2nn00aai704vpg5uvzh"
+      },
+      {
+        "id": "cmrx9g2oe00aci704xzioobum",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-39dbe7c8-dd16-4f65-a431-c087ac4e10a7/new-77bafc0c-c40c-4e29-9461-db4f5b04292d/65ff19da-7107-4356-bebc-657c7675c142/app_miraeasset_202607_502.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmrx9g2oe00aci704xzioobum"
+      },
+      {
+        "id": "cmrx9g2p100aei704a4k8ad94",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-39dbe7c8-dd16-4f65-a431-c087ac4e10a7/new-76ae3c0e-1412-498f-ab57-8b1ca7ecb817/0de3d2da-1835-47d7-86ca-08fd2f455892/app_miraeasset_202607_503.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmrx9g2p100aei704a4k8ad94"
+      },
+      {
+        "id": "cmrx9g2pq00agi704nwecaxia",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-39dbe7c8-dd16-4f65-a431-c087ac4e10a7/new-4f8326d8-23c1-4ff5-a603-5f17e97cf91d/73fbb2d1-8cb6-45d3-90bf-d326dff55307/app_miraeasset_202607_504.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmrx9g2pq00agi704nwecaxia"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&patternName=%EB%B3%B8%EC%9D%B8%20%EC%9D%B8%EC%A6%9D",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-40",
+    "service": "iM뱅크",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "인증하기",
+    "variant": "본인인증-인증번호 재전송",
+    "title": "본인인증-인증번호 재전송",
+    "dataMonth": "2026-05",
+    "screenCount": 4,
+    "components": [
+      "에러&실패"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "본인인증"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-69b7cff0-c520-45dc-975a-62bfc57a9c87/new-355699e2-f649-4712-bb24-1c2d8cef0a08/0654ca6a-7a21-4728-abf9-8315caaaddf7/s39.png",
+    "images": [
+      {
+        "id": "cmp0u72c7019il204jit41yxw",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-69b7cff0-c520-45dc-975a-62bfc57a9c87/new-355699e2-f649-4712-bb24-1c2d8cef0a08/0654ca6a-7a21-4728-abf9-8315caaaddf7/s39.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmp0u72c7019il204jit41yxw"
+      },
+      {
+        "id": "cmp0u72cz019kl204fc63hglh",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-69b7cff0-c520-45dc-975a-62bfc57a9c87/new-31f13b8f-f3f2-466c-9fe5-63d124744076/cd0928b1-cd84-40a7-bc21-889aac014f15/s40.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmp0u72cz019kl204fc63hglh"
+      },
+      {
+        "id": "cmp0u72dq019ml2042gvct24r",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-69b7cff0-c520-45dc-975a-62bfc57a9c87/new-8a3e568d-0067-4eec-8605-becd1b0a02c7/0e990691-16f1-4b34-8338-5b4734a6cb78/s41.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmp0u72dq019ml2042gvct24r"
+      },
+      {
+        "id": "cmp0u72ei019ol2043w41h2w4",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-69b7cff0-c520-45dc-975a-62bfc57a9c87/new-57c11101-79bf-4b70-846d-0d3fc6ae4a37/07569b91-097a-4957-b787-8049b0df910f/s42.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmp0u72ei019ol2043w41h2w4"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&patternName=%EB%B3%B8%EC%9D%B8%EC%9D%B8%EC%A6%9D-%EC%9D%B8%EC%A6%9D%EB%B2%88%ED%98%B8%20%EC%9E%AC%EC%A0%84%EC%86%A1",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-41",
+    "service": "보맵",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "인증하기",
+    "variant": "휴대폰 본인확인",
+    "title": "휴대폰 본인확인",
+    "dataMonth": "2026-07",
+    "screenCount": 6,
+    "components": [
+      "텍스트 필드"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "본인인증"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-6a5cc642-fa08-4582-9a52-4cb12b97bd57/new-e82639cf-2691-44ed-9c02-934f08093f8c/40af9699-0e07-4a59-9364-1f371b7acc92/app_bomapp_202607_104.png",
+    "images": [
+      {
+        "id": "cmr2zvp0s0014l104u95ce5kd",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-6a5cc642-fa08-4582-9a52-4cb12b97bd57/new-e82639cf-2691-44ed-9c02-934f08093f8c/40af9699-0e07-4a59-9364-1f371b7acc92/app_bomapp_202607_104.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%B4%EB%A7%B5?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmr2zvp0s0014l104u95ce5kd"
+      },
+      {
+        "id": "cmr2zvp1h0016l104y5r4a6xq",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-6a5cc642-fa08-4582-9a52-4cb12b97bd57/new-26111721-7895-4328-baf2-404a4e9b55ed/cd4f0548-4f2e-4e35-9aa6-3e5b0719445d/app_bomapp_202607_105.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%B4%EB%A7%B5?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmr2zvp1h0016l104y5r4a6xq"
+      },
+      {
+        "id": "cmr2zvp260018l104pspennnm",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-6a5cc642-fa08-4582-9a52-4cb12b97bd57/new-e4d9378a-4aae-49d0-bd98-f887b3883447/c330db67-192f-4f89-b4b6-da21a44bc9cf/app_bomapp_202607_106.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%B4%EB%A7%B5?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmr2zvp260018l104pspennnm"
+      },
+      {
+        "id": "cmr2zvp2u001al104ui2ck0mv",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-6a5cc642-fa08-4582-9a52-4cb12b97bd57/new-398c5dd1-7c9b-4814-ba5d-bd3f2f110cc8/8b89cf02-4d1a-4ad3-b967-1cb7697b3a33/app_bomapp_202607_107.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%B4%EB%A7%B5?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmr2zvp2u001al104ui2ck0mv"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%B3%B4%EB%A7%B5?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&patternName=%ED%9C%B4%EB%8C%80%ED%8F%B0%20%EB%B3%B8%EC%9D%B8%ED%99%95%EC%9D%B8",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-42",
     "service": "한패스",
     "domain": "금융",
     "category": "금융",
@@ -1419,7 +1911,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-33",
+    "id": "demo-43",
     "service": "하나원큐",
     "domain": "금융",
     "category": "금융",
@@ -1473,7 +1965,138 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-34",
+    "id": "demo-44",
+    "service": "신한 슈퍼SOL",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "인증하기",
+    "variant": "휴대폰 본인확인",
+    "title": "휴대폰 본인확인",
+    "dataMonth": "2026-08",
+    "screenCount": 16,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "본인인증"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-3a8e3796-4e98-4ae3-9d60-a537144f6be0/new-89cd5b8f-eacd-4e59-932f-a5507de5e5e2/cfea100e-299b-4288-b843-f2aa283ae735/app_ShinhanBank_202608_421.png",
+    "images": [
+      {
+        "id": "cmsmmf98700q1ky042n5zxnqr",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3a8e3796-4e98-4ae3-9d60-a537144f6be0/new-89cd5b8f-eacd-4e59-932f-a5507de5e5e2/cfea100e-299b-4288-b843-f2aa283ae735/app_ShinhanBank_202608_421.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmsmmf98700q1ky042n5zxnqr"
+      },
+      {
+        "id": "cmsmmf99100q3ky04dgz1tqao",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3a8e3796-4e98-4ae3-9d60-a537144f6be0/new-c8ce7302-adaf-429a-add8-c5482bf08076/ed11c1ee-1922-4b36-bf92-4b10bb327d0e/app_ShinhanBank_202608_422.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmsmmf99100q3ky04dgz1tqao"
+      },
+      {
+        "id": "cmsmmf99r00q5ky045oh3e36h",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3a8e3796-4e98-4ae3-9d60-a537144f6be0/new-ad47d7bf-ef0a-4f70-b463-0da61ffdfbde/eb2166e4-d9c5-4736-9564-04a70f4c393e/app_ShinhanBank_202608_423.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmsmmf99r00q5ky045oh3e36h"
+      },
+      {
+        "id": "cmsmmf9ac00q7ky04nytwu425",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3a8e3796-4e98-4ae3-9d60-a537144f6be0/new-acf588bd-5931-495e-ad08-4dcd0770e74b/6a0fec1c-9533-4caa-852e-7101b0a13ecb/app_ShinhanBank_202608_424.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmsmmf9ac00q7ky04nytwu425"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&patternName=%ED%9C%B4%EB%8C%80%ED%8F%B0%20%EB%B3%B8%EC%9D%B8%ED%99%95%EC%9D%B8",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-45",
+    "service": "페이코",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "인증하기",
+    "variant": "본인인증",
+    "title": "본인인증",
+    "dataMonth": "2026-09",
+    "screenCount": 4,
+    "components": [
+      "그래픽",
+      "모달",
+      "버튼",
+      "텍스트 필드"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "본인인증"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new/ce9d1c6b-c771-4b28-b3f9-07e03976e627/app_payco_202610_196.png",
+    "images": [
+      {
+        "id": "cmupp17m1000fl604wm0stdht",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/ce9d1c6b-c771-4b28-b3f9-07e03976e627/app_payco_202610_196.png",
+        "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmupp17m1000fl604wm0stdht"
+      },
+      {
+        "id": "cmupp17mp000hl604c7gdbwu6",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/e0a0e872-f106-488f-bb6c-18dcb81193ad/app_payco_202610_197.png",
+        "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmupp17mp000hl604c7gdbwu6"
+      },
+      {
+        "id": "cmupp17ne000jl604pio9br9e",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/0833f254-e4fd-442c-840f-d8ee093ad003/app_payco_202610_198.png",
+        "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmupp17ne000jl604pio9br9e"
+      },
+      {
+        "id": "cmupp17o4000ll604e7a13vd4",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/e0a3be27-3c53-466f-8df3-42dbf1b5ce6c/app_payco_202610_199.png",
+        "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmupp17o4000ll604e7a13vd4"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&patternName=%EB%B3%B8%EC%9D%B8%EC%9D%B8%EC%A6%9D",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-46",
+    "service": "미래에셋증권 M-STOCK",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "촬영하기",
+    "variant": "본인확인",
+    "title": "본인확인",
+    "dataMonth": "2026-07",
+    "screenCount": 11,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "본인인증"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-6094e89d-e76f-4997-92e6-554da5d7349f/new-362e71ae-f891-4333-92e7-27ce14eac8c8/827dbaf4-4b9a-42b2-9283-d97bb9613873/app_miraeasset_202607_320.png",
+    "images": [
+      {
+        "id": "cmrx99b9j0003js04ffuq2hlk",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-6094e89d-e76f-4997-92e6-554da5d7349f/new-362e71ae-f891-4333-92e7-27ce14eac8c8/827dbaf4-4b9a-42b2-9283-d97bb9613873/app_miraeasset_202607_320.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EC%B4%AC%EC%98%81%ED%95%98%EA%B8%B0&imgId=cmrx99b9j0003js04ffuq2hlk"
+      },
+      {
+        "id": "cmrx99bag0005js043fgugk04",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-6094e89d-e76f-4997-92e6-554da5d7349f/new-4074d889-e029-4d79-bbe3-ea083ab9a268/89370a1f-a8d4-4081-ac42-e8d5d8e3aeb6/app_miraeasset_202607_321.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EC%B4%AC%EC%98%81%ED%95%98%EA%B8%B0&imgId=cmrx99bag0005js043fgugk04"
+      },
+      {
+        "id": "cmrx99bb50007js047n4yfk2e",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-6094e89d-e76f-4997-92e6-554da5d7349f/new-b788f5de-8dfe-436c-8497-4ffc4983d64d/28ffb095-2502-4089-8a07-0e2c18d53b00/app_miraeasset_202607_322.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EC%B4%AC%EC%98%81%ED%95%98%EA%B8%B0&imgId=cmrx99bb50007js047n4yfk2e"
+      },
+      {
+        "id": "cmrx99bbv0009js041995nams",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-6094e89d-e76f-4997-92e6-554da5d7349f/new-fda445e7-4b4b-4d9c-81ee-f030be7f38f0/e08af4d1-6bae-4048-8e50-8063f3db6ece/app_miraeasset_202607_323.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EC%B4%AC%EC%98%81%ED%95%98%EA%B8%B0&imgId=cmrx99bbv0009js041995nams"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EC%B4%AC%EC%98%81%ED%95%98%EA%B8%B0&patternName=%EB%B3%B8%EC%9D%B8%ED%99%95%EC%9D%B8",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-47",
     "service": "미래에셋증권 M-STOCK",
     "domain": "금융",
     "category": "금융",
@@ -1518,7 +2141,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-35",
+    "id": "demo-48",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -1562,7 +2185,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-36",
+    "id": "demo-49",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -1615,7 +2238,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-37",
+    "id": "demo-50",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -1654,7 +2277,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-38",
+    "id": "demo-51",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -1700,7 +2323,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-39",
+    "id": "demo-52",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -1732,7 +2355,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-40",
+    "id": "demo-53",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -1744,7 +2367,9 @@ export const sampleScreens = [
     "components": [],
     "matchedTexts": [
       "본인인증을",
-      "납입금액"
+      "납입금액",
+      "완료하면",
+      "결제"
     ],
     "keywords": [
       "본인인증",
@@ -1752,7 +2377,10 @@ export const sampleScreens = [
       "월 납입금",
       "납입금액",
       "결제 완료",
-      "예약"
+      "완료하면",
+      "결제",
+      "예약",
+      "할부"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-7ef67acb-8310-4844-8401-db2464d736f1/new-b4d1b0e9-e67d-4d6e-9c5e-844410bec1a4/ee693e54-f600-483a-9a6b-e7f1a5b8d62d/s277.png",
     "images": [
@@ -1782,7 +2410,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-41",
+    "id": "demo-54",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -1826,7 +2454,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-42",
+    "id": "demo-55",
     "service": "G car",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -1863,7 +2491,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-43",
+    "id": "demo-56",
     "service": "볼트업",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -1912,7 +2540,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-44",
+    "id": "demo-57",
     "service": "카카오T",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -1954,7 +2582,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-45",
+    "id": "demo-58",
     "service": "쏘카",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -1996,7 +2624,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-46",
+    "id": "demo-59",
     "service": "RailOne",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -2042,7 +2670,51 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-47",
+    "id": "demo-60",
+    "service": "티맵",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "인증하기",
+    "variant": "본인인증",
+    "title": "본인인증",
+    "dataMonth": "2025-06",
+    "screenCount": 8,
+    "components": [
+      "텍스트 필드"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "본인인증"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-2daf1130-4284-42e5-9734-c3f345618db1/new-be84f91a-4c1b-45e0-af12-dacb1ea84c55/b91f8258-e8a4-42d1-85ac-df2a9592de2b/s167.png",
+    "images": [
+      {
+        "id": "cmcczaros001tjv07omez9inq",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2daf1130-4284-42e5-9734-c3f345618db1/new-be84f91a-4c1b-45e0-af12-dacb1ea84c55/b91f8258-e8a4-42d1-85ac-df2a9592de2b/s167.png",
+        "uiUrl": "https://uibowl.io/name/%ED%8B%B0%EB%A7%B5?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmcczaros001tjv07omez9inq"
+      },
+      {
+        "id": "cmcczarpi001vjv07yhrkso4u",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2daf1130-4284-42e5-9734-c3f345618db1/new-33b1bae6-53d5-4d46-92ae-636f509aac3e/23be9d83-271e-4e78-ba2f-9e4d414010ef/s168.png",
+        "uiUrl": "https://uibowl.io/name/%ED%8B%B0%EB%A7%B5?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmcczarpi001vjv07yhrkso4u"
+      },
+      {
+        "id": "cmcczarqa001xjv07yh5u6rwj",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2daf1130-4284-42e5-9734-c3f345618db1/new-81e612ea-42f1-408e-ada9-b2b4609ac984/c53f614e-19ae-418c-ac70-adfea273dc72/s170.png",
+        "uiUrl": "https://uibowl.io/name/%ED%8B%B0%EB%A7%B5?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmcczarqa001xjv07yh5u6rwj"
+      },
+      {
+        "id": "cmcczarqz001zjv07aqzo6zo9",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2daf1130-4284-42e5-9734-c3f345618db1/new-a0dc536d-227b-4302-a39e-d5095ceb918e/4ecfcce3-045d-4e32-95ba-23fdc493522d/s171.png",
+        "uiUrl": "https://uibowl.io/name/%ED%8B%B0%EB%A7%B5?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmcczarqz001zjv07aqzo6zo9"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%8B%B0%EB%A7%B5?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&patternName=%EB%B3%B8%EC%9D%B8%EC%9D%B8%EC%A6%9D",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-61",
     "service": "카카오T",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -2077,7 +2749,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-48",
+    "id": "demo-62",
     "service": "쏘카",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -2088,12 +2760,19 @@ export const sampleScreens = [
     "screenCount": 4,
     "components": [],
     "matchedTexts": [
-      "본인인증"
+      "본인인증",
+      "회원가입:",
+      "회원제",
+      "회원정보:"
     ],
     "keywords": [
-      "본인인증"
+      "본인인증",
+      "회원가입",
+      "회원가입:",
+      "회원제",
+      "회원정보:"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-a1dc9606-72a8-489a-b220-641a68b1baa1/new-4309b380-89fa-4e2e-ac22-467df4d2eccb/6c82f998-01ea-4c33-acea-727bcfa3b158/s11.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-a1dc9606-72a8-489a-b220-641a68b1baa1/new-05a94253-ab6f-48bf-8db7-09db00866a3a/cf548a02-d5a2-4eb4-afc3-098f49fb2243/s10.png",
     "images": [
       {
         "id": "cmogjx77u0007lb04u3gvvjgm",
@@ -2116,12 +2795,12 @@ export const sampleScreens = [
         "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmogjx79n000blb043fmfetk4"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmogjx77u0007lb04u3gvvjgm",
+    "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmogjx76l0005lb04ppxn8c2l",
     "source": "UI Bowl",
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-49",
+    "id": "demo-63",
     "service": "페이코",
     "domain": "금융",
     "category": "금융",
@@ -2136,7 +2815,8 @@ export const sampleScreens = [
     ],
     "keywords": [
       "차량 등록",
-      "차량번호"
+      "차량번호",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new/53c69603-64e2-40ca-8a34-eaa628372b81/app_payco_202610_73.png",
     "images": [
@@ -2166,60 +2846,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-50",
-    "service": "토스",
-    "domain": "금융",
-    "category": "금융",
-    "pattern": "비교하기",
-    "variant": "자동차보험-결과 비교",
-    "title": "자동차보험-결과 비교",
-    "dataMonth": "2026-07",
-    "screenCount": 7,
-    "components": [
-      "로딩",
-      "리스트",
-      "인터랙션",
-      "카드",
-      "탭",
-      "프로그레스 인디케이터"
-    ],
-    "matchedTexts": [
-      "차량번호"
-    ],
-    "keywords": [
-      "차량 등록",
-      "차량번호",
-      "보험"
-    ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-3b4d9aa6-0626-4ce8-9bae-c3c93b4b8cf8/new-d1b2ee9b-3936-4c23-b90a-bfcea811a0b1/3ef5e3c5-c0f0-4958-b66e-186e1166173f/app_toss_202607_334.png",
-    "images": [
-      {
-        "id": "cmrtw7f3u000djx04mwjg1z8f",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3b4d9aa6-0626-4ce8-9bae-c3c93b4b8cf8/new-ccd778d6-60bb-42a6-8063-ac5c375d3ccf/57162069-8347-46a0-ad3f-c17d14e4f97b/app_toss_202607_337.png",
-        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmrtw7f3u000djx04mwjg1z8f"
-      },
-      {
-        "id": "cmrtw7f1z0007jx04sls82a8w",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3b4d9aa6-0626-4ce8-9bae-c3c93b4b8cf8/new-d1b2ee9b-3936-4c23-b90a-bfcea811a0b1/3ef5e3c5-c0f0-4958-b66e-186e1166173f/app_toss_202607_334.png",
-        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmrtw7f1z0007jx04sls82a8w"
-      },
-      {
-        "id": "cmrtw7f2l0009jx04w6z9vtiu",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3b4d9aa6-0626-4ce8-9bae-c3c93b4b8cf8/new-f6163043-b4e6-4966-8e3f-167fe0b30893/8901a251-4b54-42a9-8a5a-6ec0888b2602/app_toss_202607_335.png",
-        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmrtw7f2l0009jx04w6z9vtiu"
-      },
-      {
-        "id": "cmrtw7f37000bjx04fvqjpjo1",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3b4d9aa6-0626-4ce8-9bae-c3c93b4b8cf8/new-ac2343e3-13a5-4ff5-bcdf-d2aeebbd00f8/2b803f85-357d-471f-8bcf-9ed855f8cef0/app_toss_202607_336.png",
-        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmrtw7f37000bjx04fvqjpjo1"
-      }
-    ],
-    "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&patternName=%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98-%EA%B2%B0%EA%B3%BC%20%EB%B9%84%EA%B5%90",
-    "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
-  },
-  {
-    "id": "demo-51",
+    "id": "demo-64",
     "service": "신한 슈퍼SOL",
     "domain": "금융",
     "category": "금융",
@@ -2234,7 +2861,8 @@ export const sampleScreens = [
     ],
     "keywords": [
       "차량 등록",
-      "차량번호를"
+      "차량번호를",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-48d3d289-8027-4ef0-9329-27402c263190/new-aa2a4fe3-1373-41a2-8f43-8271b064efea/aac1b06a-93a4-4ed3-b103-598c550c4f5e/app_ShinhanBank_202608_448.png",
     "images": [
@@ -2264,7 +2892,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-52",
+    "id": "demo-65",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2279,7 +2907,8 @@ export const sampleScreens = [
     ],
     "matchedTexts": [],
     "keywords": [
-      "차량 등록"
+      "차량 등록",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-64bdec0a-d277-4419-b4c2-fdefee286356/new-906a91a4-158b-475a-b574-2a94c3f9b855/baa639b1-24f7-4021-ab4f-2d3c88ab21b5/s73.png",
     "images": [
@@ -2309,7 +2938,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-53",
+    "id": "demo-66",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2327,7 +2956,8 @@ export const sampleScreens = [
     "matchedTexts": [],
     "keywords": [
       "차량 등록",
-      "카드 신청"
+      "카드 신청",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-daaa3636-e67b-408d-a104-38b549f2be48/new-f909e133-9ab6-4723-a67c-76c7988edbd7/f965a537-2c56-4c27-bca2-cc501e4edd18/IMG_4078.png",
     "images": [
@@ -2357,7 +2987,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-54",
+    "id": "demo-67",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2372,7 +3002,8 @@ export const sampleScreens = [
     "matchedTexts": [],
     "keywords": [
       "차량 등록",
-      "알림"
+      "알림",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-abf5c87c-ccb7-4c5e-9986-38e7644e377f/new-9c73902b-7635-4cba-8e97-a498cf384c1e/1c391244-2197-41f5-af13-0f53f2e5e2a5/s271.png",
     "images": [
@@ -2397,7 +3028,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-55",
+    "id": "demo-68",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2412,7 +3043,8 @@ export const sampleScreens = [
     ],
     "keywords": [
       "차량 등록",
-      "차량번호를"
+      "차량번호를",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-3e80ba58-0121-458a-b48d-377315b3799a/new-568d643e-7012-4d3d-8335-75a4f43030a7/6c3c5845-00fe-42f0-8923-72f5155f2f8b/app_chabot_202608_112.png",
     "images": [
@@ -2442,7 +3074,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-56",
+    "id": "demo-69",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2458,7 +3090,8 @@ export const sampleScreens = [
     "matchedTexts": [],
     "keywords": [
       "차량 등록",
-      "카드 신청"
+      "카드 신청",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-89c2a8dd-4253-4c51-b814-ff9630dc0e10/new-e3a52713-2903-4625-a3c5-fe9ae04abfe5/5f4bb41b-7760-4d9e-89c5-d248ec72cf78/s213.PNG",
     "images": [
@@ -2483,7 +3116,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-57",
+    "id": "demo-70",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2498,7 +3131,8 @@ export const sampleScreens = [
     ],
     "matchedTexts": [],
     "keywords": [
-      "차량 등록"
+      "차량 등록",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-d1d150b1-5409-41aa-aaa5-a4be035b14e4/new-8db4841f-70e3-4fe8-8a8c-cdc0860cebc7/20afd7ff-dc4a-42be-8a1b-7cd237888e7f/IMG_4164.png",
     "images": [
@@ -2523,7 +3157,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-58",
+    "id": "demo-71",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2538,7 +3172,8 @@ export const sampleScreens = [
     "matchedTexts": [],
     "keywords": [
       "차량 등록",
-      "카드 신청"
+      "카드 신청",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-7d5ad24f-a686-4de4-9f4d-0df5605ed53a/new-5e29ec35-7167-4b64-9ffa-af53f4e1eb4a/e0eb8de4-738b-44cf-b978-43c2dfd34915/s199.png",
     "images": [
@@ -2553,7 +3188,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-59",
+    "id": "demo-72",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2565,7 +3200,8 @@ export const sampleScreens = [
     "components": [],
     "matchedTexts": [],
     "keywords": [
-      "차량 등록"
+      "차량 등록",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-098c579f-b96c-4e30-8ecc-9f9cecb2d4a4/new-0e5a4b3e-738d-42b7-8f05-a9a35f042a6d/92e4a96d-8bf7-43c8-bf3e-d1f1bf6bd473/app_chabot_202608_164.png",
     "images": [
@@ -2590,7 +3226,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-60",
+    "id": "demo-73",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2611,7 +3247,8 @@ export const sampleScreens = [
     "matchedTexts": [],
     "keywords": [
       "차량 등록",
-      "카드 신청"
+      "카드 신청",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-c856a5df-2902-4f60-812a-12a0a666ec7b/new-ea30ca8b-cf2b-4851-8b7f-bb1035271119/ef269709-5ec6-4aa6-ab76-a144ec441b9f/s288.png",
     "images": [
@@ -2641,7 +3278,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-61",
+    "id": "demo-74",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2653,7 +3290,8 @@ export const sampleScreens = [
     "components": [],
     "matchedTexts": [],
     "keywords": [
-      "차량 등록"
+      "차량 등록",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-f3f3ab67-daad-4780-a7f7-38c2211d8816/new-431994ef-51b8-42f4-a40c-51b2384a4916/998a571b-1eb3-4554-85c6-ee45ab9adeca/IMG_3952.png",
     "images": [
@@ -2668,7 +3306,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-62",
+    "id": "demo-75",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2682,7 +3320,8 @@ export const sampleScreens = [
     ],
     "matchedTexts": [],
     "keywords": [
-      "차량 등록"
+      "차량 등록",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-17a0a6f4-1b92-43c7-8861-af8cc5719b29/new-31f45754-50e6-40f5-bb18-e24e2a63e02a/a3613b28-e206-4ee4-8c66-d583fc2dba11/s223.png",
     "images": [
@@ -2712,7 +3351,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-63",
+    "id": "demo-76",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2727,7 +3366,8 @@ export const sampleScreens = [
     ],
     "keywords": [
       "차량 등록",
-      "차량번호"
+      "차량번호",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-abfc3b93-257e-4b0f-946c-3d08e5df18cd/new-8a7b9049-841a-4691-ad27-499260ba222f/1e9d3680-b688-4bde-98c4-fdf0c51ee277/app_chabot_202608_81.png",
     "images": [
@@ -2747,52 +3387,39 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-64",
+    "id": "demo-77",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
-    "pattern": "조회하기",
-    "variant": "차량 등록",
-    "title": "차량 등록",
+    "pattern": "촬영하기",
+    "variant": "차량 등록-큐알 스캔",
+    "title": "차량 등록-큐알 스캔",
     "dataMonth": "2026-04",
-    "screenCount": 5,
+    "screenCount": 2,
     "components": [],
-    "matchedTexts": [
-      "차량번호를"
-    ],
+    "matchedTexts": [],
     "keywords": [
-      "차량 등록",
-      "차량번호를"
+      "차량 등록"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-cc5d4bee-93b4-4ef7-ba3c-ce2d31a183b9/new-285fbebd-cb6f-4678-a3b6-80b649b53749/7fd0efb2-c2e7-4eca-91da-255144c13380/s42.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-2985500d-3900-4a2a-b178-dc5f53b53e09/new-e425a257-9aaa-4917-812c-c9610685209a/09cc7914-f755-4b6b-9373-e18f753615a5/s45.png",
     "images": [
       {
-        "id": "cmojmizi9000ijl040avzs55h",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cc5d4bee-93b4-4ef7-ba3c-ce2d31a183b9/new-285fbebd-cb6f-4678-a3b6-80b649b53749/7fd0efb2-c2e7-4eca-91da-255144c13380/s42.png",
-        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmizi9000ijl040avzs55h"
+        "id": "cmojmk1aa001gjx044ufwifmo",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2985500d-3900-4a2a-b178-dc5f53b53e09/new-e425a257-9aaa-4917-812c-c9610685209a/09cc7914-f755-4b6b-9373-e18f753615a5/s45.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%B4%AC%EC%98%81%ED%95%98%EA%B8%B0&imgId=cmojmk1aa001gjx044ufwifmo"
       },
       {
-        "id": "cmojmizjd000kjl043pjrw6wb",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cc5d4bee-93b4-4ef7-ba3c-ce2d31a183b9/new-bc9c7689-ab69-40e5-a06d-f584007ea1ad/6e9b8755-f6e2-46a0-bcd7-5ad087f69fa0/s43.png",
-        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmizjd000kjl043pjrw6wb"
-      },
-      {
-        "id": "cmojmizk6000mjl04aa6fi86w",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cc5d4bee-93b4-4ef7-ba3c-ce2d31a183b9/new-bd46f573-e60c-40b9-b018-3a3b6211ae51/ea83178d-cac1-490f-bf41-9175a7606188/s44.png",
-        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmizk6000mjl04aa6fi86w"
-      },
-      {
-        "id": "cmojmizkx000ojl04jl96su7s",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cc5d4bee-93b4-4ef7-ba3c-ce2d31a183b9/new-81e1bc3b-22fa-4d03-83fc-99c3752913a0/3d0248b6-3473-42de-a904-753cdb776853/s45.png",
-        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmizkx000ojl04jl96su7s"
+        "id": "cmojmk1b3001ijx046x8qbkuw",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2985500d-3900-4a2a-b178-dc5f53b53e09/new-b0b4ca39-e6cc-448c-9c69-ff9e896da7fa/a1b9fbd8-c5ca-4f9d-be10-5be8a0ae16b8/s46.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%B4%AC%EC%98%81%ED%95%98%EA%B8%B0&imgId=cmojmk1b3001ijx046x8qbkuw"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmizi9000ijl040avzs55h",
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%B4%AC%EC%98%81%ED%95%98%EA%B8%B0&patternName=%EC%B0%A8%EB%9F%89%20%EB%93%B1%EB%A1%9D-%ED%81%90%EC%95%8C%20%EC%8A%A4%EC%BA%94",
     "source": "UI Bowl",
-    "sourceTool": "search_by_ocr_text"
+    "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-65",
+    "id": "demo-78",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2807,19 +3434,20 @@ export const sampleScreens = [
     ],
     "keywords": [
       "차량 등록",
-      "차량번호를"
+      "차량번호를",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-7eb93211-186f-435d-899c-233c51f7772f/new-d86fec1f-e2a8-4851-9b53-6f64d1087a4d/17c097ff-2f84-48aa-8d07-a5cacc64a2c2/IMG_3947.png",
     "images": [
       {
-        "id": "cmpur2dyd001jl704lfvv49s8",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7eb93211-186f-435d-899c-233c51f7772f/new-d86fec1f-e2a8-4851-9b53-6f64d1087a4d/17c097ff-2f84-48aa-8d07-a5cacc64a2c2/IMG_3947.png",
-        "uiUrl": "https://uibowl.io/name/Kia?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&imgId=cmpur2dyd001jl704lfvv49s8"
-      },
-      {
         "id": "cmpur2dxi001hl704mhytf9bm",
         "url": "https://d31var7gpnk8lm.cloudfront.net/new-7eb93211-186f-435d-899c-233c51f7772f/new-411d06b9-8b5b-40b2-a5d7-7667d386634d/d99c884d-7fc4-43c3-a396-2f34f93b2845/IMG_3946.png",
         "uiUrl": "https://uibowl.io/name/Kia?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&imgId=cmpur2dxi001hl704mhytf9bm"
+      },
+      {
+        "id": "cmpur2dyd001jl704lfvv49s8",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7eb93211-186f-435d-899c-233c51f7772f/new-d86fec1f-e2a8-4851-9b53-6f64d1087a4d/17c097ff-2f84-48aa-8d07-a5cacc64a2c2/IMG_3947.png",
+        "uiUrl": "https://uibowl.io/name/Kia?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&imgId=cmpur2dyd001jl704lfvv49s8"
       },
       {
         "id": "cmpur2dz8001ll704rgyx0zxh",
@@ -2837,7 +3465,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-66",
+    "id": "demo-79",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2846,13 +3474,18 @@ export const sampleScreens = [
     "title": "보증 접수",
     "dataMonth": "2026-02",
     "screenCount": 5,
-    "components": [],
+    "components": [
+      "텍스트 필드",
+      "토스트&스낵바"
+    ],
     "matchedTexts": [
       "차량번호"
     ],
     "keywords": [
       "차량 등록",
-      "차량번호"
+      "차량번호",
+      "차량 관리",
+      "신청"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-5aa71578-9918-4d60-9be0-18ee43bd0c33/new-0e88310b-0d53-4e95-8c53-3b9aedcda2f9/463256a3-f51c-44c7-aa73-f0d03227f0a0/s188.png",
     "images": [
@@ -2877,12 +3510,12 @@ export const sampleScreens = [
         "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmliqc6bm0013l7047ywpe9cu"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmliqc68w000xl70479dg7rzu",
+    "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EB%B3%B4%EC%A6%9D%20%EC%A0%91%EC%88%98",
     "source": "UI Bowl",
-    "sourceTool": "search_by_ocr_text"
+    "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-67",
+    "id": "demo-80",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2897,7 +3530,8 @@ export const sampleScreens = [
     ],
     "keywords": [
       "차량 등록",
-      "차량번호만"
+      "차량번호만",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-f6cdee68-05c0-43df-bb6c-14aca7270898/new-d27d7438-4603-4f49-8ba8-d553713370be/9d8fa0cd-2ecd-4aca-a178-75bbb337d2b7/app_chabot_202608_193.png",
     "images": [
@@ -2927,52 +3561,53 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-68",
+    "id": "demo-81",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
     "pattern": "조회하기",
-    "variant": "차량 조회",
-    "title": "차량 조회",
+    "variant": "차량 등록",
+    "title": "차량 등록",
     "dataMonth": "2026-04",
-    "screenCount": 8,
+    "screenCount": 5,
     "components": [],
     "matchedTexts": [
       "차량번호를"
     ],
     "keywords": [
       "차량 등록",
-      "차량번호를"
+      "차량번호를",
+      "차량 관리"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-361e2507-ca20-4e09-9346-4956dee7f578/new-675568df-5f03-4653-bb46-94db4ee4cd53/ac7035bd-c85c-4995-b5e7-d222753bc8cc/s225.PNG",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-cc5d4bee-93b4-4ef7-ba3c-ce2d31a183b9/new-285fbebd-cb6f-4678-a3b6-80b649b53749/7fd0efb2-c2e7-4eca-91da-255144c13380/s42.png",
     "images": [
       {
-        "id": "cmojmja58000yjx04s4v761az",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-361e2507-ca20-4e09-9346-4956dee7f578/new-675568df-5f03-4653-bb46-94db4ee4cd53/ac7035bd-c85c-4995-b5e7-d222753bc8cc/s225.PNG",
-        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmja58000yjx04s4v761az"
+        "id": "cmojmizi9000ijl040avzs55h",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cc5d4bee-93b4-4ef7-ba3c-ce2d31a183b9/new-285fbebd-cb6f-4678-a3b6-80b649b53749/7fd0efb2-c2e7-4eca-91da-255144c13380/s42.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmizi9000ijl040avzs55h"
       },
       {
-        "id": "cmojmja640010jx04uylrsu38",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-361e2507-ca20-4e09-9346-4956dee7f578/new-c948117b-1a9f-464a-aa99-06f4c255d857/e0456042-a95d-4455-9a64-c9ed7b801161/s226.PNG",
-        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmja640010jx04uylrsu38"
+        "id": "cmojmizjd000kjl043pjrw6wb",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cc5d4bee-93b4-4ef7-ba3c-ce2d31a183b9/new-bc9c7689-ab69-40e5-a06d-f584007ea1ad/6e9b8755-f6e2-46a0-bcd7-5ad087f69fa0/s43.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmizjd000kjl043pjrw6wb"
       },
       {
-        "id": "cmojmja700012jx04ke5p654u",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-361e2507-ca20-4e09-9346-4956dee7f578/new-7f6265dd-9fd3-4242-98a7-1348ce1537c6/76461924-6a68-4d46-bb68-b76f5b46156e/s227.PNG",
-        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmja700012jx04ke5p654u"
+        "id": "cmojmizk6000mjl04aa6fi86w",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cc5d4bee-93b4-4ef7-ba3c-ce2d31a183b9/new-bd46f573-e60c-40b9-b018-3a3b6211ae51/ea83178d-cac1-490f-bf41-9175a7606188/s44.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmizk6000mjl04aa6fi86w"
       },
       {
-        "id": "cmojmja7v0014jx047348cauy",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-361e2507-ca20-4e09-9346-4956dee7f578/new-cac9e0ce-ca64-45c7-8943-6dfcff667a4e/6b304d4e-375d-46ea-9374-1c38d597af54/s228.PNG",
-        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmja7v0014jx047348cauy"
+        "id": "cmojmizkx000ojl04jl96su7s",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cc5d4bee-93b4-4ef7-ba3c-ce2d31a183b9/new-81e1bc3b-22fa-4d03-83fc-99c3752913a0/3d0248b6-3473-42de-a904-753cdb776853/s45.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmizkx000ojl04jl96su7s"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmja58000yjx04s4v761az",
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmizi9000ijl040avzs55h",
     "source": "UI Bowl",
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-69",
+    "id": "demo-82",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -2987,7 +3622,8 @@ export const sampleScreens = [
     ],
     "keywords": [
       "차량 등록",
-      "차량번호"
+      "차량번호",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-00d81e1f-e3e1-480b-b326-46302f3bb605/new-9cae5b75-32e7-4440-a4aa-ccc7d8fcc890/836d11af-a3e3-4b9e-be81-5c358633fe84/IMG_3992.png",
     "images": [
@@ -3017,7 +3653,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-70",
+    "id": "demo-83",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -3026,18 +3662,17 @@ export const sampleScreens = [
     "title": "차량 정보 - 보험이력",
     "dataMonth": "2026-02",
     "screenCount": 3,
-    "components": [
-      "카드"
-    ],
+    "components": [],
     "matchedTexts": [
       "차량번호"
     ],
     "keywords": [
       "차량 등록",
       "차량번호",
-      "보험"
+      "보험",
+      "차량 관리"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-cecb6a8c-6a21-4458-91c4-0b61e20ae507/new-d6ce6021-e0cf-41e5-9d38-55e5b01feaae/f994d695-4088-4a0c-af2a-fadf8b194b00/s204.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-cecb6a8c-6a21-4458-91c4-0b61e20ae507/new-3137bcff-ba18-4ad3-a77e-54ed7fa01540/9c18f68a-354b-4ade-8814-2d16d3fc4116/s205.png",
     "images": [
       {
         "id": "cmliq9jfc00g5l704so1l4n5t",
@@ -3055,60 +3690,58 @@ export const sampleScreens = [
         "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmliq9jg700g7l704ldwhhk6o"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&patternName=%EC%B0%A8%EB%9F%89%20%EC%A0%95%EB%B3%B4%20-%20%EB%B3%B4%ED%97%98%EC%9D%B4%EB%A0%A5",
-    "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
-  },
-  {
-    "id": "demo-71",
-    "service": "마이현대",
-    "domain": "자동차",
-    "category": "모빌리티",
-    "pattern": "상세정보 (PDP)",
-    "variant": "내 차 만들기",
-    "title": "내 차 만들기",
-    "dataMonth": "2026-04",
-    "screenCount": 9,
-    "components": [],
-    "matchedTexts": [
-      "차량번호판",
-      "납입금액에서"
-    ],
-    "keywords": [
-      "차량 등록",
-      "차량번호판",
-      "월 납입금",
-      "납입금액에서"
-    ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-a7eeaacd-63e7-4d45-9455-d3cb4a3efc0f/new-f6f4ad26-d955-4850-a732-7e0ec60b6311/f46a6ecf-668b-4538-83c2-aca8f112bae8/s443.png",
-    "images": [
-      {
-        "id": "cmojm4oqg000hlb04brg4igfa",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-a7eeaacd-63e7-4d45-9455-d3cb4a3efc0f/new-f6f4ad26-d955-4850-a732-7e0ec60b6311/f46a6ecf-668b-4538-83c2-aca8f112bae8/s443.png",
-        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm4oqg000hlb04brg4igfa"
-      },
-      {
-        "id": "cmojm4oph000flb04u0rndw00",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-a7eeaacd-63e7-4d45-9455-d3cb4a3efc0f/new-56f46c6c-792e-4e06-9f0a-c745431e6ebb/b93137e5-9309-4d32-a879-7553ab7d1710/s442.png",
-        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm4oph000flb04u0rndw00"
-      },
-      {
-        "id": "cmojm4ore000jlb04n5bmupie",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-a7eeaacd-63e7-4d45-9455-d3cb4a3efc0f/new-2ce13834-4b6c-4ab4-9118-4c590c3638ff/fc40d197-bdf1-483b-9840-e4586d2ad9dd/s444.png",
-        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm4ore000jlb04n5bmupie"
-      },
-      {
-        "id": "cmojm4osg000llb04ce9u4ti1",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-a7eeaacd-63e7-4d45-9455-d3cb4a3efc0f/new-f0f09dcd-b1ae-4ea9-aa36-af6eaa2205bd/13371548-81c2-45de-834d-b719c5dae5a6/s445.png",
-        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm4osg000llb04ce9u4ti1"
-      }
-    ],
-    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm4oqg000hlb04brg4igfa",
+    "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmliq9jfc00g5l704so1l4n5t",
     "source": "UI Bowl",
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-72",
+    "id": "demo-84",
+    "service": "마이현대",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "조회하기",
+    "variant": "차량 조회",
+    "title": "차량 조회",
+    "dataMonth": "2026-04",
+    "screenCount": 8,
+    "components": [],
+    "matchedTexts": [
+      "차량번호를"
+    ],
+    "keywords": [
+      "차량 등록",
+      "차량번호를",
+      "차량 관리"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-361e2507-ca20-4e09-9346-4956dee7f578/new-675568df-5f03-4653-bb46-94db4ee4cd53/ac7035bd-c85c-4995-b5e7-d222753bc8cc/s225.PNG",
+    "images": [
+      {
+        "id": "cmojmja58000yjx04s4v761az",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-361e2507-ca20-4e09-9346-4956dee7f578/new-675568df-5f03-4653-bb46-94db4ee4cd53/ac7035bd-c85c-4995-b5e7-d222753bc8cc/s225.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmja58000yjx04s4v761az"
+      },
+      {
+        "id": "cmojmja640010jx04uylrsu38",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-361e2507-ca20-4e09-9346-4956dee7f578/new-c948117b-1a9f-464a-aa99-06f4c255d857/e0456042-a95d-4455-9a64-c9ed7b801161/s226.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmja640010jx04uylrsu38"
+      },
+      {
+        "id": "cmojmja700012jx04ke5p654u",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-361e2507-ca20-4e09-9346-4956dee7f578/new-7f6265dd-9fd3-4242-98a7-1348ce1537c6/76461924-6a68-4d46-bb68-b76f5b46156e/s227.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmja700012jx04ke5p654u"
+      },
+      {
+        "id": "cmojmja7v0014jx047348cauy",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-361e2507-ca20-4e09-9346-4956dee7f578/new-cac9e0ce-ca64-45c7-8943-6dfcff667a4e/6b304d4e-375d-46ea-9374-1c38d597af54/s228.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmja7v0014jx047348cauy"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmojmja58000yjx04s4v761az",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-85",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -3123,7 +3756,8 @@ export const sampleScreens = [
     ],
     "keywords": [
       "차량 등록",
-      "차량번호"
+      "차량번호",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-fcbdb126-7e87-4499-8521-bc2759afb7e1/new-23fbe13c-f7fa-41b2-a75f-914629c2ecef/1e1baf91-7e48-4cd3-9212-1d35f505fed7/5.png",
     "images": [
@@ -3153,7 +3787,57 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-73",
+    "id": "demo-86",
+    "service": "마이현대",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "상세정보 (PDP)",
+    "variant": "내 차 만들기",
+    "title": "내 차 만들기",
+    "dataMonth": "2026-04",
+    "screenCount": 9,
+    "components": [],
+    "matchedTexts": [
+      "차량번호판",
+      "납입금액에서"
+    ],
+    "keywords": [
+      "차량 등록",
+      "차량번호판",
+      "월 납입금",
+      "납입금액에서",
+      "차량 관리",
+      "할부"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-a7eeaacd-63e7-4d45-9455-d3cb4a3efc0f/new-f6f4ad26-d955-4850-a732-7e0ec60b6311/f46a6ecf-668b-4538-83c2-aca8f112bae8/s443.png",
+    "images": [
+      {
+        "id": "cmojm4oqg000hlb04brg4igfa",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-a7eeaacd-63e7-4d45-9455-d3cb4a3efc0f/new-f6f4ad26-d955-4850-a732-7e0ec60b6311/f46a6ecf-668b-4538-83c2-aca8f112bae8/s443.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm4oqg000hlb04brg4igfa"
+      },
+      {
+        "id": "cmojm4oph000flb04u0rndw00",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-a7eeaacd-63e7-4d45-9455-d3cb4a3efc0f/new-56f46c6c-792e-4e06-9f0a-c745431e6ebb/b93137e5-9309-4d32-a879-7553ab7d1710/s442.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm4oph000flb04u0rndw00"
+      },
+      {
+        "id": "cmojm4ore000jlb04n5bmupie",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-a7eeaacd-63e7-4d45-9455-d3cb4a3efc0f/new-2ce13834-4b6c-4ab4-9118-4c590c3638ff/fc40d197-bdf1-483b-9840-e4586d2ad9dd/s444.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm4ore000jlb04n5bmupie"
+      },
+      {
+        "id": "cmojm4osg000llb04ce9u4ti1",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-a7eeaacd-63e7-4d45-9455-d3cb4a3efc0f/new-f0f09dcd-b1ae-4ea9-aa36-af6eaa2205bd/13371548-81c2-45de-834d-b719c5dae5a6/s445.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm4osg000llb04ce9u4ti1"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm4oqg000hlb04brg4igfa",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-87",
     "service": "쏘카",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -3169,7 +3853,8 @@ export const sampleScreens = [
     ],
     "matchedTexts": [],
     "keywords": [
-      "차량 등록"
+      "차량 등록",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-3a052ded-518b-4199-b9bf-680a0d61f89f/new-bc563594-d7f2-4f03-84c4-95869795a54f/5564399c-53d9-4cba-abc0-f8ecfe843a7c/ss27.png",
     "images": [
@@ -3199,7 +3884,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-74",
+    "id": "demo-88",
     "service": "EVSIS",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -3211,7 +3896,8 @@ export const sampleScreens = [
     "components": [],
     "matchedTexts": [],
     "keywords": [
-      "차량 등록"
+      "차량 등록",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-73c8054d-980c-481c-a620-6d1619930f5a/new-6a578236-4cbe-49e0-bb9e-b1414622b7d7/49718e9f-53e8-4887-b465-fbe76aabb236/s81.png",
     "images": [
@@ -3241,7 +3927,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-75",
+    "id": "demo-89",
     "service": "오일나우",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -3261,7 +3947,8 @@ export const sampleScreens = [
     ],
     "matchedTexts": [],
     "keywords": [
-      "차량 등록"
+      "차량 등록",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new/79b096c8-c838-4302-9c95-f909d22ed4b2/app_oilnow_202609_131.png",
     "images": [
@@ -3291,7 +3978,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-76",
+    "id": "demo-90",
     "service": "G car",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -3307,7 +3994,8 @@ export const sampleScreens = [
     ],
     "matchedTexts": [],
     "keywords": [
-      "차량 등록"
+      "차량 등록",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-9abef0b6-cd83-46bd-ae41-07cc6e22d3ac/new-fcb58fa8-ee2c-4a80-8e21-943fd46a9549/a0f7a520-c4dd-4804-83bb-9d058b1bbfbd/ss375.png",
     "images": [
@@ -3337,7 +4025,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-77",
+    "id": "demo-91",
     "service": "볼트업",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -3352,7 +4040,8 @@ export const sampleScreens = [
     ],
     "keywords": [
       "차량 등록",
-      "차량번호"
+      "차량번호",
+      "차량 관리"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-582718f6-72b1-49cc-b2bc-d7fd2260e265/new-8b656f11-f52b-435a-8977-9fc251344841/9eb50e02-809f-4c70-8115-f042e24f471b/s145.png",
     "images": [
@@ -3372,7 +4061,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-78",
+    "id": "demo-92",
     "service": "iM뱅크",
     "domain": "금융",
     "category": "금융",
@@ -3387,7 +4076,8 @@ export const sampleScreens = [
     ],
     "keywords": [
       "월 납입금",
-      "납입금,"
+      "납입금,",
+      "할부"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-044c2134-6bd8-4a59-8858-8d853ea01943/new-332a24a6-c7e1-4d54-8ac2-8d7f8329e5c1/01afe886-c887-4ce7-857f-6f1a80f648b7/s284.png",
     "images": [
@@ -3417,7 +4107,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-79",
+    "id": "demo-93",
     "service": "하나원큐",
     "domain": "금융",
     "category": "금융",
@@ -3432,7 +4122,8 @@ export const sampleScreens = [
     ],
     "keywords": [
       "월 납입금",
-      "납입"
+      "납입",
+      "할부"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-f319a9d9-cd02-4670-8c71-ba2a44c428b2/new-faf35a7e-eef4-42fa-abf8-d6fd9ae50248/03eae3b8-ae20-4b02-b32a-f22553d1ebd7/app_Hana1Q_202608_459.png",
     "images": [
@@ -3462,7 +4153,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-80",
+    "id": "demo-94",
     "service": "보맵",
     "domain": "금융",
     "category": "금융",
@@ -3477,7 +4168,8 @@ export const sampleScreens = [
     ],
     "keywords": [
       "월 납입금",
-      "납입"
+      "납입",
+      "할부"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new/82fe0033-f309-40af-81a2-db836475037f/app_bomapp_202607_29.png",
     "images": [
@@ -3502,7 +4194,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-81",
+    "id": "demo-95",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -3517,7 +4209,8 @@ export const sampleScreens = [
     ],
     "keywords": [
       "월 납입금",
-      "납입금"
+      "납입금",
+      "할부"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-b5d4ded1-a4f4-48af-9569-ce987a5ffd42/new-3d618c6d-7268-4f15-bef3-37aecc1f95a1/c061168e-5a02-42eb-8f7d-6982ac0a2d7a/s124.PNG",
     "images": [
@@ -3547,7 +4240,7 @@ export const sampleScreens = [
     "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-82",
+    "id": "demo-96",
     "service": "알파스퀘어",
     "domain": "금융",
     "category": "금융",
@@ -3577,7 +4270,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-83",
+    "id": "demo-97",
     "service": "모으미",
     "domain": "금융",
     "category": "금융",
@@ -3607,7 +4300,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-84",
+    "id": "demo-98",
     "service": "신한 SOL페이",
     "domain": "금융",
     "category": "금융",
@@ -3637,7 +4330,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-85",
+    "id": "demo-99",
     "service": "페이코",
     "domain": "금융",
     "category": "금융",
@@ -3667,7 +4360,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-86",
+    "id": "demo-100",
     "service": "토스",
     "domain": "금융",
     "category": "금융",
@@ -3697,7 +4390,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-87",
+    "id": "demo-101",
     "service": "삼쩜삼",
     "domain": "금융",
     "category": "금융",
@@ -3727,7 +4420,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-88",
+    "id": "demo-102",
     "service": "Bybit",
     "domain": "금융",
     "category": "금융",
@@ -3757,7 +4450,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-89",
+    "id": "demo-103",
     "service": "아이쿠카",
     "domain": "금융",
     "category": "금융",
@@ -3789,7 +4482,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-90",
+    "id": "demo-104",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -3819,7 +4512,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-91",
+    "id": "demo-105",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -3849,7 +4542,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-92",
+    "id": "demo-106",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -3864,10 +4557,16 @@ export const sampleScreens = [
       "토스트&스낵바",
       "프로그레스 인디케이터"
     ],
-    "matchedTexts": [],
+    "matchedTexts": [
+      "완료해주세요.",
+      "결제"
+    ],
     "keywords": [
       "Empty",
       "빈 화면",
+      "결제 완료",
+      "완료해주세요.",
+      "결제",
       "카드 신청"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-fc226576-b09b-48df-8319-dd7077b0c2da/new-41c9f657-706e-406e-99e0-15ff125019ff/35a57a07-949c-41e8-9120-56bb51a4cebc/1.png",
@@ -3883,7 +4582,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-93",
+    "id": "demo-107",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -3891,14 +4590,27 @@ export const sampleScreens = [
     "variant": "상품주문-주소 검색",
     "title": "상품주문-주소 검색",
     "dataMonth": "2026-04",
-    "screenCount": 1,
+    "screenCount": 6,
     "components": [
-      "빈 화면"
+      "검색 바",
+      "리스트",
+      "빈 화면",
+      "텍스트 필드"
     ],
-    "matchedTexts": [],
+    "matchedTexts": [
+      "주소검색",
+      "도로명주소,",
+      "입력",
+      "입력해주세요."
+    ],
     "keywords": [
       "Empty",
-      "빈 화면"
+      "빈 화면",
+      "주소 입력",
+      "주소검색",
+      "도로명주소,",
+      "입력",
+      "입력해주세요."
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-f462b86d-bf85-49b3-b133-d7e186fcbcad/new-be8f204f-799a-4dc9-b9f4-877a510542e0/745636e6-a368-4688-86fa-299242901e9e/s483.png",
     "images": [
@@ -3908,12 +4620,12 @@ export const sampleScreens = [
         "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EA%B2%80%EC%83%89&imgId=cmojkiia30006k004mcl48di2"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EA%B2%80%EC%83%89&imgId=cmojkiia30006k004mcl48di2",
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EA%B2%80%EC%83%89&patternName=%EC%83%81%ED%92%88%EC%A3%BC%EB%AC%B8-%EC%A3%BC%EC%86%8C%20%EA%B2%80%EC%83%89",
     "source": "UI Bowl",
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-94",
+    "id": "demo-108",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -3943,7 +4655,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-95",
+    "id": "demo-109",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -3975,7 +4687,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-96",
+    "id": "demo-110",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -4007,7 +4719,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-97",
+    "id": "demo-111",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -4037,7 +4749,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-98",
+    "id": "demo-112",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -4067,7 +4779,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-99",
+    "id": "demo-113",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -4097,7 +4809,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-100",
+    "id": "demo-114",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -4127,7 +4839,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-101",
+    "id": "demo-115",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -4157,7 +4869,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-102",
+    "id": "demo-116",
     "service": "셔클",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -4187,7 +4899,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-103",
+    "id": "demo-117",
     "service": "센디",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -4217,7 +4929,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-104",
+    "id": "demo-118",
     "service": "G car",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -4247,7 +4959,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-105",
+    "id": "demo-119",
     "service": "볼트업",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -4277,7 +4989,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-106",
+    "id": "demo-120",
     "service": "쏘카",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -4307,7 +5019,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-107",
+    "id": "demo-121",
     "service": "카카오T",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -4337,7 +5049,7 @@ export const sampleScreens = [
     "sourceTool": "search_components"
   },
   {
-    "id": "demo-108",
+    "id": "demo-122",
     "service": "알파스퀘어",
     "domain": "금융",
     "category": "금융",
@@ -4367,7 +5079,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-109",
+    "id": "demo-123",
     "service": "모으미",
     "domain": "금융",
     "category": "금융",
@@ -4411,7 +5123,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-110",
+    "id": "demo-124",
     "service": "신한 슈퍼SOL",
     "domain": "금융",
     "category": "금융",
@@ -4455,7 +5167,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-111",
+    "id": "demo-125",
     "service": "도미노",
     "domain": "금융",
     "category": "금융",
@@ -4496,7 +5208,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-112",
+    "id": "demo-126",
     "service": "아이쿠카",
     "domain": "금융",
     "category": "금융",
@@ -4538,7 +5250,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-113",
+    "id": "demo-127",
     "service": "Bybit",
     "domain": "금융",
     "category": "금융",
@@ -4584,7 +5296,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-114",
+    "id": "demo-128",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -4593,15 +5305,25 @@ export const sampleScreens = [
     "title": "멤버스 가입",
     "dataMonth": "2026-04",
     "screenCount": 11,
-    "components": [
-      "라디오 버튼",
-      "체크박스",
-      "팝업"
+    "components": [],
+    "matchedTexts": [
+      "회원가입을",
+      "가입하기",
+      "약관에",
+      "동의해주세요.",
+      "동의하기",
+      "동의는"
     ],
-    "matchedTexts": [],
     "keywords": [
       "로그인",
-      "회원가입"
+      "회원가입",
+      "회원가입을",
+      "가입하기",
+      "약관 동의",
+      "약관에",
+      "동의해주세요.",
+      "동의하기",
+      "동의는"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-3cfae0a8-f8c7-4981-86d1-d85377073ec7/new-dcbcea83-2cf1-4ce7-85f3-b1ceac955c06/7eaaba9d-f442-4fde-8155-76ec00d8a650/s170.png",
     "images": [
@@ -4626,12 +5348,12 @@ export const sampleScreens = [
         "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=cmojm0g6t0009jp04pxkoaaqg"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&patternName=%EB%A9%A4%EB%B2%84%EC%8A%A4%20%EA%B0%80%EC%9E%85",
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=cmojm0g410003jp04lgdk5xj7",
     "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
+    "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-115",
+    "id": "demo-129",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -4671,7 +5393,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-116",
+    "id": "demo-130",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -4681,7 +5403,9 @@ export const sampleScreens = [
     "dataMonth": "2026-08",
     "screenCount": 4,
     "components": [],
-    "matchedTexts": [],
+    "matchedTexts": [
+      "회원가입"
+    ],
     "keywords": [
       "로그인",
       "회원가입"
@@ -4714,7 +5438,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-117",
+    "id": "demo-131",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -4760,7 +5484,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-118",
+    "id": "demo-132",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -4802,7 +5526,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-119",
+    "id": "demo-133",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -4836,7 +5560,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-120",
+    "id": "demo-134",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -4888,7 +5612,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-121",
+    "id": "demo-135",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -4935,7 +5659,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-122",
+    "id": "demo-136",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -4972,7 +5696,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-123",
+    "id": "demo-137",
     "service": "G car",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -5017,7 +5741,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-124",
+    "id": "demo-138",
     "service": "센디",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -5026,15 +5750,20 @@ export const sampleScreens = [
     "title": "로그인·회원가입",
     "dataMonth": "2026-05",
     "screenCount": 17,
-    "components": [
-      "버튼",
-      "텍스트 필드"
+    "components": [],
+    "matchedTexts": [
+      "주소",
+      "주소를",
+      "입력해주세요."
     ],
-    "matchedTexts": [],
     "keywords": [
-      "로그인"
+      "로그인",
+      "주소 입력",
+      "주소",
+      "주소를",
+      "입력해주세요."
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-7bf7c0d0-59b2-4321-993c-587df8770084/new-0289f72d-722a-4b45-8f8f-bf5c500a37d7/3b5f414c-afc6-4411-b4d4-9d978906ba20/s2.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-7bf7c0d0-59b2-4321-993c-587df8770084/new-78836199-bf92-4615-8049-522e7fb437de/b03f5fc2-006c-4130-a34b-38c864966406/s3.png",
     "images": [
       {
         "id": "cmp6azj5e01j0l404y7l5xrze",
@@ -5057,12 +5786,12 @@ export const sampleScreens = [
         "uiUrl": "https://uibowl.io/name/%EC%84%BC%EB%94%94?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=cmp6azjjr01j6l4045r2pohbw"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EC%84%BC%EB%94%94?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85",
+    "uiUrl": "https://uibowl.io/name/%EC%84%BC%EB%94%94?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=cmp6azjai01j2l404dgefk4u5",
     "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
+    "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-125",
+    "id": "demo-139",
     "service": "셔클",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -5110,7 +5839,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-126",
+    "id": "demo-140",
     "service": "카카오T",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -5153,7 +5882,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-127",
+    "id": "demo-141",
     "service": "미래에셋증권 M-STOCK",
     "domain": "금융",
     "category": "금융",
@@ -5163,7 +5892,9 @@ export const sampleScreens = [
     "dataMonth": "2026-07",
     "screenCount": 5,
     "components": [],
-    "matchedTexts": [],
+    "matchedTexts": [
+      "회원가입"
+    ],
     "keywords": [
       "회원가입"
     ],
@@ -5195,7 +5926,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-128",
+    "id": "demo-142",
     "service": "세이브 (SAVE)",
     "domain": "금융",
     "category": "금융",
@@ -5227,7 +5958,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-129",
+    "id": "demo-143",
     "service": "iM뱅크",
     "domain": "금융",
     "category": "금융",
@@ -5272,7 +6003,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-130",
+    "id": "demo-144",
     "service": "한패스",
     "domain": "금융",
     "category": "금융",
@@ -5282,7 +6013,9 @@ export const sampleScreens = [
     "dataMonth": "2026-06",
     "screenCount": 33,
     "components": [],
-    "matchedTexts": [],
+    "matchedTexts": [
+      "회원가입"
+    ],
     "keywords": [
       "회원가입"
     ],
@@ -5314,7 +6047,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-131",
+    "id": "demo-145",
     "service": "Bitget",
     "domain": "금융",
     "category": "금융",
@@ -5369,7 +6102,259 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-132",
+    "id": "demo-146",
+    "service": "네이버페이",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "혜택",
+    "variant": "모든 혜택 둘러보기",
+    "title": "모든 혜택 둘러보기",
+    "dataMonth": "2026-08",
+    "screenCount": 5,
+    "components": [],
+    "matchedTexts": [
+      "회원가입"
+    ],
+    "keywords": [
+      "회원가입"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-2ba48728-dc19-4502-8b59-28386018a189/new-678485ff-bb3a-4c85-8df8-f9c18242b5b6/4228ea33-82eb-48ce-a0c9-8ec996431b2f/mobile_naverpay_202608_399.png",
+    "images": [
+      {
+        "id": "cmsx00rjd002ll204ixl89p5z",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2ba48728-dc19-4502-8b59-28386018a189/new-678485ff-bb3a-4c85-8df8-f9c18242b5b6/4228ea33-82eb-48ce-a0c9-8ec996431b2f/mobile_naverpay_202608_399.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%ED%98%9C%ED%83%9D&imgId=cmsx00rjd002ll204ixl89p5z"
+      },
+      {
+        "id": "cmsx00rht002fl204yizo75ey",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2ba48728-dc19-4502-8b59-28386018a189/new-053b043b-ea87-4294-85e8-6f9ff486632e/90508e5c-3144-4346-8a18-fff98fbbaa31/mobile_naverpay_202608_396.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%ED%98%9C%ED%83%9D&imgId=cmsx00rht002fl204yizo75ey"
+      },
+      {
+        "id": "cmsx00rib002hl204vs4vzwwp",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2ba48728-dc19-4502-8b59-28386018a189/new-d52782f9-cc2a-493e-ae25-589f9a3466cb/58e72642-93bd-41b7-b458-646f8212defe/mobile_naverpay_202608_397.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%ED%98%9C%ED%83%9D&imgId=cmsx00rib002hl204vs4vzwwp"
+      },
+      {
+        "id": "cmsx00riu002jl204xsw0tyjt",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2ba48728-dc19-4502-8b59-28386018a189/new-e5118372-f7a9-4264-958c-6f865ca3bb11/1e93770c-f3f6-47bf-a878-2c8179bbd7a6/mobile_naverpay_202608_398.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%ED%98%9C%ED%83%9D&imgId=cmsx00riu002jl204xsw0tyjt"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%ED%98%9C%ED%83%9D&imgId=cmsx00rjd002ll204ixl89p5z",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-147",
+    "service": "세이브 (SAVE)",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "기타",
+    "variant": "회원탈퇴",
+    "title": "회원탈퇴",
+    "dataMonth": "2026-10",
+    "screenCount": 2,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "회원가입"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new/415961c3-efd3-4967-abce-7de1be365a57/app_save_202610_35.png",
+    "images": [
+      {
+        "id": "cmuo3a38z000pjy04eerzh8pf",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/415961c3-efd3-4967-abce-7de1be365a57/app_save_202610_35.png",
+        "uiUrl": "https://uibowl.io/name/%EC%84%B8%EC%9D%B4%EB%B8%8C%20(SAVE)?patterns=%EA%B8%B0%ED%83%80&imgId=cmuo3a38z000pjy04eerzh8pf"
+      },
+      {
+        "id": "cmuo3a39i000rjy04ajynbvcc",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/eb472a83-c619-4e79-8dcd-39a8f2b85d63/app_save_202610_36.png",
+        "uiUrl": "https://uibowl.io/name/%EC%84%B8%EC%9D%B4%EB%B8%8C%20(SAVE)?patterns=%EA%B8%B0%ED%83%80&imgId=cmuo3a39i000rjy04ajynbvcc"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%84%B8%EC%9D%B4%EB%B8%8C%20(SAVE)?patterns=%EA%B8%B0%ED%83%80&patternName=%ED%9A%8C%EC%9B%90%ED%83%88%ED%87%B4",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-148",
+    "service": "iM뱅크",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "쿠폰",
+    "variant": "",
+    "title": "쿠폰",
+    "dataMonth": "2026-05",
+    "screenCount": 6,
+    "components": [],
+    "matchedTexts": [
+      "가입시",
+      "연간회원권",
+      "연간회원",
+      "연간회원센터에서"
+    ],
+    "keywords": [
+      "회원가입",
+      "가입시",
+      "연간회원권",
+      "연간회원",
+      "연간회원센터에서"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-c1051420-2fe9-4b65-b754-33f20d75d0c8/new-22fc9f36-029b-4b35-8686-755c0de8eb85/192d7c46-2175-474e-bef9-e580f613f605/s63.png",
+    "images": [
+      {
+        "id": "cmp0u94hm00fsib04c4a2gn54",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c1051420-2fe9-4b65-b754-33f20d75d0c8/new-22fc9f36-029b-4b35-8686-755c0de8eb85/192d7c46-2175-474e-bef9-e580f613f605/s63.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%BF%A0%ED%8F%B0&imgId=cmp0u94hm00fsib04c4a2gn54"
+      },
+      {
+        "id": "cmp0u94gt00fqib04tzza65gc",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c1051420-2fe9-4b65-b754-33f20d75d0c8/new-c5dd34db-f73f-4a24-9ec5-43de3dbda73b/f641a5e2-285b-483a-959d-1da895a25d59/s62.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%BF%A0%ED%8F%B0&imgId=cmp0u94gt00fqib04tzza65gc"
+      },
+      {
+        "id": "cmp0u94if00fuib045g02hx0g",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c1051420-2fe9-4b65-b754-33f20d75d0c8/new-63b0a3ed-500e-4b46-ab7f-804e8f6cc5f5/c23a4531-e968-484a-84d9-94084da064e3/s64.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%BF%A0%ED%8F%B0&imgId=cmp0u94if00fuib045g02hx0g"
+      },
+      {
+        "id": "cmp0u94jf00fwib04tgdoa3w8",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c1051420-2fe9-4b65-b754-33f20d75d0c8/new-495d0d6e-fc5c-4d93-807f-ce3109641d13/79df22b8-9a6c-4171-bf3e-54700f5c5efc/s65.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%BF%A0%ED%8F%B0&imgId=cmp0u94jf00fwib04tgdoa3w8"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%BF%A0%ED%8F%B0&imgId=cmp0u94hm00fsib04c4a2gn54",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-149",
+    "service": "세이브 (SAVE)",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "로그인·회원가입",
+    "variant": "로그인",
+    "title": "로그인",
+    "dataMonth": "2026-10",
+    "screenCount": 2,
+    "components": [],
+    "matchedTexts": [
+      "회원가입"
+    ],
+    "keywords": [
+      "회원가입"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new/4a8ab7d4-5127-4d36-8640-83994a8ec256/app_save_202610_46.png",
+    "images": [
+      {
+        "id": "cmuo3a4i6001njt04ey9s1ucn",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/4a8ab7d4-5127-4d36-8640-83994a8ec256/app_save_202610_46.png",
+        "uiUrl": "https://uibowl.io/name/%EC%84%B8%EC%9D%B4%EB%B8%8C%20(SAVE)?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=cmuo3a4i6001njt04ey9s1ucn"
+      },
+      {
+        "id": "cmuo3a4ip001pjt041z4ufewx",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/23503bf5-59bb-4e47-a35a-bc90ee3bee5a/app_save_202610_47.png",
+        "uiUrl": "https://uibowl.io/name/%EC%84%B8%EC%9D%B4%EB%B8%8C%20(SAVE)?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=cmuo3a4ip001pjt041z4ufewx"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%84%B8%EC%9D%B4%EB%B8%8C%20(SAVE)?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=cmuo3a4i6001njt04ey9s1ucn",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-150",
+    "service": "헤이딜러",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "설정",
+    "variant": "탈퇴",
+    "title": "탈퇴",
+    "dataMonth": "2026-02",
+    "screenCount": 3,
+    "components": [],
+    "matchedTexts": [
+      "회원가입이",
+      "재가입을",
+      "회원탈퇴"
+    ],
+    "keywords": [
+      "회원가입",
+      "회원가입이",
+      "재가입을",
+      "회원탈퇴"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-0bc4b582-fce6-453d-9094-7c1b042fa8d6/new-882a8fbb-951b-4a6c-807b-1e6881619cf2/4ffec967-556a-4b82-9b96-483eee1bc4a7/s290.png",
+    "images": [
+      {
+        "id": "cmliqbe5j000jju04s7rftx8a",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-0bc4b582-fce6-453d-9094-7c1b042fa8d6/new-882a8fbb-951b-4a6c-807b-1e6881619cf2/4ffec967-556a-4b82-9b96-483eee1bc4a7/s290.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%84%A4%EC%A0%95&imgId=cmliqbe5j000jju04s7rftx8a"
+      },
+      {
+        "id": "cmliqbe4b000hju040w7cs2w4",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-0bc4b582-fce6-453d-9094-7c1b042fa8d6/new-bc13ae9d-382f-49c3-b3ab-edd5d40807c1/17e9e3a1-b018-4016-90ef-44503196c540/s282.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%84%A4%EC%A0%95&imgId=cmliqbe4b000hju040w7cs2w4"
+      },
+      {
+        "id": "cmliqbe6e000lju04m0muri3q",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-0bc4b582-fce6-453d-9094-7c1b042fa8d6/new-59f3de42-1320-497a-931a-5ce32b73e3da/eb402215-b78a-4076-93f7-e00134662aef/s291.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%84%A4%EC%A0%95&imgId=cmliqbe6e000lju04m0muri3q"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%84%A4%EC%A0%95&imgId=cmliqbe5j000jju04s7rftx8a",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-151",
+    "service": "마이현대",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "검색",
+    "variant": "부품 간단 검색",
+    "title": "부품 간단 검색",
+    "dataMonth": "2026-04",
+    "screenCount": 9,
+    "components": [],
+    "matchedTexts": [
+      "가입",
+      "회원"
+    ],
+    "keywords": [
+      "회원가입",
+      "가입",
+      "회원"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-d498b9a0-a67d-4d1b-9d28-890e40cc14a9/new-50e3cb46-3d95-499c-bc56-322a1f14371a/d3ee4ed7-ae6f-49a0-9500-70de23f110c9/s390.png",
+    "images": [
+      {
+        "id": "cmojkj8vc000kk0041b4np7oz",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d498b9a0-a67d-4d1b-9d28-890e40cc14a9/new-50e3cb46-3d95-499c-bc56-322a1f14371a/d3ee4ed7-ae6f-49a0-9500-70de23f110c9/s390.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EA%B2%80%EC%83%89&imgId=cmojkj8vc000kk0041b4np7oz"
+      },
+      {
+        "id": "cmojkj8w1000mk004msuiwk2u",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d498b9a0-a67d-4d1b-9d28-890e40cc14a9/new-f26d7800-677f-477b-9469-cc140eba5add/70a44abd-6d81-42e6-b8db-f4db97327647/s391.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EA%B2%80%EC%83%89&imgId=cmojkj8w1000mk004msuiwk2u"
+      },
+      {
+        "id": "cmojkj8wp000ok004vj4q8har",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d498b9a0-a67d-4d1b-9d28-890e40cc14a9/new-bcf8318c-2838-4925-b241-2a60c7ffe96a/8dd87974-428a-42e1-80e7-9b9970dbb061/s392.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EA%B2%80%EC%83%89&imgId=cmojkj8wp000ok004vj4q8har"
+      },
+      {
+        "id": "cmojkj8xe000qk004log6zbf1",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d498b9a0-a67d-4d1b-9d28-890e40cc14a9/new-73d2af42-6e6a-430d-82ca-debb57abf30e/fea3ec9f-8bca-43d0-9921-9490bcbfb72a/s393.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EA%B2%80%EC%83%89&imgId=cmojkj8xe000qk004log6zbf1"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EA%B2%80%EC%83%89&imgId=cmojkj8vc000kk0041b4np7oz",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-152",
     "service": "쏘카",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -5413,7 +6398,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-133",
+    "id": "demo-153",
     "service": "RailOne",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -5461,7 +6446,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-134",
+    "id": "demo-154",
     "service": "오일나우",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -5507,7 +6492,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-135",
+    "id": "demo-155",
     "service": "EVSIS",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -5552,7 +6537,98 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-136",
+    "id": "demo-156",
+    "service": "카카오T",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "멤버십·요금제",
+    "variant": "카카오T 멤버스",
+    "title": "카카오T 멤버스",
+    "dataMonth": "2026-04",
+    "screenCount": 8,
+    "components": [],
+    "matchedTexts": [
+      "가입되어",
+      "가입한",
+      "가입",
+      "회원은"
+    ],
+    "keywords": [
+      "회원가입",
+      "가입되어",
+      "가입한",
+      "가입",
+      "회원은"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-ce204f62-940a-4495-927c-794c5756eb37/new-356ce25d-d6da-4629-bbc3-6ca16f3f4df6/41db4d08-dd24-4501-9aa2-2a0671f30b2a/e43.png",
+    "images": [
+      {
+        "id": "cmoaq9brq00oel2046dvp03mr",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-ce204f62-940a-4495-927c-794c5756eb37/new-356ce25d-d6da-4629-bbc3-6ca16f3f4df6/41db4d08-dd24-4501-9aa2-2a0671f30b2a/e43.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmoaq9brq00oel2046dvp03mr"
+      },
+      {
+        "id": "cmoaq9bmx00o2l204ndb0m49i",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-ce204f62-940a-4495-927c-794c5756eb37/new-01cd4b5d-e475-4bf5-966a-7def389f77b7/417c11bf-e1cb-4841-94f1-c7b718577e6b/e37.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmoaq9bmx00o2l204ndb0m49i"
+      },
+      {
+        "id": "cmoaq9bnp00o4l204mxdzt7sg",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-ce204f62-940a-4495-927c-794c5756eb37/new-96fc0bd0-c88a-4c18-86c9-77a3f5fa7b75/478e9b00-c16f-4a81-9118-fddca846b783/e38.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmoaq9bnp00o4l204mxdzt7sg"
+      },
+      {
+        "id": "cmoaq9boh00o6l204eyw6dwca",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-ce204f62-940a-4495-927c-794c5756eb37/new-90d7f593-78e5-4753-b9e9-4ae140229700/e250d7e1-1c68-4178-93f5-9d9a97fe45ef/e39.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmoaq9boh00o6l204eyw6dwca"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmoaq9brq00oel2046dvp03mr",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-157",
+    "service": "오일나우",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "약관동의",
+    "variant": "",
+    "title": "약관동의",
+    "dataMonth": "2026-09",
+    "screenCount": 3,
+    "components": [],
+    "matchedTexts": [
+      "회원가입"
+    ],
+    "keywords": [
+      "회원가입",
+      "약관 동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new/9321e5a9-f08e-417d-9121-59d158577076/app_oilnow_202609_165.png",
+    "images": [
+      {
+        "id": "cmtpnw2y80011la04rmtjgxri",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/6bdec6c2-1ca7-43ef-ace4-dea4bba42b48/app_oilnow_202609_167.png",
+        "uiUrl": "https://uibowl.io/name/%EC%98%A4%EC%9D%BC%EB%82%98%EC%9A%B0?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmtpnw2y80011la04rmtjgxri"
+      },
+      {
+        "id": "cmtpnw2x1000xla04xandcklt",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/9321e5a9-f08e-417d-9121-59d158577076/app_oilnow_202609_165.png",
+        "uiUrl": "https://uibowl.io/name/%EC%98%A4%EC%9D%BC%EB%82%98%EC%9A%B0?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmtpnw2x1000xla04xandcklt"
+      },
+      {
+        "id": "cmtpnw2xm000zla04o9hjaox1",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/24072784-2de8-4e74-bd61-af8c07219641/app_oilnow_202609_166.png",
+        "uiUrl": "https://uibowl.io/name/%EC%98%A4%EC%9D%BC%EB%82%98%EC%9A%B0?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmtpnw2xm000zla04o9hjaox1"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%98%A4%EC%9D%BC%EB%82%98%EC%9A%B0?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-158",
     "service": "Bybit",
     "domain": "금융",
     "category": "금융",
@@ -5596,7 +6672,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-137",
+    "id": "demo-159",
     "service": "아이쿠카",
     "domain": "금융",
     "category": "금융",
@@ -5628,7 +6704,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-138",
+    "id": "demo-160",
     "service": "신한 슈퍼SOL",
     "domain": "금융",
     "category": "금융",
@@ -5673,141 +6749,242 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-139",
-    "service": "페이코",
+    "id": "demo-161",
+    "service": "한패스",
     "domain": "금융",
     "category": "금융",
-    "pattern": "간편결제",
-    "variant": "결제수단 삭제",
-    "title": "결제수단 삭제",
-    "dataMonth": "2026-09",
-    "screenCount": 2,
-    "components": [
-      "리스트",
-      "모달",
-      "버튼",
-      "인터랙션",
-      "텍스트 필드"
-    ],
-    "matchedTexts": [],
-    "keywords": [
-      "결제 완료"
-    ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new/116a373e-d955-43fd-9541-1c110268e951/app_payco_202610_11.png",
-    "images": [
-      {
-        "id": "cmupp0bsd000rl604epykbf9s",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new/116a373e-d955-43fd-9541-1c110268e951/app_payco_202610_11.png",
-        "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmupp0bsd000rl604epykbf9s"
-      },
-      {
-        "id": "cmupp0bt1000tl604hs56iony",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new/443431ca-faf0-4242-823e-856d547a76d4/app_payco_202610_12.png",
-        "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmupp0bt1000tl604hs56iony"
-      }
-    ],
-    "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&patternName=%EA%B2%B0%EC%A0%9C%EC%88%98%EB%8B%A8%20%EC%82%AD%EC%A0%9C",
-    "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
-  },
-  {
-    "id": "demo-140",
-    "service": "신한 SOL페이",
-    "domain": "금융",
-    "category": "금융",
-    "pattern": "간편결제",
-    "variant": "",
-    "title": "간편결제",
-    "dataMonth": "2026-10",
+    "pattern": "상세정보 (PDP)",
+    "variant": "한패스 카드",
+    "title": "한패스 카드",
+    "dataMonth": "2026-06",
     "screenCount": 4,
-    "components": [
-      "라디오 버튼",
-      "리스트",
-      "바텀시트",
-      "버튼",
-      "체크박스",
-      "태그"
+    "components": [],
+    "matchedTexts": [
+      "완료",
+      "QR결제로",
+      "결제",
+      "카드신청"
     ],
-    "matchedTexts": [],
     "keywords": [
-      "결제 완료"
+      "결제 완료",
+      "완료",
+      "QR결제로",
+      "결제",
+      "카드 신청",
+      "카드신청"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new/4f91fe3c-a9bb-4f81-9e43-4ea21517e2a2/app_shinhansolpay_202610_8.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-93e1197e-a447-4bfd-97c2-fb4f7db7cbc4/new-4fbe3e0e-15ab-4310-b045-0ca82d41e983/3fe0380b-4ada-4b5d-ad6e-ec0b50184502/IMG_4257-copy-0.png",
     "images": [
       {
-        "id": "cmv54w2wd000fif06lzivbk53",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new/4f91fe3c-a9bb-4f81-9e43-4ea21517e2a2/app_shinhansolpay_202610_8.png",
-        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20SOL%ED%8E%98%EC%9D%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmv54w2wd000fif06lzivbk53"
+        "id": "cmq0n5ga800jbjy04z1tguo7w",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-93e1197e-a447-4bfd-97c2-fb4f7db7cbc4/new-cdcc4b87-aeb3-4f2c-9e6b-5fc786e70f08/bd7ac521-d884-4a3a-a20a-44a9f023e81c/IMG_4259.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmq0n5ga800jbjy04z1tguo7w"
       },
       {
-        "id": "cmv54w2x8000hif061mg167cs",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new/d8f83563-2b46-4848-8ee8-9b027efd296a/app_shinhansolpay_202610_9.png",
-        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20SOL%ED%8E%98%EC%9D%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmv54w2x8000hif061mg167cs"
+        "id": "cmq0n5g8g00j7jy04ru6x5u2a",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-93e1197e-a447-4bfd-97c2-fb4f7db7cbc4/new-4fbe3e0e-15ab-4310-b045-0ca82d41e983/3fe0380b-4ada-4b5d-ad6e-ec0b50184502/IMG_4257-copy-0.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmq0n5g8g00j7jy04ru6x5u2a"
       },
       {
-        "id": "cmv54w2xx000jif065hdn46gl",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new/110a6279-df5b-42bf-8b25-d74bdea7bc37/app_shinhansolpay_202610_10.png",
-        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20SOL%ED%8E%98%EC%9D%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmv54w2xx000jif065hdn46gl"
+        "id": "cmq0n5g9b00j9jy04mal8d67i",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-93e1197e-a447-4bfd-97c2-fb4f7db7cbc4/new-5e7ab88b-24fb-4892-89be-04aca594c90c/dc3e0e12-c5fc-42b0-be50-dcfdec2fe26a/IMG_4258.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmq0n5g9b00j9jy04mal8d67i"
       },
       {
-        "id": "cmv54w2yk000lif06xdprx8fn",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new/58672054-d142-49ce-a1ac-fb7e33e5d2b3/app_shinhansolpay_202610_11.png",
-        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20SOL%ED%8E%98%EC%9D%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmv54w2yk000lif06xdprx8fn"
+        "id": "cmq0n5gb600jdjy0448ekaov2",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-93e1197e-a447-4bfd-97c2-fb4f7db7cbc4/new-ed2027ba-6fed-4b86-9b63-f3116ea12368/eb00c519-6aed-4967-84a1-b39c6b2520d3/IMG_4260.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmq0n5gb600jdjy0448ekaov2"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20SOL%ED%8E%98%EC%9D%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C",
+    "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmq0n5g8g00j7jy04ru6x5u2a",
     "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
+    "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-141",
-    "service": "토스",
+    "id": "demo-162",
+    "service": "하나원큐",
     "domain": "금융",
     "category": "금융",
-    "pattern": "간편결제",
-    "variant": "페이스페이-유도",
-    "title": "페이스페이-유도",
-    "dataMonth": "2026-07",
+    "pattern": "생성하기",
+    "variant": "해외결제코드",
+    "title": "해외결제코드",
+    "dataMonth": "2026-08",
     "screenCount": 3,
-    "components": [
-      "그래픽",
-      "배너",
-      "버튼",
-      "상태점",
-      "아이콘",
-      "인터랙션",
-      "카드",
-      "프로그레스 인디케이터",
-      "하단 네비게이션"
+    "components": [],
+    "matchedTexts": [
+      "복사완료!",
+      "QR결제",
+      "결제"
     ],
-    "matchedTexts": [],
     "keywords": [
-      "결제 완료"
+      "결제 완료",
+      "복사완료!",
+      "QR결제",
+      "결제"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-d37ddc70-6c37-46e7-9f2f-92b2b03c93fd/new-16544936-0149-48f3-b59d-af25a880f59e/3deb430b-94f1-4d81-b52f-baeb99c1e354/app_toss_202607_28.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-ae8ca1fe-b403-4608-8d85-0aabcd86ae80/new-2e81ed46-13b0-446b-9bfa-f1d82c781028/007cdcbe-6a35-4aeb-8942-c7b13248ad1b/app_Hana1Q_202608_290.png",
     "images": [
       {
-        "id": "cmrttsx4n0009kv04b4wf70yb",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d37ddc70-6c37-46e7-9f2f-92b2b03c93fd/new-16544936-0149-48f3-b59d-af25a880f59e/3deb430b-94f1-4d81-b52f-baeb99c1e354/app_toss_202607_28.png",
-        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmrttsx4n0009kv04b4wf70yb"
+        "id": "cmsenqz7c0007l8048q0sovkw",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-ae8ca1fe-b403-4608-8d85-0aabcd86ae80/new-2e81ed46-13b0-446b-9bfa-f1d82c781028/007cdcbe-6a35-4aeb-8942-c7b13248ad1b/app_Hana1Q_202608_290.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&imgId=cmsenqz7c0007l8048q0sovkw"
       },
       {
-        "id": "cmrttsx5e000bkv041250tse1",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d37ddc70-6c37-46e7-9f2f-92b2b03c93fd/new-95a8d682-91b8-4fbd-a185-873af7e4a479/a641c0bd-b138-40df-929c-452c3264bf6e/app_toss_202607_29.png",
-        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmrttsx5e000bkv041250tse1"
+        "id": "cmsenqz610003l804to1zcgt6",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-ae8ca1fe-b403-4608-8d85-0aabcd86ae80/new-b046fc4f-f0e4-4e6c-89e1-f166a0692c46/9cc1d7a7-adff-44bc-87c2-87ddceaec257/app_Hana1Q_202608_288.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&imgId=cmsenqz610003l804to1zcgt6"
       },
       {
-        "id": "cmrttsx6s000fkv04ybrhpn1a",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d37ddc70-6c37-46e7-9f2f-92b2b03c93fd/new-beaf6d84-29e6-4d58-94d3-5f2360ce5dd0/ea822207-9545-494a-ab61-fb3c59778c50/app_toss_202607_31.png",
-        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmrttsx6s000fkv04ybrhpn1a"
+        "id": "cmsenqz6s0005l804kb7hketb",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-ae8ca1fe-b403-4608-8d85-0aabcd86ae80/new-5027c7a9-5934-4777-a51b-b49dbd35c0c9/5d330e05-32ad-4992-9af2-973d3b42243f/app_Hana1Q_202608_289.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&imgId=cmsenqz6s0005l804kb7hketb"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&patternName=%ED%8E%98%EC%9D%B4%EC%8A%A4%ED%8E%98%EC%9D%B4-%EC%9C%A0%EB%8F%84",
+    "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&imgId=cmsenqz7c0007l8048q0sovkw",
     "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
+    "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-142",
+    "id": "demo-163",
+    "service": "네이버페이",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "검색",
+    "variant": "결제내역",
+    "title": "결제내역",
+    "dataMonth": "2026-08",
+    "screenCount": 9,
+    "components": [],
+    "matchedTexts": [
+      "결제완료",
+      "배송완료",
+      "안전결제"
+    ],
+    "keywords": [
+      "결제 완료",
+      "결제완료",
+      "배송완료",
+      "안전결제"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-00ca4547-2d5f-4ac9-9f38-b070bb4a4afa/new-e246e6db-75a9-45b8-b9c7-e61c8fb9c5fe/902d153f-0457-49a7-a3fd-b39e0903bf5c/mobile_naverpay_202608_12.png",
+    "images": [
+      {
+        "id": "cmswzgr4z00cfl7045lvrqjg1",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-00ca4547-2d5f-4ac9-9f38-b070bb4a4afa/new-e246e6db-75a9-45b8-b9c7-e61c8fb9c5fe/902d153f-0457-49a7-a3fd-b39e0903bf5c/mobile_naverpay_202608_12.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EA%B2%80%EC%83%89&imgId=cmswzgr4z00cfl7045lvrqjg1"
+      },
+      {
+        "id": "cmswzgr5l00chl704aozdypwm",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-00ca4547-2d5f-4ac9-9f38-b070bb4a4afa/new-40dcbd85-99fa-483a-a339-459118218042/59a0f75a-c605-40d4-b45c-ca9d9118e0e1/mobile_naverpay_202608_13.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EA%B2%80%EC%83%89&imgId=cmswzgr5l00chl704aozdypwm"
+      },
+      {
+        "id": "cmswzgr6500cjl7042287yet3",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-00ca4547-2d5f-4ac9-9f38-b070bb4a4afa/new-5aa6cd06-63e6-4a09-9a2e-f2ba552cb727/601dae3d-ae2e-4192-8916-183ad7a48003/mobile_naverpay_202608_14.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EA%B2%80%EC%83%89&imgId=cmswzgr6500cjl7042287yet3"
+      },
+      {
+        "id": "cmswzgr6n00cll7047hekq6bv",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-00ca4547-2d5f-4ac9-9f38-b070bb4a4afa/new-b7dfe3cb-7b7f-48e6-b83d-964b65f92bbf/fb800ab5-b2ef-48d8-8d1d-9d77edc43942/mobile_naverpay_202608_15.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EA%B2%80%EC%83%89&imgId=cmswzgr6n00cll7047hekq6bv"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EA%B2%80%EC%83%89&imgId=cmswzgr4z00cfl7045lvrqjg1",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-164",
+    "service": "네이버페이",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "검색",
+    "variant": "결제내역 - 바텀시트",
+    "title": "결제내역 - 바텀시트",
+    "dataMonth": "2026-08",
+    "screenCount": 5,
+    "components": [],
+    "matchedTexts": [
+      "결제완료"
+    ],
+    "keywords": [
+      "결제 완료",
+      "결제완료"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-8c8040a1-5810-403b-a2f0-88e3a1695c2d/new-0419078f-8f34-4b4f-91a7-54679f84e00f/4ca7547c-214a-4cf0-9d89-94a9e28dc88c/mobile_naverpay_202608_21.png",
+    "images": [
+      {
+        "id": "cmswzh54y000zl0048rp6ulf1",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-8c8040a1-5810-403b-a2f0-88e3a1695c2d/new-0419078f-8f34-4b4f-91a7-54679f84e00f/4ca7547c-214a-4cf0-9d89-94a9e28dc88c/mobile_naverpay_202608_21.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EA%B2%80%EC%83%89&imgId=cmswzh54y000zl0048rp6ulf1"
+      },
+      {
+        "id": "cmswzh55n0011l0040wca5zvd",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-8c8040a1-5810-403b-a2f0-88e3a1695c2d/new-75d0fe08-b110-44d6-b42b-5b4d0016a6ed/b27b521c-f45d-4599-8422-204d11d636b9/mobile_naverpay_202608_22.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EA%B2%80%EC%83%89&imgId=cmswzh55n0011l0040wca5zvd"
+      },
+      {
+        "id": "cmswzh56b0013l0042ksa988d",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-8c8040a1-5810-403b-a2f0-88e3a1695c2d/new-55cdd29a-ef68-4ced-871e-14b0b1021734/e695397d-5d0d-4011-847f-22c947759393/mobile_naverpay_202608_23.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EA%B2%80%EC%83%89&imgId=cmswzh56b0013l0042ksa988d"
+      },
+      {
+        "id": "cmt557d4m0001l704o1xv52g3",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/cmswzh549000xl004q323x2ea/new-700a95d5-a960-4666-a8ad-a880fa4955f2/1b2e1fd5-e79b-43bf-9fd9-5bbd8a81cfb3/mobile_naverpay_202608_24.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EA%B2%80%EC%83%89&imgId=cmt557d4m0001l704o1xv52g3"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EA%B2%80%EC%83%89&imgId=cmswzh54y000zl0048rp6ulf1",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-165",
+    "service": "네이버페이",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "내역",
+    "variant": "결제 내역",
+    "title": "결제 내역",
+    "dataMonth": "2026-08",
+    "screenCount": 8,
+    "components": [],
+    "matchedTexts": [
+      "결제완료"
+    ],
+    "keywords": [
+      "결제 완료",
+      "결제완료"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-7868345e-08b1-4f13-a097-c917b0f778b5/new-dfac490a-23ee-4aa8-9a74-e98de7f9c4a9/0ff42487-180a-4bf0-946e-fd571d1d706e/mobile_naverpay_202608_95.png",
+    "images": [
+      {
+        "id": "cmswzlay8000hjo04m6yzcdpp",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7868345e-08b1-4f13-a097-c917b0f778b5/new-dfac490a-23ee-4aa8-9a74-e98de7f9c4a9/0ff42487-180a-4bf0-946e-fd571d1d706e/mobile_naverpay_202608_95.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EB%82%B4%EC%97%AD&imgId=cmswzlay8000hjo04m6yzcdpp"
+      },
+      {
+        "id": "cmswzlayr000jjo04d2bxx2dj",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7868345e-08b1-4f13-a097-c917b0f778b5/new-1c0437e5-9f6d-4a0a-b210-d316370097c0/99c380f5-6d91-47d5-b92c-6fd0ae4dbf0b/mobile_naverpay_202608_96.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EB%82%B4%EC%97%AD&imgId=cmswzlayr000jjo04d2bxx2dj"
+      },
+      {
+        "id": "cmswzlazb000ljo0429u0943s",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7868345e-08b1-4f13-a097-c917b0f778b5/new-e2ecb86a-335d-4f0c-a33c-559394322451/d938a741-dbbb-4b72-b2d0-8933c665cdfe/mobile_naverpay_202608_97.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EB%82%B4%EC%97%AD&imgId=cmswzlazb000ljo0429u0943s"
+      },
+      {
+        "id": "cmswzlazt000njo04t84w3nwf",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7868345e-08b1-4f13-a097-c917b0f778b5/new-bceb7a2d-7dcb-4342-ab96-a9aafcf4641c/c3b1b6f4-ee89-4410-9c67-abdf567460dc/mobile_naverpay_202608_98.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EB%82%B4%EC%97%AD&imgId=cmswzlazt000njo04t84w3nwf"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EB%82%B4%EC%97%AD&imgId=cmswzlay8000hjo04m6yzcdpp",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-166",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -5848,7 +7025,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-143",
+    "id": "demo-167",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -5857,18 +7034,26 @@ export const sampleScreens = [
     "title": "간편결제",
     "dataMonth": "2026-06",
     "screenCount": 14,
-    "components": [
-      "바텀시트",
-      "버튼",
-      "체크박스",
-      "텍스트 필드",
-      "토스트&스낵바"
+    "components": [],
+    "matchedTexts": [
+      "완료되었습니다.",
+      "간편결제를",
+      "이용약관",
+      "이용약관(블루월넛(주)",
+      "전체동의",
+      "동의서"
     ],
-    "matchedTexts": [],
     "keywords": [
-      "결제 완료"
+      "결제 완료",
+      "완료되었습니다.",
+      "간편결제를",
+      "약관 동의",
+      "이용약관",
+      "이용약관(블루월넛(주)",
+      "전체동의",
+      "동의서"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-ea408678-cf51-4250-8da3-66e87f07d372/new-68a79f0b-d724-4b18-9c47-06ef2daa2dfa/68f98817-d321-4b8d-935e-70dae070527b/IMG_3955.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-ea408678-cf51-4250-8da3-66e87f07d372/new-7722416f-8c55-4d9f-8594-1fad08da8cb9/b686aa65-4b4d-4967-b599-132925bdc519/IMG_3956.png",
     "images": [
       {
         "id": "cmpuoe1z60016jr04l1tmwkxw",
@@ -5891,12 +7076,12 @@ export const sampleScreens = [
         "uiUrl": "https://uibowl.io/name/Kia?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmpuoe21v001cjr044en457ud"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/Kia?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C",
+    "uiUrl": "https://uibowl.io/name/Kia?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmpuoe2090018jr04rwvxqst1",
     "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
+    "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-144",
+    "id": "demo-168",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -5938,7 +7123,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-145",
+    "id": "demo-169",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -5948,12 +7133,22 @@ export const sampleScreens = [
     "dataMonth": "2026-04",
     "screenCount": 13,
     "components": [],
-    "matchedTexts": [],
+    "matchedTexts": [
+      "주소",
+      "상세주소를",
+      "입력하세요.",
+      "입력해"
+    ],
     "keywords": [
       "결제 완료",
-      "예약"
+      "예약",
+      "주소 입력",
+      "주소",
+      "상세주소를",
+      "입력하세요.",
+      "입력해"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-18a3f05b-0455-4eaf-992f-c27433744eb4/new-e0f27c68-b450-44b3-a26a-b7adfc244a41/c3cadba7-6bb2-4cfa-a6e5-44c11046e24b/s477.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-18a3f05b-0455-4eaf-992f-c27433744eb4/new-0ca26e99-5771-4e8f-a427-ba8973a86fc7/03fb7ddf-ce63-4e74-b1a7-2b1f697ab2ca/s482.png",
     "images": [
       {
         "id": "cmojmfk890003jr04s31zbki2",
@@ -5976,12 +7171,12 @@ export const sampleScreens = [
         "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%98%88%EC%95%BD%C2%B7%EA%B2%B0%EC%A0%9C&imgId=cmojmfkaf0009jr044ucev7nm"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%98%88%EC%95%BD%C2%B7%EA%B2%B0%EC%A0%9C&patternName=%EC%83%81%ED%92%88%20%EC%A3%BC%EB%AC%B8%ED%95%98%EA%B8%B0%20",
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%98%88%EC%95%BD%C2%B7%EA%B2%B0%EC%A0%9C&imgId=cmojmfkbq000djr0444hlv2ja",
     "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
+    "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-146",
+    "id": "demo-170",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -6024,7 +7219,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-147",
+    "id": "demo-171",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -6034,9 +7229,20 @@ export const sampleScreens = [
     "dataMonth": "2026-08",
     "screenCount": 9,
     "components": [],
-    "matchedTexts": [],
+    "matchedTexts": [
+      "이용약관에",
+      "약관의",
+      "약관",
+      "동의해주세요",
+      "동의"
+    ],
     "keywords": [
       "결제 완료",
+      "약관 동의",
+      "이용약관에",
+      "약관의",
+      "약관",
+      "동의해주세요",
       "예약"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-e19c803a-3380-4c2d-81ac-ce37a014a369/new-e8c48ce0-6d27-4379-88be-5a671ee02eec/47294977-c431-4b1e-bc51-bdfe8494f230/app_chabot_202608_172.png",
@@ -6067,7 +7273,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-148",
+    "id": "demo-172",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -6114,7 +7320,225 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-149",
+    "id": "demo-173",
+    "service": "마이현대",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "상세정보 (PDP)",
+    "variant": "대리 신청 안내",
+    "title": "대리 신청 안내",
+    "dataMonth": "2026-04",
+    "screenCount": 7,
+    "components": [
+      "리스트",
+      "모달",
+      "탭"
+    ],
+    "matchedTexts": [
+      "완료",
+      "완료되면",
+      "결제카드로",
+      "자동결제",
+      "신청",
+      "신청합니다."
+    ],
+    "keywords": [
+      "결제 완료",
+      "완료",
+      "완료되면",
+      "결제카드로",
+      "자동결제",
+      "카드 신청",
+      "신청",
+      "신청합니다."
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-4a3fac33-c1ea-43ad-8fe9-01b54cc6865d/new-b04590eb-da49-4f52-9d82-1003871a43f5/31c508d0-da66-4809-a884-2733603c6ae0/s182.PNG",
+    "images": [
+      {
+        "id": "cmojm4z620007l8042ynzdwm9",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4a3fac33-c1ea-43ad-8fe9-01b54cc6865d/new-ef4964e8-9db1-471f-995c-e43eb9e690f1/1b13ea17-a1ef-4860-bc61-0cad6b69afc5/s184.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm4z620007l8042ynzdwm9"
+      },
+      {
+        "id": "cmojm4z4a0003l804fi6l2yz7",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4a3fac33-c1ea-43ad-8fe9-01b54cc6865d/new-b04590eb-da49-4f52-9d82-1003871a43f5/31c508d0-da66-4809-a884-2733603c6ae0/s182.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm4z4a0003l804fi6l2yz7"
+      },
+      {
+        "id": "cmojm4z5a0005l804vc8s9dk2",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4a3fac33-c1ea-43ad-8fe9-01b54cc6865d/new-036b4dde-3532-4031-95fb-4de160708c79/7c78ac08-cd2f-48bd-9e57-4603729b3e91/s183.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm4z5a0005l804vc8s9dk2"
+      },
+      {
+        "id": "cmojm4z6s0009l804n8yfdyic",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4a3fac33-c1ea-43ad-8fe9-01b54cc6865d/new-d4f330d5-5c69-47a8-bba7-30fc1f242b4f/ae19cf61-9385-4cbc-8d30-7a5cabc6358c/s185.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm4z6s0009l804n8yfdyic"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&patternName=%EB%8C%80%EB%A6%AC%20%EC%8B%A0%EC%B2%AD%20%EC%95%88%EB%82%B4",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-174",
+    "service": "헤이딜러",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "상세정보 (PDP)",
+    "variant": "구매 과정 안내",
+    "title": "구매 과정 안내",
+    "dataMonth": "2026-02",
+    "screenCount": 4,
+    "components": [],
+    "matchedTexts": [
+      "완료해주세요.",
+      "결제"
+    ],
+    "keywords": [
+      "결제 완료",
+      "완료해주세요.",
+      "결제"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-7006b48f-eab4-48a0-8247-d6b0a972efb0/new-9c78ae8e-9671-4bd5-85cc-c7f838e6fbb3/b36537e6-2866-4621-aba8-4db2efcd2270/s261.png",
+    "images": [
+      {
+        "id": "cmliq5p4s0007l404kd938say",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7006b48f-eab4-48a0-8247-d6b0a972efb0/new-9c78ae8e-9671-4bd5-85cc-c7f838e6fbb3/b36537e6-2866-4621-aba8-4db2efcd2270/s261.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmliq5p4s0007l404kd938say"
+      },
+      {
+        "id": "cmliq5p3l0005l40495mmywna",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7006b48f-eab4-48a0-8247-d6b0a972efb0/new-ac057a60-81d1-455f-bafd-2d45e427f782/5ab306ff-320e-4021-9f13-c6f414d3e6b8/s260.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmliq5p3l0005l40495mmywna"
+      },
+      {
+        "id": "cmliq5p5n0009l404csd72b5l",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7006b48f-eab4-48a0-8247-d6b0a972efb0/new-a47997a3-7865-4aab-bc39-2baa0c0fba5b/2c827ba8-4496-4d8f-9b7d-e234ccb445c5/s262.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmliq5p5n0009l404csd72b5l"
+      },
+      {
+        "id": "cmliq5p6h000bl40498d3vn1e",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7006b48f-eab4-48a0-8247-d6b0a972efb0/new-afbe1d84-eec0-4153-b527-8b2dd7fac6f1/2263fd7b-4e03-428b-92a3-9a3e387291eb/s263.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmliq5p6h000bl40498d3vn1e"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmliq5p4s0007l404kd938say",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-175",
+    "service": "마이현대",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "상세정보 (PDP)",
+    "variant": "방문세차 안내",
+    "title": "방문세차 안내",
+    "dataMonth": "2026-04",
+    "screenCount": 6,
+    "components": [],
+    "matchedTexts": [
+      "완료",
+      "완료되면",
+      "결제",
+      "결제합니다."
+    ],
+    "keywords": [
+      "결제 완료",
+      "완료",
+      "완료되면",
+      "결제",
+      "결제합니다."
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-1e96f2c6-1b14-48b3-9b36-eb912247c548/new-e54cbd5a-0497-4c27-9d0a-ea4890a7cff2/0571462e-c029-4633-839a-5384f87e6e91/s193.PNG",
+    "images": [
+      {
+        "id": "cmojm8gk00071jr04vkepnwk6",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-1e96f2c6-1b14-48b3-9b36-eb912247c548/new-e54cbd5a-0497-4c27-9d0a-ea4890a7cff2/0571462e-c029-4633-839a-5384f87e6e91/s193.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm8gk00071jr04vkepnwk6"
+      },
+      {
+        "id": "cmojm8ggg006tjr0499l1dglj",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-1e96f2c6-1b14-48b3-9b36-eb912247c548/new-964b4271-6949-4abf-9c8d-515d3bdc81f7/a8eab1d7-5682-4926-9863-c18e07fefcd1/s189.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm8ggg006tjr0499l1dglj"
+      },
+      {
+        "id": "cmojm8ghe006vjr04dfyk7wic",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-1e96f2c6-1b14-48b3-9b36-eb912247c548/new-a84c8f8b-436d-4ed9-bed8-7510a85bf12a/14c8b800-6369-44ec-ab8a-f4bc401187ac/s190.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm8ghe006vjr04dfyk7wic"
+      },
+      {
+        "id": "cmojm8gi8006xjr04jadqzsod",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-1e96f2c6-1b14-48b3-9b36-eb912247c548/new-5bd06811-b8a2-42a1-b439-3ee28f2d7b8d/34f22ab1-21a2-4e99-ba73-8b27bdea9a23/s191.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm8gi8006xjr04jadqzsod"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm8gk00071jr04vkepnwk6",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-176",
+    "service": "헤이딜러",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "예약·결제",
+    "variant": "앱으로 신청",
+    "title": "앱으로 신청",
+    "dataMonth": "2026-02",
+    "screenCount": 19,
+    "components": [
+      "라디오 버튼",
+      "바텀시트",
+      "체크박스",
+      "프로그레스 인디케이터"
+    ],
+    "matchedTexts": [
+      "완료되면,",
+      "결제",
+      "주소",
+      "주소와",
+      "동, 호수 입력"
+    ],
+    "keywords": [
+      "결제 완료",
+      "완료되면,",
+      "결제",
+      "주소 입력",
+      "주소",
+      "주소와",
+      "동, 호수 입력",
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-7b0cbb3d-2c7f-4ef4-871f-10ad0dac3932/new-2a574d46-b65f-4d77-a616-4515c24bd538/599456f1-6c3b-4a26-83d8-523c2af05fb3/s233.png",
+    "images": [
+      {
+        "id": "cmliqg7fb0017jp041i7ymlr2",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7b0cbb3d-2c7f-4ef4-871f-10ad0dac3932/new-544e28ed-5b14-461a-a05b-13aeb7edae00/5d9cc99c-6bd5-430e-88e2-d65ccc496f16/s242.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%98%88%EC%95%BD%C2%B7%EA%B2%B0%EC%A0%9C&imgId=cmliqg7fb0017jp041i7ymlr2"
+      },
+      {
+        "id": "cmliqg78j000tjp041znce5xl",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7b0cbb3d-2c7f-4ef4-871f-10ad0dac3932/new-2a574d46-b65f-4d77-a616-4515c24bd538/599456f1-6c3b-4a26-83d8-523c2af05fb3/s233.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%98%88%EC%95%BD%C2%B7%EA%B2%B0%EC%A0%9C&imgId=cmliqg78j000tjp041znce5xl"
+      },
+      {
+        "id": "cmliqg79i000vjp04g8uotn01",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7b0cbb3d-2c7f-4ef4-871f-10ad0dac3932/new-0304dc41-1964-4945-bf58-333fa3de5201/715b7860-e0d9-4878-aa59-737e1dbc6a31/s234.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%98%88%EC%95%BD%C2%B7%EA%B2%B0%EC%A0%9C&imgId=cmliqg79i000vjp04g8uotn01"
+      },
+      {
+        "id": "cmliqg7ah000xjp04pti6isqp",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7b0cbb3d-2c7f-4ef4-871f-10ad0dac3932/new-ad55df07-a545-4cd3-b884-4aa4123dbb4a/f1426607-0475-4d4b-85b7-f258a13f2065/s235.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%98%88%EC%95%BD%C2%B7%EA%B2%B0%EC%A0%9C&imgId=cmliqg7ah000xjp04pti6isqp"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EC%98%88%EC%95%BD%C2%B7%EA%B2%B0%EC%A0%9C&patternName=%EC%95%B1%EC%9C%BC%EB%A1%9C%20%EC%8B%A0%EC%B2%AD",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-177",
     "service": "볼트업",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -6161,7 +7585,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-150",
+    "id": "demo-178",
     "service": "센디",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -6207,99 +7631,169 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-151",
-    "service": "G car",
+    "id": "demo-179",
+    "service": "쏘카",
     "domain": "모빌리티",
     "category": "모빌리티",
-    "pattern": "간편결제",
-    "variant": "결제수단 관리",
-    "title": "결제수단 관리",
+    "pattern": "내역",
+    "variant": "자전거-상세",
+    "title": "자전거-상세",
     "dataMonth": "2026-04",
-    "screenCount": 6,
-    "components": [
-      "바텀시트"
+    "screenCount": 2,
+    "components": [],
+    "matchedTexts": [
+      "이용완료",
+      "결제"
     ],
-    "matchedTexts": [],
-    "keywords": [
-      "결제 완료"
-    ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-f322c871-f5c3-46c9-bf96-7632377dcdae/new-55398e67-3171-41ee-85d2-507762c2f62d/8e3c7ea9-1172-4fc4-9e0f-cdd8195cd142/ss213.png",
-    "images": [
-      {
-        "id": "cmo84rmd9000rju04lz24txgo",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f322c871-f5c3-46c9-bf96-7632377dcdae/new-55398e67-3171-41ee-85d2-507762c2f62d/8e3c7ea9-1172-4fc4-9e0f-cdd8195cd142/ss213.png",
-        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmo84rmd9000rju04lz24txgo"
-      },
-      {
-        "id": "cmo84rmei000tju045irh9wzi",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f322c871-f5c3-46c9-bf96-7632377dcdae/new-07bc6555-7f12-4ee8-9b6c-6249d80716b5/110839df-9720-4afe-82c5-6a957c2465e1/ss215.png",
-        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmo84rmei000tju045irh9wzi"
-      },
-      {
-        "id": "cmo84rmff000vju04x3fglekt",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f322c871-f5c3-46c9-bf96-7632377dcdae/new-2376ebe2-b406-407d-8120-19b63dac3e9a/16fb7e2d-be33-41f9-938d-0b59bd7983f1/ss216.png",
-        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmo84rmff000vju04x3fglekt"
-      },
-      {
-        "id": "cmo84rmga000xju0407ke2oel",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f322c871-f5c3-46c9-bf96-7632377dcdae/new-98267013-d001-41b8-82e0-6233c631525a/73835adb-b81d-4aaa-bceb-1ab1fe6ffa12/ss217.png",
-        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmo84rmga000xju0407ke2oel"
-      }
-    ],
-    "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&patternName=%EA%B2%B0%EC%A0%9C%EC%88%98%EB%8B%A8%20%EA%B4%80%EB%A6%AC",
-    "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
-  },
-  {
-    "id": "demo-152",
-    "service": "셔클",
-    "domain": "모빌리티",
-    "category": "모빌리티",
-    "pattern": "간편결제",
-    "variant": "카드 등록",
-    "title": "카드 등록",
-    "dataMonth": "2026-07",
-    "screenCount": 8,
-    "components": [
-      "그래픽",
-      "텍스트 필드",
-      "팝업"
-    ],
-    "matchedTexts": [],
     "keywords": [
       "결제 완료",
-      "카드 신청"
+      "이용완료",
+      "결제"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-d393233b-8f52-4d08-bb8d-0b66321012b2/new-7d88f154-c59a-4b50-9609-71cb0bc799ee/f46d3632-ec5d-4f59-aa85-241acdbdebd9/app_shucle_202607_1.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-59e26de7-98db-49d5-8298-46c2051a7324/new-f03fa24d-ab9c-4abb-90e6-594b47a034e9/122c4f09-b015-40ba-b820-8c3171b62cad/s344.png",
     "images": [
       {
-        "id": "cmrt2ai4k0003jr044e213xxy",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d393233b-8f52-4d08-bb8d-0b66321012b2/new-7d88f154-c59a-4b50-9609-71cb0bc799ee/f46d3632-ec5d-4f59-aa85-241acdbdebd9/app_shucle_202607_1.png",
-        "uiUrl": "https://uibowl.io/name/%EC%85%94%ED%81%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmrt2ai4k0003jr044e213xxy"
+        "id": "cmogjjmop012pky040ku8iutu",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-59e26de7-98db-49d5-8298-46c2051a7324/new-f03fa24d-ab9c-4abb-90e6-594b47a034e9/122c4f09-b015-40ba-b820-8c3171b62cad/s344.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EB%82%B4%EC%97%AD&imgId=cmogjjmop012pky040ku8iutu"
       },
       {
-        "id": "cmrt2ai5k0005jr04h8er7u8q",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d393233b-8f52-4d08-bb8d-0b66321012b2/new-972f1866-9a95-4737-b2a9-29bad6eccece/0802a404-2f42-45c6-87c9-1c2f9bc3ef64/app_shucle_202607_2.png",
-        "uiUrl": "https://uibowl.io/name/%EC%85%94%ED%81%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmrt2ai5k0005jr04h8er7u8q"
-      },
-      {
-        "id": "cmrt2ai6a0007jr04bz7byu28",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d393233b-8f52-4d08-bb8d-0b66321012b2/new-893c282f-8126-4315-8814-21ce30cb20d9/a9483fd6-4eac-45c6-b0bb-fd7a69c239d7/app_shucle_202607_3.png",
-        "uiUrl": "https://uibowl.io/name/%EC%85%94%ED%81%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmrt2ai6a0007jr04bz7byu28"
-      },
-      {
-        "id": "cmrt2ai6y0009jr04tabc4axu",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d393233b-8f52-4d08-bb8d-0b66321012b2/new-e8b2564c-0db6-40b0-8e6c-64600ad66d45/029515ea-a8f5-4221-a5c5-52607ac01ffa/app_shucle_202607_4.png",
-        "uiUrl": "https://uibowl.io/name/%EC%85%94%ED%81%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmrt2ai6y0009jr04tabc4axu"
+        "id": "cmogjjmpc012rky04n356wnnj",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-59e26de7-98db-49d5-8298-46c2051a7324/new-0000a723-ca36-4099-9092-43474f1dbf03/96b4f24f-aec5-47df-b565-5e7d39254a99/s345.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EB%82%B4%EC%97%AD&imgId=cmogjjmpc012rky04n356wnnj"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EC%85%94%ED%81%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&patternName=%EC%B9%B4%EB%93%9C%20%EB%93%B1%EB%A1%9D",
+    "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EB%82%B4%EC%97%AD&imgId=cmogjjmop012pky040ku8iutu",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-180",
+    "service": "카카오T",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "리뷰",
+    "variant": "자전거 대여 후기",
+    "title": "자전거 대여 후기",
+    "dataMonth": "2026-04",
+    "screenCount": 2,
+    "components": [],
+    "matchedTexts": [
+      "완료됐습니다",
+      "결제"
+    ],
+    "keywords": [
+      "결제 완료",
+      "완료됐습니다",
+      "결제"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-12b8ab23-ca5a-49e7-bb93-3e1ae497ee4c/new-5b04f1b4-9a26-44c7-b590-28c1ea1eea29/e9885805-e759-4af7-8d3f-3ee9aaa8ade6/t122.png",
+    "images": [
+      {
+        "id": "cmoaq5sqa0003l204g9f3ne8d",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-12b8ab23-ca5a-49e7-bb93-3e1ae497ee4c/new-5b04f1b4-9a26-44c7-b590-28c1ea1eea29/e9885805-e759-4af7-8d3f-3ee9aaa8ade6/t122.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EB%A6%AC%EB%B7%B0&imgId=cmoaq5sqa0003l204g9f3ne8d"
+      },
+      {
+        "id": "cmoaq5srb0005l204onlmwilq",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-12b8ab23-ca5a-49e7-bb93-3e1ae497ee4c/new-a7eb123b-14b5-426e-ade8-541b8322d1f1/1436fb6d-6830-4dbb-9f83-41b99ebef972/t123.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EB%A6%AC%EB%B7%B0&imgId=cmoaq5srb0005l204onlmwilq"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EB%A6%AC%EB%B7%B0&imgId=cmoaq5sqa0003l204g9f3ne8d",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-181",
+    "service": "오일나우",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "취소하기",
+    "variant": "커머스",
+    "title": "커머스",
+    "dataMonth": "2026-09",
+    "screenCount": 6,
+    "components": [],
+    "matchedTexts": [
+      "결제완료",
+      "신청하기",
+      "카드사에"
+    ],
+    "keywords": [
+      "결제 완료",
+      "결제완료",
+      "카드 신청",
+      "신청하기",
+      "카드사에"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new/950979b8-5700-4dfa-ad0e-48865b45b70f/app_oilnow_202609_190.png",
+    "images": [
+      {
+        "id": "cmtpnw52q002dla04wf4xobo1",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/ad11e30d-4474-4ae1-911d-ab3a2c2c0ba0/app_oilnow_202609_186.png",
+        "uiUrl": "https://uibowl.io/name/%EC%98%A4%EC%9D%BC%EB%82%98%EC%9A%B0?patterns=%EC%B7%A8%EC%86%8C%ED%95%98%EA%B8%B0&imgId=cmtpnw52q002dla04wf4xobo1"
+      },
+      {
+        "id": "cmtpnw53b002fla04l3ctrn94",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/d9178600-2dac-4649-a9e1-6849fcaa40e0/app_oilnow_202609_187.png",
+        "uiUrl": "https://uibowl.io/name/%EC%98%A4%EC%9D%BC%EB%82%98%EC%9A%B0?patterns=%EC%B7%A8%EC%86%8C%ED%95%98%EA%B8%B0&imgId=cmtpnw53b002fla04l3ctrn94"
+      },
+      {
+        "id": "cmtpnw53x002hla0460hv0ytq",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/bef41651-64b6-4d23-99bf-9b09b9259255/app_oilnow_202609_188.png",
+        "uiUrl": "https://uibowl.io/name/%EC%98%A4%EC%9D%BC%EB%82%98%EC%9A%B0?patterns=%EC%B7%A8%EC%86%8C%ED%95%98%EA%B8%B0&imgId=cmtpnw53x002hla0460hv0ytq"
+      },
+      {
+        "id": "cmtpnw54k002jla04bp7zsoax",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/09d4ef85-42e4-4396-b186-9da50cc25cae/app_oilnow_202609_189.png",
+        "uiUrl": "https://uibowl.io/name/%EC%98%A4%EC%9D%BC%EB%82%98%EC%9A%B0?patterns=%EC%B7%A8%EC%86%8C%ED%95%98%EA%B8%B0&imgId=cmtpnw54k002jla04bp7zsoax"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%98%A4%EC%9D%BC%EB%82%98%EC%9A%B0?patterns=%EC%B7%A8%EC%86%8C%ED%95%98%EA%B8%B0&imgId=cmtpnw556002lla045b5yqjmk",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-182",
+    "service": "삼쩜삼",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "약관동의",
+    "variant": "",
+    "title": "약관동의",
+    "dataMonth": "2026-06",
+    "screenCount": 3,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "약관 동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-b21e2703-2138-4182-b0b2-1fe0a10855b7/new-c07781ef-e53a-408c-beee-bc7f94539b41/bad20940-5f14-47d4-bab0-94096393b4a7/IMG_5237.png",
+    "images": [
+      {
+        "id": "cmqdqyoa400jxlf04x1lbf9as",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-b21e2703-2138-4182-b0b2-1fe0a10855b7/new-c07781ef-e53a-408c-beee-bc7f94539b41/bad20940-5f14-47d4-bab0-94096393b4a7/IMG_5237.png",
+        "uiUrl": "https://uibowl.io/name/%EC%82%BC%EC%A9%9C%EC%82%BC?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmqdqyoa400jxlf04x1lbf9as"
+      },
+      {
+        "id": "cmqdqyoap00jzlf04u7ihy3td",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-b21e2703-2138-4182-b0b2-1fe0a10855b7/new-f0348463-836f-47e7-b05b-0b21db7b9e6e/d687f315-9e43-4eff-8079-01f5d08aa531/IMG_5238.png",
+        "uiUrl": "https://uibowl.io/name/%EC%82%BC%EC%A9%9C%EC%82%BC?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmqdqyoap00jzlf04u7ihy3td"
+      },
+      {
+        "id": "cmqdqyoba00k1lf04rqwtbl9t",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-b21e2703-2138-4182-b0b2-1fe0a10855b7/new-dba44f95-1ae4-4536-9882-5c06432e01ff/eca399a7-ca30-497d-a188-0366f8c017c4/IMG_5239.png",
+        "uiUrl": "https://uibowl.io/name/%EC%82%BC%EC%A9%9C%EC%82%BC?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmqdqyoba00k1lf04rqwtbl9t"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%82%BC%EC%A9%9C%EC%82%BC?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98",
     "source": "UI Bowl",
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-153",
-    "service": "보맵",
+    "id": "demo-183",
+    "service": "토스",
     "domain": "금융",
     "category": "금융",
     "pattern": "약관동의",
@@ -6307,37 +7801,220 @@ export const sampleScreens = [
     "title": "약관동의",
     "dataMonth": "2026-07",
     "screenCount": 3,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "약관 동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-f4e404d1-1320-43bb-879f-42c769b11f70/new-8dd50101-6734-473b-83b3-02e5c9d61a9d/caf2c5f1-06d5-4cbd-a63c-b952ec1ca75f/app_toss_202607_457.png",
+    "images": [
+      {
+        "id": "cmrtxiwxn00hzjc04q3vj4zla",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f4e404d1-1320-43bb-879f-42c769b11f70/new-8dd50101-6734-473b-83b3-02e5c9d61a9d/caf2c5f1-06d5-4cbd-a63c-b952ec1ca75f/app_toss_202607_457.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmrtxiwxn00hzjc04q3vj4zla"
+      },
+      {
+        "id": "cmrtxiwyo00i1jc04ybuai1v6",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f4e404d1-1320-43bb-879f-42c769b11f70/new-1f3a51f2-0d11-4619-bff1-74f3014d8807/084aecf4-1a52-4c01-987a-87d9726941e0/app_toss_202607_458.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmrtxiwyo00i1jc04ybuai1v6"
+      },
+      {
+        "id": "cmrtxiwzh00i3jc0450nc1emk",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f4e404d1-1320-43bb-879f-42c769b11f70/new-a4f64502-44a0-4d5d-962c-7ab5ba631a53/11561fc5-9630-4d05-bd65-3c8aa6445136/app_toss_202607_459.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmrtxiwzh00i3jc0450nc1emk"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-184",
+    "service": "신한 SOL페이",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "약관동의",
+    "variant": "",
+    "title": "약관동의",
+    "dataMonth": "2026-10",
+    "screenCount": 9,
     "components": [
-      "드롭다운"
+      "리스트",
+      "체크박스",
+      "탭",
+      "테이블"
+    ],
+    "matchedTexts": [
+      "약관동의",
+      "약관",
+      "이용약관",
+      "동의",
+      "제공동의(KCB)"
+    ],
+    "keywords": [
+      "약관 동의",
+      "약관동의",
+      "약관",
+      "이용약관",
+      "동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new/b43b8664-c026-4b4e-a5fc-3715f550444f/app_shinhansolpay_202610_196.png",
+    "images": [
+      {
+        "id": "cmv54ycri002fl806ll64kog9",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/b43b8664-c026-4b4e-a5fc-3715f550444f/app_shinhansolpay_202610_196.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20SOL%ED%8E%98%EC%9D%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmv54ycri002fl806ll64kog9"
+      },
+      {
+        "id": "cmv54ycs9002hl806b4b6rrbb",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/187c12b8-3478-4469-8e2c-eb8f39be08da/app_shinhansolpay_202610_197.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20SOL%ED%8E%98%EC%9D%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmv54ycs9002hl806b4b6rrbb"
+      },
+      {
+        "id": "cmv54yct0002jl806zyd3f0jt",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/7d4c611e-84a7-4ffd-8bf3-42832e9858e4/app_shinhansolpay_202610_198.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20SOL%ED%8E%98%EC%9D%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmv54yct0002jl806zyd3f0jt"
+      },
+      {
+        "id": "cmv54yctq002ll806rrn28oi8",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/def3aa14-a90d-4c9b-8baf-168f7e4f2ca5/app_shinhansolpay_202610_199.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20SOL%ED%8E%98%EC%9D%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmv54yctq002ll806rrn28oi8"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20SOL%ED%8E%98%EC%9D%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-185",
+    "service": "페이코",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "약관동의",
+    "variant": "",
+    "title": "약관동의",
+    "dataMonth": "2026-09",
+    "screenCount": 3,
+    "components": [
+      "바텀시트",
+      "체크박스"
     ],
     "matchedTexts": [],
     "keywords": [
       "약관 동의"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-c05eaa08-4f8f-4f59-8367-4df86a12ee1d/new-b008744f-d53a-4201-87e9-a9a0566814e6/0c26b2e8-12f2-4745-93dc-d83f33a66e1d/app_bomapp_202607_86.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new/ebc28135-4504-4a0f-b237-285a3f86d553/app_payco_202610_163.png",
     "images": [
       {
-        "id": "cmr2zs4sx003dky0497pbul58",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c05eaa08-4f8f-4f59-8367-4df86a12ee1d/new-b008744f-d53a-4201-87e9-a9a0566814e6/0c26b2e8-12f2-4745-93dc-d83f33a66e1d/app_bomapp_202607_86.png",
-        "uiUrl": "https://uibowl.io/name/%EB%B3%B4%EB%A7%B5?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmr2zs4sx003dky0497pbul58"
+        "id": "cmupp12op000li204o7rjmtzb",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/ebc28135-4504-4a0f-b237-285a3f86d553/app_payco_202610_163.png",
+        "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmupp12op000li204o7rjmtzb"
       },
       {
-        "id": "cmr2zs4ti003fky04h8c3vlkk",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c05eaa08-4f8f-4f59-8367-4df86a12ee1d/new-dd0dd1c7-c3cd-4ada-b285-a4093af3744a/f30f09ad-cf20-41d7-b78a-374a98569c99/app_bomapp_202607_87.png",
-        "uiUrl": "https://uibowl.io/name/%EB%B3%B4%EB%A7%B5?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmr2zs4ti003fky04h8c3vlkk"
+        "id": "cmupp12pa000ni204uev3to6z",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/6999b709-e93c-4aa4-9c71-f771f3f28813/app_payco_202610_164.png",
+        "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmupp12pa000ni204uev3to6z"
       },
       {
-        "id": "cmr2zs4u3003hky04bexe48ho",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c05eaa08-4f8f-4f59-8367-4df86a12ee1d/new-07438e2e-111f-4e60-8d6a-8942e7dc0cc0/33a60496-1709-46a7-af92-38919e7f8703/app_bomapp_202607_88.png",
-        "uiUrl": "https://uibowl.io/name/%EB%B3%B4%EB%A7%B5?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmr2zs4u3003hky04bexe48ho"
+        "id": "cmupp12pw000pi2049pej4y05",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/87318819-2222-456f-8fca-b2653ae75b9a/app_payco_202610_165.png",
+        "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmupp12pw000pi2049pej4y05"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EB%B3%B4%EB%A7%B5?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98",
+    "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98",
     "source": "UI Bowl",
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-154",
+    "id": "demo-186",
+    "service": "라이프캐치",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "약관동의",
+    "variant": "가입",
+    "title": "가입",
+    "dataMonth": "2026-06",
+    "screenCount": 3,
+    "components": [
+      "아이콘",
+      "체크박스"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "약관 동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-601da69c-e737-4d2d-8c2a-b03c59514494/new-c1e5e6ed-8bb4-45af-83ca-d5be34853990/672abe60-fcf4-41e0-a4df-ddc831f4e725/app_LifeCatch_202606_90.png",
+    "images": [
+      {
+        "id": "cmqzb65su000hjo04eukxi3px",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-601da69c-e737-4d2d-8c2a-b03c59514494/new-c1e5e6ed-8bb4-45af-83ca-d5be34853990/672abe60-fcf4-41e0-a4df-ddc831f4e725/app_LifeCatch_202606_90.png",
+        "uiUrl": "https://uibowl.io/name/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%BA%90%EC%B9%98?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmqzb65su000hjo04eukxi3px"
+      },
+      {
+        "id": "cmqzb65tu000jjo04004ytcuj",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-601da69c-e737-4d2d-8c2a-b03c59514494/new-39843ffd-b814-46fc-8925-e3e2ab2e1d13/e5c4edc4-7c75-4c6f-9479-a0f360516af7/app_LifeCatch_202606_91.png",
+        "uiUrl": "https://uibowl.io/name/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%BA%90%EC%B9%98?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmqzb65tu000jjo04004ytcuj"
+      },
+      {
+        "id": "cmqzb65uk000ljo04u0ov2tkv",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-601da69c-e737-4d2d-8c2a-b03c59514494/new-98836f04-9d11-450e-8e2f-47398e838e11/f8bfc91d-a7bd-4180-83a6-90f148bcfc77/app_LifeCatch_202606_92.png",
+        "uiUrl": "https://uibowl.io/name/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%BA%90%EC%B9%98?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmqzb65uk000ljo04u0ov2tkv"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%BA%90%EC%B9%98?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&patternName=%EA%B0%80%EC%9E%85",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-187",
+    "service": "도미노",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "약관동의",
+    "variant": "DOMINO 이용약관",
+    "title": "DOMINO 이용약관",
+    "dataMonth": "2026-09",
+    "screenCount": 5,
+    "components": [],
+    "matchedTexts": [
+      "우편주소",
+      "입력한"
+    ],
+    "keywords": [
+      "약관 동의",
+      "주소 입력",
+      "우편주소",
+      "입력한"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new/2c77342b-d3f0-4d82-ad32-ee57c4bd1ad6/app_domino_202609_178.png",
+    "images": [
+      {
+        "id": "cmue0igym003bl804ygattzff",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/db7ed44d-68e5-4c09-82d6-3bcbd5b61b3f/app_domino_202609_176.png",
+        "uiUrl": "https://uibowl.io/name/%EB%8F%84%EB%AF%B8%EB%85%B8?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmue0igym003bl804ygattzff"
+      },
+      {
+        "id": "cmue0igze003dl804qz3juls5",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/3ac57109-f45b-40ba-974c-b3fddd065f86/app_domino_202609_177.png",
+        "uiUrl": "https://uibowl.io/name/%EB%8F%84%EB%AF%B8%EB%85%B8?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmue0igze003dl804qz3juls5"
+      },
+      {
+        "id": "cmue0ih07003fl804fjwigs49",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/2c77342b-d3f0-4d82-ad32-ee57c4bd1ad6/app_domino_202609_178.png",
+        "uiUrl": "https://uibowl.io/name/%EB%8F%84%EB%AF%B8%EB%85%B8?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmue0ih07003fl804fjwigs49"
+      },
+      {
+        "id": "cmue0ih0z003hl8044r4zfyb3",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/54b1a93d-9617-44f1-9558-fab8942b7aaa/app_domino_202609_179.png",
+        "uiUrl": "https://uibowl.io/name/%EB%8F%84%EB%AF%B8%EB%85%B8?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmue0ih0z003hl8044r4zfyb3"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%8F%84%EB%AF%B8%EB%85%B8?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmue0ih07003fl804fjwigs49",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-188",
     "service": "코빗",
     "domain": "금융",
     "category": "금융",
@@ -6374,7 +8051,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-155",
+    "id": "demo-189",
     "service": "미니스탁",
     "domain": "금융",
     "category": "금융",
@@ -6421,120 +8098,275 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-156",
-    "service": "네이버페이",
-    "domain": "금융",
-    "category": "금융",
-    "pattern": "약관동의",
-    "variant": "알림 동의",
-    "title": "알림 동의",
-    "dataMonth": "2026-08",
-    "screenCount": 2,
-    "components": [
-      "바텀시트"
-    ],
-    "matchedTexts": [],
-    "keywords": [
-      "약관 동의"
-    ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-995a2876-dafd-4538-8b6a-1ae4246e3f66/new-4296d20e-e719-436d-b081-5c9f085f57d0/dd04c664-e192-46c0-b2ab-0e478aaf3dd7/mobile_naverpay_202608_268.png",
-    "images": [
-      {
-        "id": "cmswzu5n70023l904b1ot1fzg",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-995a2876-dafd-4538-8b6a-1ae4246e3f66/new-4296d20e-e719-436d-b081-5c9f085f57d0/dd04c664-e192-46c0-b2ab-0e478aaf3dd7/mobile_naverpay_202608_268.png",
-        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmswzu5n70023l904b1ot1fzg"
-      },
-      {
-        "id": "cmswzu5nv0025l904usa57e03",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-995a2876-dafd-4538-8b6a-1ae4246e3f66/new-f47282aa-c0f5-4e31-84ee-6f5bd50477e2/86f53705-ec2e-4c39-b2f2-60c40ed1390e/mobile_naverpay_202608_269.png",
-        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmswzu5nv0025l904usa57e03"
-      }
-    ],
-    "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&patternName=%EC%95%8C%EB%A6%BC%20%EB%8F%99%EC%9D%98",
-    "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
-  },
-  {
-    "id": "demo-157",
-    "service": "하나원큐",
-    "domain": "금융",
-    "category": "금융",
-    "pattern": "약관동의",
-    "variant": "걸음수",
-    "title": "걸음수",
-    "dataMonth": "2026-08",
-    "screenCount": 3,
-    "components": [],
-    "matchedTexts": [],
-    "keywords": [
-      "약관 동의"
-    ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-90aeb35d-a9df-407e-9ce2-2ef2661d36ae/new-0d6d095d-1e8d-4c34-9d00-da66ab939c71/6300ff13-4da4-4949-8a50-eecd335b9aa2/app_Hana1Q_202608_565.png",
-    "images": [
-      {
-        "id": "cmseql6n80003i804epzi5kyh",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-90aeb35d-a9df-407e-9ce2-2ef2661d36ae/new-0d6d095d-1e8d-4c34-9d00-da66ab939c71/6300ff13-4da4-4949-8a50-eecd335b9aa2/app_Hana1Q_202608_565.png",
-        "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmseql6n80003i804epzi5kyh"
-      },
-      {
-        "id": "cmseql6o40005i8041zqtz7yb",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-90aeb35d-a9df-407e-9ce2-2ef2661d36ae/new-a64e7e0b-9c37-4f3a-a8b3-fd786cdf7511/575f7413-5c9b-49a4-ab1f-de21502ee668/app_Hana1Q_202608_566.png",
-        "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmseql6o40005i8041zqtz7yb"
-      },
-      {
-        "id": "cmseql6ou0007i80430z1cn26",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-90aeb35d-a9df-407e-9ce2-2ef2661d36ae/new-9b46cc8b-1c5b-4b04-9e9c-f1984cd3bc5f/fb246cfc-b98e-4aba-9dc7-8b3f4864ab6c/app_Hana1Q_202608_567.png",
-        "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmseql6ou0007i80430z1cn26"
-      }
-    ],
-    "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&patternName=%EA%B1%B8%EC%9D%8C%EC%88%98",
-    "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
-  },
-  {
-    "id": "demo-158",
-    "service": "한패스",
+    "id": "demo-190",
+    "service": "보맵",
     "domain": "금융",
     "category": "금융",
     "pattern": "약관동의",
     "variant": "",
     "title": "약관동의",
-    "dataMonth": "2026-06",
-    "screenCount": 6,
-    "components": [],
+    "dataMonth": "2026-07",
+    "screenCount": 3,
+    "components": [
+      "드롭다운"
+    ],
     "matchedTexts": [],
     "keywords": [
       "약관 동의"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-5a2fddd6-edfb-447f-b89a-14446651c759/new-6b434fe7-d543-49e8-82ca-137ff8e32d07/61f2f905-5c8f-4512-bbfb-f87dc09d0914/IMG_4224.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-c05eaa08-4f8f-4f59-8367-4df86a12ee1d/new-b008744f-d53a-4201-87e9-a9a0566814e6/0c26b2e8-12f2-4745-93dc-d83f33a66e1d/app_bomapp_202607_86.png",
     "images": [
       {
-        "id": "cmq0n77v500pnla04xczq370o",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-5a2fddd6-edfb-447f-b89a-14446651c759/new-6b434fe7-d543-49e8-82ca-137ff8e32d07/61f2f905-5c8f-4512-bbfb-f87dc09d0914/IMG_4224.png",
-        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmq0n77v500pnla04xczq370o"
+        "id": "cmr2zs4sx003dky0497pbul58",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c05eaa08-4f8f-4f59-8367-4df86a12ee1d/new-b008744f-d53a-4201-87e9-a9a0566814e6/0c26b2e8-12f2-4745-93dc-d83f33a66e1d/app_bomapp_202607_86.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%B4%EB%A7%B5?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmr2zs4sx003dky0497pbul58"
       },
       {
-        "id": "cmq0n77w400ppla04pnetog48",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-5a2fddd6-edfb-447f-b89a-14446651c759/new-efd5db67-783f-49d9-8acb-7018ea37abfc/1a476595-4ea1-476d-8528-6e4112604462/IMG_4225.png",
-        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmq0n77w400ppla04pnetog48"
+        "id": "cmr2zs4ti003fky04h8c3vlkk",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c05eaa08-4f8f-4f59-8367-4df86a12ee1d/new-dd0dd1c7-c3cd-4ada-b285-a4093af3744a/f30f09ad-cf20-41d7-b78a-374a98569c99/app_bomapp_202607_87.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%B4%EB%A7%B5?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmr2zs4ti003fky04h8c3vlkk"
       },
       {
-        "id": "cmq0n77wy00prla042ezhuw2f",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-5a2fddd6-edfb-447f-b89a-14446651c759/new-f0c4db5f-f636-4005-a3b2-d7306ed2508b/bf685f20-9135-48e0-99df-012ac9ac1af5/IMG_4226.png",
-        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmq0n77wy00prla042ezhuw2f"
-      },
-      {
-        "id": "cmq0n77xq00ptla0492zq9pu5",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-5a2fddd6-edfb-447f-b89a-14446651c759/new-5aa745f2-a414-4e1c-be07-847ddda97c7e/baa17e07-319b-4b14-8da4-7219d0d6cba9/IMG_4227.png",
-        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmq0n77xq00ptla0492zq9pu5"
+        "id": "cmr2zs4u3003hky04bexe48ho",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c05eaa08-4f8f-4f59-8367-4df86a12ee1d/new-07438e2e-111f-4e60-8d6a-8942e7dc0cc0/33a60496-1709-46a7-af92-38919e7f8703/app_bomapp_202607_88.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%B4%EB%A7%B5?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmr2zs4u3003hky04bexe48ho"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98",
+    "uiUrl": "https://uibowl.io/name/%EB%B3%B4%EB%A7%B5?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98",
     "source": "UI Bowl",
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-159",
+    "id": "demo-191",
+    "service": "iM뱅크",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "계좌",
+    "variant": "계좌개설",
+    "title": "계좌개설",
+    "dataMonth": "2026-05",
+    "screenCount": 31,
+    "components": [],
+    "matchedTexts": [
+      "약관동의"
+    ],
+    "keywords": [
+      "약관 동의",
+      "약관동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-41704155-8fe2-4fdd-885d-c6cf11bd03b2/new-3c437b6a-a32b-4dc9-bdda-28d7a84ff432/6ab39f40-7144-4942-bd9b-f4d07bd5beb0/s541.png",
+    "images": [
+      {
+        "id": "cmp0ufytl000xlh04bswmf5i3",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-41704155-8fe2-4fdd-885d-c6cf11bd03b2/new-3c437b6a-a32b-4dc9-bdda-28d7a84ff432/6ab39f40-7144-4942-bd9b-f4d07bd5beb0/s541.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EA%B3%84%EC%A2%8C&imgId=cmp0ufytl000xlh04bswmf5i3"
+      },
+      {
+        "id": "cmp0ufygr0003lh04ttz17m7s",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-41704155-8fe2-4fdd-885d-c6cf11bd03b2/new-26dde18b-86bb-4b56-97fe-9901c3f6cbce/80798ac9-1e4a-4914-a041-9e5f85e05277/s519.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EA%B3%84%EC%A2%8C&imgId=cmp0ufygr0003lh04ttz17m7s"
+      },
+      {
+        "id": "cmp0ufyhw0005lh04z2470tu7",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-41704155-8fe2-4fdd-885d-c6cf11bd03b2/new-215d41ad-9bbe-4e6f-a6fa-77d3137b4e2e/da4c9c69-64ea-4348-a474-fba73652c7d5/s520.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EA%B3%84%EC%A2%8C&imgId=cmp0ufyhw0005lh04z2470tu7"
+      },
+      {
+        "id": "cmp0ufyip0007lh04axibolyh",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-41704155-8fe2-4fdd-885d-c6cf11bd03b2/new-e1f94d22-73a1-4a58-b5ed-2a2c4bfae638/67bf0b44-81d9-4ee6-87f3-9c152610d8a3/s525.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EA%B3%84%EC%A2%8C&imgId=cmp0ufyip0007lh04axibolyh"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EA%B3%84%EC%A2%8C&imgId=cmp0ufytl000xlh04bswmf5i3",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-192",
+    "service": "미래에셋증권 M-STOCK",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "약관동의",
+    "variant": "회원가입",
+    "title": "회원가입",
+    "dataMonth": "2026-07",
+    "screenCount": 19,
+    "components": [],
+    "matchedTexts": [
+      "약관동의가"
+    ],
+    "keywords": [
+      "약관 동의",
+      "약관동의가"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-f7e6d31c-120b-4b9b-8e1b-1f631653d006/new-9c384765-e752-4d50-857a-fdbb942d25b7/bbd7a35f-7529-41e9-a864-7d520ebd9e80/app_miraeasset_202607_429.png",
+    "images": [
+      {
+        "id": "cmrx9e5v4000vjv04hdhecejd",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f7e6d31c-120b-4b9b-8e1b-1f631653d006/new-9c384765-e752-4d50-857a-fdbb942d25b7/bbd7a35f-7529-41e9-a864-7d520ebd9e80/app_miraeasset_202607_429.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmrx9e5v4000vjv04hdhecejd"
+      },
+      {
+        "id": "cmrx9e5vq000xjv04jqe2p3q9",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f7e6d31c-120b-4b9b-8e1b-1f631653d006/new-4800cc8f-8186-4139-ac7c-b82dddc48fc6/a05531cf-f79d-4ac5-820b-a28a9a5ce2ad/app_miraeasset_202607_430.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmrx9e5vq000xjv04jqe2p3q9"
+      },
+      {
+        "id": "cmrx9e5wd000zjv04ccm61wp3",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f7e6d31c-120b-4b9b-8e1b-1f631653d006/new-f315a033-4900-40ca-b494-4a2a31fcbe61/a2707e78-070b-4ed9-8584-021bb239183b/app_miraeasset_202607_431.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmrx9e5wd000zjv04ccm61wp3"
+      },
+      {
+        "id": "cmrx9e5wy0011jv04aqqjqhxb",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f7e6d31c-120b-4b9b-8e1b-1f631653d006/new-f9ac3a12-c050-4871-ba07-768869090d3b/7c4b5715-63ed-4787-9d0b-e35a71b5ab13/app_miraeasset_202607_432.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmrx9e5wy0011jv04aqqjqhxb"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmrx9e5v4000vjv04hdhecejd",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-193",
+    "service": "삼쩜삼",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "조회하기",
+    "variant": "환급액",
+    "title": "환급액",
+    "dataMonth": "2026-06",
+    "screenCount": 26,
+    "components": [],
+    "matchedTexts": [
+      "이용약관",
+      "동의예요",
+      "이용동의",
+      "동의",
+      "동의하고"
+    ],
+    "keywords": [
+      "약관 동의",
+      "이용약관",
+      "동의예요",
+      "이용동의",
+      "동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-881294a0-65da-4fa6-a527-77afcd97bde8/new-1ed15142-6182-4955-8266-e6ea8f6623bd/d3516d91-9bd0-4eaa-912c-9b0657600705/IMG_5249.png",
+    "images": [
+      {
+        "id": "cmqdqzjn6000vjo04ofr55qbg",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-881294a0-65da-4fa6-a527-77afcd97bde8/new-1ed15142-6182-4955-8266-e6ea8f6623bd/d3516d91-9bd0-4eaa-912c-9b0657600705/IMG_5249.png",
+        "uiUrl": "https://uibowl.io/name/%EC%82%BC%EC%A9%9C%EC%82%BC?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmqdqzjn6000vjo04ofr55qbg"
+      },
+      {
+        "id": "cmqdqzjh1000djo045ig709ap",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-881294a0-65da-4fa6-a527-77afcd97bde8/new-672c038e-fd34-428a-93fd-8944f815a816/04f06fc9-a08a-4d61-a5fc-1a1070411da0/IMG_5233.png",
+        "uiUrl": "https://uibowl.io/name/%EC%82%BC%EC%A9%9C%EC%82%BC?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmqdqzjh1000djo045ig709ap"
+      },
+      {
+        "id": "cmqdqzjho000fjo046z5zp7xv",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-881294a0-65da-4fa6-a527-77afcd97bde8/new-5346819d-374b-42ff-945c-f6eac368f529/e49a1852-81b4-4dc4-b505-c6da16911e0e/IMG_5234.png",
+        "uiUrl": "https://uibowl.io/name/%EC%82%BC%EC%A9%9C%EC%82%BC?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmqdqzjho000fjo046z5zp7xv"
+      },
+      {
+        "id": "cmqdqzjic000hjo046p90apvl",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-881294a0-65da-4fa6-a527-77afcd97bde8/new-645d17a0-ccc5-43e0-aceb-48fe16cae9ff/22861338-bcff-4d9f-a108-fc9ae5ea1733/IMG_5235.png",
+        "uiUrl": "https://uibowl.io/name/%EC%82%BC%EC%A9%9C%EC%82%BC?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmqdqzjic000hjo046p90apvl"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%82%BC%EC%A9%9C%EC%82%BC?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmqdqzjn6000vjo04ofr55qbg",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-194",
+    "service": "토스",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "멤버십·요금제",
+    "variant": "가입",
+    "title": "가입",
+    "dataMonth": "2026-07",
+    "screenCount": 2,
+    "components": [],
+    "matchedTexts": [
+      "약관,",
+      "동의,",
+      "동의(토스증권),",
+      "동의서",
+      "동의합니다"
+    ],
+    "keywords": [
+      "약관 동의",
+      "약관,",
+      "동의,",
+      "동의(토스증권),",
+      "동의서"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-cfa27954-6960-4f15-b353-474b357d3295/new-d9d33f59-3e58-4203-a19d-ccce3d56eeee/f51c7849-60b0-40d4-a5db-b52b232df586/app_toss_202607_276.png",
+    "images": [
+      {
+        "id": "cmrtvezzr004zl204xc9ta8bp",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cfa27954-6960-4f15-b353-474b357d3295/new-d9d33f59-3e58-4203-a19d-ccce3d56eeee/f51c7849-60b0-40d4-a5db-b52b232df586/app_toss_202607_276.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmrtvezzr004zl204xc9ta8bp"
+      },
+      {
+        "id": "cmrtvf00f0051l204emmnw9ft",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cfa27954-6960-4f15-b353-474b357d3295/new-a9aa059e-0d00-4180-8eee-431e9ebe7b53/88d1cca0-aa6e-4b55-beef-57e2e74f92b1/app_toss_202607_277.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmrtvf00f0051l204emmnw9ft"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmrtvezzr004zl204xc9ta8bp",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-195",
+    "service": "미니스탁",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "인증하기",
+    "variant": "휴대폰인증",
+    "title": "휴대폰인증",
+    "dataMonth": "2026-09",
+    "screenCount": 14,
+    "components": [],
+    "matchedTexts": [
+      "약관동의"
+    ],
+    "keywords": [
+      "약관 동의",
+      "약관동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new/af1227c4-8908-4e00-9c5d-6e427a9905e8/app_ministock_202609_249.png",
+    "images": [
+      {
+        "id": "cmty2lqvz000ni9042zhmtpig",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/af1227c4-8908-4e00-9c5d-6e427a9905e8/app_ministock_202609_249.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%8B%88%EC%8A%A4%ED%83%81?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmty2lqvz000ni9042zhmtpig"
+      },
+      {
+        "id": "cmty2lqpj0003i9047knwoit8",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/6f1fbdea-9045-4232-9297-e184264442c8/app_ministock_202609_239.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%8B%88%EC%8A%A4%ED%83%81?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmty2lqpj0003i9047knwoit8"
+      },
+      {
+        "id": "cmty2lqqc0005i904obkuhjjo",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/4c5d0a08-d41f-495d-b653-dde6392e1ae4/app_ministock_202609_240.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%8B%88%EC%8A%A4%ED%83%81?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmty2lqqc0005i904obkuhjjo"
+      },
+      {
+        "id": "cmty2lqqx0007i904sjj6xyvb",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/5037a241-a938-4c9a-a2e2-206b76886b74/app_ministock_202609_241.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%8B%88%EC%8A%A4%ED%83%81?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmty2lqqx0007i904sjj6xyvb"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%8B%88%EC%8A%A4%ED%83%81?patterns=%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0&imgId=cmty2lqvz000ni9042zhmtpig",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-196",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -6566,7 +8398,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-160",
+    "id": "demo-197",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -6598,7 +8430,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-161",
+    "id": "demo-198",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -6630,7 +8462,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-162",
+    "id": "demo-199",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -6640,9 +8472,19 @@ export const sampleScreens = [
     "dataMonth": "2026-08",
     "screenCount": 4,
     "components": [],
-    "matchedTexts": [],
+    "matchedTexts": [
+      "이용약관에",
+      "약관의",
+      "이용약관",
+      "동의해주세요",
+      "동의"
+    ],
     "keywords": [
-      "약관 동의"
+      "약관 동의",
+      "이용약관에",
+      "약관의",
+      "이용약관",
+      "동의해주세요"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-bd5b6300-ff8c-459c-8bbf-d401f7148551/new-c30f221a-701a-45ff-b177-f7ff9836e31b/7d126fb4-2c6d-4fcd-9ec9-711f8608c216/app_chabot_202608_168.png",
     "images": [
@@ -6672,7 +8514,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-163",
+    "id": "demo-200",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -6704,7 +8546,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-164",
+    "id": "demo-201",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -6714,9 +8556,18 @@ export const sampleScreens = [
     "dataMonth": "2026-06",
     "screenCount": 6,
     "components": [],
-    "matchedTexts": [],
+    "matchedTexts": [
+      "이용약관",
+      "이용약관(블루월넛(주)",
+      "전체동의",
+      "동의서"
+    ],
     "keywords": [
-      "약관 동의"
+      "약관 동의",
+      "이용약관",
+      "이용약관(블루월넛(주)",
+      "전체동의",
+      "동의서"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-48379398-36fa-4dfe-b0f7-7f416c623605/new-d59e3d9b-f432-475d-b7f0-09e3798108f9/bd439926-4265-4e58-a8be-d6f9a2130f0b/IMG_3956.png",
     "images": [
@@ -6746,7 +8597,44 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-165",
+    "id": "demo-202",
+    "service": "차봇",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "설정",
+    "variant": "",
+    "title": "설정",
+    "dataMonth": "2026-08",
+    "screenCount": 2,
+    "components": [],
+    "matchedTexts": [
+      "약관",
+      "동의"
+    ],
+    "keywords": [
+      "약관 동의",
+      "약관",
+      "동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-fb1eefd7-b153-46b5-bf50-713ce3e35995/new-b7d6bd3b-1b5a-49fa-923d-69ef6524dcdb/f2cc00fd-7d48-410e-814f-f34c8f7ded5a/app_chabot_202608_123.png",
+    "images": [
+      {
+        "id": "cmtd35twj0003jw042dmv1xv2",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-fb1eefd7-b153-46b5-bf50-713ce3e35995/new-b7d6bd3b-1b5a-49fa-923d-69ef6524dcdb/f2cc00fd-7d48-410e-814f-f34c8f7ded5a/app_chabot_202608_123.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%84%A4%EC%A0%95&imgId=cmtd35twj0003jw042dmv1xv2"
+      },
+      {
+        "id": "cmtd35txm0005jw04zo2r7pkl",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-fb1eefd7-b153-46b5-bf50-713ce3e35995/new-1faaf2b8-1ff7-47e6-9ba1-8a686890b650/b4997b9c-524f-4f5b-b903-ed549f71196c/app_chabot_202608_124.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%84%A4%EC%A0%95&imgId=cmtd35txm0005jw04zo2r7pkl"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%84%A4%EC%A0%95&imgId=cmtd35twj0003jw042dmv1xv2",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-203",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -6773,39 +8661,225 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-166",
-    "service": "채비",
+    "id": "demo-204",
+    "service": "마이현대",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "설정",
+    "variant": "",
+    "title": "설정",
+    "dataMonth": "2026-04",
+    "screenCount": 3,
+    "components": [],
+    "matchedTexts": [
+      "약관",
+      "이용약관",
+      "동의"
+    ],
+    "keywords": [
+      "약관 동의",
+      "약관",
+      "이용약관",
+      "동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-46368f1c-6a05-40af-a662-e1ab8adaea68/new-81206266-9a4a-4799-a245-26bc1a46d399/b668eeac-385d-4636-b0bc-61680747b9cd/s354.png",
+    "images": [
+      {
+        "id": "cmojmb1uj0005ju04iagr5mfr",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-46368f1c-6a05-40af-a662-e1ab8adaea68/new-81206266-9a4a-4799-a245-26bc1a46d399/b668eeac-385d-4636-b0bc-61680747b9cd/s354.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%84%A4%EC%A0%95&imgId=cmojmb1uj0005ju04iagr5mfr"
+      },
+      {
+        "id": "cmojmb1vi0007ju04z4x9d9q7",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-46368f1c-6a05-40af-a662-e1ab8adaea68/new-8a73f86d-5bfc-4692-8e52-5eb94f12b0bb/a2b8134f-8f65-40ed-9088-b2074438201e/s359.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%84%A4%EC%A0%95&imgId=cmojmb1vi0007ju04z4x9d9q7"
+      },
+      {
+        "id": "cmojmb1w80009ju04a45j68pz",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-46368f1c-6a05-40af-a662-e1ab8adaea68/new-0a60b175-690e-4f5c-8912-d8fe0fc85857/8a4590e8-8a72-48aa-a290-aeea92d882bd/s363.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%84%A4%EC%A0%95&imgId=cmojmb1w80009ju04a45j68pz"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%84%A4%EC%A0%95&imgId=cmojmb1uj0005ju04iagr5mfr",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-205",
+    "service": "마이현대",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "설정",
+    "variant": "테마 설정",
+    "title": "테마 설정",
+    "dataMonth": "2026-04",
+    "screenCount": 3,
+    "components": [],
+    "matchedTexts": [
+      "약관",
+      "이용약관",
+      "동의"
+    ],
+    "keywords": [
+      "약관 동의",
+      "약관",
+      "이용약관",
+      "동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-af45bd61-731d-4875-a4a1-19f30e117866/new-156adedb-aa63-4b3f-ac22-dfeb39129dcf/3824c66b-dab5-442c-9cdc-be7c491f8421/s354.png",
+    "images": [
+      {
+        "id": "cmojmba97000dl104qsobjtlz",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-af45bd61-731d-4875-a4a1-19f30e117866/new-156adedb-aa63-4b3f-ac22-dfeb39129dcf/3824c66b-dab5-442c-9cdc-be7c491f8421/s354.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%84%A4%EC%A0%95&imgId=cmojmba97000dl104qsobjtlz"
+      },
+      {
+        "id": "cmojmbaad000fl104wy0zx3er",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-af45bd61-731d-4875-a4a1-19f30e117866/new-a03aa18b-9d5e-4c4e-9037-15dde2a8a2fd/ed262b22-c856-423b-85c4-768ebf9af96f/s357.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%84%A4%EC%A0%95&imgId=cmojmbaad000fl104wy0zx3er"
+      },
+      {
+        "id": "cmojmbab6000hl10437bvgtm0",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-af45bd61-731d-4875-a4a1-19f30e117866/new-ce46564c-e431-425e-903a-29518404aefd/35fa4157-3b2c-4cb9-96e2-2806a29b49b2/s358.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%84%A4%EC%A0%95&imgId=cmojmbab6000hl10437bvgtm0"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%84%A4%EC%A0%95&imgId=cmojmba97000dl104qsobjtlz",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-206",
+    "service": "볼트업",
     "domain": "모빌리티",
     "category": "모빌리티",
-    "pattern": "멤버십·요금제",
-    "variant": "이용약관",
-    "title": "이용약관",
+    "pattern": "약관동의",
+    "variant": "배터리정보",
+    "title": "배터리정보",
     "dataMonth": "2026-04",
-    "screenCount": 2,
+    "screenCount": 3,
+    "components": [
+      "체크박스"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "약관 동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-75f55c85-bdd0-4055-82d6-fc074fa39305/new-59ad514a-1c9c-476c-a401-074ac6b9227f/5aa0ec25-2638-4081-abb0-177dc65ef915/s28.png",
+    "images": [
+      {
+        "id": "cmojel8hh001olb041fn215w0",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-75f55c85-bdd0-4055-82d6-fc074fa39305/new-59ad514a-1c9c-476c-a401-074ac6b9227f/5aa0ec25-2638-4081-abb0-177dc65ef915/s28.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmojel8hh001olb041fn215w0"
+      },
+      {
+        "id": "cmojel8i7001qlb04gk20be10",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-75f55c85-bdd0-4055-82d6-fc074fa39305/new-2777f657-c9d7-4405-9f3a-2b3320def727/715095b1-d330-4041-a995-3a31334f0252/s29.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmojel8i7001qlb04gk20be10"
+      },
+      {
+        "id": "cmojel8iy001slb041080u51s",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-75f55c85-bdd0-4055-82d6-fc074fa39305/new-c379e0ef-015e-46f7-a3fb-b204b86b621d/0d4dd8b0-3e61-4ffd-b46d-3977c8990895/s30.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmojel8iy001slb041080u51s"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&patternName=%EB%B0%B0%ED%84%B0%EB%A6%AC%EC%A0%95%EB%B3%B4",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-207",
+    "service": "셔클",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "약관동의",
+    "variant": "권한 허용",
+    "title": "권한 허용",
+    "dataMonth": "2026-07",
+    "screenCount": 1,
     "components": [],
     "matchedTexts": [],
     "keywords": [
       "약관 동의"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-2d56f9e5-39f1-460a-b56f-d8c9a4709c0d/new-65ce5c05-445d-4a11-afd0-78d6a1cc8b70/0f77890a-5be1-43c1-a7c8-a8aa1d88f759/s112.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-0316412c-5322-4f1a-bf22-14d34056b0f8/new-118c6c7f-f793-4549-b1c8-1c049bd6ea1c/3c710190-7ee8-4d87-bf2a-789bf6207fdb/app_shucle_202607_130.png",
     "images": [
       {
-        "id": "cmoi0b2zw00gal504me42dhfb",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2d56f9e5-39f1-460a-b56f-d8c9a4709c0d/new-65ce5c05-445d-4a11-afd0-78d6a1cc8b70/0f77890a-5be1-43c1-a7c8-a8aa1d88f759/s112.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B1%84%EB%B9%84?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmoi0b2zw00gal504me42dhfb"
-      },
-      {
-        "id": "cmoi0b30q00gcl5044xvu7495",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2d56f9e5-39f1-460a-b56f-d8c9a4709c0d/new-520f4748-c4e4-400f-8bd5-717d3b652e69/0fcef48b-0586-49ec-bbd5-c69bec79700b/s113.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B1%84%EB%B9%84?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmoi0b30q00gcl5044xvu7495"
+        "id": "cmrt1allq00pgju04rx8f55cw",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-0316412c-5322-4f1a-bf22-14d34056b0f8/new-118c6c7f-f793-4549-b1c8-1c049bd6ea1c/3c710190-7ee8-4d87-bf2a-789bf6207fdb/app_shucle_202607_130.png",
+        "uiUrl": "https://uibowl.io/name/%EC%85%94%ED%81%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmrt1allq00pgju04rx8f55cw"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EC%B1%84%EB%B9%84?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&patternName=%EC%9D%B4%EC%9A%A9%EC%95%BD%EA%B4%80",
+    "uiUrl": "https://uibowl.io/name/%EC%85%94%ED%81%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&patternName=%EA%B6%8C%ED%95%9C%20%ED%97%88%EC%9A%A9",
     "source": "UI Bowl",
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-167",
+    "id": "demo-208",
+    "service": "G car",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "약관동의",
+    "variant": "",
+    "title": "약관동의",
+    "dataMonth": "2026-04",
+    "screenCount": 1,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "약관 동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-0e36e98c-57a5-4a5e-88cc-07b393616d42/new-cc2bf3ab-26ad-4133-a5bd-aa887013580d/9a43c2d7-f5b7-4adb-87ff-dae5bb16682b/ss1.png",
+    "images": [
+      {
+        "id": "cmo85bwez00lpjo04pz0cnc3f",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-0e36e98c-57a5-4a5e-88cc-07b393616d42/new-cc2bf3ab-26ad-4133-a5bd-aa887013580d/9a43c2d7-f5b7-4adb-87ff-dae5bb16682b/ss1.png",
+        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmo85bwez00lpjo04pz0cnc3f"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-209",
+    "service": "센디",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "약관동의",
+    "variant": "",
+    "title": "약관동의",
+    "dataMonth": "2026-05",
+    "screenCount": 3,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "약관 동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-df702b7d-75d8-4668-be04-9e8b2d3552e3/new-f68cbda9-e842-4a89-a232-0bb12a97e5fe/7b6b7a97-0d56-4b84-a162-bf29ac4dbf4a/s52.png",
+    "images": [
+      {
+        "id": "cmp6b8dd300gmkw04062ea3m5",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-df702b7d-75d8-4668-be04-9e8b2d3552e3/new-f68cbda9-e842-4a89-a232-0bb12a97e5fe/7b6b7a97-0d56-4b84-a162-bf29ac4dbf4a/s52.png",
+        "uiUrl": "https://uibowl.io/name/%EC%84%BC%EB%94%94?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmp6b8dd300gmkw04062ea3m5"
+      },
+      {
+        "id": "cmp6b8dkh00gokw04p9qlt68i",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-df702b7d-75d8-4668-be04-9e8b2d3552e3/new-27f0819c-6ada-45f9-9b18-90a96e2613a8/6edd3cfe-2243-42d7-9581-7076f1bd0e80/s53.png",
+        "uiUrl": "https://uibowl.io/name/%EC%84%BC%EB%94%94?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmp6b8dkh00gokw04p9qlt68i"
+      },
+      {
+        "id": "cmp6b8drw00gqkw04y3449cyx",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-df702b7d-75d8-4668-be04-9e8b2d3552e3/new-e9085791-32f4-4ac8-9bf6-b880f18c29bc/d33f6e0e-eb3e-450c-9fe3-f531dfb01687/s54.png",
+        "uiUrl": "https://uibowl.io/name/%EC%84%BC%EB%94%94?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmp6b8drw00gqkw04y3449cyx"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%84%BC%EB%94%94?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-210",
     "service": "RailOne",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -6837,45 +8911,42 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-168",
-    "service": "오일나우",
+    "id": "demo-211",
+    "service": "EVSIS",
     "domain": "모빌리티",
     "category": "모빌리티",
     "pattern": "약관동의",
     "variant": "",
     "title": "약관동의",
-    "dataMonth": "2026-09",
-    "screenCount": 3,
-    "components": [],
+    "dataMonth": "2026-04",
+    "screenCount": 2,
+    "components": [
+      "팝업"
+    ],
     "matchedTexts": [],
     "keywords": [
       "약관 동의"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new/9321e5a9-f08e-417d-9121-59d158577076/app_oilnow_202609_165.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-33ed294d-c2e5-4ca8-a549-d211abf75dda/new-8e426b2b-bf29-462d-b03b-68b6fa2df285/0f53b1a9-2377-48ec-bec1-20e3f98c809e/s42.png",
     "images": [
       {
-        "id": "cmtpnw2x1000xla04xandcklt",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new/9321e5a9-f08e-417d-9121-59d158577076/app_oilnow_202609_165.png",
-        "uiUrl": "https://uibowl.io/name/%EC%98%A4%EC%9D%BC%EB%82%98%EC%9A%B0?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmtpnw2x1000xla04xandcklt"
+        "id": "cmokqlz9000mel704trjn2gxu",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-33ed294d-c2e5-4ca8-a549-d211abf75dda/new-8e426b2b-bf29-462d-b03b-68b6fa2df285/0f53b1a9-2377-48ec-bec1-20e3f98c809e/s42.png",
+        "uiUrl": "https://uibowl.io/name/EVSIS?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmokqlz9000mel704trjn2gxu"
       },
       {
-        "id": "cmtpnw2xm000zla04o9hjaox1",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new/24072784-2de8-4e74-bd61-af8c07219641/app_oilnow_202609_166.png",
-        "uiUrl": "https://uibowl.io/name/%EC%98%A4%EC%9D%BC%EB%82%98%EC%9A%B0?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmtpnw2xm000zla04o9hjaox1"
-      },
-      {
-        "id": "cmtpnw2y80011la04rmtjgxri",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new/6bdec6c2-1ca7-43ef-ace4-dea4bba42b48/app_oilnow_202609_167.png",
-        "uiUrl": "https://uibowl.io/name/%EC%98%A4%EC%9D%BC%EB%82%98%EC%9A%B0?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmtpnw2y80011la04rmtjgxri"
+        "id": "cmokqlz9y00mgl704xk2hzrng",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-33ed294d-c2e5-4ca8-a549-d211abf75dda/new-33d8c87e-e159-41a8-9360-8a9d6aee71b5/bbd27e19-7096-40ca-bc23-5647c3d170ef/s43.png",
+        "uiUrl": "https://uibowl.io/name/EVSIS?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmokqlz9y00mgl704xk2hzrng"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EC%98%A4%EC%9D%BC%EB%82%98%EC%9A%B0?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98",
+    "uiUrl": "https://uibowl.io/name/EVSIS?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98",
     "source": "UI Bowl",
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-169",
-    "service": "EVSIS",
+    "id": "demo-212",
+    "service": "채비",
     "domain": "모빌리티",
     "category": "모빌리티",
     "pattern": "멤버십·요금제",
@@ -6888,111 +8959,206 @@ export const sampleScreens = [
     "keywords": [
       "약관 동의"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-f7a2047c-5227-406a-b507-60354a212343/new-8c8dd1c2-bdaf-4332-81f0-d6af43be5df9/bbe7b320-81b4-4533-8629-5c88592c88a4/s88.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-2d56f9e5-39f1-460a-b56f-d8c9a4709c0d/new-65ce5c05-445d-4a11-afd0-78d6a1cc8b70/0f77890a-5be1-43c1-a7c8-a8aa1d88f759/s112.png",
     "images": [
       {
-        "id": "cmokqgg5v0003kz04wwarh2hq",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f7a2047c-5227-406a-b507-60354a212343/new-8c8dd1c2-bdaf-4332-81f0-d6af43be5df9/bbe7b320-81b4-4533-8629-5c88592c88a4/s88.png",
-        "uiUrl": "https://uibowl.io/name/EVSIS?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmokqgg5v0003kz04wwarh2hq"
+        "id": "cmoi0b2zw00gal504me42dhfb",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2d56f9e5-39f1-460a-b56f-d8c9a4709c0d/new-65ce5c05-445d-4a11-afd0-78d6a1cc8b70/0f77890a-5be1-43c1-a7c8-a8aa1d88f759/s112.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B1%84%EB%B9%84?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmoi0b2zw00gal504me42dhfb"
       },
       {
-        "id": "cmokqgg720005kz04f4q6c1o5",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f7a2047c-5227-406a-b507-60354a212343/new-eade69c4-b516-43f3-a19b-5241fcef3b5e/869ac53e-734e-4c3f-97db-812aca4ed2fa/s89.png",
-        "uiUrl": "https://uibowl.io/name/EVSIS?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmokqgg720005kz04f4q6c1o5"
+        "id": "cmoi0b30q00gcl5044xvu7495",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2d56f9e5-39f1-460a-b56f-d8c9a4709c0d/new-520f4748-c4e4-400f-8bd5-717d3b652e69/0fcef48b-0586-49ec-bbd5-c69bec79700b/s113.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B1%84%EB%B9%84?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmoi0b30q00gcl5044xvu7495"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/EVSIS?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&patternName=%EC%9D%B4%EC%9A%A9%EC%95%BD%EA%B4%80",
+    "uiUrl": "https://uibowl.io/name/%EC%B1%84%EB%B9%84?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&patternName=%EC%9D%B4%EC%9A%A9%EC%95%BD%EA%B4%80",
     "source": "UI Bowl",
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-170",
-    "service": "쏘카",
+    "id": "demo-213",
+    "service": "킥고잉",
     "domain": "모빌리티",
     "category": "모빌리티",
-    "pattern": "약관동의",
+    "pattern": "로그인·회원가입",
     "variant": "",
-    "title": "약관동의",
-    "dataMonth": "2026-04",
-    "screenCount": 5,
-    "components": [
-      "그래픽"
+    "title": "로그인·회원가입",
+    "dataMonth": "2024-08",
+    "screenCount": 11,
+    "components": [],
+    "matchedTexts": [
+      "약관동의"
     ],
-    "matchedTexts": [],
     "keywords": [
-      "약관 동의"
+      "약관 동의",
+      "약관동의"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-6677c547-020d-4e24-8a54-744c1d47d6d8/new-ba39fe2e-99f6-4f5f-bdb9-3c024ea6fb34/5899a383-c24c-43c6-b8ee-c6aae20f5973/s1.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/clzkl1i4l0002lb0cknvk0pal/d1d864d2-a72b-4770-8064-3771c4f95363/img_6883.png",
     "images": [
       {
-        "id": "cmogjwvx900dvld04alnge3xj",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-6677c547-020d-4e24-8a54-744c1d47d6d8/new-ba39fe2e-99f6-4f5f-bdb9-3c024ea6fb34/5899a383-c24c-43c6-b8ee-c6aae20f5973/s1.png",
-        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmogjwvx900dvld04alnge3xj"
+        "id": "clzklazsq002ak20c1edv16mf",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/clzkl1i4l0002lb0cknvk0pal/d1d864d2-a72b-4770-8064-3771c4f95363/img_6883.png",
+        "uiUrl": "https://uibowl.io/name/%ED%82%A5%EA%B3%A0%EC%9E%89?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=clzklazsq002ak20c1edv16mf"
       },
       {
-        "id": "cmogjwvy500dxld049ade4kp3",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-6677c547-020d-4e24-8a54-744c1d47d6d8/new-ca199da1-8e92-49ec-ace8-504f2f60bc05/b09d5df1-bc6f-40fe-a709-02fd44e20ca6/s2.png",
-        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmogjwvy500dxld049ade4kp3"
+        "id": "clzklazow001uk20cb0vks6ev",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/clzkl1i4l0002lb0cknvk0pal/61b51fd7-3fc4-4a4a-80ca-8a483365a21d/1.png",
+        "uiUrl": "https://uibowl.io/name/%ED%82%A5%EA%B3%A0%EC%9E%89?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=clzklazow001uk20cb0vks6ev"
       },
       {
-        "id": "cmogjwvyu00dzld04gb4vfvzm",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-6677c547-020d-4e24-8a54-744c1d47d6d8/new-132b05a0-f79e-40e3-be66-75b74c33729d/ab8a7df2-6946-4c92-ad21-9bf733ae1355/s3.png",
-        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmogjwvyu00dzld04gb4vfvzm"
+        "id": "clzklazpd001wk20cgvmegflt",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/clzkl1i4l0002lb0cknvk0pal/dc9185bc-1933-4e86-adcf-6ad8e432bbe6/2.png",
+        "uiUrl": "https://uibowl.io/name/%ED%82%A5%EA%B3%A0%EC%9E%89?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=clzklazpd001wk20cgvmegflt"
       },
       {
-        "id": "cmogjwvzk00e1ld04h9p92esz",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-6677c547-020d-4e24-8a54-744c1d47d6d8/new-bae0af83-7ee1-44e0-85cc-bcc04c780f90/6b699f19-1b79-42c5-8ff7-c37d0f11d796/s4.png",
-        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmogjwvzk00e1ld04h9p92esz"
+        "id": "clzklazpu001yk20chp27tq83",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/clzkl1i4l0002lb0cknvk0pal/9c1d27ef-334d-4db4-b105-c0252c6f972f/img_6875.png",
+        "uiUrl": "https://uibowl.io/name/%ED%82%A5%EA%B3%A0%EC%9E%89?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=clzklazpu001yk20chp27tq83"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98",
+    "uiUrl": "https://uibowl.io/name/%ED%82%A5%EA%B3%A0%EC%9E%89?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=clzklazsq002ak20c1edv16mf",
     "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
+    "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-171",
-    "service": "카카오T",
+    "id": "demo-214",
+    "service": "쏘카일레클",
     "domain": "모빌리티",
     "category": "모빌리티",
-    "pattern": "약관동의",
-    "variant": "이용약관",
-    "title": "이용약관",
-    "dataMonth": "2026-04",
-    "screenCount": 4,
+    "pattern": "로그인·회원가입",
+    "variant": "",
+    "title": "로그인·회원가입",
+    "dataMonth": "2024-04",
+    "screenCount": 5,
     "components": [],
-    "matchedTexts": [],
-    "keywords": [
-      "약관 동의"
+    "matchedTexts": [
+      "이용약관동의"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-b112c50b-e93e-41e5-bc14-7d3593e44306/new-b2393ab2-f7ac-4d15-b51a-0b414351d4fb/1133386d-07a1-4eec-91f3-3f9998dbf476/d63.png",
+    "keywords": [
+      "약관 동의",
+      "이용약관동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/clvam4t7z0001jx080qi0owi1/bba96399-88c0-40e7-b03a-6695b9e46759/img_5068.png",
     "images": [
       {
-        "id": "cmoaqwxsm0196jl04lcqvcilz",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-b112c50b-e93e-41e5-bc14-7d3593e44306/new-b2393ab2-f7ac-4d15-b51a-0b414351d4fb/1133386d-07a1-4eec-91f3-3f9998dbf476/d63.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmoaqwxsm0196jl04lcqvcilz"
+        "id": "clvamgghs000ojn09m92fvpyl",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/clvam4t7z0001jx080qi0owi1/bba96399-88c0-40e7-b03a-6695b9e46759/img_5068.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4%EC%9D%BC%EB%A0%88%ED%81%B4?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=clvamgghs000ojn09m92fvpyl"
       },
       {
-        "id": "cmoaqwxti0198jl04e2x2dth7",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-b112c50b-e93e-41e5-bc14-7d3593e44306/new-f5dbb9eb-5459-45e0-9b43-0d8695c6cabd/29af4c90-4e53-451b-834a-854ab2f66e63/d64.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmoaqwxti0198jl04e2x2dth7"
+        "id": "clvamgggl000ijn09pqel7rzb",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/clvam4t7z0001jx080qi0owi1/470acbc4-6bd8-4d73-9009-a4edb0ffc810/img_5065.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4%EC%9D%BC%EB%A0%88%ED%81%B4?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=clvamgggl000ijn09pqel7rzb"
       },
       {
-        "id": "cmoaqwxu7019ajl04qopff226",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-b112c50b-e93e-41e5-bc14-7d3593e44306/new-20c81c65-e254-4e06-95f1-7440e2259e18/004ca8a7-087c-4331-9a8f-5b377d899c5b/d65.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmoaqwxu7019ajl04qopff226"
+        "id": "clvamgggz000kjn09brp6zuw6",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/clvam4t7z0001jx080qi0owi1/1e31b197-c20d-47a2-a712-7963faf09fbb/img_5066.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4%EC%9D%BC%EB%A0%88%ED%81%B4?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=clvamgggz000kjn09brp6zuw6"
       },
       {
-        "id": "cmoaqwxux019cjl049c6bdvca",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-b112c50b-e93e-41e5-bc14-7d3593e44306/new-15d003bc-8aa0-4914-8e84-8775cb0b5d7a/860b0115-bfaf-43c3-a2b4-e0734a71995b/d66.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&imgId=cmoaqwxux019cjl049c6bdvca"
+        "id": "clvamgghe000mjn09fd62ccdi",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/clvam4t7z0001jx080qi0owi1/665faacd-6bf6-44b2-a2b0-a2faa6cf8e6d/img_5067.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4%EC%9D%BC%EB%A0%88%ED%81%B4?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=clvamgghe000mjn09fd62ccdi"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98&patternName=%EC%9D%B4%EC%9A%A9%EC%95%BD%EA%B4%80",
+    "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4%EC%9D%BC%EB%A0%88%ED%81%B4?patterns=%EB%A1%9C%EA%B7%B8%EC%9D%B8%C2%B7%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&imgId=clvamgghs000ojn09m92fvpyl",
     "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
+    "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-172",
+    "id": "demo-215",
+    "service": "볼트업",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "알림",
+    "variant": "설정",
+    "title": "설정",
+    "dataMonth": "2026-04",
+    "screenCount": 3,
+    "components": [],
+    "matchedTexts": [
+      "약관",
+      "동의",
+      "동의합",
+      "동의합니다."
+    ],
+    "keywords": [
+      "약관 동의",
+      "약관",
+      "동의",
+      "동의합",
+      "동의합니다."
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-c2455196-37dd-42fe-976a-67f1d63533b5/new-8be63e51-37df-48f4-8e8e-b65b228b9395/ebf9d831-346e-4cfd-aed4-fafa12e4a51d/s95.png",
+    "images": [
+      {
+        "id": "cmojekzc500d6i504xqkvtowt",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c2455196-37dd-42fe-976a-67f1d63533b5/new-8be63e51-37df-48f4-8e8e-b65b228b9395/ebf9d831-346e-4cfd-aed4-fafa12e4a51d/s95.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%95%8C%EB%A6%BC&imgId=cmojekzc500d6i504xqkvtowt"
+      },
+      {
+        "id": "cmojekzcw00d8i504pyl2lcv4",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c2455196-37dd-42fe-976a-67f1d63533b5/new-a9df9b83-2f3f-462a-9723-1cb50f5811fc/782564f6-474c-42f7-ab2a-b92fad0bec18/s96.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%95%8C%EB%A6%BC&imgId=cmojekzcw00d8i504pyl2lcv4"
+      },
+      {
+        "id": "cmojekzdn00dai504qfq8tqhk",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c2455196-37dd-42fe-976a-67f1d63533b5/new-e5e8c8f2-3a97-4ebf-9809-1d19c0e5d521/89c8b5fc-ca07-4043-90ec-29fdbe9bb524/s97.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%95%8C%EB%A6%BC&imgId=cmojekzdn00dai504qfq8tqhk"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%95%8C%EB%A6%BC&imgId=cmojekzc500d6i504xqkvtowt",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-216",
+    "service": "G car",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "예약·결제",
+    "variant": "왕복 예약",
+    "title": "왕복 예약",
+    "dataMonth": "2026-04",
+    "screenCount": 15,
+    "components": [],
+    "matchedTexts": [
+      "약관동의"
+    ],
+    "keywords": [
+      "약관 동의",
+      "약관동의"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-5ad0898d-e8b7-4f07-bd6b-83b85c6889c2/new-99f2d435-d79a-4072-be38-06506c6f9eda/4f3deb95-275d-4ac9-bbd4-48960a860a11/z70.png",
+    "images": [
+      {
+        "id": "cmo85d4k800gmjr040n106pfj",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-5ad0898d-e8b7-4f07-bd6b-83b85c6889c2/new-99f2d435-d79a-4072-be38-06506c6f9eda/4f3deb95-275d-4ac9-bbd4-48960a860a11/z70.png",
+        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%98%88%EC%95%BD%C2%B7%EA%B2%B0%EC%A0%9C&imgId=cmo85d4k800gmjr040n106pfj"
+      },
+      {
+        "id": "cmo85d4cd00g6jr041lkgejf8",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-5ad0898d-e8b7-4f07-bd6b-83b85c6889c2/new-3c6710c6-8903-4bef-a039-ac310f6a7457/b5da239d-554a-4904-a386-1d2c9fb1fd65/ss34.png",
+        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%98%88%EC%95%BD%C2%B7%EA%B2%B0%EC%A0%9C&imgId=cmo85d4cd00g6jr041lkgejf8"
+      },
+      {
+        "id": "cmo85d4dh00g8jr04q7hooziv",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-5ad0898d-e8b7-4f07-bd6b-83b85c6889c2/new-0ff041da-908c-40a7-9940-853ed5e7cf62/a6825e13-7b42-4085-a1bc-c883085f371f/ss298.png",
+        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%98%88%EC%95%BD%C2%B7%EA%B2%B0%EC%A0%9C&imgId=cmo85d4dh00g8jr04q7hooziv"
+      },
+      {
+        "id": "cmo85d4ef00gajr04qg0hbagf",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-5ad0898d-e8b7-4f07-bd6b-83b85c6889c2/new-2fd8caae-ac2d-4bfa-affd-44bec808537b/6f21ec89-e6e6-486b-8f20-b59004a76a2d/ss299.png",
+        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%98%88%EC%95%BD%C2%B7%EA%B2%B0%EC%A0%9C&imgId=cmo85d4ef00gajr04qg0hbagf"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%98%88%EC%95%BD%C2%B7%EA%B2%B0%EC%A0%9C&imgId=cmo85d4k800gmjr040n106pfj",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-217",
     "service": "하나원큐",
     "domain": "금융",
     "category": "금융",
@@ -7034,7 +9200,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-173",
+    "id": "demo-218",
     "service": "네이버페이",
     "domain": "금융",
     "category": "금융",
@@ -7078,7 +9244,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-174",
+    "id": "demo-219",
     "service": "미래에셋증권 M-STOCK",
     "domain": "금융",
     "category": "금융",
@@ -7120,7 +9286,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-175",
+    "id": "demo-220",
     "service": "페이코",
     "domain": "금융",
     "category": "금융",
@@ -7155,7 +9321,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-176",
+    "id": "demo-221",
     "service": "신한 슈퍼SOL",
     "domain": "금융",
     "category": "금융",
@@ -7197,7 +9363,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-177",
+    "id": "demo-222",
     "service": "알파스퀘어",
     "domain": "금융",
     "category": "금융",
@@ -7232,7 +9398,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-178",
+    "id": "demo-223",
     "service": "G car",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -7279,7 +9445,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-179",
+    "id": "demo-224",
     "service": "페이코",
     "domain": "금융",
     "category": "금융",
@@ -7327,7 +9493,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-180",
+    "id": "demo-225",
     "service": "토스",
     "domain": "금융",
     "category": "금융",
@@ -7374,7 +9540,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-181",
+    "id": "demo-226",
     "service": "한패스",
     "domain": "금융",
     "category": "금융",
@@ -7416,7 +9582,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-182",
+    "id": "demo-227",
     "service": "네이버페이",
     "domain": "금융",
     "category": "금융",
@@ -7462,7 +9628,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-183",
+    "id": "demo-228",
     "service": "하나카드",
     "domain": "금융",
     "category": "금융",
@@ -7511,7 +9677,295 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-184",
+    "id": "demo-229",
+    "service": "iM뱅크",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "신청하기",
+    "variant": "카드선택",
+    "title": "카드선택",
+    "dataMonth": "2026-05",
+    "screenCount": 6,
+    "components": [
+      "칩"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "카드 신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-9f68adbf-35e0-40c3-9389-82140ca812ca/new-fd1d0346-7198-4261-9fed-e247e2224988/6e68473c-6c9f-463e-a628-71f66d16d82a/s320.png",
+    "images": [
+      {
+        "id": "cmp0u5otf00q3jv04nxihzk7b",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-9f68adbf-35e0-40c3-9389-82140ca812ca/new-fd1d0346-7198-4261-9fed-e247e2224988/6e68473c-6c9f-463e-a628-71f66d16d82a/s320.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp0u5otf00q3jv04nxihzk7b"
+      },
+      {
+        "id": "cmp0u5ouc00q5jv04wq2v00p8",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-9f68adbf-35e0-40c3-9389-82140ca812ca/new-068c04b5-fde4-41c0-8351-c3581f8ad959/6cae3dbc-8ec3-4c3a-8214-82f4e7ccaf75/s321.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp0u5ouc00q5jv04wq2v00p8"
+      },
+      {
+        "id": "cmp0u5ov300q7jv048p1o365p",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-9f68adbf-35e0-40c3-9389-82140ca812ca/new-01af615a-8788-4013-ad53-fa80cdbfb68b/352fbc6a-a1ba-4a66-8375-47f8a7e46f47/s322.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp0u5ov300q7jv048p1o365p"
+      },
+      {
+        "id": "cmp0u5ovt00q9jv04w9hrchq5",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-9f68adbf-35e0-40c3-9389-82140ca812ca/new-626a20d6-dd7a-470b-8b18-9648a5a090e8/3cd5ab7e-1b3f-4436-a60d-52882f8bf0ea/s323.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp0u5ovt00q9jv04w9hrchq5"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EC%B9%B4%EB%93%9C%EC%84%A0%ED%83%9D",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-230",
+    "service": "하나원큐",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "신청하기",
+    "variant": "해외 체크카드",
+    "title": "해외 체크카드",
+    "dataMonth": "2026-08",
+    "screenCount": 5,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "카드 신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-20d4fd88-15bb-4e86-95b6-e8e2d83cd05a/new-fa3032c3-eae8-44a7-937d-35b709c1bc40/0b25218a-16d6-40e8-9f5b-586c11c8e09f/app_Hana1Q_202608_504.png",
+    "images": [
+      {
+        "id": "cmseq1eex0004kw04vvg264we",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-20d4fd88-15bb-4e86-95b6-e8e2d83cd05a/new-fa3032c3-eae8-44a7-937d-35b709c1bc40/0b25218a-16d6-40e8-9f5b-586c11c8e09f/app_Hana1Q_202608_504.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmseq1eex0004kw04vvg264we"
+      },
+      {
+        "id": "cmseq1efw0006kw047tzg9igz",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-20d4fd88-15bb-4e86-95b6-e8e2d83cd05a/new-e57c6593-f12c-44d0-a9de-57870f06b33d/a9a3068b-8005-498a-8ffb-c5e310f3bbe5/app_Hana1Q_202608_506.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmseq1efw0006kw047tzg9igz"
+      },
+      {
+        "id": "cmseq1egk0008kw04uhmvt1vn",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-20d4fd88-15bb-4e86-95b6-e8e2d83cd05a/new-fbfb3d5c-2c8d-4381-8cd8-11cbb2b96b15/b896fe9c-0ba4-4375-8e81-71bc4529cfaa/app_Hana1Q_202608_507.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmseq1egk0008kw04uhmvt1vn"
+      },
+      {
+        "id": "cmseq1eh9000akw04uvp2dzs4",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-20d4fd88-15bb-4e86-95b6-e8e2d83cd05a/new-72da35f9-1956-4f73-89b2-3ec332e023ad/5e202364-f3cf-456e-ad4e-91eee6ebd95c/app_Hana1Q_202608_508.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmseq1eh9000akw04uvp2dzs4"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%ED%95%B4%EC%99%B8%20%EC%B2%B4%ED%81%AC%EC%B9%B4%EB%93%9C",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-231",
+    "service": "한패스",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "신청하기",
+    "variant": "카드 신청",
+    "title": "카드 신청",
+    "dataMonth": "2026-06",
+    "screenCount": 10,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "카드 신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-bbb996ba-e1b3-45c8-bd73-b630875559d4/new-037bcd9b-17b8-4755-985d-c5d4c718d167/182fc2d8-dab6-4ef6-8dc1-17117a2367e1/IMG_4253.png",
+    "images": [
+      {
+        "id": "cmq0n6rcy00epjy04s0svn3zg",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-bbb996ba-e1b3-45c8-bd73-b630875559d4/new-037bcd9b-17b8-4755-985d-c5d4c718d167/182fc2d8-dab6-4ef6-8dc1-17117a2367e1/IMG_4253.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmq0n6rcy00epjy04s0svn3zg"
+      },
+      {
+        "id": "cmq0n6rds00erjy04wo1cfyrd",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-bbb996ba-e1b3-45c8-bd73-b630875559d4/new-946d706f-fa3b-44a4-b49b-f91f94722ef6/c71d2cc0-3466-4f0b-8148-a2fa6c6deef9/IMG_4254.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmq0n6rds00erjy04wo1cfyrd"
+      },
+      {
+        "id": "cmq0n6ref00etjy04aknjbujo",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-bbb996ba-e1b3-45c8-bd73-b630875559d4/new-31a180d6-c71f-46c7-b9b0-f8bf4ad0caca/57707d9c-3dc5-4384-a62c-c351f260b7cf/IMG_4257.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmq0n6ref00etjy04aknjbujo"
+      },
+      {
+        "id": "cmq0n6rf100evjy04pdwy70rg",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-bbb996ba-e1b3-45c8-bd73-b630875559d4/new-5c0f5121-c381-48af-9a9b-4a91c4ed7dc8/92be6e0b-f71c-4058-8fd5-7d3e84e39185/IMG_4261-copy-0.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmq0n6rf100evjy04pdwy70rg"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EC%B9%B4%EB%93%9C%20%EC%8B%A0%EC%B2%AD",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-232",
+    "service": "아이쿠카",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "신청하기",
+    "variant": "카드 신청하기",
+    "title": "카드 신청하기",
+    "dataMonth": "2026-05",
+    "screenCount": 10,
+    "components": [],
+    "matchedTexts": [
+      "주소",
+      "입력해"
+    ],
+    "keywords": [
+      "카드 신청",
+      "주소 입력",
+      "주소",
+      "입력해"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-4cafe954-905f-4bca-960c-e9e416961306/new-9bfaf771-f5a6-4dd6-8bc8-ac1ee0e4b90e/cc9cedb3-e155-4cfb-ae8d-4322dcb1ced1/s276.png",
+    "images": [
+      {
+        "id": "cmp0ta26o0003js049jocfh7i",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4cafe954-905f-4bca-960c-e9e416961306/new-9bfaf771-f5a6-4dd6-8bc8-ac1ee0e4b90e/cc9cedb3-e155-4cfb-ae8d-4322dcb1ced1/s276.png",
+        "uiUrl": "https://uibowl.io/name/%EC%95%84%EC%9D%B4%EC%BF%A0%EC%B9%B4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp0ta26o0003js049jocfh7i"
+      },
+      {
+        "id": "cmp0ta27u0005js04qx01tayh",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4cafe954-905f-4bca-960c-e9e416961306/new-f5a33f44-824e-4835-8b62-a25b78f88690/79efcaa9-b533-40bd-9036-cc3b23df0cd6/s281.png",
+        "uiUrl": "https://uibowl.io/name/%EC%95%84%EC%9D%B4%EC%BF%A0%EC%B9%B4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp0ta27u0005js04qx01tayh"
+      },
+      {
+        "id": "cmp0ta28r0007js04061ogwbn",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4cafe954-905f-4bca-960c-e9e416961306/new-92caeeef-da78-4f97-b8ac-06aaac611992/d30ad14a-0b98-4e1e-8108-d2add05406de/s282.png",
+        "uiUrl": "https://uibowl.io/name/%EC%95%84%EC%9D%B4%EC%BF%A0%EC%B9%B4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp0ta28r0007js04061ogwbn"
+      },
+      {
+        "id": "cmp0ta29l0009js042uup7sz8",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4cafe954-905f-4bca-960c-e9e416961306/new-4b41f1d3-e987-45ab-8631-880fb795bfc6/15525b97-ca94-489e-b9ef-dca05628e2fe/s283.png",
+        "uiUrl": "https://uibowl.io/name/%EC%95%84%EC%9D%B4%EC%BF%A0%EC%B9%B4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp0ta29l0009js042uup7sz8"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%95%84%EC%9D%B4%EC%BF%A0%EC%B9%B4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp0ta26o0003js049jocfh7i",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-233",
+    "service": "신한 SOL페이",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "신청하기",
+    "variant": "카드신청",
+    "title": "카드신청",
+    "dataMonth": "2026-10",
+    "screenCount": 36,
+    "components": [
+      "검색 바",
+      "그래픽",
+      "드롭다운",
+      "라디오 버튼",
+      "리스트",
+      "모달",
+      "바텀시트",
+      "배너",
+      "버튼",
+      "스탑워치",
+      "아코디언",
+      "체크박스",
+      "캐러셀",
+      "타임라인",
+      "태그",
+      "텍스트 필드",
+      "토글&스위치",
+      "프로그레스 인디케이터"
+    ],
+    "matchedTexts": [
+      "카드신청"
+    ],
+    "keywords": [
+      "카드 신청",
+      "카드신청",
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new/686a2bdd-4bd2-4d7f-af10-4a093ab51aee/app_shinhansolpay_202610_147.png",
+    "images": [
+      {
+        "id": "cmv54y3nx001aid06j68z5ltn",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/686a2bdd-4bd2-4d7f-af10-4a093ab51aee/app_shinhansolpay_202610_147.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20SOL%ED%8E%98%EC%9D%B4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmv54y3nx001aid06j68z5ltn"
+      },
+      {
+        "id": "cmv54y3ol001cid06aze6ez1q",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/fbf927eb-5229-441a-9d5b-8ce10ddacf87/app_shinhansolpay_202610_148.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20SOL%ED%8E%98%EC%9D%B4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmv54y3ol001cid06aze6ez1q"
+      },
+      {
+        "id": "cmv54y3p9001eid06spexr0qv",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/22c9ad50-b90e-4256-88b9-5bc2464fdc5e/app_shinhansolpay_202610_149.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20SOL%ED%8E%98%EC%9D%B4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmv54y3p9001eid06spexr0qv"
+      },
+      {
+        "id": "cmv54y3py001gid06l2hrmkxd",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/6b90c14a-03f8-425f-bf24-6f44683b4666/app_shinhansolpay_202610_150.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20SOL%ED%8E%98%EC%9D%B4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmv54y3py001gid06l2hrmkxd"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20SOL%ED%8E%98%EC%9D%B4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EC%B9%B4%EB%93%9C%EC%8B%A0%EC%B2%AD",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-234",
+    "service": "현대카드",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "신청하기",
+    "variant": "카드대출",
+    "title": "카드대출",
+    "dataMonth": "2025-11",
+    "screenCount": 14,
+    "components": [
+      "라디오 버튼",
+      "테이블",
+      "텍스트 필드",
+      "프로그레스 인디케이터"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "카드 신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-83121837-f65d-488a-a911-3d9e5b70bd4a/new-ad82e01e-068d-426d-8801-6b43d3f9c8e7/d4326911-4f63-490e-adb3-27980b158218/IMG_9984.png",
+    "images": [
+      {
+        "id": "cmhof9ita000fjp04py4027qw",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-83121837-f65d-488a-a911-3d9e5b70bd4a/new-ad82e01e-068d-426d-8801-6b43d3f9c8e7/d4326911-4f63-490e-adb3-27980b158218/IMG_9984.png",
+        "uiUrl": "https://uibowl.io/name/%ED%98%84%EB%8C%80%EC%B9%B4%EB%93%9C?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmhof9ita000fjp04py4027qw"
+      },
+      {
+        "id": "cmhof9iuc000hjp04e61fzacr",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-83121837-f65d-488a-a911-3d9e5b70bd4a/new-70361e54-8c29-4137-bf37-8226b40782f7/4734689b-57df-430d-b6e4-acfe264b7f22/IMG_9985.png",
+        "uiUrl": "https://uibowl.io/name/%ED%98%84%EB%8C%80%EC%B9%B4%EB%93%9C?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmhof9iuc000hjp04e61fzacr"
+      },
+      {
+        "id": "cmhof9iv3000jjp046vggilid",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-83121837-f65d-488a-a911-3d9e5b70bd4a/new-8047a823-d413-48c0-9119-d282685d7c5d/39b5e92c-2776-4c47-9014-b587e2b63d83/IMG_9986.png",
+        "uiUrl": "https://uibowl.io/name/%ED%98%84%EB%8C%80%EC%B9%B4%EB%93%9C?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmhof9iv3000jjp046vggilid"
+      },
+      {
+        "id": "cmhof9ivv000ljp04pa5gmr27",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-83121837-f65d-488a-a911-3d9e5b70bd4a/new-ab9e68c0-6c84-4bb7-a773-ef84ec2e9c75/072f44b4-0a24-4fc4-b336-c6c88ad5b400/IMG_9987.png",
+        "uiUrl": "https://uibowl.io/name/%ED%98%84%EB%8C%80%EC%B9%B4%EB%93%9C?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmhof9ivv000ljp04pa5gmr27"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%98%84%EB%8C%80%EC%B9%B4%EB%93%9C?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EC%B9%B4%EB%93%9C%EB%8C%80%EC%B6%9C",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-235",
     "service": "네이버페이",
     "domain": "금융",
     "category": "금융",
@@ -7556,44 +10010,145 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-185",
-    "service": "한패스",
+    "id": "demo-236",
+    "service": "미래에셋증권 M-STOCK",
     "domain": "금융",
     "category": "금융",
-    "pattern": "목록 (PLP)",
-    "variant": "카드",
-    "title": "카드",
-    "dataMonth": "2026-06",
-    "screenCount": 3,
+    "pattern": "계좌",
+    "variant": "계좌 개설",
+    "title": "계좌 개설",
+    "dataMonth": "2026-07",
+    "screenCount": 31,
     "components": [],
-    "matchedTexts": [],
-    "keywords": [
-      "카드 신청"
+    "matchedTexts": [
+      "신청",
+      "보안카드",
+      "보안매체(보안카드/실물OTP)를"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-d25d1660-0c58-4e4d-911b-6b41dfa8cf91/new-6fbfb1bf-c55c-43df-9f01-b80ab6ca71f8/ede6148b-2ac6-4994-946c-10a3f839d774/IMG_4254-copy-0.png",
+    "keywords": [
+      "카드 신청",
+      "신청",
+      "보안카드",
+      "보안매체(보안카드/실물OTP)를"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-4e89bd2b-847c-4b52-bb08-fee0223719d4/new-978cd617-5c86-4070-bc0e-209f0e49d4bf/08349e0a-8c33-4600-a744-4b4a9a2a45e0/app_miraeasset_202607_47.png",
     "images": [
       {
-        "id": "cmq0n3bo5000wla04xn8qpk0u",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d25d1660-0c58-4e4d-911b-6b41dfa8cf91/new-6fbfb1bf-c55c-43df-9f01-b80ab6ca71f8/ede6148b-2ac6-4994-946c-10a3f839d774/IMG_4254-copy-0.png",
-        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EB%AA%A9%EB%A1%9D%20%28PLP%29&imgId=cmq0n3bo5000wla04xn8qpk0u"
+        "id": "cmrx8sm67000tl704r8136gk9",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4e89bd2b-847c-4b52-bb08-fee0223719d4/new-978cd617-5c86-4070-bc0e-209f0e49d4bf/08349e0a-8c33-4600-a744-4b4a9a2a45e0/app_miraeasset_202607_47.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EA%B3%84%EC%A2%8C&imgId=cmrx8sm67000tl704r8136gk9"
       },
       {
-        "id": "cmq0n3bp6000yla04ctnaw643",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d25d1660-0c58-4e4d-911b-6b41dfa8cf91/new-297099b1-2537-4dfe-bb4b-4cc875d292b0/6cbdd223-f2a7-4830-80ad-da4099f7fded/IMG_4255.png",
-        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EB%AA%A9%EB%A1%9D%20%28PLP%29&imgId=cmq0n3bp6000yla04ctnaw643"
+        "id": "cmrx8slxd0003l7047bvrrvo9",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4e89bd2b-847c-4b52-bb08-fee0223719d4/new-9a4bc015-f859-404d-88c5-3c38fa399d93/6d55f226-872a-4be6-abf9-e323db83aa1f/app_miraeasset_202607_34.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EA%B3%84%EC%A2%8C&imgId=cmrx8slxd0003l7047bvrrvo9"
       },
       {
-        "id": "cmq0n3bpw0010la041xk8srhb",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d25d1660-0c58-4e4d-911b-6b41dfa8cf91/new-de9d3bf3-c265-4f60-8b0a-804a32d78903/6ce7fe87-0eab-44b3-8430-d2ab1e8bb8f5/IMG_4256.png",
-        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EB%AA%A9%EB%A1%9D%20%28PLP%29&imgId=cmq0n3bpw0010la041xk8srhb"
+        "id": "cmrx8slya0005l704sgru7b38",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4e89bd2b-847c-4b52-bb08-fee0223719d4/new-efadb228-3f83-44d6-a81b-85cb596431c3/e4263fc4-293c-4c92-950d-f2a362c032ba/app_miraeasset_202607_35.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EA%B3%84%EC%A2%8C&imgId=cmrx8slya0005l704sgru7b38"
+      },
+      {
+        "id": "cmrx8slyy0007l70474jedzcn",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4e89bd2b-847c-4b52-bb08-fee0223719d4/new-b08153aa-6b03-4ec3-a694-d2196a779110/1f544a9b-932d-451f-8681-2d8ce2c33e4b/app_miraeasset_202607_36.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EA%B3%84%EC%A2%8C&imgId=cmrx8slyy0007l70474jedzcn"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EB%AA%A9%EB%A1%9D%20%28PLP%29&patternName=%EC%B9%B4%EB%93%9C",
+    "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EA%B3%84%EC%A2%8C&imgId=cmrx8sm67000tl704r8136gk9",
     "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
+    "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-186",
+    "id": "demo-237",
+    "service": "페이코",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "포인트",
+    "variant": "",
+    "title": "포인트",
+    "dataMonth": "2026-09",
+    "screenCount": 4,
+    "components": [],
+    "matchedTexts": [
+      "카드신청"
+    ],
+    "keywords": [
+      "카드 신청",
+      "카드신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new/a0da7e95-111c-416f-98c3-a7c63f94136f/app_payco_202610_219.png",
+    "images": [
+      {
+        "id": "cmupp1aqc001il4045z8264cn",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/a0da7e95-111c-416f-98c3-a7c63f94136f/app_payco_202610_219.png",
+        "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%ED%8F%AC%EC%9D%B8%ED%8A%B8&imgId=cmupp1aqc001il4045z8264cn"
+      },
+      {
+        "id": "cmupp1ar0001kl404taxdatwa",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/ddbb163f-2277-47ad-9259-4c832c363bc7/app_payco_202610_220.png",
+        "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%ED%8F%AC%EC%9D%B8%ED%8A%B8&imgId=cmupp1ar0001kl404taxdatwa"
+      },
+      {
+        "id": "cmupp1arn001ml404tkozztr0",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/bf89b952-1032-4680-8cf8-5e2f96343122/app_payco_202610_221.png",
+        "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%ED%8F%AC%EC%9D%B8%ED%8A%B8&imgId=cmupp1arn001ml404tkozztr0"
+      },
+      {
+        "id": "cmupp1asb001ol40497qx4r1u",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/5302901a-3d49-4961-ae08-5801c8649581/app_payco_202610_222.png",
+        "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%ED%8F%AC%EC%9D%B8%ED%8A%B8&imgId=cmupp1asb001ol40497qx4r1u"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%8E%98%EC%9D%B4%EC%BD%94?patterns=%ED%8F%AC%EC%9D%B8%ED%8A%B8&imgId=cmupp1aqc001il4045z8264cn",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-238",
+    "service": "iM뱅크",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "기획전·이벤트",
+    "variant": "",
+    "title": "기획전·이벤트",
+    "dataMonth": "2026-05",
+    "screenCount": 3,
+    "components": [],
+    "matchedTexts": [
+      "신청하",
+      "추가신청",
+      "BC카드로"
+    ],
+    "keywords": [
+      "카드 신청",
+      "신청하",
+      "추가신청",
+      "BC카드로"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-7fc8dda7-c54b-4043-a272-aa1d5d8fb234/new-054adf16-fdf7-4b5e-ba4b-7e1170c6089d/46515ba1-64bd-4c88-9eeb-f58798e1dd1e/s580.png",
+    "images": [
+      {
+        "id": "cmp0tvmbw00mhld04yti99p9w",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7fc8dda7-c54b-4043-a272-aa1d5d8fb234/new-054adf16-fdf7-4b5e-ba4b-7e1170c6089d/46515ba1-64bd-4c88-9eeb-f58798e1dd1e/s580.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EA%B8%B0%ED%9A%8D%EC%A0%84%C2%B7%EC%9D%B4%EB%B2%A4%ED%8A%B8&imgId=cmp0tvmbw00mhld04yti99p9w"
+      },
+      {
+        "id": "cmp0tvmcw00mjld04m55x6klu",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7fc8dda7-c54b-4043-a272-aa1d5d8fb234/new-ff202ad8-bae1-482c-bbb6-55fa0a6b75dd/942ab19e-8012-4c34-9a86-4f4c159756ae/s581.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EA%B8%B0%ED%9A%8D%EC%A0%84%C2%B7%EC%9D%B4%EB%B2%A4%ED%8A%B8&imgId=cmp0tvmcw00mjld04m55x6klu"
+      },
+      {
+        "id": "cmp0tvmdp00mlld047ucvg4ni",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7fc8dda7-c54b-4043-a272-aa1d5d8fb234/new-bc3b6e3b-8c75-47f6-83ed-2ac17106756f/793c1317-634d-446c-bfd0-d2298ea78501/s582.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EA%B8%B0%ED%9A%8D%EC%A0%84%C2%B7%EC%9D%B4%EB%B2%A4%ED%8A%B8&imgId=cmp0tvmdp00mlld047ucvg4ni"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EA%B8%B0%ED%9A%8D%EC%A0%84%C2%B7%EC%9D%B4%EB%B2%A4%ED%8A%B8&imgId=cmp0tvmbw00mhld04yti99p9w",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-239",
     "service": "하나원큐",
     "domain": "금융",
     "category": "금융",
@@ -7633,142 +10188,85 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-187",
-    "service": "iM뱅크",
+    "id": "demo-240",
+    "service": "한패스",
     "domain": "금융",
     "category": "금융",
-    "pattern": "내역",
+    "pattern": "목록 (PLP)",
     "variant": "카드",
     "title": "카드",
-    "dataMonth": "2026-05",
-    "screenCount": 8,
-    "components": [
-      "드롭다운",
-      "라디오 버튼",
-      "바텀시트",
-      "테이블",
-      "툴팁"
-    ],
-    "matchedTexts": [],
-    "keywords": [
-      "카드 신청"
-    ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-274f2954-b715-4db7-8e2f-25636bb052df/new-29d6e390-22cc-4af1-934c-2c6b7bf5ecdd/fff3b4da-35ff-4c06-892d-cd4101f9ff34/s431.png",
-    "images": [
-      {
-        "id": "cmp0txdld00jfl204dbos5dnd",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-274f2954-b715-4db7-8e2f-25636bb052df/new-29d6e390-22cc-4af1-934c-2c6b7bf5ecdd/fff3b4da-35ff-4c06-892d-cd4101f9ff34/s431.png",
-        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EB%82%B4%EC%97%AD&imgId=cmp0txdld00jfl204dbos5dnd"
-      },
-      {
-        "id": "cmp0txdm900jhl204vgbdwgxj",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-274f2954-b715-4db7-8e2f-25636bb052df/new-fc0afddd-9e68-498c-a7e3-d6cbbb804216/ec7fa844-4b6b-4e6d-9837-9bccd8455960/s432.png",
-        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EB%82%B4%EC%97%AD&imgId=cmp0txdm900jhl204vgbdwgxj"
-      },
-      {
-        "id": "cmp0txdn100jjl204cve1fxu4",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-274f2954-b715-4db7-8e2f-25636bb052df/new-55e63f9f-a184-4ab7-877d-0305bc93ea74/3fb5eb0a-d643-4659-855d-9cc4b46e1792/s433.png",
-        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EB%82%B4%EC%97%AD&imgId=cmp0txdn100jjl204cve1fxu4"
-      },
-      {
-        "id": "cmp0txdnt00jll204d824tgpz",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-274f2954-b715-4db7-8e2f-25636bb052df/new-afb9fac7-d13c-4377-8e2d-09def5a309b5/c932d255-daee-4802-8d5f-5f54c700ac10/s434.png",
-        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EB%82%B4%EC%97%AD&imgId=cmp0txdnt00jll204d824tgpz"
-      }
-    ],
-    "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EB%82%B4%EC%97%AD&patternName=%EC%B9%B4%EB%93%9C",
-    "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
-  },
-  {
-    "id": "demo-188",
-    "service": "미래에셋증권 M-STOCK",
-    "domain": "금융",
-    "category": "금융",
-    "pattern": "게이미피케이션",
-    "variant": "카드 뽑기",
-    "title": "카드 뽑기",
-    "dataMonth": "2026-07",
-    "screenCount": 14,
+    "dataMonth": "2026-06",
+    "screenCount": 3,
     "components": [],
     "matchedTexts": [],
     "keywords": [
       "카드 신청"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-04597e12-0a69-49a9-a702-8c04442f0269/new-9c5ee04f-eeb0-475b-b954-fd9bdeaa7332/7d158da9-603e-4048-a70a-b8cde76fb75c/app_miraeasset_202607_19.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-d25d1660-0c58-4e4d-911b-6b41dfa8cf91/new-6fbfb1bf-c55c-43df-9f01-b80ab6ca71f8/ede6148b-2ac6-4994-946c-10a3f839d774/IMG_4254-copy-0.png",
     "images": [
       {
-        "id": "cmrx8s8vk0006l104su1drnlb",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-04597e12-0a69-49a9-a702-8c04442f0269/new-9c5ee04f-eeb0-475b-b954-fd9bdeaa7332/7d158da9-603e-4048-a70a-b8cde76fb75c/app_miraeasset_202607_19.png",
-        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EA%B2%8C%EC%9D%B4%EB%AF%B8%ED%94%BC%EC%BC%80%EC%9D%B4%EC%85%98&imgId=cmrx8s8vk0006l104su1drnlb"
+        "id": "cmq0n3bo5000wla04xn8qpk0u",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d25d1660-0c58-4e4d-911b-6b41dfa8cf91/new-6fbfb1bf-c55c-43df-9f01-b80ab6ca71f8/ede6148b-2ac6-4994-946c-10a3f839d774/IMG_4254-copy-0.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EB%AA%A9%EB%A1%9D%20%28PLP%29&imgId=cmq0n3bo5000wla04xn8qpk0u"
       },
       {
-        "id": "cmrx8s8x9000al104m6dju4d3",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-04597e12-0a69-49a9-a702-8c04442f0269/new-4b50b9ab-f408-4df5-9a8d-19c8da0b001e/56174bb2-e1da-4085-a82d-254543495346/app_miraeasset_202607_21.png",
-        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EA%B2%8C%EC%9D%B4%EB%AF%B8%ED%94%BC%EC%BC%80%EC%9D%B4%EC%85%98&imgId=cmrx8s8x9000al104m6dju4d3"
+        "id": "cmq0n3bp6000yla04ctnaw643",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d25d1660-0c58-4e4d-911b-6b41dfa8cf91/new-297099b1-2537-4dfe-bb4b-4cc875d292b0/6cbdd223-f2a7-4830-80ad-da4099f7fded/IMG_4255.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EB%AA%A9%EB%A1%9D%20%28PLP%29&imgId=cmq0n3bp6000yla04ctnaw643"
       },
       {
-        "id": "cmrx8s8y1000cl1046ko6zen4",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-04597e12-0a69-49a9-a702-8c04442f0269/new-0b7d845a-b73e-4cb9-80af-402fa9e1c344/0b5ac448-d09e-47f6-9360-353e9f478bc2/app_miraeasset_202607_22.png",
-        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EA%B2%8C%EC%9D%B4%EB%AF%B8%ED%94%BC%EC%BC%80%EC%9D%B4%EC%85%98&imgId=cmrx8s8y1000cl1046ko6zen4"
-      },
-      {
-        "id": "cmrx8s8yt000el104wvr0rac0",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-04597e12-0a69-49a9-a702-8c04442f0269/new-c6fc9ece-44fa-4703-a14e-f40b58cdf633/8514d0a9-cf40-40d2-9eb9-5535b1c4cc4c/app_miraeasset_202607_23.png",
-        "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EA%B2%8C%EC%9D%B4%EB%AF%B8%ED%94%BC%EC%BC%80%EC%9D%B4%EC%85%98&imgId=cmrx8s8yt000el104wvr0rac0"
+        "id": "cmq0n3bpw0010la041xk8srhb",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d25d1660-0c58-4e4d-911b-6b41dfa8cf91/new-de9d3bf3-c265-4f60-8b0a-804a32d78903/6ce7fe87-0eab-44b3-8430-d2ab1e8bb8f5/IMG_4256.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EB%AA%A9%EB%A1%9D%20%28PLP%29&imgId=cmq0n3bpw0010la041xk8srhb"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EB%AF%B8%EB%9E%98%EC%97%90%EC%85%8B%EC%A6%9D%EA%B6%8C%20M-STOCK?patterns=%EA%B2%8C%EC%9D%B4%EB%AF%B8%ED%94%BC%EC%BC%80%EC%9D%B4%EC%85%98&patternName=%EC%B9%B4%EB%93%9C%20%EB%BD%91%EA%B8%B0",
+    "uiUrl": "https://uibowl.io/name/%ED%95%9C%ED%8C%A8%EC%8A%A4?patterns=%EB%AA%A9%EB%A1%9D%20%28PLP%29&patternName=%EC%B9%B4%EB%93%9C",
     "source": "UI Bowl",
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-189",
-    "service": "토스",
+    "id": "demo-241",
+    "service": "네이버페이",
     "domain": "금융",
     "category": "금융",
-    "pattern": "내역",
-    "variant": "카드 사용 내역",
-    "title": "카드 사용 내역",
-    "dataMonth": "2026-07",
-    "screenCount": 5,
-    "components": [
-      "태그",
-      "프로그레스 인디케이터"
+    "pattern": "검색",
+    "variant": "통합 검색 - 스크롤",
+    "title": "통합 검색 - 스크롤",
+    "dataMonth": "2026-08",
+    "screenCount": 2,
+    "components": [],
+    "matchedTexts": [
+      "신청",
+      "머니카드",
+      "카드",
+      "결제카드"
     ],
-    "matchedTexts": [],
     "keywords": [
-      "카드 신청"
+      "카드 신청",
+      "신청",
+      "머니카드",
+      "카드",
+      "결제카드"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-787e44e5-4247-42f1-9c78-ec185e515d21/new-d2719c20-c62d-4d3f-9ed9-7f5286762405/99ffe080-acdf-4190-b841-4c6b0653838a/app_toss_202607_214.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-f5e84509-48b4-49ec-b4be-edb2ba140916/new-6287e049-586f-4a10-9273-2e8f5c9c9144/4b71c834-7412-4d36-9858-b898ac52e15d/mobile_naverpay_202608_33.png",
     "images": [
       {
-        "id": "cmrtv2mt70003la048u8xtavp",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-787e44e5-4247-42f1-9c78-ec185e515d21/new-d2719c20-c62d-4d3f-9ed9-7f5286762405/99ffe080-acdf-4190-b841-4c6b0653838a/app_toss_202607_214.png",
-        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%82%B4%EC%97%AD&imgId=cmrtv2mt70003la048u8xtavp"
+        "id": "cmswzhye7000dl904id0o1ouo",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f5e84509-48b4-49ec-b4be-edb2ba140916/new-6287e049-586f-4a10-9273-2e8f5c9c9144/4b71c834-7412-4d36-9858-b898ac52e15d/mobile_naverpay_202608_33.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EA%B2%80%EC%83%89&imgId=cmswzhye7000dl904id0o1ouo"
       },
       {
-        "id": "cmrtv2mu20005la04u3viznyi",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-787e44e5-4247-42f1-9c78-ec185e515d21/new-2f5817d1-9500-4f2f-9fcc-067713156ceb/18c61bb2-fc4a-4434-a63a-cd621316cf3a/app_toss_202607_215.png",
-        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%82%B4%EC%97%AD&imgId=cmrtv2mu20005la04u3viznyi"
-      },
-      {
-        "id": "cmrtv2mun0007la04lqcow0mh",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-787e44e5-4247-42f1-9c78-ec185e515d21/new-65883095-a7c8-48d2-8629-b11dedcc9f51/3f79520f-c21e-44d8-89a4-72b1cf184d11/app_toss_202607_216.png",
-        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%82%B4%EC%97%AD&imgId=cmrtv2mun0007la04lqcow0mh"
-      },
-      {
-        "id": "cmrtv2mv80009la04bojn8j5q",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-787e44e5-4247-42f1-9c78-ec185e515d21/new-2cf7cc05-83b0-4807-b38f-2b1ff9e335c7/cb24f470-7877-49f1-9416-253daaf07670/app_toss_202607_217.png",
-        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%82%B4%EC%97%AD&imgId=cmrtv2mv80009la04bojn8j5q"
+        "id": "cmswzhyev000fl904l1w0w6pt",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f5e84509-48b4-49ec-b4be-edb2ba140916/new-8778c681-a38c-47e6-88dd-e0d97df72e4c/130c3626-96a6-415b-a6ae-af39dabf2602/mobile_naverpay_202608_34.png",
+        "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EA%B2%80%EC%83%89&imgId=cmswzhyev000fl904l1w0w6pt"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EB%82%B4%EC%97%AD&patternName=%EC%B9%B4%EB%93%9C%20%EC%82%AC%EC%9A%A9%20%EB%82%B4%EC%97%AD",
+    "uiUrl": "https://uibowl.io/name/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8E%98%EC%9D%B4?patterns=%EA%B2%80%EC%83%89&imgId=cmswzhye7000dl904id0o1ouo",
     "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
+    "sourceTool": "search_by_ocr_text"
   },
   {
-    "id": "demo-190",
+    "id": "demo-242",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -7811,7 +10309,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-191",
+    "id": "demo-243",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -7858,7 +10356,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-192",
+    "id": "demo-244",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -7892,138 +10390,92 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-193",
-    "service": "쏘카",
-    "domain": "모빌리티",
+    "id": "demo-245",
+    "service": "마이현대",
+    "domain": "자동차",
     "category": "모빌리티",
-    "pattern": "간편결제",
-    "variant": "법인카드등록",
-    "title": "법인카드등록",
-    "dataMonth": "2026-04",
-    "screenCount": 6,
-    "components": [
-      "라디오 버튼",
-      "버튼",
-      "체크박스",
-      "텍스트 필드",
-      "툴팁",
-      "플로팅 버튼"
-    ],
-    "matchedTexts": [],
-    "keywords": [
-      "카드 신청"
-    ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-69a7ad0c-fc81-45ed-991d-1604fac71e3c/new-48c1f0ee-47bd-4ba7-a576-30fc798893c0/210f6cb3-6f34-45cc-857a-4675df840c85/z40.png",
-    "images": [
-      {
-        "id": "cmogjghfa01hajo04b4gxyr6w",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-69a7ad0c-fc81-45ed-991d-1604fac71e3c/new-48c1f0ee-47bd-4ba7-a576-30fc798893c0/210f6cb3-6f34-45cc-857a-4675df840c85/z40.png",
-        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmogjghfa01hajo04b4gxyr6w"
-      },
-      {
-        "id": "cmogjghg101hcjo045jw6wdxi",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-69a7ad0c-fc81-45ed-991d-1604fac71e3c/new-60ac7e3c-0206-40b3-9464-38d788938894/5260ce9e-6ce2-463a-b770-e5f7d05597af/z41.png",
-        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmogjghg101hcjo045jw6wdxi"
-      },
-      {
-        "id": "cmogjghgo01hejo04aphs84ys",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-69a7ad0c-fc81-45ed-991d-1604fac71e3c/new-197bc0a3-6369-479f-9a97-0ccd002af945/79157e0b-7676-4d9e-b56a-83755fc91d73/z42.png",
-        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmogjghgo01hejo04aphs84ys"
-      },
-      {
-        "id": "cmogjghhc01hgjo04zox1kzye",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-69a7ad0c-fc81-45ed-991d-1604fac71e3c/new-795ee103-9d56-4351-976d-944910a57c86/23f7e079-db90-4fc4-8298-916587dc9296/z43.png",
-        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmogjghhc01hgjo04zox1kzye"
-      }
-    ],
-    "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&patternName=%EB%B2%95%EC%9D%B8%EC%B9%B4%EB%93%9C%EB%93%B1%EB%A1%9D",
-    "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
-  },
-  {
-    "id": "demo-194",
-    "service": "카카오T",
-    "domain": "모빌리티",
-    "category": "모빌리티",
-    "pattern": "간편결제",
-    "variant": "카드등록",
-    "title": "카드등록",
-    "dataMonth": "2026-04",
-    "screenCount": 12,
-    "components": [
-      "버튼",
-      "텍스트 필드"
-    ],
-    "matchedTexts": [],
-    "keywords": [
-      "카드 신청"
-    ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-4ff5c1c5-b592-4b60-8065-280909364ff2/new-0cc503c8-fb28-4773-a0da-538af8cb2711/4c203c99-baea-48c9-bfb8-882c8b798cac/d11.png",
-    "images": [
-      {
-        "id": "cmoaq2n0p0005la04wvw4pg54",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4ff5c1c5-b592-4b60-8065-280909364ff2/new-0cc503c8-fb28-4773-a0da-538af8cb2711/4c203c99-baea-48c9-bfb8-882c8b798cac/d11.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmoaq2n0p0005la04wvw4pg54"
-      },
-      {
-        "id": "cmoaq2n1q0007la04kd2urhwi",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4ff5c1c5-b592-4b60-8065-280909364ff2/new-dd5ef3ee-5711-4341-80de-903d17cc4672/71327ede-750d-448a-b54b-93c984b220de/d13.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmoaq2n1q0007la04kd2urhwi"
-      },
-      {
-        "id": "cmoaq2n2h0009la04dspxuacc",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4ff5c1c5-b592-4b60-8065-280909364ff2/new-24d38c35-3223-40ec-8f2a-9a8325691e01/55927bd3-ae7d-446c-8bc9-6846905ba122/d14.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmoaq2n2h0009la04dspxuacc"
-      },
-      {
-        "id": "cmoaq2n38000bla047hj46dvu",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4ff5c1c5-b592-4b60-8065-280909364ff2/new-a11f460d-9b17-4f73-b93f-912c6b8d8e94/a88d5467-1a5e-47c5-a704-ea9e7a23bff7/d15.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmoaq2n38000bla047hj46dvu"
-      }
-    ],
-    "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&patternName=%EC%B9%B4%EB%93%9C%EB%93%B1%EB%A1%9D",
-    "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
-  },
-  {
-    "id": "demo-195",
-    "service": "채비",
-    "domain": "모빌리티",
-    "category": "모빌리티",
-    "pattern": "멤버십·요금제",
-    "variant": "카드관리",
-    "title": "카드관리",
+    "pattern": "고객센터·FAQ",
+    "variant": "자주묻는질문 (전체)",
+    "title": "자주묻는질문 (전체)",
     "dataMonth": "2026-04",
     "screenCount": 3,
     "components": [],
-    "matchedTexts": [],
-    "keywords": [
-      "카드 신청"
+    "matchedTexts": [
+      "신청/등록",
+      "카드는"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-ed6522c5-4428-4e02-935e-0872f3dcf374/new-91477d96-d512-469b-b444-7ff9155cbcd8/6e3b9c08-c374-44ec-b21d-f9f8df6d30ba/s131.png",
+    "keywords": [
+      "카드 신청",
+      "신청/등록",
+      "카드는"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-9edac905-f8d2-4a64-98d6-3872c8a09b8d/new-ee4822ff-89a8-4f4e-8b3d-0659b2cbedf8/27a81c13-9b36-4548-91aa-3397af28eaf4/s56.png",
     "images": [
       {
-        "id": "cmoi0bc6v009jl80487xyiqib",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-ed6522c5-4428-4e02-935e-0872f3dcf374/new-91477d96-d512-469b-b444-7ff9155cbcd8/6e3b9c08-c374-44ec-b21d-f9f8df6d30ba/s131.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B1%84%EB%B9%84?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmoi0bc6v009jl80487xyiqib"
+        "id": "cmojmobwm00xlic04edeb5d5a",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-9edac905-f8d2-4a64-98d6-3872c8a09b8d/new-ee4822ff-89a8-4f4e-8b3d-0659b2cbedf8/27a81c13-9b36-4548-91aa-3397af28eaf4/s56.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EA%B3%A0%EA%B0%9D%EC%84%BC%ED%84%B0%C2%B7FAQ&imgId=cmojmobwm00xlic04edeb5d5a"
       },
       {
-        "id": "cmoi0bc7t009ll804s1su6o0y",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-ed6522c5-4428-4e02-935e-0872f3dcf374/new-de079f65-0197-427a-b969-93bfaaf5c725/46c2e1b0-aa62-42b2-8a9f-46d945a8d41b/s132.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B1%84%EB%B9%84?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmoi0bc7t009ll804s1su6o0y"
+        "id": "cmojmobxm00xnic04mbr44ov5",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-9edac905-f8d2-4a64-98d6-3872c8a09b8d/new-d85eed46-ad37-4e4e-b717-da007d3b3ff0/af290254-038d-4376-9389-8b9a93ede932/s57.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EA%B3%A0%EA%B0%9D%EC%84%BC%ED%84%B0%C2%B7FAQ&imgId=cmojmobxm00xnic04mbr44ov5"
       },
       {
-        "id": "cmoi0bc8n009nl804yqjn88k6",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-ed6522c5-4428-4e02-935e-0872f3dcf374/new-051c76d5-f034-4a03-8f13-8cd3c6937348/33f3153e-bdd8-4dbf-8cac-0f5b9a6d233f/s133.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B1%84%EB%B9%84?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmoi0bc8n009nl804yqjn88k6"
+        "id": "cmojmobyg00xpic04oec6xw05",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-9edac905-f8d2-4a64-98d6-3872c8a09b8d/new-7c0102d9-2087-4083-94e7-aa37b4180691/ecc2b73c-bdb2-463a-b629-34932e5dd71d/s58.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EA%B3%A0%EA%B0%9D%EC%84%BC%ED%84%B0%C2%B7FAQ&imgId=cmojmobyg00xpic04oec6xw05"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EC%B1%84%EB%B9%84?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&patternName=%EC%B9%B4%EB%93%9C%EA%B4%80%EB%A6%AC",
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EA%B3%A0%EA%B0%9D%EC%84%BC%ED%84%B0%C2%B7FAQ&imgId=cmojmobwm00xlic04edeb5d5a",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-246",
+    "service": "마이현대",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "신청하기",
+    "variant": "입고알림 신청",
+    "title": "입고알림 신청",
+    "dataMonth": "2026-04",
+    "screenCount": 3,
+    "components": [],
+    "matchedTexts": [
+      "신청완료",
+      "전용카드"
+    ],
+    "keywords": [
+      "카드 신청",
+      "신청완료",
+      "전용카드",
+      "알림"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-79c525c5-1774-4ffe-a013-81528fa7c49d/new-9fe11ab8-2e91-413d-b000-bd1c22e1871e/5338ad50-a107-4496-8a37-3a783e57ec7c/s262.png",
+    "images": [
+      {
+        "id": "cmojmczxv0007l20404ulqg0b",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-79c525c5-1774-4ffe-a013-81528fa7c49d/new-0f6bfc8a-5223-4fd5-ad82-975a9fbe21fd/e50ab4c8-2b30-4775-841b-1550f3e75949/s264.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmojmczxv0007l20404ulqg0b"
+      },
+      {
+        "id": "cmojmczvr0003l204bj0mheel",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-79c525c5-1774-4ffe-a013-81528fa7c49d/new-9fe11ab8-2e91-413d-b000-bd1c22e1871e/5338ad50-a107-4496-8a37-3a783e57ec7c/s262.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmojmczvr0003l204bj0mheel"
+      },
+      {
+        "id": "cmojmczx00005l204dygcuf5e",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-79c525c5-1774-4ffe-a013-81528fa7c49d/new-eba3f551-ed4a-4b2b-94e2-6a32df0259b8/9dfe5d28-8fb0-4662-971d-9dc1956c444f/s263.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmojmczx00005l204dygcuf5e"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EC%9E%85%EA%B3%A0%EC%95%8C%EB%A6%BC%20%EC%8B%A0%EC%B2%AD",
     "source": "UI Bowl",
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-196",
+    "id": "demo-247",
     "service": "EVSIS",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -8068,41 +10520,196 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-197",
-    "service": "센디",
+    "id": "demo-248",
+    "service": "볼트업",
     "domain": "모빌리티",
     "category": "모빌리티",
-    "pattern": "촬영하기",
-    "variant": "카드 등록",
-    "title": "카드 등록",
-    "dataMonth": "2026-05",
-    "screenCount": 2,
+    "pattern": "신청하기",
+    "variant": "회원카드 발급",
+    "title": "회원카드 발급",
+    "dataMonth": "2026-04",
+    "screenCount": 12,
+    "components": [],
+    "matchedTexts": [
+      "주소",
+      "입력"
+    ],
+    "keywords": [
+      "카드 신청",
+      "주소 입력",
+      "주소",
+      "입력"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-16d167a5-e464-4a80-9d96-922ea06db378/new-459fb27c-6ad2-4ccb-b4c7-32ef069c9a01/72440705-7f55-4508-b8f2-a1e676645392/s155.png",
+    "images": [
+      {
+        "id": "cmojekmkh000ylb04mjon95bv",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-16d167a5-e464-4a80-9d96-922ea06db378/new-dada55ec-25f4-4113-9413-1be6d59d8504/44b79d66-7abe-4368-8518-28b746f00920/s152.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmojekmkh000ylb04mjon95bv"
+      },
+      {
+        "id": "cmojekml70010lb04hvq0rdf7",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-16d167a5-e464-4a80-9d96-922ea06db378/new-6fb65607-9e55-4611-86f1-8fe67041d69f/5c9b0c71-368a-4604-9f63-eb598e7ceda5/s153.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmojekml70010lb04hvq0rdf7"
+      },
+      {
+        "id": "cmojekmly0012lb04wtl45zlt",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-16d167a5-e464-4a80-9d96-922ea06db378/new-b5be3867-6da6-4b0c-9494-cff1f805dc6a/83ebf9e3-d574-4b62-83b6-f483ad77eff7/s154.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmojekmly0012lb04wtl45zlt"
+      },
+      {
+        "id": "cmojekmmr0014lb0454jtm4uy",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-16d167a5-e464-4a80-9d96-922ea06db378/new-459fb27c-6ad2-4ccb-b4c7-32ef069c9a01/72440705-7f55-4508-b8f2-a1e676645392/s155.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmojekmmr0014lb0454jtm4uy"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmojekmmr0014lb0454jtm4uy",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-249",
+    "service": "쏘카",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "간편결제",
+    "variant": "법인카드등록",
+    "title": "법인카드등록",
+    "dataMonth": "2026-04",
+    "screenCount": 6,
     "components": [
-      "버튼"
+      "라디오 버튼",
+      "버튼",
+      "체크박스",
+      "텍스트 필드",
+      "툴팁",
+      "플로팅 버튼"
+    ],
+    "matchedTexts": [
+      "신청하기",
+      "결제카드",
+      "법인카드",
+      "쏘카카드",
+      "쏘카카드로"
+    ],
+    "keywords": [
+      "카드 신청",
+      "신청하기",
+      "결제카드",
+      "법인카드",
+      "쏘카카드"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-69a7ad0c-fc81-45ed-991d-1604fac71e3c/new-48c1f0ee-47bd-4ba7-a576-30fc798893c0/210f6cb3-6f34-45cc-857a-4675df840c85/z40.png",
+    "images": [
+      {
+        "id": "cmogjghfa01hajo04b4gxyr6w",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-69a7ad0c-fc81-45ed-991d-1604fac71e3c/new-48c1f0ee-47bd-4ba7-a576-30fc798893c0/210f6cb3-6f34-45cc-857a-4675df840c85/z40.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmogjghfa01hajo04b4gxyr6w"
+      },
+      {
+        "id": "cmogjghg101hcjo045jw6wdxi",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-69a7ad0c-fc81-45ed-991d-1604fac71e3c/new-60ac7e3c-0206-40b3-9464-38d788938894/5260ce9e-6ce2-463a-b770-e5f7d05597af/z41.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmogjghg101hcjo045jw6wdxi"
+      },
+      {
+        "id": "cmogjghgo01hejo04aphs84ys",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-69a7ad0c-fc81-45ed-991d-1604fac71e3c/new-197bc0a3-6369-479f-9a97-0ccd002af945/79157e0b-7676-4d9e-b56a-83755fc91d73/z42.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmogjghgo01hejo04aphs84ys"
+      },
+      {
+        "id": "cmogjghhc01hgjo04zox1kzye",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-69a7ad0c-fc81-45ed-991d-1604fac71e3c/new-795ee103-9d56-4351-976d-944910a57c86/23f7e079-db90-4fc4-8298-916587dc9296/z43.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmogjghhc01hgjo04zox1kzye"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&patternName=%EB%B2%95%EC%9D%B8%EC%B9%B4%EB%93%9C%EB%93%B1%EB%A1%9D",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-250",
+    "service": "카카오T",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "간편결제",
+    "variant": "카드등록",
+    "title": "카드등록",
+    "dataMonth": "2026-04",
+    "screenCount": 12,
+    "components": [
+      "버튼",
+      "텍스트 필드"
     ],
     "matchedTexts": [],
     "keywords": [
       "카드 신청"
     ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-1f4d5d07-5036-407d-9f99-c8bd6ee36bfb/new-514d91c4-0507-4174-b003-daf72fafd6d0/4163d087-f8bf-457a-a969-7b1a8a42305e/s202.png",
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-4ff5c1c5-b592-4b60-8065-280909364ff2/new-0cc503c8-fb28-4773-a0da-538af8cb2711/4c203c99-baea-48c9-bfb8-882c8b798cac/d11.png",
     "images": [
       {
-        "id": "cmp6b29w00003jr04j7a3p68w",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-1f4d5d07-5036-407d-9f99-c8bd6ee36bfb/new-514d91c4-0507-4174-b003-daf72fafd6d0/4163d087-f8bf-457a-a969-7b1a8a42305e/s202.png",
-        "uiUrl": "https://uibowl.io/name/%EC%84%BC%EB%94%94?patterns=%EC%B4%AC%EC%98%81%ED%95%98%EA%B8%B0&imgId=cmp6b29w00003jr04j7a3p68w"
+        "id": "cmoaq2n0p0005la04wvw4pg54",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4ff5c1c5-b592-4b60-8065-280909364ff2/new-0cc503c8-fb28-4773-a0da-538af8cb2711/4c203c99-baea-48c9-bfb8-882c8b798cac/d11.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmoaq2n0p0005la04wvw4pg54"
       },
       {
-        "id": "cmp6b2a5g0005jr04ar12owzy",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-1f4d5d07-5036-407d-9f99-c8bd6ee36bfb/new-1c9e1d48-c324-4583-8876-c0ba18063c9a/21e880be-2caf-44ad-9e8c-525fb38db318/s203.png",
-        "uiUrl": "https://uibowl.io/name/%EC%84%BC%EB%94%94?patterns=%EC%B4%AC%EC%98%81%ED%95%98%EA%B8%B0&imgId=cmp6b2a5g0005jr04ar12owzy"
+        "id": "cmoaq2n1q0007la04kd2urhwi",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4ff5c1c5-b592-4b60-8065-280909364ff2/new-dd5ef3ee-5711-4341-80de-903d17cc4672/71327ede-750d-448a-b54b-93c984b220de/d13.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmoaq2n1q0007la04kd2urhwi"
+      },
+      {
+        "id": "cmoaq2n2h0009la04dspxuacc",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4ff5c1c5-b592-4b60-8065-280909364ff2/new-24d38c35-3223-40ec-8f2a-9a8325691e01/55927bd3-ae7d-446c-8bc9-6846905ba122/d14.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmoaq2n2h0009la04dspxuacc"
+      },
+      {
+        "id": "cmoaq2n38000bla047hj46dvu",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4ff5c1c5-b592-4b60-8065-280909364ff2/new-a11f460d-9b17-4f73-b93f-912c6b8d8e94/a88d5467-1a5e-47c5-a704-ea9e7a23bff7/d15.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&imgId=cmoaq2n38000bla047hj46dvu"
       }
     ],
-    "uiUrl": "https://uibowl.io/name/%EC%84%BC%EB%94%94?patterns=%EC%B4%AC%EC%98%81%ED%95%98%EA%B8%B0&patternName=%EC%B9%B4%EB%93%9C%20%EB%93%B1%EB%A1%9D",
+    "uiUrl": "https://uibowl.io/name/%EC%B9%B4%EC%B9%B4%EC%98%A4T?patterns=%EA%B0%84%ED%8E%B8%EA%B2%B0%EC%A0%9C&patternName=%EC%B9%B4%EB%93%9C%EB%93%B1%EB%A1%9D",
     "source": "UI Bowl",
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-198",
+    "id": "demo-251",
+    "service": "채비",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "멤버십·요금제",
+    "variant": "카드관리",
+    "title": "카드관리",
+    "dataMonth": "2026-04",
+    "screenCount": 3,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "카드 신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-ed6522c5-4428-4e02-935e-0872f3dcf374/new-91477d96-d512-469b-b444-7ff9155cbcd8/6e3b9c08-c374-44ec-b21d-f9f8df6d30ba/s131.png",
+    "images": [
+      {
+        "id": "cmoi0bc6v009jl80487xyiqib",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-ed6522c5-4428-4e02-935e-0872f3dcf374/new-91477d96-d512-469b-b444-7ff9155cbcd8/6e3b9c08-c374-44ec-b21d-f9f8df6d30ba/s131.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B1%84%EB%B9%84?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmoi0bc6v009jl80487xyiqib"
+      },
+      {
+        "id": "cmoi0bc7t009ll804s1su6o0y",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-ed6522c5-4428-4e02-935e-0872f3dcf374/new-de079f65-0197-427a-b969-93bfaaf5c725/46c2e1b0-aa62-42b2-8a9f-46d945a8d41b/s132.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B1%84%EB%B9%84?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmoi0bc7t009ll804s1su6o0y"
+      },
+      {
+        "id": "cmoi0bc8n009nl804yqjn88k6",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-ed6522c5-4428-4e02-935e-0872f3dcf374/new-051c76d5-f034-4a03-8f13-8cd3c6937348/33f3153e-bdd8-4dbf-8cac-0f5b9a6d233f/s133.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B1%84%EB%B9%84?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&imgId=cmoi0bc8n009nl804yqjn88k6"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%B1%84%EB%B9%84?patterns=%EB%A9%A4%EB%B2%84%EC%8B%AD%C2%B7%EC%9A%94%EA%B8%88%EC%A0%9C&patternName=%EC%B9%B4%EB%93%9C%EA%B4%80%EB%A6%AC",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-252",
     "service": "삼쩜삼",
     "domain": "금융",
     "category": "금융",
@@ -8114,7 +10721,8 @@ export const sampleScreens = [
     "components": [],
     "matchedTexts": [],
     "keywords": [
-      "보험"
+      "보험",
+      "신청"
     ],
     "image": "https://d31var7gpnk8lm.cloudfront.net/new-a212679e-21b1-4935-a18c-defc44b62551/new-5f3ffbea-3835-43b3-abc2-0948f5d1f20e/c9078f7b-e730-401e-843d-68ada6e1c6b7/IMG_5285.png",
     "images": [
@@ -8144,7 +10752,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-199",
+    "id": "demo-253",
     "service": "라이프캐치",
     "domain": "금융",
     "category": "금융",
@@ -8182,7 +10790,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-200",
+    "id": "demo-254",
     "service": "신한 슈퍼SOL",
     "domain": "금융",
     "category": "금융",
@@ -8224,7 +10832,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-201",
+    "id": "demo-255",
     "service": "보맵",
     "domain": "금융",
     "category": "금융",
@@ -8265,7 +10873,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-202",
+    "id": "demo-256",
     "service": "뱅크샐러드",
     "domain": "금융",
     "category": "금융",
@@ -8307,49 +10915,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-203",
-    "service": "차봇",
-    "domain": "자동차",
-    "category": "모빌리티",
-    "pattern": "신청하기",
-    "variant": "자동차보험",
-    "title": "자동차보험",
-    "dataMonth": "2026-08",
-    "screenCount": 4,
-    "components": [],
-    "matchedTexts": [],
-    "keywords": [
-      "보험"
-    ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-770a57b3-01ef-48c2-843d-79f3924bfe56/new-7633df8a-e552-494a-beb5-319d26ca8bbf/a43c3919-4e08-4f99-92e3-199727f16310/app_chabot_202608_160.png",
-    "images": [
-      {
-        "id": "cmtd3bjta0003jy042q1ve3ib",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-770a57b3-01ef-48c2-843d-79f3924bfe56/new-7633df8a-e552-494a-beb5-319d26ca8bbf/a43c3919-4e08-4f99-92e3-199727f16310/app_chabot_202608_160.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3bjta0003jy042q1ve3ib"
-      },
-      {
-        "id": "cmtd3bjuc0005jy04u56dh3s6",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-770a57b3-01ef-48c2-843d-79f3924bfe56/new-477a7861-bd3a-4a45-a987-38abe1f6f14d/6ffb8a3d-d9a8-40b2-b1e0-7f0efdd8a011/app_chabot_202608_161.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3bjuc0005jy04u56dh3s6"
-      },
-      {
-        "id": "cmtd3bjv40007jy04mplohtl8",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-770a57b3-01ef-48c2-843d-79f3924bfe56/new-65ac1f48-5a65-48be-a039-1b6db912259f/f9cce7a7-fdda-428d-adc7-05c0212c3cf2/app_chabot_202608_162.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3bjv40007jy04mplohtl8"
-      },
-      {
-        "id": "cmtd3bjvx0009jy041w0awj0t",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-770a57b3-01ef-48c2-843d-79f3924bfe56/new-2810178b-82e6-41e0-a834-bbc389b84870/8f9384f5-b042-4eb0-8aab-298a312c8e47/app_chabot_202608_163.png",
-        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3bjvx0009jy041w0awj0t"
-      }
-    ],
-    "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98",
-    "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
-  },
-  {
-    "id": "demo-204",
+    "id": "demo-257",
     "service": "오일나우",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -8398,7 +10964,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-205",
+    "id": "demo-258",
     "service": "도미노",
     "domain": "금융",
     "category": "금융",
@@ -8447,7 +11013,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-206",
+    "id": "demo-259",
     "service": "신한 슈퍼SOL",
     "domain": "금융",
     "category": "금융",
@@ -8492,7 +11058,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-207",
+    "id": "demo-260",
     "service": "Bybit",
     "domain": "금융",
     "category": "금융",
@@ -8534,7 +11100,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-208",
+    "id": "demo-261",
     "service": "아이쿠카",
     "domain": "금융",
     "category": "금융",
@@ -8568,7 +11134,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-209",
+    "id": "demo-262",
     "service": "토스",
     "domain": "금융",
     "category": "금융",
@@ -8602,7 +11168,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-210",
+    "id": "demo-263",
     "service": "페이코",
     "domain": "금융",
     "category": "금융",
@@ -8638,44 +11204,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-211",
-    "service": "마이현대",
-    "domain": "자동차",
-    "category": "모빌리티",
-    "pattern": "신청하기",
-    "variant": "입고알림 신청",
-    "title": "입고알림 신청",
-    "dataMonth": "2026-04",
-    "screenCount": 3,
-    "components": [],
-    "matchedTexts": [],
-    "keywords": [
-      "알림"
-    ],
-    "image": "https://d31var7gpnk8lm.cloudfront.net/new-79c525c5-1774-4ffe-a013-81528fa7c49d/new-9fe11ab8-2e91-413d-b000-bd1c22e1871e/5338ad50-a107-4496-8a37-3a783e57ec7c/s262.png",
-    "images": [
-      {
-        "id": "cmojmczvr0003l204bj0mheel",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-79c525c5-1774-4ffe-a013-81528fa7c49d/new-9fe11ab8-2e91-413d-b000-bd1c22e1871e/5338ad50-a107-4496-8a37-3a783e57ec7c/s262.png",
-        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmojmczvr0003l204bj0mheel"
-      },
-      {
-        "id": "cmojmczx00005l204dygcuf5e",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-79c525c5-1774-4ffe-a013-81528fa7c49d/new-eba3f551-ed4a-4b2b-94e2-6a32df0259b8/9dfe5d28-8fb0-4662-971d-9dc1956c444f/s263.png",
-        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmojmczx00005l204dygcuf5e"
-      },
-      {
-        "id": "cmojmczxv0007l20404ulqg0b",
-        "url": "https://d31var7gpnk8lm.cloudfront.net/new-79c525c5-1774-4ffe-a013-81528fa7c49d/new-0f6bfc8a-5223-4fd5-ad82-975a9fbe21fd/e50ab4c8-2b30-4775-841b-1550f3e75949/s264.png",
-        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmojmczxv0007l20404ulqg0b"
-      }
-    ],
-    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EC%9E%85%EA%B3%A0%EC%95%8C%EB%A6%BC%20%EC%8B%A0%EC%B2%AD",
-    "source": "UI Bowl",
-    "sourceTool": "search_ui_patterns"
-  },
-  {
-    "id": "demo-212",
+    "id": "demo-264",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -8717,7 +11246,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-213",
+    "id": "demo-265",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -8749,7 +11278,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-214",
+    "id": "demo-266",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -8786,7 +11315,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-215",
+    "id": "demo-267",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -8828,7 +11357,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-216",
+    "id": "demo-268",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -8862,7 +11391,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-217",
+    "id": "demo-269",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -8889,7 +11418,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-218",
+    "id": "demo-270",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -8916,7 +11445,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-219",
+    "id": "demo-271",
     "service": "볼트업",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -8948,7 +11477,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-220",
+    "id": "demo-272",
     "service": "G car",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -8992,7 +11521,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-221",
+    "id": "demo-273",
     "service": "셔클",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -9019,7 +11548,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-222",
+    "id": "demo-274",
     "service": "EVSIS",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -9065,7 +11594,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-223",
+    "id": "demo-275",
     "service": "보맵",
     "domain": "금융",
     "category": "금융",
@@ -9098,7 +11627,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-224",
+    "id": "demo-276",
     "service": "코빗",
     "domain": "금융",
     "category": "금융",
@@ -9137,7 +11666,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-225",
+    "id": "demo-277",
     "service": "토스증권",
     "domain": "금융",
     "category": "금융",
@@ -9183,7 +11712,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-226",
+    "id": "demo-278",
     "service": "네이버페이",
     "domain": "금융",
     "category": "금융",
@@ -9223,7 +11752,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-227",
+    "id": "demo-279",
     "service": "하나원큐",
     "domain": "금융",
     "category": "금융",
@@ -9263,7 +11792,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-228",
+    "id": "demo-280",
     "service": "한패스",
     "domain": "금융",
     "category": "금융",
@@ -9301,7 +11830,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-229",
+    "id": "demo-281",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -9343,7 +11872,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-230",
+    "id": "demo-282",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -9395,7 +11924,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-231",
+    "id": "demo-283",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -9435,7 +11964,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-232",
+    "id": "demo-284",
     "service": "차봇",
     "domain": "자동차",
     "category": "모빌리티",
@@ -9468,7 +11997,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-233",
+    "id": "demo-285",
     "service": "채비",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -9510,7 +12039,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-234",
+    "id": "demo-286",
     "service": "RailOne",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -9555,7 +12084,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-235",
+    "id": "demo-287",
     "service": "오일나우",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -9588,7 +12117,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-236",
+    "id": "demo-288",
     "service": "쏘카",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -9628,7 +12157,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-237",
+    "id": "demo-289",
     "service": "카카오T",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -9670,7 +12199,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-238",
+    "id": "demo-290",
     "service": "모으미",
     "domain": "금융",
     "category": "금융",
@@ -9715,7 +12244,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-239",
+    "id": "demo-291",
     "service": "Bybit",
     "domain": "금융",
     "category": "금융",
@@ -9757,7 +12286,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-240",
+    "id": "demo-292",
     "service": "신한 슈퍼SOL",
     "domain": "금융",
     "category": "금융",
@@ -9789,7 +12318,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-241",
+    "id": "demo-293",
     "service": "도미노",
     "domain": "금융",
     "category": "금융",
@@ -9835,7 +12364,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-242",
+    "id": "demo-294",
     "service": "라이프캐치",
     "domain": "금융",
     "category": "금융",
@@ -9872,7 +12401,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-243",
+    "id": "demo-295",
     "service": "신한 SOL페이",
     "domain": "금융",
     "category": "금융",
@@ -9912,7 +12441,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-244",
+    "id": "demo-296",
     "service": "마이현대",
     "domain": "자동차",
     "category": "모빌리티",
@@ -9956,7 +12485,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-245",
+    "id": "demo-297",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -9993,7 +12522,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-246",
+    "id": "demo-298",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -10035,7 +12564,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-247",
+    "id": "demo-299",
     "service": "Kia",
     "domain": "자동차",
     "category": "모빌리티",
@@ -10067,7 +12596,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-248",
+    "id": "demo-300",
     "service": "센디",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -10094,7 +12623,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-249",
+    "id": "demo-301",
     "service": "G car",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -10138,7 +12667,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-250",
+    "id": "demo-302",
     "service": "셔클",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -10167,7 +12696,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-251",
+    "id": "demo-303",
     "service": "카카오T",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -10211,7 +12740,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-252",
+    "id": "demo-304",
     "service": "토스",
     "domain": "금융",
     "category": "금융",
@@ -10255,7 +12784,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-253",
+    "id": "demo-305",
     "service": "Bybit",
     "domain": "금융",
     "category": "금융",
@@ -10297,7 +12826,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-254",
+    "id": "demo-306",
     "service": "알파스퀘어",
     "domain": "금융",
     "category": "금융",
@@ -10342,7 +12871,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-255",
+    "id": "demo-307",
     "service": "미니스탁",
     "domain": "금융",
     "category": "금융",
@@ -10394,7 +12923,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-256",
+    "id": "demo-308",
     "service": "토스증권",
     "domain": "금융",
     "category": "금융",
@@ -10439,7 +12968,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-257",
+    "id": "demo-309",
     "service": "코빗",
     "domain": "금융",
     "category": "금융",
@@ -10479,7 +13008,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-258",
+    "id": "demo-310",
     "service": "헤이딜러",
     "domain": "자동차",
     "category": "모빌리티",
@@ -10523,7 +13052,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-259",
+    "id": "demo-311",
     "service": "셔클",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -10569,7 +13098,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-260",
+    "id": "demo-312",
     "service": "G car",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -10613,7 +13142,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-261",
+    "id": "demo-313",
     "service": "오일나우",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -10664,7 +13193,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-262",
+    "id": "demo-314",
     "service": "RailOne",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -10711,7 +13240,7 @@ export const sampleScreens = [
     "sourceTool": "search_ui_patterns"
   },
   {
-    "id": "demo-263",
+    "id": "demo-315",
     "service": "EVSIS",
     "domain": "모빌리티",
     "category": "모빌리티",
@@ -10741,6 +13270,1481 @@ export const sampleScreens = [
       }
     ],
     "uiUrl": "https://uibowl.io/name/EVSIS?patterns=%EC%98%88%EC%95%BD%C2%B7%EA%B2%B0%EC%A0%9C&patternName=%EC%98%88%EC%95%BD%ED%95%98%EA%B8%B0-%EC%8B%A4%ED%8C%A8",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-316",
+    "service": "아이쿠카",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "지도뷰·내주변",
+    "variant": "주소등록/반경설정",
+    "title": "주소등록/반경설정",
+    "dataMonth": "2026-05",
+    "screenCount": 8,
+    "components": [
+      "검색 바",
+      "리스트",
+      "슬라이더",
+      "인터랙션",
+      "툴팁"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "주소 입력"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-8f9f19ca-ea5a-46b1-931d-0ad390e54a62/new-f95cf992-699a-473d-bd47-539a1b21d26f/1892dd6f-5f93-4464-9b31-5c45b8a5aaeb/s177.png",
+    "images": [
+      {
+        "id": "cmp0t3bpv000hkz04eo62tctj",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-8f9f19ca-ea5a-46b1-931d-0ad390e54a62/new-f95cf992-699a-473d-bd47-539a1b21d26f/1892dd6f-5f93-4464-9b31-5c45b8a5aaeb/s177.png",
+        "uiUrl": "https://uibowl.io/name/%EC%95%84%EC%9D%B4%EC%BF%A0%EC%B9%B4?patterns=%EC%A7%80%EB%8F%84%EB%B7%B0%C2%B7%EB%82%B4%EC%A3%BC%EB%B3%80&imgId=cmp0t3bpv000hkz04eo62tctj"
+      },
+      {
+        "id": "cmp0t3bqp000jkz04zulemtdx",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-8f9f19ca-ea5a-46b1-931d-0ad390e54a62/new-0758cf61-6caa-413b-993f-a8ed3b317c3c/efe56097-e28b-4f23-8198-e95f1228ff3c/s178.png",
+        "uiUrl": "https://uibowl.io/name/%EC%95%84%EC%9D%B4%EC%BF%A0%EC%B9%B4?patterns=%EC%A7%80%EB%8F%84%EB%B7%B0%C2%B7%EB%82%B4%EC%A3%BC%EB%B3%80&imgId=cmp0t3bqp000jkz04zulemtdx"
+      },
+      {
+        "id": "cmp0t3bri000lkz04ikleuvnr",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-8f9f19ca-ea5a-46b1-931d-0ad390e54a62/new-24259615-5e04-4e11-85bc-2be20c063b0b/60413d1c-7b92-4f55-b882-728d3e5f3543/s179.png",
+        "uiUrl": "https://uibowl.io/name/%EC%95%84%EC%9D%B4%EC%BF%A0%EC%B9%B4?patterns=%EC%A7%80%EB%8F%84%EB%B7%B0%C2%B7%EB%82%B4%EC%A3%BC%EB%B3%80&imgId=cmp0t3bri000lkz04ikleuvnr"
+      },
+      {
+        "id": "cmp0t3bsd000nkz04tklm569u",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-8f9f19ca-ea5a-46b1-931d-0ad390e54a62/new-9c51d2f3-a0bf-4623-8e41-92a748d72d9a/5a85fa9f-f794-4954-921e-4da5945128ff/s180.png",
+        "uiUrl": "https://uibowl.io/name/%EC%95%84%EC%9D%B4%EC%BF%A0%EC%B9%B4?patterns=%EC%A7%80%EB%8F%84%EB%B7%B0%C2%B7%EB%82%B4%EC%A3%BC%EB%B3%80&imgId=cmp0t3bsd000nkz04tklm569u"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%95%84%EC%9D%B4%EC%BF%A0%EC%B9%B4?patterns=%EC%A7%80%EB%8F%84%EB%B7%B0%C2%B7%EB%82%B4%EC%A3%BC%EB%B3%80&patternName=%EC%A3%BC%EC%86%8C%EB%93%B1%EB%A1%9D%2F%EB%B0%98%EA%B2%BD%EC%84%A4%EC%A0%95",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-317",
+    "service": "신한 슈퍼SOL",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "신청하기",
+    "variant": "오픈뱅킹",
+    "title": "오픈뱅킹",
+    "dataMonth": "2026-08",
+    "screenCount": 11,
+    "components": [],
+    "matchedTexts": [
+      "이메일주소",
+      "입력해주세요."
+    ],
+    "keywords": [
+      "주소 입력",
+      "이메일주소",
+      "입력해주세요."
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-5c333fb0-0060-4569-8fe1-9a6b2589ac22/new-437ea6b0-b610-4789-90c1-3a7576c082f5/9fa5776a-5613-46d3-9e16-96ac1413de0c/app_ShinhanBank_202608_305.png",
+    "images": [
+      {
+        "id": "cmsmlc94w00dslc04t1kd7w4e",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-5c333fb0-0060-4569-8fe1-9a6b2589ac22/new-437ea6b0-b610-4789-90c1-3a7576c082f5/9fa5776a-5613-46d3-9e16-96ac1413de0c/app_ShinhanBank_202608_305.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmsmlc94w00dslc04t1kd7w4e"
+      },
+      {
+        "id": "cmsmlc93u00dolc0423yvh0np",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-5c333fb0-0060-4569-8fe1-9a6b2589ac22/new-c55efbfb-943c-4a1a-ae87-26811f4939fe/45e3743d-ded3-4056-804c-e1f2af736309/app_ShinhanBank_202608_302.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmsmlc93u00dolc0423yvh0np"
+      },
+      {
+        "id": "cmsmlc94e00dqlc0477jckypj",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-5c333fb0-0060-4569-8fe1-9a6b2589ac22/new-26003089-4a99-4030-87b2-d5ea87e807b1/bd938caa-5152-43ea-b24e-db96587ef279/app_ShinhanBank_202608_304.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmsmlc94e00dqlc0477jckypj"
+      },
+      {
+        "id": "cmsmlc95f00dulc04fwlvzyep",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-5c333fb0-0060-4569-8fe1-9a6b2589ac22/new-c251d8bb-288c-47a3-8230-e78267540140/806940ef-44ee-4737-986e-bb49b1f33c6d/app_ShinhanBank_202608_306.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmsmlc95f00dulc04fwlvzyep"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmsmlc94w00dslc04t1kd7w4e",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-318",
+    "service": "경기지역화폐",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "iPhone 스크린샷",
+    "variant": "",
+    "title": "iPhone 스크린샷",
+    "dataMonth": "2024-01",
+    "screenCount": 6,
+    "components": [],
+    "matchedTexts": [
+      "배송주소입력"
+    ],
+    "keywords": [
+      "주소 입력",
+      "배송주소입력"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/clrw3rnqw0000l308t9qsgpyk/214b3b25-89d3-4b16-bab9-6b1d190f1002/3.png",
+    "images": [
+      {
+        "id": "cm2iec7qq000hmi0dekevb25j",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/clrw3rnqw0000l308t9qsgpyk/214b3b25-89d3-4b16-bab9-6b1d190f1002/3.png",
+        "uiUrl": "https://uibowl.io/name/%EA%B2%BD%EA%B8%B0%EC%A7%80%EC%97%AD%ED%99%94%ED%8F%90?patterns=iPhone%20%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7&imgId=cm2iec7qq000hmi0dekevb25j"
+      },
+      {
+        "id": "cm2iec7pu000dmi0dc05yz59m",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/clrw3rnqw0000l308t9qsgpyk/01907e69-da30-4c9b-a57a-1e82fe318dc7/1.png",
+        "uiUrl": "https://uibowl.io/name/%EA%B2%BD%EA%B8%B0%EC%A7%80%EC%97%AD%ED%99%94%ED%8F%90?patterns=iPhone%20%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7&imgId=cm2iec7pu000dmi0dc05yz59m"
+      },
+      {
+        "id": "cm2iec7qc000fmi0dzxkzpcsk",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/clrw3rnqw0000l308t9qsgpyk/0a46db6c-fe13-4abd-a1a8-7f84ce0bfdc2/2.png",
+        "uiUrl": "https://uibowl.io/name/%EA%B2%BD%EA%B8%B0%EC%A7%80%EC%97%AD%ED%99%94%ED%8F%90?patterns=iPhone%20%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7&imgId=cm2iec7qc000fmi0dzxkzpcsk"
+      },
+      {
+        "id": "cm2iec7r3000jmi0d5kjud4m9",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/clrw3rnqw0000l308t9qsgpyk/900fa039-31c8-4658-b5cb-6277b819d048/4.png",
+        "uiUrl": "https://uibowl.io/name/%EA%B2%BD%EA%B8%B0%EC%A7%80%EC%97%AD%ED%99%94%ED%8F%90?patterns=iPhone%20%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7&imgId=cm2iec7r3000jmi0d5kjud4m9"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EA%B2%BD%EA%B8%B0%EC%A7%80%EC%97%AD%ED%99%94%ED%8F%90?patterns=iPhone%20%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7&imgId=cm2iec7qq000hmi0dekevb25j",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-319",
+    "service": "차봇",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "마이페이지",
+    "variant": "프로필 수정",
+    "title": "프로필 수정",
+    "dataMonth": "2026-08",
+    "screenCount": 2,
+    "components": [],
+    "matchedTexts": [
+      "주소",
+      "주소를",
+      "입력",
+      "입력해주세요"
+    ],
+    "keywords": [
+      "주소 입력",
+      "주소",
+      "주소를",
+      "입력",
+      "입력해주세요"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-7f0a26de-6079-4d4d-82d8-9b5ac9c6c7b1/new-41cecccf-9436-41a3-bab5-f605d13c5fb0/bfadf863-8d66-4109-9c97-a1bc8a7947f3/app_chabot_202608_59.png",
+    "images": [
+      {
+        "id": "cmtd2zz7a0004lj04dt8ntz52",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7f0a26de-6079-4d4d-82d8-9b5ac9c6c7b1/new-41cecccf-9436-41a3-bab5-f605d13c5fb0/bfadf863-8d66-4109-9c97-a1bc8a7947f3/app_chabot_202608_59.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80&imgId=cmtd2zz7a0004lj04dt8ntz52"
+      },
+      {
+        "id": "cmtd2zz870006lj04kdhlq0yz",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7f0a26de-6079-4d4d-82d8-9b5ac9c6c7b1/new-63a2f130-46bc-4b55-b74e-0c9e2998fc77/27660188-de11-4cb9-bf78-f6b281497400/app_chabot_202608_60.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80&imgId=cmtd2zz870006lj04kdhlq0yz"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80&imgId=cmtd2zz7a0004lj04dt8ntz52",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-320",
+    "service": "차봇",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "신청하기",
+    "variant": "방문세차",
+    "title": "방문세차",
+    "dataMonth": "2026-08",
+    "screenCount": 6,
+    "components": [],
+    "matchedTexts": [
+      "주소",
+      "주소검색",
+      "입력해"
+    ],
+    "keywords": [
+      "주소 입력",
+      "주소",
+      "주소검색",
+      "입력해",
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-d3b21342-29fe-41ea-b950-47b22e129c53/new-419f5106-d3d5-4583-893c-aec6e204869b/0f414bd6-f8bb-4a2e-ac95-c3cb27c76da0/app_chabot_202608_154.png",
+    "images": [
+      {
+        "id": "cmtd3b9es000hjy04e5a3er7y",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d3b21342-29fe-41ea-b950-47b22e129c53/new-ce9e38c1-cf16-4748-9dd1-597c61aa4e8b/89ee7480-243f-422c-9110-49369c1670a8/app_chabot_202608_155.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3b9es000hjy04e5a3er7y"
+      },
+      {
+        "id": "cmtd3b9e3000fjy04vd8wp6e2",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d3b21342-29fe-41ea-b950-47b22e129c53/new-419f5106-d3d5-4583-893c-aec6e204869b/0f414bd6-f8bb-4a2e-ac95-c3cb27c76da0/app_chabot_202608_154.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3b9e3000fjy04vd8wp6e2"
+      },
+      {
+        "id": "cmtd3b9fh000jjy04hh4jgzcs",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d3b21342-29fe-41ea-b950-47b22e129c53/new-4a2df919-c7a6-44ab-8bc6-4dd371cd983b/23c50606-3211-4474-beb7-fe81ca40e0f2/app_chabot_202608_156.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3b9fh000jjy04hh4jgzcs"
+      },
+      {
+        "id": "cmtd3b9g7000ljy04izauzvzs",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d3b21342-29fe-41ea-b950-47b22e129c53/new-d7846a7b-00ab-41d1-83f3-cb8428a0122f/810bfde6-195c-4309-9bd7-383279854ea7/app_chabot_202608_157.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3b9g7000ljy04izauzvzs"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EB%B0%A9%EB%AC%B8%EC%84%B8%EC%B0%A8",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-321",
+    "service": "쏘카",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "생성하기",
+    "variant": "주소등록",
+    "title": "주소등록",
+    "dataMonth": "2026-04",
+    "screenCount": 11,
+    "components": [
+      "텍스트 필드",
+      "토스트&스낵바"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "주소 입력"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-e0913ab5-24e5-4557-9bcd-85cee9338fd7/new-a35ade4a-1946-4484-a854-5c8de7efc733/e97c5ddf-831a-450c-b6ac-0495d4adfc17/s80.png",
+    "images": [
+      {
+        "id": "cmogju0a30003jo04f6inesa2",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-e0913ab5-24e5-4557-9bcd-85cee9338fd7/new-a35ade4a-1946-4484-a854-5c8de7efc733/e97c5ddf-831a-450c-b6ac-0495d4adfc17/s80.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&imgId=cmogju0a30003jo04f6inesa2"
+      },
+      {
+        "id": "cmogju0b10005jo04gizlfhnn",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-e0913ab5-24e5-4557-9bcd-85cee9338fd7/new-00624453-ee63-41fc-a574-c1249bbfddd6/32a06ec6-21be-45be-a9b6-bc61cda1d1a4/s81.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&imgId=cmogju0b10005jo04gizlfhnn"
+      },
+      {
+        "id": "cmogju0bq0007jo04owpcsjrp",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-e0913ab5-24e5-4557-9bcd-85cee9338fd7/new-f9ef50b6-4484-400e-a1c5-b0e0f9534b23/a08bcc23-57b8-4dc1-8072-81387380a053/s82.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&imgId=cmogju0bq0007jo04owpcsjrp"
+      },
+      {
+        "id": "cmogju0cg0009jo04rxxrq1g3",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-e0913ab5-24e5-4557-9bcd-85cee9338fd7/new-b6551f1d-51d3-4213-ae87-50b24b69f98a/6e6715a4-ae0c-4d4f-9eaf-962f6f5f93a2/s83.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&imgId=cmogju0cg0009jo04rxxrq1g3"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%8F%98%EC%B9%B4?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&patternName=%EC%A3%BC%EC%86%8C%EB%93%B1%EB%A1%9D",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-322",
+    "service": "모두의주차장",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "마이페이지",
+    "variant": "이메일주소수정",
+    "title": "이메일주소수정",
+    "dataMonth": "2025-06",
+    "screenCount": 2,
+    "components": [
+      "프로필 이미지"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "주소 입력"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-3c9cd7e8-e555-430d-922b-e21bd27a4a19/new-2ec7f625-9a69-4ed8-b265-566a58e665cd/a9597c19-7fe3-4032-b43d-74ea437498f9/IMG_0949.png",
+    "images": [
+      {
+        "id": "cmclb6qs50003jr0dhjkti4fa",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3c9cd7e8-e555-430d-922b-e21bd27a4a19/new-2ec7f625-9a69-4ed8-b265-566a58e665cd/a9597c19-7fe3-4032-b43d-74ea437498f9/IMG_0949.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AA%A8%EB%91%90%EC%9D%98%EC%A3%BC%EC%B0%A8%EC%9E%A5?patterns=%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80&imgId=cmclb6qs50003jr0dhjkti4fa"
+      },
+      {
+        "id": "cmclb6qt50005jr0d1i2mkmua",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3c9cd7e8-e555-430d-922b-e21bd27a4a19/new-64d2b036-acf7-45c4-bda0-8915a65d40e4/49a88088-69ec-42fa-8e38-ffb945683598/IMG_0962.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AA%A8%EB%91%90%EC%9D%98%EC%A3%BC%EC%B0%A8%EC%9E%A5?patterns=%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80&imgId=cmclb6qt50005jr0d1i2mkmua"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%AA%A8%EB%91%90%EC%9D%98%EC%A3%BC%EC%B0%A8%EC%9E%A5?patterns=%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80&patternName=%EC%9D%B4%EB%A9%94%EC%9D%BC%EC%A3%BC%EC%86%8C%EC%88%98%EC%A0%95",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-323",
+    "service": "G car",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "신청하기",
+    "variant": "한달 렌트 상담 신청",
+    "title": "한달 렌트 상담 신청",
+    "dataMonth": "2026-04",
+    "screenCount": 16,
+    "components": [],
+    "matchedTexts": [
+      "상세주소(입력)",
+      "주소검색 후 선택 값 표기",
+      "주소검색",
+      "입력"
+    ],
+    "keywords": [
+      "주소 입력",
+      "상세주소(입력)",
+      "주소검색 후 선택 값 표기",
+      "주소검색",
+      "입력"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-09f67ea3-b30e-456e-a2af-4086503ad188/new-27956d54-f267-401c-be7f-e88ea0045f28/6678f7fe-61cf-4f0b-85a1-4e50540ed658/ss396.png",
+    "images": [
+      {
+        "id": "cmo85b0mz001ckt04fbydmfxi",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-09f67ea3-b30e-456e-a2af-4086503ad188/new-27956d54-f267-401c-be7f-e88ea0045f28/6678f7fe-61cf-4f0b-85a1-4e50540ed658/ss396.png",
+        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmo85b0mz001ckt04fbydmfxi"
+      },
+      {
+        "id": "cmo85b0km0016kt04pre8csow",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-09f67ea3-b30e-456e-a2af-4086503ad188/new-03ff68e2-7a51-42d9-9435-fcc761abd4d4/e74c41e9-4ef6-4b2c-a0b8-a389f11a3aa5/ss392.png",
+        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmo85b0km0016kt04pre8csow"
+      },
+      {
+        "id": "cmo85b0lf0018kt04ox1vl5g6",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-09f67ea3-b30e-456e-a2af-4086503ad188/new-d922b4ad-973e-4423-a6b1-8fc644dc0a80/3449b4cc-f3bd-4bf1-a2c1-6c4eae0ce8b9/ss393.png",
+        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmo85b0lf0018kt04ox1vl5g6"
+      },
+      {
+        "id": "cmo85b0m7001akt04fqwuk5xp",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-09f67ea3-b30e-456e-a2af-4086503ad188/new-28c1988e-7694-429b-be05-1e6662321716/1cd77584-d397-4515-9604-fb6659025c4b/ss394.png",
+        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmo85b0m7001akt04fqwuk5xp"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmo85b0mz001ckt04fbydmfxi",
+    "source": "UI Bowl",
+    "sourceTool": "search_by_ocr_text"
+  },
+  {
+    "id": "demo-324",
+    "service": "iM뱅크",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "신청하기",
+    "variant": "이체한도변경",
+    "title": "이체한도변경",
+    "dataMonth": "2026-05",
+    "screenCount": 10,
+    "components": [
+      "텍스트 필드"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "한도 조회",
+      "대출 한도"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-cab55a76-7223-4267-badf-6b0590ddf3dc/new-d8e35d11-a86a-4a3a-8b0b-7587bc778071/7fb7da6c-b8ba-4d7a-8fa3-2fdd433f5294/s237.png",
+    "images": [
+      {
+        "id": "cmp0u4kg101pvk4046rw1jnvi",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cab55a76-7223-4267-badf-6b0590ddf3dc/new-d8e35d11-a86a-4a3a-8b0b-7587bc778071/7fb7da6c-b8ba-4d7a-8fa3-2fdd433f5294/s237.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp0u4kg101pvk4046rw1jnvi"
+      },
+      {
+        "id": "cmp0u4kgv01pxk404oo3mkdac",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cab55a76-7223-4267-badf-6b0590ddf3dc/new-d6163939-7823-45f3-a4ff-647a54c14319/1ee58b0d-994a-40ae-bd8b-673f3ec11cb1/s238.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp0u4kgv01pxk404oo3mkdac"
+      },
+      {
+        "id": "cmp0u4kht01pzk404fh7g8yec",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cab55a76-7223-4267-badf-6b0590ddf3dc/new-e24370f6-2471-46f6-b7d6-eea1383e7056/ec8f9040-68f5-4b82-b0bb-a7a0ba81cfe2/s239.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp0u4kht01pzk404fh7g8yec"
+      },
+      {
+        "id": "cmp0u4kiq01q1k4047lnossgh",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cab55a76-7223-4267-badf-6b0590ddf3dc/new-5f461e4a-127e-4e11-b46e-32b64b258629/2d57c33b-8868-4a68-8941-5ed02a3f1b94/s240.png",
+        "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp0u4kiq01q1k4047lnossgh"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/iM%EB%B1%85%ED%81%AC?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EC%9D%B4%EC%B2%B4%ED%95%9C%EB%8F%84%EB%B3%80%EA%B2%BD",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-325",
+    "service": "GME Remit",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "내역",
+    "variant": "연간 송금 한도",
+    "title": "연간 송금 한도",
+    "dataMonth": "2026-02",
+    "screenCount": 2,
+    "components": [
+      "배지"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "한도 조회",
+      "대출 한도"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-6cfaa063-bc40-4531-9835-d493b737d73b/new-245bd684-4b46-4f22-95a0-cb88d7aa11f4/0308302f-2b74-4f01-a844-85ae1c3c5d0d/IMG_9579.png",
+    "images": [
+      {
+        "id": "cmluivwuk007dlb041ps9j83p",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-6cfaa063-bc40-4531-9835-d493b737d73b/new-245bd684-4b46-4f22-95a0-cb88d7aa11f4/0308302f-2b74-4f01-a844-85ae1c3c5d0d/IMG_9579.png",
+        "uiUrl": "https://uibowl.io/name/GME%20Remit?patterns=%EB%82%B4%EC%97%AD&imgId=cmluivwuk007dlb041ps9j83p"
+      },
+      {
+        "id": "cmluivwve007flb04ooasm6co",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-6cfaa063-bc40-4531-9835-d493b737d73b/new-aa1eeb02-c057-453f-96cf-a7af8802a04a/b8c7d31c-3b5d-4d96-9309-1b417359748e/IMG_9580.png",
+        "uiUrl": "https://uibowl.io/name/GME%20Remit?patterns=%EB%82%B4%EC%97%AD&imgId=cmluivwve007flb04ooasm6co"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/GME%20Remit?patterns=%EB%82%B4%EC%97%AD&patternName=%EC%97%B0%EA%B0%84%20%EC%86%A1%EA%B8%88%20%ED%95%9C%EB%8F%84",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-326",
+    "service": "신한 슈퍼SOL",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "비교하기",
+    "variant": "대출-한도 조회",
+    "title": "대출-한도 조회",
+    "dataMonth": "2026-08",
+    "screenCount": 19,
+    "components": [
+      "날짜 피커",
+      "로딩",
+      "버튼",
+      "빈 화면",
+      "체크박스",
+      "텍스트 필드"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "한도 조회",
+      "대출 한도"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-2a8c89eb-d0a7-4464-98f1-9d287dd2fc0a/new-919cd9dd-d1b3-4fa8-b373-084fbf1b8778/6d33dc74-c2b1-4cf3-83da-2357c9b0b228/app_ShinhanBank_202608_205.png",
+    "images": [
+      {
+        "id": "cmsml3llq003gjz0471o640qi",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2a8c89eb-d0a7-4464-98f1-9d287dd2fc0a/new-919cd9dd-d1b3-4fa8-b373-084fbf1b8778/6d33dc74-c2b1-4cf3-83da-2357c9b0b228/app_ShinhanBank_202608_205.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmsml3llq003gjz0471o640qi"
+      },
+      {
+        "id": "cmsml3lmm003ijz04qyz3gmw6",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2a8c89eb-d0a7-4464-98f1-9d287dd2fc0a/new-b0a06fa6-6e89-4efd-8a16-3e398925be7a/a78e1cc1-bc7e-4588-ad62-3bc9ea15479b/app_ShinhanBank_202608_206.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmsml3lmm003ijz04qyz3gmw6"
+      },
+      {
+        "id": "cmsml3ln8003kjz049trvond1",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2a8c89eb-d0a7-4464-98f1-9d287dd2fc0a/new-8d448eaa-b054-47dd-986e-ec162ff72e0c/7f8c3da1-feda-4503-bc73-afa3dc27eb1d/app_ShinhanBank_202608_207.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmsml3ln8003kjz049trvond1"
+      },
+      {
+        "id": "cmsml3lnw003mjz04jda7e5mp",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2a8c89eb-d0a7-4464-98f1-9d287dd2fc0a/new-be4dcfc5-9d8e-4d00-9c39-87710eea98dd/21c6bbcb-bcaa-4c78-9213-414e2f652cda/app_ShinhanBank_202608_208.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&imgId=cmsml3lnw003mjz04jda7e5mp"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EB%B9%84%EA%B5%90%ED%95%98%EA%B8%B0&patternName=%EB%8C%80%EC%B6%9C-%ED%95%9C%EB%8F%84%20%EC%A1%B0%ED%9A%8C",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-327",
+    "service": "하나원큐",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "신청하기",
+    "variant": "금리인하요구권",
+    "title": "금리인하요구권",
+    "dataMonth": "2026-08",
+    "screenCount": 3,
+    "components": [
+      "인터랙션"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "금리"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-7e36878a-7be9-4cc6-86b6-65ef07a2efb8/new-d9d963f1-34dc-4171-adff-588ba77d0774/3c76b7a4-9380-4d16-b954-6e0ea647071e/app_Hana1Q_202608_401.png",
+    "images": [
+      {
+        "id": "cmseoktvy002sju04jm4zm4p3",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7e36878a-7be9-4cc6-86b6-65ef07a2efb8/new-d9d963f1-34dc-4171-adff-588ba77d0774/3c76b7a4-9380-4d16-b954-6e0ea647071e/app_Hana1Q_202608_401.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmseoktvy002sju04jm4zm4p3"
+      },
+      {
+        "id": "cmseoktxj002wju0406g6nthg",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7e36878a-7be9-4cc6-86b6-65ef07a2efb8/new-3a3c94cf-c2aa-4f3a-a2ee-1ff4236e3709/b28788f6-a9e6-45fb-85bf-1c2c2af61b89/app_Hana1Q_202608_402.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmseoktxj002wju0406g6nthg"
+      },
+      {
+        "id": "cmseokty9002yju04mwub2pz0",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7e36878a-7be9-4cc6-86b6-65ef07a2efb8/new-0add5bc0-b0a2-4a5b-88fb-992b47a01580/875f4a44-bb5c-45b0-a6a4-18b4c25d9caf/app_Hana1Q_202608_403.png",
+        "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmseokty9002yju04mwub2pz0"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%95%98%EB%82%98%EC%9B%90%ED%81%90?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EA%B8%88%EB%A6%AC%EC%9D%B8%ED%95%98%EC%9A%94%EA%B5%AC%EA%B6%8C",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-328",
+    "service": "신한 슈퍼SOL",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "조회하기",
+    "variant": "금리 계산기",
+    "title": "금리 계산기",
+    "dataMonth": "2026-08",
+    "screenCount": 3,
+    "components": [
+      "칩"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "금리"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-89065322-8b7b-417f-9ba9-affe9143c18a/new-2c6ec22e-8bb0-451b-b0c9-2ced049b4e8d/706fdfa6-c81b-4ece-b8ed-4050e0458a1a/app_ShinhanBank_202608_440.png",
+    "images": [
+      {
+        "id": "cmsmmgsdo0003l3043jf0n60s",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-89065322-8b7b-417f-9ba9-affe9143c18a/new-2c6ec22e-8bb0-451b-b0c9-2ced049b4e8d/706fdfa6-c81b-4ece-b8ed-4050e0458a1a/app_ShinhanBank_202608_440.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmsmmgsdo0003l3043jf0n60s"
+      },
+      {
+        "id": "cmsmmgsen0005l304vpqk72no",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-89065322-8b7b-417f-9ba9-affe9143c18a/new-ad079246-5c31-4e7f-aad9-d87108c2aca3/89b6638b-633e-4a2d-bd35-ba034c77cc4d/app_ShinhanBank_202608_441.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmsmmgsen0005l304vpqk72no"
+      },
+      {
+        "id": "cmsmmgsfb0007l304t2zz3tv5",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-89065322-8b7b-417f-9ba9-affe9143c18a/new-1951f09c-a675-4ce6-9e3b-41c495650d82/4b7628c9-9387-4a88-8846-9794b9bdded1/app_ShinhanBank_202608_442.png",
+        "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmsmmgsfb0007l304t2zz3tv5"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%8B%A0%ED%95%9C%20%EC%8A%88%ED%8D%BCSOL?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&patternName=%EA%B8%88%EB%A6%AC%20%EA%B3%84%EC%82%B0%EA%B8%B0",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-329",
+    "service": "케이뱅크",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "게이미피케이션",
+    "variant": "입출금 리워드",
+    "title": "입출금 리워드",
+    "dataMonth": "2025-11",
+    "screenCount": 8,
+    "components": [
+      "그래픽",
+      "바텀시트",
+      "빈 화면",
+      "인터랙션",
+      "테이블"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "금리"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-b0dab289-d0c8-428f-b226-bdad75ba27e5/new-625ca0bd-7cab-43d5-b9c3-58aa76c6ab71/3fc3de22-ed95-4841-b4c7-53c0106bfd04/IMG_0538.png",
+    "images": [
+      {
+        "id": "cmhzqfgug0009js0472k6xzo8",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-b0dab289-d0c8-428f-b226-bdad75ba27e5/new-625ca0bd-7cab-43d5-b9c3-58aa76c6ab71/3fc3de22-ed95-4841-b4c7-53c0106bfd04/IMG_0538.png",
+        "uiUrl": "https://uibowl.io/name/%EC%BC%80%EC%9D%B4%EB%B1%85%ED%81%AC?patterns=%EA%B2%8C%EC%9D%B4%EB%AF%B8%ED%94%BC%EC%BC%80%EC%9D%B4%EC%85%98&imgId=cmhzqfgug0009js0472k6xzo8"
+      },
+      {
+        "id": "cmhzqfgvh000bjs04iyb6yud1",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-b0dab289-d0c8-428f-b226-bdad75ba27e5/new-00991009-ddf8-4e73-a08d-e0a6d1b6557b/31a19134-88e4-43e5-ab6f-6ceca4c939c5/IMG_0539.png",
+        "uiUrl": "https://uibowl.io/name/%EC%BC%80%EC%9D%B4%EB%B1%85%ED%81%AC?patterns=%EA%B2%8C%EC%9D%B4%EB%AF%B8%ED%94%BC%EC%BC%80%EC%9D%B4%EC%85%98&imgId=cmhzqfgvh000bjs04iyb6yud1"
+      },
+      {
+        "id": "cmhzqfgw7000djs04btl93pj4",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-b0dab289-d0c8-428f-b226-bdad75ba27e5/new-366a7de0-135e-4366-a544-d2e5c3c2ac2a/c977aaff-8466-450d-aca7-e9f951105e28/IMG_0540.png",
+        "uiUrl": "https://uibowl.io/name/%EC%BC%80%EC%9D%B4%EB%B1%85%ED%81%AC?patterns=%EA%B2%8C%EC%9D%B4%EB%AF%B8%ED%94%BC%EC%BC%80%EC%9D%B4%EC%85%98&imgId=cmhzqfgw7000djs04btl93pj4"
+      },
+      {
+        "id": "cmhzqfgwx000fjs04kpydm9n3",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-b0dab289-d0c8-428f-b226-bdad75ba27e5/new-300586e7-62c1-425c-983d-2ac5b3f4d80d/e1378f83-079a-45fd-953c-718edc5f31c4/IMG_0541.png",
+        "uiUrl": "https://uibowl.io/name/%EC%BC%80%EC%9D%B4%EB%B1%85%ED%81%AC?patterns=%EA%B2%8C%EC%9D%B4%EB%AF%B8%ED%94%BC%EC%BC%80%EC%9D%B4%EC%85%98&imgId=cmhzqfgwx000fjs04kpydm9n3"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%BC%80%EC%9D%B4%EB%B1%85%ED%81%AC?patterns=%EA%B2%8C%EC%9D%B4%EB%AF%B8%ED%94%BC%EC%BC%80%EC%9D%B4%EC%85%98&patternName=%EC%9E%85%EC%B6%9C%EA%B8%88%20%EB%A6%AC%EC%9B%8C%EB%93%9C",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-330",
+    "service": "케이뱅크",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "상세정보 (PDP)",
+    "variant": "입출금리워드",
+    "title": "입출금리워드",
+    "dataMonth": "2025-11",
+    "screenCount": 4,
+    "components": [
+      "그래픽"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "금리"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-c5681133-b40e-4fb4-b306-8822b6b388c7/new-825849b6-979d-4032-b596-36fe30acfe1f/b1fbb053-e5b7-4efe-889d-8f0e1f99217e/IMG_0549.png",
+    "images": [
+      {
+        "id": "cmhzqpboj000hjv04fvkq7tk3",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c5681133-b40e-4fb4-b306-8822b6b388c7/new-825849b6-979d-4032-b596-36fe30acfe1f/b1fbb053-e5b7-4efe-889d-8f0e1f99217e/IMG_0549.png",
+        "uiUrl": "https://uibowl.io/name/%EC%BC%80%EC%9D%B4%EB%B1%85%ED%81%AC?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmhzqpboj000hjv04fvkq7tk3"
+      },
+      {
+        "id": "cmhzqpbp6000jjv04q5ztnz7m",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c5681133-b40e-4fb4-b306-8822b6b388c7/new-c503e9a1-0652-4046-ad21-0b5df50fdb07/b3b4e8d9-3d1f-4968-915a-c0970d3313fc/IMG_0550.png",
+        "uiUrl": "https://uibowl.io/name/%EC%BC%80%EC%9D%B4%EB%B1%85%ED%81%AC?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmhzqpbp6000jjv04q5ztnz7m"
+      },
+      {
+        "id": "cmhzqpbpu000ljv04dg5f6gyp",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c5681133-b40e-4fb4-b306-8822b6b388c7/new-506fcfa5-acd2-4556-bd61-eeb8cc75137e/b14ef435-2ed3-448e-aa70-af10895e5e8d/IMG_0551.png",
+        "uiUrl": "https://uibowl.io/name/%EC%BC%80%EC%9D%B4%EB%B1%85%ED%81%AC?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmhzqpbpu000ljv04dg5f6gyp"
+      },
+      {
+        "id": "cmhzqpbqj000njv04mng4gwtv",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c5681133-b40e-4fb4-b306-8822b6b388c7/new-e0f09e75-bd51-460d-b66e-4d07b4bdfd50/630df210-d25f-43ba-9c30-225293340348/IMG_0552.png",
+        "uiUrl": "https://uibowl.io/name/%EC%BC%80%EC%9D%B4%EB%B1%85%ED%81%AC?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmhzqpbqj000njv04mng4gwtv"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%BC%80%EC%9D%B4%EB%B1%85%ED%81%AC?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&patternName=%EC%9E%85%EC%B6%9C%EA%B8%88%EB%A6%AC%EC%9B%8C%EB%93%9C",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-331",
+    "service": "마이현대",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "내역",
+    "variant": "나의 견적 내역",
+    "title": "나의 견적 내역",
+    "dataMonth": "2026-04",
+    "screenCount": 2,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "견적"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-ed1ec0b9-97fc-443f-89d7-ffe777dd2af0/new-c6419ffd-86f3-4dfb-aa4c-2d5788e4a603/16340694-3720-4a58-8986-af0a7ac2bece/s446.png",
+    "images": [
+      {
+        "id": "cmojkloav000tjs04hmr55grk",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-ed1ec0b9-97fc-443f-89d7-ffe777dd2af0/new-c6419ffd-86f3-4dfb-aa4c-2d5788e4a603/16340694-3720-4a58-8986-af0a7ac2bece/s446.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EB%82%B4%EC%97%AD&imgId=cmojkloav000tjs04hmr55grk"
+      },
+      {
+        "id": "cmojklobm000vjs04w1giux79",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-ed1ec0b9-97fc-443f-89d7-ffe777dd2af0/new-f674b6ea-1995-4532-b80c-84c0f8b34180/cb208e71-dd8a-4bac-a515-bfc4f8e70231/s447.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EB%82%B4%EC%97%AD&imgId=cmojklobm000vjs04w1giux79"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EB%82%B4%EC%97%AD&patternName=%EB%82%98%EC%9D%98%20%EA%B2%AC%EC%A0%81%20%EB%82%B4%EC%97%AD",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-332",
+    "service": "헤이딜러",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "목록 (PLP)",
+    "variant": "실시간 견적",
+    "title": "실시간 견적",
+    "dataMonth": "2026-02",
+    "screenCount": 2,
+    "components": [
+      "리스트",
+      "카드"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "견적"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-18f74d79-9afd-45ef-aa40-ddda58dcaea1/new-61dc418b-2947-433b-921a-0c80e9e13268/236b2d0c-572b-4f18-adb1-12bd4f1f404b/s71.png",
+    "images": [
+      {
+        "id": "cmliq46fx000xlb04pojcghq8",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-18f74d79-9afd-45ef-aa40-ddda58dcaea1/new-61dc418b-2947-433b-921a-0c80e9e13268/236b2d0c-572b-4f18-adb1-12bd4f1f404b/s71.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EB%AA%A9%EB%A1%9D%20%28PLP%29&imgId=cmliq46fx000xlb04pojcghq8"
+      },
+      {
+        "id": "cmliq46gr000zlb04bwfr9nv4",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-18f74d79-9afd-45ef-aa40-ddda58dcaea1/new-92c41513-b874-4a3d-aae7-3586f3c05638/bd394c0f-6907-4892-9982-ca29690760e9/s72.png",
+        "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EB%AA%A9%EB%A1%9D%20%28PLP%29&imgId=cmliq46gr000zlb04bwfr9nv4"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC?patterns=%EB%AA%A9%EB%A1%9D%20%28PLP%29&patternName=%EC%8B%A4%EC%8B%9C%EA%B0%84%20%EA%B2%AC%EC%A0%81",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-333",
+    "service": "차봇",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "상세정보 (PDP)",
+    "variant": "신차견적",
+    "title": "신차견적",
+    "dataMonth": "2026-08",
+    "screenCount": 9,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "견적"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-214e46fa-ad51-414d-a688-7330a641cce3/new-c60ece65-175f-4504-a251-cfde52427c1b/95511ebb-6975-402a-808c-2dce32340fca/app_chabot_202608_90.png",
+    "images": [
+      {
+        "id": "cmtd33ayt000cky04oifhe7gt",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-214e46fa-ad51-414d-a688-7330a641cce3/new-c60ece65-175f-4504-a251-cfde52427c1b/95511ebb-6975-402a-808c-2dce32340fca/app_chabot_202608_90.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmtd33ayt000cky04oifhe7gt"
+      },
+      {
+        "id": "cmtd33azf000eky046sn5og5t",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-214e46fa-ad51-414d-a688-7330a641cce3/new-f4433e76-4942-432d-8540-a0db1d2ade7f/38f40713-bb0c-402b-bc5c-b466dcb46263/app_chabot_202608_91.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmtd33azf000eky046sn5og5t"
+      },
+      {
+        "id": "cmtd33b02000gky04ccfxm9fn",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-214e46fa-ad51-414d-a688-7330a641cce3/new-2cd1f888-7d40-4127-9d71-fbf94a95a8d7/3705063b-8df2-478a-89b1-56e013477847/app_chabot_202608_92.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmtd33b02000gky04ccfxm9fn"
+      },
+      {
+        "id": "cmtd33b0o000iky04xod9q6mr",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-214e46fa-ad51-414d-a688-7330a641cce3/new-d1845d1b-29b7-46f2-8a7f-068edbcf6d1e/414dab26-23c9-4031-9382-35a90f468f0a/app_chabot_202608_93.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmtd33b0o000iky04xod9q6mr"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&patternName=%EC%8B%A0%EC%B0%A8%EA%B2%AC%EC%A0%81",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-334",
+    "service": "마이현대",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "생성하기",
+    "variant": "내 차 만들기-견적서 뽑기",
+    "title": "내 차 만들기-견적서 뽑기",
+    "dataMonth": "2026-04",
+    "screenCount": 18,
+    "components": [
+      "라디오 버튼",
+      "팝업"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "견적"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-eb446963-89d0-42a6-8ca5-28f687ef0b0c/new-228628c5-f284-44ba-80bb-ca5cd84f4d5e/ad9b2d6e-2873-4739-b972-26898b65d965/s418.png",
+    "images": [
+      {
+        "id": "cmojma8la0011lb04cbpen2xn",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-eb446963-89d0-42a6-8ca5-28f687ef0b0c/new-228628c5-f284-44ba-80bb-ca5cd84f4d5e/ad9b2d6e-2873-4739-b972-26898b65d965/s418.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&imgId=cmojma8la0011lb04cbpen2xn"
+      },
+      {
+        "id": "cmojma8m80013lb04q56l6a7n",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-eb446963-89d0-42a6-8ca5-28f687ef0b0c/new-f2092794-a85f-4a6a-b541-6eac9db3249a/ac30b70e-03ce-4bd7-b367-5155e30dabd3/s419.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&imgId=cmojma8m80013lb04q56l6a7n"
+      },
+      {
+        "id": "cmojma8n60015lb04egm3918i",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-eb446963-89d0-42a6-8ca5-28f687ef0b0c/new-14224ba6-b7dc-43d8-98be-91d4ca12046d/086ce16b-9bbb-4dc2-a134-0154feaf4164/s420.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&imgId=cmojma8n60015lb04egm3918i"
+      },
+      {
+        "id": "cmojma8o40017lb041ksfb1tb",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-eb446963-89d0-42a6-8ca5-28f687ef0b0c/new-7cf2b2d0-ee78-463b-9bdb-9714d315ff49/07e52ac8-07a0-476a-b6a5-7de6b062743d/s421.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&imgId=cmojma8o40017lb041ksfb1tb"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0&patternName=%EB%82%B4%20%EC%B0%A8%20%EB%A7%8C%EB%93%A4%EA%B8%B0-%EA%B2%AC%EC%A0%81%EC%84%9C%20%EB%BD%91%EA%B8%B0",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-335",
+    "service": "차봇",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "조회하기",
+    "variant": "견적결과",
+    "title": "견적결과",
+    "dataMonth": "2026-08",
+    "screenCount": 6,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "견적"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-c3f77870-24f2-40bc-b78a-e342ab19d687/new-f9a5af24-a0fe-424e-aca8-7ed57df439fc/3b94e454-efe8-4a17-bdef-25379d22ef28/app_chabot_202608_186.png",
+    "images": [
+      {
+        "id": "cmtd3e8tr00jylj041um4k45d",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c3f77870-24f2-40bc-b78a-e342ab19d687/new-f9a5af24-a0fe-424e-aca8-7ed57df439fc/3b94e454-efe8-4a17-bdef-25379d22ef28/app_chabot_202608_186.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmtd3e8tr00jylj041um4k45d"
+      },
+      {
+        "id": "cmtd3e8ud00k0lj04zbi1xh5o",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c3f77870-24f2-40bc-b78a-e342ab19d687/new-2da58bd1-2b45-4d5c-9b1e-116c835608bc/05a44b32-7a24-4b90-905c-f4b39777fbdb/app_chabot_202608_187.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmtd3e8ud00k0lj04zbi1xh5o"
+      },
+      {
+        "id": "cmtd3e8uy00k2lj04mykjhxgk",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c3f77870-24f2-40bc-b78a-e342ab19d687/new-f1c6f134-4ce3-4a4d-bc38-51b3acc39644/3d2eac62-f407-4277-965b-98a7d7c7aeb6/app_chabot_202608_188.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmtd3e8uy00k2lj04mykjhxgk"
+      },
+      {
+        "id": "cmtd3e8vk00k4lj04h8wsb13a",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c3f77870-24f2-40bc-b78a-e342ab19d687/new-685d6010-8f3f-44eb-b0e6-e768bd46ac3c/512d3562-b334-4e25-bcc0-29efe6e65db0/app_chabot_202608_189.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&imgId=cmtd3e8vk00k4lj04h8wsb13a"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&patternName=%EA%B2%AC%EC%A0%81%EA%B2%B0%EA%B3%BC",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-336",
+    "service": "모두의주차장",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "마이페이지",
+    "variant": "차량정보관리",
+    "title": "차량정보관리",
+    "dataMonth": "2025-06",
+    "screenCount": 6,
+    "components": [
+      "체크박스",
+      "토글&스위치",
+      "토스트&스낵바",
+      "팝업",
+      "프로필 이미지"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "차량 관리",
+      "차량 등록"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-2656be69-925b-4138-bea3-0240255ba428/new-7e836b28-5315-484f-bebe-bb31e2e54de5/591b3d53-82dc-4508-a30a-2915e13976ed/IMG_0949.png",
+    "images": [
+      {
+        "id": "cmclb74jp0003l107glbz67yv",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2656be69-925b-4138-bea3-0240255ba428/new-7e836b28-5315-484f-bebe-bb31e2e54de5/591b3d53-82dc-4508-a30a-2915e13976ed/IMG_0949.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AA%A8%EB%91%90%EC%9D%98%EC%A3%BC%EC%B0%A8%EC%9E%A5?patterns=%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80&imgId=cmclb74jp0003l107glbz67yv"
+      },
+      {
+        "id": "cmclb74ko0005l1074aubbvw2",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2656be69-925b-4138-bea3-0240255ba428/new-9b2df65b-514c-447c-8838-fcd71f12f37a/577f0c6a-8996-460b-aa4e-a615998153c2/IMG_0950.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AA%A8%EB%91%90%EC%9D%98%EC%A3%BC%EC%B0%A8%EC%9E%A5?patterns=%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80&imgId=cmclb74ko0005l1074aubbvw2"
+      },
+      {
+        "id": "cmclb74lf0007l1076opjarpb",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2656be69-925b-4138-bea3-0240255ba428/new-cfa14184-28b1-4026-83bd-e9a4a870f0cd/a102595a-eebc-468d-80f0-694ea528b8e2/IMG_0951.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AA%A8%EB%91%90%EC%9D%98%EC%A3%BC%EC%B0%A8%EC%9E%A5?patterns=%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80&imgId=cmclb74lf0007l1076opjarpb"
+      },
+      {
+        "id": "cmclb74m60009l107z5ry29tx",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-2656be69-925b-4138-bea3-0240255ba428/new-dc31f36e-0fcc-4911-9d05-c2f75d23f60d/6f20c14f-7b65-4bdc-aa9a-a67c6ea6ef73/IMG_0952.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AA%A8%EB%91%90%EC%9D%98%EC%A3%BC%EC%B0%A8%EC%9E%A5?patterns=%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80&imgId=cmclb74m60009l107z5ry29tx"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%AA%A8%EB%91%90%EC%9D%98%EC%A3%BC%EC%B0%A8%EC%9E%A5?patterns=%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80&patternName=%EC%B0%A8%EB%9F%89%EC%A0%95%EB%B3%B4%EA%B4%80%EB%A6%AC",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-337",
+    "service": "모으미",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "신청하기",
+    "variant": "자동이체 브리핑 - 자동이체 - 생성",
+    "title": "자동이체 브리핑 - 자동이체 - 생성",
+    "dataMonth": "2026-10",
+    "screenCount": 4,
+    "components": [
+      "드롭다운",
+      "모달",
+      "텍스트 필드",
+      "플로팅 버튼"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new/8cbb5c71-37aa-44c0-9d02-3e35cfaa73e6/app_jasanlog_202610_230.png",
+    "images": [
+      {
+        "id": "cmv3cmr1j002bl506vcc7kr6u",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/8cbb5c71-37aa-44c0-9d02-3e35cfaa73e6/app_jasanlog_202610_230.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AA%A8%EC%9C%BC%EB%AF%B8?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmv3cmr1j002bl506vcc7kr6u"
+      },
+      {
+        "id": "cmv3cmr2a002dl506q4x6qd57",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/47412a00-eaa6-45a9-a893-e542d1218edd/app_jasanlog_202610_231.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AA%A8%EC%9C%BC%EB%AF%B8?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmv3cmr2a002dl506q4x6qd57"
+      },
+      {
+        "id": "cmv3cmr31002fl506c22kqe4s",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/6c2b0c0d-f13b-45d6-b522-1df5d57eeef0/app_jasanlog_202610_232.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AA%A8%EC%9C%BC%EB%AF%B8?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmv3cmr31002fl506c22kqe4s"
+      },
+      {
+        "id": "cmv3cmr3s002hl506ppw7v8k6",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new/19affa2a-5c4d-4f90-8ef3-5dbb3b5fe51e/app_jasanlog_202610_233.png",
+        "uiUrl": "https://uibowl.io/name/%EB%AA%A8%EC%9C%BC%EB%AF%B8?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmv3cmr3s002hl506ppw7v8k6"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%AA%A8%EC%9C%BC%EB%AF%B8?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EC%9E%90%EB%8F%99%EC%9D%B4%EC%B2%B4%20%EB%B8%8C%EB%A6%AC%ED%95%91%20-%20%EC%9E%90%EB%8F%99%EC%9D%B4%EC%B2%B4%20-%20%EC%83%9D%EC%84%B1",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-338",
+    "service": "라이프캐치",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "신청하기",
+    "variant": "교통사고 손해사정",
+    "title": "교통사고 손해사정",
+    "dataMonth": "2026-06",
+    "screenCount": 7,
+    "components": [
+      "그래프&차트",
+      "완료&성공",
+      "체크박스",
+      "카드",
+      "플로팅 버튼"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-76c9efae-7272-4414-ade6-43a46275f1fb/new-f4d61699-7cb0-4ad5-b3e9-ee2c50098314/5dbdd882-0586-4bcc-af64-5ab98a802b25/app_LifeCatch_202606_69.png",
+    "images": [
+      {
+        "id": "cmqzb4uh0006ml704wxnzedlh",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-76c9efae-7272-4414-ade6-43a46275f1fb/new-f4d61699-7cb0-4ad5-b3e9-ee2c50098314/5dbdd882-0586-4bcc-af64-5ab98a802b25/app_LifeCatch_202606_69.png",
+        "uiUrl": "https://uibowl.io/name/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%BA%90%EC%B9%98?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmqzb4uh0006ml704wxnzedlh"
+      },
+      {
+        "id": "cmqzb4uhr006ol704r7bzeocn",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-76c9efae-7272-4414-ade6-43a46275f1fb/new-ab00980c-c445-4bd6-8fef-5453cb80618b/7ecbb8e5-fc17-490d-bb92-4fdb0c345ac9/app_LifeCatch_202606_70.png",
+        "uiUrl": "https://uibowl.io/name/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%BA%90%EC%B9%98?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmqzb4uhr006ol704r7bzeocn"
+      },
+      {
+        "id": "cmqzb4uij006ql70466qov23f",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-76c9efae-7272-4414-ade6-43a46275f1fb/new-e565dcce-4018-4bf2-9dee-8eb51c1c7207/01ff00ef-c072-4085-b7e6-39414760ffc1/app_LifeCatch_202606_71.png",
+        "uiUrl": "https://uibowl.io/name/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%BA%90%EC%B9%98?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmqzb4uij006ql70466qov23f"
+      },
+      {
+        "id": "cmqzb4uj9006sl704vkm0tjqu",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-76c9efae-7272-4414-ade6-43a46275f1fb/new-3f1ce8c4-a66f-47f3-852b-4a38d4908d48/30b953e5-21f4-4580-8606-48d561a6ae82/app_LifeCatch_202606_72.png",
+        "uiUrl": "https://uibowl.io/name/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%BA%90%EC%B9%98?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmqzb4uj9006sl704vkm0tjqu"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%9D%BC%EC%9D%B4%ED%94%84%EC%BA%90%EC%B9%98?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EA%B5%90%ED%86%B5%EC%82%AC%EA%B3%A0%20%EC%86%90%ED%95%B4%EC%82%AC%EC%A0%95",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-339",
+    "service": "토스",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "신청하기",
+    "variant": "가족결제",
+    "title": "가족결제",
+    "dataMonth": "2026-07",
+    "screenCount": 4,
+    "components": [
+      "그래픽",
+      "슬라이더"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-3c39a0e9-d949-4a8e-bec9-3283aa8d6291/new-f2a21d0e-e9c6-4160-beca-948aabe2267a/7ff9d92d-bc0d-4cfc-9841-efe37d724766/app_toss_202607_428.png",
+    "images": [
+      {
+        "id": "cmrtxbxpf008zkz04j5hf5scv",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3c39a0e9-d949-4a8e-bec9-3283aa8d6291/new-f2a21d0e-e9c6-4160-beca-948aabe2267a/7ff9d92d-bc0d-4cfc-9841-efe37d724766/app_toss_202607_428.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmrtxbxpf008zkz04j5hf5scv"
+      },
+      {
+        "id": "cmrtxbxqh0091kz045bz0sm9t",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3c39a0e9-d949-4a8e-bec9-3283aa8d6291/new-3030f51d-d1a5-45ab-ad53-2071f8c31db8/cef50562-5d11-43dc-a4f7-312092266f66/app_toss_202607_429.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmrtxbxqh0091kz045bz0sm9t"
+      },
+      {
+        "id": "cmrtxbxr70093kz0491jr6tm2",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3c39a0e9-d949-4a8e-bec9-3283aa8d6291/new-9ebfffce-71b8-4dd7-83f7-e0a8a5c3c8dc/61e22a58-3bab-4a26-9610-d32fa6a9d412/app_toss_202607_430.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmrtxbxr70093kz0491jr6tm2"
+      },
+      {
+        "id": "cmrtxbxry0095kz04izav2spm",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3c39a0e9-d949-4a8e-bec9-3283aa8d6291/new-72e03654-7d9f-44c1-9b58-04047bb2b051/65ac5e1f-b07e-4404-8385-bba558f611e7/app_toss_202607_431.png",
+        "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmrtxbxry0095kz04izav2spm"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%ED%86%A0%EC%8A%A4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EA%B0%80%EC%A1%B1%EA%B2%B0%EC%A0%9C",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-340",
+    "service": "Bybit",
+    "domain": "금융",
+    "category": "금융",
+    "pattern": "신청하기",
+    "variant": "이벤트",
+    "title": "이벤트",
+    "dataMonth": "2026-08",
+    "screenCount": 4,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-072b0dec-ed8d-4ff0-8ea5-340cf51fb7b3/new-9aeeb06f-6190-46ab-bea7-124c17dfdf39/b0eaf110-59af-491b-a583-0c19cd3d46b2/app_bybit_202608_99.png",
+    "images": [
+      {
+        "id": "cmson0gwu0003l404gzk4p0tn",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-072b0dec-ed8d-4ff0-8ea5-340cf51fb7b3/new-9aeeb06f-6190-46ab-bea7-124c17dfdf39/b0eaf110-59af-491b-a583-0c19cd3d46b2/app_bybit_202608_99.png",
+        "uiUrl": "https://uibowl.io/name/Bybit?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmson0gwu0003l404gzk4p0tn"
+      },
+      {
+        "id": "cmson0gxs0005l404m8vfql8f",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-072b0dec-ed8d-4ff0-8ea5-340cf51fb7b3/new-4fafdfdd-6a52-46a3-92b7-1686f3f2de0c/d5a9ad0c-fbc9-4df5-a6df-ff5671c86a82/app_bybit_202608_100.png",
+        "uiUrl": "https://uibowl.io/name/Bybit?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmson0gxs0005l404m8vfql8f"
+      },
+      {
+        "id": "cmson0gyg0007l404sun5km8y",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-072b0dec-ed8d-4ff0-8ea5-340cf51fb7b3/new-3fe5140f-4ea1-44ba-9b33-1fa09a1462bd/8a264baf-2b22-4daa-8407-8f944e90a1ce/app_bybit_202608_101.png",
+        "uiUrl": "https://uibowl.io/name/Bybit?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmson0gyg0007l404sun5km8y"
+      },
+      {
+        "id": "cmson0gz40009l404z7ofs497",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-072b0dec-ed8d-4ff0-8ea5-340cf51fb7b3/new-e2adc5cf-dc5d-4047-aee6-cba9c19825ec/aafce300-28f6-42ec-aaef-dcf5586a281b/app_bybit_202608_102.png",
+        "uiUrl": "https://uibowl.io/name/Bybit?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmson0gz40009l404z7ofs497"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/Bybit?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EC%9D%B4%EB%B2%A4%ED%8A%B8",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-341",
+    "service": "마이현대",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "내역",
+    "variant": "나의 시승 신청 내역",
+    "title": "나의 시승 신청 내역",
+    "dataMonth": "2026-04",
+    "screenCount": 3,
+    "components": [
+      "페이지네이션"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-c2f649ff-0b99-4c33-addf-ea081b5415a8/new-c2d757f5-4334-4486-bf4f-12729f9cb164/9566f787-47d0-4a5d-bc2c-834641389623/s167.png",
+    "images": [
+      {
+        "id": "cmojkm8n70017js04k0bohjdd",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c2f649ff-0b99-4c33-addf-ea081b5415a8/new-c2d757f5-4334-4486-bf4f-12729f9cb164/9566f787-47d0-4a5d-bc2c-834641389623/s167.png",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EB%82%B4%EC%97%AD&imgId=cmojkm8n70017js04k0bohjdd"
+      },
+      {
+        "id": "cmojkm8o00019js04iiwt1mb0",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c2f649ff-0b99-4c33-addf-ea081b5415a8/new-3bc6fae2-3f6b-4a69-8b8d-7120b7d3b275/57356226-8903-4a40-ae2b-5b4a458a9cea/s168.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EB%82%B4%EC%97%AD&imgId=cmojkm8o00019js04iiwt1mb0"
+      },
+      {
+        "id": "cmojkm8ot001bjs04iccd3cv0",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-c2f649ff-0b99-4c33-addf-ea081b5415a8/new-53a8e556-96f4-42ff-b2b7-7ee469593417/2934c35c-6bc6-45fc-a3bf-d2d77bd7e105/s169.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EB%82%B4%EC%97%AD&imgId=cmojkm8ot001bjs04iccd3cv0"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EB%82%B4%EC%97%AD&patternName=%EB%82%98%EC%9D%98%20%EC%8B%9C%EC%8A%B9%20%EC%8B%A0%EC%B2%AD%20%EB%82%B4%EC%97%AD",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-342",
+    "service": "Kia",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "내역",
+    "variant": "시승신청",
+    "title": "시승신청",
+    "dataMonth": "2026-06",
+    "screenCount": 2,
+    "components": [
+      "테이블"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-4da99c5e-27e3-4023-8e0f-52c363803c7b/new-31cf6b1c-644b-48cb-860c-e3a754f2a4dc/38215664-9a89-474d-8843-33a682e9937d/IMG_4141.png",
+    "images": [
+      {
+        "id": "cmpuohua50004i904r02as55q",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4da99c5e-27e3-4023-8e0f-52c363803c7b/new-31cf6b1c-644b-48cb-860c-e3a754f2a4dc/38215664-9a89-474d-8843-33a682e9937d/IMG_4141.png",
+        "uiUrl": "https://uibowl.io/name/Kia?patterns=%EB%82%B4%EC%97%AD&imgId=cmpuohua50004i904r02as55q"
+      },
+      {
+        "id": "cmpuohub90006i904yu5drg73",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-4da99c5e-27e3-4023-8e0f-52c363803c7b/new-1712ae8b-0df6-46cd-ac73-d29674c44887/095b8ac4-6794-49c6-b2e7-2c19fb18242a/IMG_4142.png",
+        "uiUrl": "https://uibowl.io/name/Kia?patterns=%EB%82%B4%EC%97%AD&imgId=cmpuohub90006i904yu5drg73"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/Kia?patterns=%EB%82%B4%EC%97%AD&patternName=%EC%8B%9C%EC%8A%B9%EC%8B%A0%EC%B2%AD",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-343",
+    "service": "차봇",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "신청하기",
+    "variant": "무료상담",
+    "title": "무료상담",
+    "dataMonth": "2026-08",
+    "screenCount": 5,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-7b2fcc04-358a-4ba3-81f7-5d60ba413664/new-8e78da21-0324-4eb7-9d80-662218381d03/4269d7ef-4023-4a04-bbec-f5cef00d21ec/app_chabot_202608_149.png",
+    "images": [
+      {
+        "id": "cmtd3azf30003jy0477dd6djn",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7b2fcc04-358a-4ba3-81f7-5d60ba413664/new-8e78da21-0324-4eb7-9d80-662218381d03/4269d7ef-4023-4a04-bbec-f5cef00d21ec/app_chabot_202608_149.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3azf30003jy0477dd6djn"
+      },
+      {
+        "id": "cmtd3azg40005jy0486ybkhy6",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7b2fcc04-358a-4ba3-81f7-5d60ba413664/new-56dab9e4-d394-440e-8a03-99c7f9b4931e/59873702-b972-40bf-aca2-97b7571c4bc1/app_chabot_202608_150.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3azg40005jy0486ybkhy6"
+      },
+      {
+        "id": "cmtd3azgx0007jy04tksdiehz",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7b2fcc04-358a-4ba3-81f7-5d60ba413664/new-401172d0-5f56-47f2-bc70-36cf3206fbc5/75e58372-7cbe-4b2f-87fe-3dda48069657/app_chabot_202608_151.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3azgx0007jy04tksdiehz"
+      },
+      {
+        "id": "cmtd3azho0009jy045obq4d74",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-7b2fcc04-358a-4ba3-81f7-5d60ba413664/new-8086733f-5b0b-42f3-8f30-c652929f2569/ce34a430-9cd7-49f5-8c7a-1195169a4fdd/app_chabot_202608_152.png",
+        "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmtd3azho0009jy045obq4d74"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%B0%A8%EB%B4%87?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EB%AC%B4%EB%A3%8C%EC%83%81%EB%8B%B4",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-344",
+    "service": "Kia",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "신청하기",
+    "variant": "시승",
+    "title": "시승",
+    "dataMonth": "2026-06",
+    "screenCount": 16,
+    "components": [
+      "날짜 피커",
+      "라디오 버튼",
+      "리스트",
+      "버튼",
+      "시간 피커",
+      "탭"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-f6ce57c6-cc1a-4128-ba31-50695a115d93/new-a70bfe2c-ae78-4b61-b110-d4fc90771b86/d7e0c3f5-3486-48fe-827f-49a15b734e5a/IMG_4125.png",
+    "images": [
+      {
+        "id": "cmpur5h5e000tju044ohylb9k",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f6ce57c6-cc1a-4128-ba31-50695a115d93/new-a70bfe2c-ae78-4b61-b110-d4fc90771b86/d7e0c3f5-3486-48fe-827f-49a15b734e5a/IMG_4125.png",
+        "uiUrl": "https://uibowl.io/name/Kia?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmpur5h5e000tju044ohylb9k"
+      },
+      {
+        "id": "cmpur5h69000vju04ka97t6x0",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f6ce57c6-cc1a-4128-ba31-50695a115d93/new-dc6806c7-7967-4f7d-b137-bb1df82e609d/c000f795-bcef-45e2-865b-2a9f143f6fd0/IMG_4126.png",
+        "uiUrl": "https://uibowl.io/name/Kia?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmpur5h69000vju04ka97t6x0"
+      },
+      {
+        "id": "cmpur5h75000xju047frj1gj1",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f6ce57c6-cc1a-4128-ba31-50695a115d93/new-6f53e8e5-a758-44d5-919e-a2d184a56324/45c81185-140d-4aaa-bd56-f27eb1117f76/IMG_4127.png",
+        "uiUrl": "https://uibowl.io/name/Kia?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmpur5h75000xju047frj1gj1"
+      },
+      {
+        "id": "cmpur5h81000zju049me4uluh",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-f6ce57c6-cc1a-4128-ba31-50695a115d93/new-81fc7866-3b81-47b1-9635-1b34af7e6f00/64a9d703-92ea-4133-948e-f4e8090a9637/IMG_4128.png",
+        "uiUrl": "https://uibowl.io/name/Kia?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmpur5h81000zju049me4uluh"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/Kia?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EC%8B%9C%EC%8A%B9",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-345",
+    "service": "마이현대",
+    "domain": "자동차",
+    "category": "모빌리티",
+    "pattern": "상세정보 (PDP)",
+    "variant": "시승 신청 안내",
+    "title": "시승 신청 안내",
+    "dataMonth": "2026-04",
+    "screenCount": 4,
+    "components": [],
+    "matchedTexts": [],
+    "keywords": [
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-cc42f310-a50d-4506-a673-70ea6ec4c441/new-f5dc1032-4872-473a-8e2e-17264571ffcb/a0b7a145-bf3d-4662-a880-1fbd2de43158/s128.PNG",
+    "images": [
+      {
+        "id": "cmojm90b6000nl804sikdy4u3",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cc42f310-a50d-4506-a673-70ea6ec4c441/new-f5dc1032-4872-473a-8e2e-17264571ffcb/a0b7a145-bf3d-4662-a880-1fbd2de43158/s128.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm90b6000nl804sikdy4u3"
+      },
+      {
+        "id": "cmojm90bv000pl804k3x2uur0",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cc42f310-a50d-4506-a673-70ea6ec4c441/new-c5d0ce03-0d5d-4252-ba94-a9d346b940c7/7e75d066-8be5-49e8-bd5a-5668f32996ae/s129.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm90bv000pl804k3x2uur0"
+      },
+      {
+        "id": "cmojm90cm000rl8044orv6ca6",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cc42f310-a50d-4506-a673-70ea6ec4c441/new-4e5ed678-eddb-4b70-aff6-0657c5350588/a32405a9-fe0c-4e89-8d76-638d4f974a13/s130.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm90cm000rl8044orv6ca6"
+      },
+      {
+        "id": "cmojm90dc000tl804gm3bh488",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-cc42f310-a50d-4506-a673-70ea6ec4c441/new-8ee52ca4-a604-468b-944e-8e3c17ea4404/27c89b80-3bb1-416a-a5dd-faf53b67a665/s131.PNG",
+        "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&imgId=cmojm90dc000tl804gm3bh488"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%A7%88%EC%9D%B4%ED%98%84%EB%8C%80?patterns=%EC%83%81%EC%84%B8%EC%A0%95%EB%B3%B4%20%28PDP%29&patternName=%EC%8B%9C%EC%8A%B9%20%EC%8B%A0%EC%B2%AD%20%EC%95%88%EB%82%B4",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-346",
+    "service": "셔클",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "신청하기",
+    "variant": "기기 반납",
+    "title": "기기 반납",
+    "dataMonth": "2026-07",
+    "screenCount": 6,
+    "components": [
+      "로딩",
+      "배지",
+      "카드"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-3fbcbf39-d443-46cb-a1c9-1d03a0f09063/new-cd634d38-a8f0-4aef-8a2f-ae0866ea141e/0c5b4fe3-8e9a-48ce-a315-7132deb0d3f6/app_shucle_202607_124.png",
+    "images": [
+      {
+        "id": "cmrt1aevm00c4jy04gptjh0gr",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3fbcbf39-d443-46cb-a1c9-1d03a0f09063/new-cd634d38-a8f0-4aef-8a2f-ae0866ea141e/0c5b4fe3-8e9a-48ce-a315-7132deb0d3f6/app_shucle_202607_124.png",
+        "uiUrl": "https://uibowl.io/name/%EC%85%94%ED%81%B4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmrt1aevm00c4jy04gptjh0gr"
+      },
+      {
+        "id": "cmrt1aewa00c6jy04so8rpg2d",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3fbcbf39-d443-46cb-a1c9-1d03a0f09063/new-d016adf2-119d-48d2-9f49-eba6bfb8b028/a00c421e-a06f-472a-8662-962dcab34753/app_shucle_202607_125.png",
+        "uiUrl": "https://uibowl.io/name/%EC%85%94%ED%81%B4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmrt1aewa00c6jy04so8rpg2d"
+      },
+      {
+        "id": "cmrt1aex100c8jy04daaimb8p",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3fbcbf39-d443-46cb-a1c9-1d03a0f09063/new-b5f8275b-f1f1-41dc-a090-428a38a7114d/a2ddd261-195b-4439-b6cd-a137105085dd/app_shucle_202607_126.png",
+        "uiUrl": "https://uibowl.io/name/%EC%85%94%ED%81%B4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmrt1aex100c8jy04daaimb8p"
+      },
+      {
+        "id": "cmrt1aexr00cajy04cuvdk1tw",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-3fbcbf39-d443-46cb-a1c9-1d03a0f09063/new-208e2ba9-07a8-435d-b60d-cfe71dca69dc/c0c9e10c-68a4-42db-acdd-0d31445e99a3/app_shucle_202607_127.png",
+        "uiUrl": "https://uibowl.io/name/%EC%85%94%ED%81%B4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmrt1aexr00cajy04cuvdk1tw"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%85%94%ED%81%B4?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EA%B8%B0%EA%B8%B0%20%EB%B0%98%EB%82%A9",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-347",
+    "service": "센디",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "신청하기",
+    "variant": "경유지 추가",
+    "title": "경유지 추가",
+    "dataMonth": "2026-05",
+    "screenCount": 10,
+    "components": [
+      "지도 핀",
+      "탭",
+      "토글&스위치"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-a302d886-6024-4965-acd8-b916c1f34906/new-5ec5add1-4f60-483c-8284-89c90f99a4a8/1a5e54d4-05eb-445d-85d1-46ecec63d903/s116.png",
+    "images": [
+      {
+        "id": "cmp6b4w8g0004l704blq3nbnj",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-a302d886-6024-4965-acd8-b916c1f34906/new-5ec5add1-4f60-483c-8284-89c90f99a4a8/1a5e54d4-05eb-445d-85d1-46ecec63d903/s116.png",
+        "uiUrl": "https://uibowl.io/name/%EC%84%BC%EB%94%94?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp6b4w8g0004l704blq3nbnj"
+      },
+      {
+        "id": "cmp6b4wjv0006l704c7wplcbp",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-a302d886-6024-4965-acd8-b916c1f34906/new-f63d667e-e999-4d13-986c-b116fd4f041a/8583bcdf-e73e-43f7-ae0c-e7bd9671dbbe/s117.png",
+        "uiUrl": "https://uibowl.io/name/%EC%84%BC%EB%94%94?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp6b4wjv0006l704c7wplcbp"
+      },
+      {
+        "id": "cmp6b4wrh0008l704mchqmnvs",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-a302d886-6024-4965-acd8-b916c1f34906/new-ac3ad58e-080e-48a7-a7fc-d4366514b5d4/1bb97c37-a419-4262-8e97-c6d4af77cac9/s118.png",
+        "uiUrl": "https://uibowl.io/name/%EC%84%BC%EB%94%94?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp6b4wrh0008l704mchqmnvs"
+      },
+      {
+        "id": "cmp6b4wz4000al704vaytq2gg",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-a302d886-6024-4965-acd8-b916c1f34906/new-fd98feb5-8848-4ae2-9dcd-244683949a84/cb645473-6da5-4718-9dc4-202bd771fd5a/s119.png",
+        "uiUrl": "https://uibowl.io/name/%EC%84%BC%EB%94%94?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmp6b4wz4000al704vaytq2gg"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EC%84%BC%EB%94%94?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EA%B2%BD%EC%9C%A0%EC%A7%80%20%EC%B6%94%EA%B0%80",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-348",
+    "service": "G car",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "신청하기",
+    "variant": "면허증 변경",
+    "title": "면허증 변경",
+    "dataMonth": "2026-04",
+    "screenCount": 6,
+    "components": [
+      "탭"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-1e2841ec-1ee0-42cc-a1e5-4a83ef2bbf53/new-1c18562b-3b19-45e9-ae5b-708b73221e9f/9b663e02-b4a8-428c-b70b-6600bbf054de/z42.png",
+    "images": [
+      {
+        "id": "cmo85a5p9000ql104kgiae5i5",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-1e2841ec-1ee0-42cc-a1e5-4a83ef2bbf53/new-1c18562b-3b19-45e9-ae5b-708b73221e9f/9b663e02-b4a8-428c-b70b-6600bbf054de/z42.png",
+        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmo85a5p9000ql104kgiae5i5"
+      },
+      {
+        "id": "cmo85a5pv000sl104niy74dxc",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-1e2841ec-1ee0-42cc-a1e5-4a83ef2bbf53/new-b63f56ec-3bd3-40e5-98ef-6bcaa86ef374/0888ac00-8b84-4807-9907-5d47a4d5daf9/z43.png",
+        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmo85a5pv000sl104niy74dxc"
+      },
+      {
+        "id": "cmo85a5qi000ul104lfztxhr9",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-1e2841ec-1ee0-42cc-a1e5-4a83ef2bbf53/new-fb31b36d-b6a7-43a6-90b9-b3569c8d1ec4/ea163f5a-43ac-4065-a3ee-fefdec6cc2b5/z44.png",
+        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmo85a5qi000ul104lfztxhr9"
+      },
+      {
+        "id": "cmo85a5r5000wl10409925ex2",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-1e2841ec-1ee0-42cc-a1e5-4a83ef2bbf53/new-28c7a2ea-54d9-41a6-9322-dab664939b47/43cf48df-d5ae-43fc-bf95-b3334c80dd88/z45.png",
+        "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmo85a5r5000wl10409925ex2"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/G%20car?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&patternName=%EB%A9%B4%ED%97%88%EC%A6%9D%20%EB%B3%80%EA%B2%BD",
+    "source": "UI Bowl",
+    "sourceTool": "search_ui_patterns"
+  },
+  {
+    "id": "demo-349",
+    "service": "볼트업",
+    "domain": "모빌리티",
+    "category": "모빌리티",
+    "pattern": "신청하기",
+    "variant": "",
+    "title": "신청하기",
+    "dataMonth": "2026-04",
+    "screenCount": 16,
+    "components": [
+      "모달",
+      "칩"
+    ],
+    "matchedTexts": [],
+    "keywords": [
+      "신청"
+    ],
+    "image": "https://d31var7gpnk8lm.cloudfront.net/new-d624b55a-0699-4866-af46-4bf748fa579b/new-e82dd445-7a61-4586-bb2e-e3233f85a64f/6d865080-09c7-4ece-9f5a-0a26e9e2c6d8/s101.png",
+    "images": [
+      {
+        "id": "cmojek9mj0003l504q6b686xi",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d624b55a-0699-4866-af46-4bf748fa579b/new-e82dd445-7a61-4586-bb2e-e3233f85a64f/6d865080-09c7-4ece-9f5a-0a26e9e2c6d8/s101.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmojek9mj0003l504q6b686xi"
+      },
+      {
+        "id": "cmojek9nl0005l504vsifm3ft",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d624b55a-0699-4866-af46-4bf748fa579b/new-fa9c1f88-8540-4c93-b654-ac4707b0eb4d/decaf359-56de-4b2a-be03-4331f25ef169/s102.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmojek9nl0005l504vsifm3ft"
+      },
+      {
+        "id": "cmojek9oh0007l5041p915vok",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d624b55a-0699-4866-af46-4bf748fa579b/new-9138ed35-ecf1-4d26-9217-361340149421/4c0d285a-e92d-4bb0-b805-71705d67e2ad/s103.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmojek9oh0007l5041p915vok"
+      },
+      {
+        "id": "cmojek9pa0009l5044w36r0k5",
+        "url": "https://d31var7gpnk8lm.cloudfront.net/new-d624b55a-0699-4866-af46-4bf748fa579b/new-31885df6-1b49-4af1-870e-8b50f1e39f34/1b1dc009-3e30-40d9-92c5-7a9f011411b8/s104.png",
+        "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&imgId=cmojek9pa0009l5044w36r0k5"
+      }
+    ],
+    "uiUrl": "https://uibowl.io/name/%EB%B3%BC%ED%8A%B8%EC%97%85?patterns=%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0",
     "source": "UI Bowl",
     "sourceTool": "search_ui_patterns"
   }
