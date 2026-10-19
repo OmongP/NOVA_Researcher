@@ -18,7 +18,13 @@
   --auto-soft: #fdeeec;
   --mobility: #0f9d7a;
   --mobility-soft: #e5f6f1;
-  --radius: 16px;
+  /* Radius — 컴포넌트별로 일관되게 */
+  --radius-4: 4px; /* Outline Box(작은 박스), 태그 */
+  --radius-8: 8px; /* Button, Tooltip, 입력 */
+  --radius-12: 12px; /* Outline Box */
+  --radius-16: 16px; /* Card, Banner, Sheet, Popup */
+  --radius-half: 50%; /* 원형 */
+  --radius: var(--radius-16);
   --shadow-hover: 0 8px 24px rgb(25 31 40 / 0.08);
   --ease: cubic-bezier(0.2, 0, 0, 1);
 
