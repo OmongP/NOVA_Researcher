@@ -436,7 +436,7 @@ export default function DarkPatternInspector({ isLive, loginUrl }) {
                 <div className="detail-actions">
                   {isLive ? (
                     <button type="button" className="button button-primary" onClick={findCases} disabled={result.status === 'loading'}>
-                      {result.status === 'loading' ? '사례 찾는 중…' : 'UI Bowl에서 사례 찾기'}
+                      {result.status === 'loading' ? '사례 찾는 중…' : '사례 찾기'}
                     </button>
                   ) : IS_DEMO ? (
                     <span className="card-reason">데모 사이트에서는 UI Bowl 사례 검색을 쓸 수 없어요. 사내 설치 버전에서 쓸 수 있어요.</span>

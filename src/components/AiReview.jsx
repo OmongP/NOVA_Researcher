@@ -751,7 +751,7 @@ export default function AiReview() {
                     <div className="ai-cases">
                       {!c && (
                         <button type="button" className="link-button" onClick={() => findCases(f.ruleId)}>
-                          UI Bowl에서 같은 유형의 실제 사례 보기 →
+                          같은 유형의 실제 사례 보기 →
                         </button>
                       )}
                       {c?.loading && <span className="card-reason">사례를 찾고 있어요…</span>}
