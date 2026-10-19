@@ -21,7 +21,10 @@ const formatTime = (iso) => new Date(iso).toLocaleTimeString('ko-KR', { hour: '2
 
 function AuthBanner({ auth, onRetry }) {
   if (auth.state === 'checking') return <div className="banner">UI Bowl 로그인 상태를 확인하고 있어요…</div>
-  if (auth.state === 'connected') return null
+  if (auth.state === 'connected') {
+    // 데모 사이트라도 서버(Cloudflare Function)가 UI Bowl에 연결돼 있으면 실시간으로 검색해요.
+    return IS_DEMO ? <div className="banner">UI Bowl에 실시간으로 연결돼 있어요. AI 1차 검토는 데모에서 샘플 결과로 보여줘요.</div> : null
+  }
   if (auth.state === 'demo') {
     return (
       <div className="banner">
@@ -140,7 +143,17 @@ export default function App() {
   const isLive = auth.state === 'connected'
 
   async function checkAuth() {
-    if (IS_DEMO) return setAuth({ state: 'demo' })
+    if (IS_DEMO) {
+      // 우선 샘플 데이터로 보여주고, 실시간 검색 API(Cloudflare Function)가 연결돼 있으면 바꿔요.
+      setAuth({ state: 'demo' })
+      try {
+        const data = await readJson(await fetch('/api/auth/status'))
+        if (data.connected) setAuth({ state: 'connected' })
+      } catch {
+        // 실시간 연결이 없으면 샘플 데이터로 계속해요.
+      }
+      return
+    }
     setAuth({ state: 'checking' })
     try {
       const res = await fetch('/api/auth/status')
