@@ -2511,3 +2511,20 @@ img.brand-mark {
 .inspector-intro {
   margin-top: 0;
 }
+
+/* 검토자 판정·메모를 바꾼 카드 안에서 바로 다음 행동(재검토)을 안내해요 */
+.ai-override-next {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.ai-override-next .card-reason {
+  flex: 1 1 260px;
+  margin: 0;
+}

@@ -379,7 +379,10 @@ export default function AiReview() {
   }
 
   async function analyze({ rereview = false } = {}) {
-    if (IS_DEMO) return loadDemoSample()
+    if (IS_DEMO) {
+      if (rereview) return setError('데모 사이트에서는 AI가 다시 판정하지 않아요(샘플 결과). 설치 버전에서는 이 의견을 AI에게 보내 새 회차 결과가 쌓여요.')
+      return loadDemoSample()
+    }
     if (busy || sendingRef.current) return
     sendingRef.current = true
     setSending(true)
@@ -730,6 +733,20 @@ export default function AiReview() {
                         placeholder="수정 이유·확인한 사실 (재검토에 반영돼요)"
                       />
                     </div>
+                    {(o.verdict || o.memo?.trim()) && (
+                      <div className="ai-override-next">
+                        <span className="card-reason">
+                          {o.verdict ? `AI ${VERDICTS[f.verdict].label} → 검토자 ${VERDICTS[o.verdict].label}로 수정했어요. ` : ''}
+                          아직 AI에게 전달되지 않았어요. 다 쓰셨으면 재검토를 눌러 주세요.
+                        </span>
+                        <button type="button" className="button button-primary" disabled={busy} onClick={() => analyze({ rereview: true })}>
+                          {busy ? '검토 진행 중' : '이 의견으로 재검토'}
+                        </button>
+                        <button type="button" className="button" onClick={() => setOverride(f.ruleId, { verdict: undefined, memo: '' })}>
+                          되돌리기
+                        </button>
+                      </div>
+                    )}
 
                     <div className="ai-cases">
                       {!c && (
