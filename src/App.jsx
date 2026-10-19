@@ -14,8 +14,8 @@ import './App.css'
 
 const DOMAINS = ['전체', '금융', '자동차', '모빌리티']
 const SORTS = { relevance: '정확도순', recent: '최신순' }
-const DEFAULT_QUERY = '대출한도 화면'
-const SUGGESTIONS = ['대출한도 화면', '자동차 시세 조회', '본인인증', '차량 등록', '월 납입금', 'Empty 화면']
+const DEFAULT_QUERY = '한도 조회'
+const SUGGESTIONS = ['한도 조회', '약관 동의', '견적 비교', '내 차 팔기', '명세서', '해지', '리스', '챗봇']
 
 const formatTime = (iso) => new Date(iso).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })
 
