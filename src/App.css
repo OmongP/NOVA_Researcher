@@ -1547,7 +1547,6 @@
   z-index: 4;
   margin: 0 -24px;
   padding: 16px 24px 12px;
-  border-bottom: 1px solid var(--border);
   background: color-mix(in srgb, var(--white) 92%, transparent);
   backdrop-filter: blur(12px);
 }
@@ -2477,4 +2476,38 @@ img.brand-mark {
 
 .regulation-intro {
   margin-top: 10px;
+}
+
+/* 페이지 제목 + 부제목 (Explore · Archive · Inspect 공통) */
+.page-header {
+  display: grid;
+  gap: 8px;
+  padding: 40px 0 20px;
+}
+
+.page-title {
+  margin: 0;
+  font-size: clamp(28px, 3.6vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.page-sub {
+  margin: 0;
+  color: var(--text-sub);
+  font-size: 16px;
+}
+
+.page-guide {
+  margin: 0;
+  color: var(--text-sub);
+  font-size: 14px;
+}
+
+.inspector {
+  padding-top: 0;
+}
+
+.inspector-intro {
+  margin-top: 0;
 }

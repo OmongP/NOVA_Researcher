@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import { FALSE_POSITIVES, FRAMEWORK, GUIDE, OVERLAPS, RULES, TYPES, VERDICTS, ruleById } from '../data/darkPatternRules'
 import { reviewKey, reviewsToMarkdown, useReviews } from '../lib/useReviews'
+import PageHeader from './PageHeader'
 import ReviewPanel from './ReviewPanel'
 import AiReview from './AiReview'
 import { REGULATION, regulationOf } from '../data/regulationGuideline'
@@ -156,12 +157,11 @@ export default function DarkPatternInspector({ isLive, loginUrl }) {
   return (
     <div className="inspector">
       <section className="inspector-intro">
-        <div>
-          <h2 className="library-title">Inspect</h2>
-          <p className="tagline">
-            다크패턴 위험 요소 검토 및 UX 개선 가이드 · {GUIDE.title} {GUIDE.version} 기준으로 사례를 찾고 검토해요.{GUIDE.credit && ` (${GUIDE.credit})`}
+        <PageHeader title="Inspect" sub="다크패턴 위험 요소 검토 및 UX 개선 가이드">
+          <p className="page-guide">
+            {GUIDE.title} {GUIDE.version} 기준으로 사례를 찾고 검토해요.{GUIDE.credit && ` (${GUIDE.credit})`}
           </p>
-        </div>
+        </PageHeader>
         <details className="regulation regulation-intro">
           <summary>
             금융당국 원문: {REGULATION.title} ({REGULATION.issuer}, {REGULATION.date})

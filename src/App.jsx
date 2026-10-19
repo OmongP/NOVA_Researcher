@@ -7,6 +7,7 @@ import SaveDialog from './components/SaveDialog'
 import Library from './components/Library'
 import DarkPatternInspector from './components/DarkPatternInspector'
 import { useCollections } from './lib/useCollections'
+import PageHeader from './components/PageHeader'
 import { IS_DEMO } from './lib/demo'
 import { readJson } from './lib/http'
 import './App.css'
@@ -264,7 +265,12 @@ export default function App() {
       </header>
 
       <div className="page">
-        {view === 'library' && <Library store={store} onOpen={setSelected} onSave={setSaving} />}
+        {view === 'library' && (
+          <>
+            <PageHeader title="Archive" sub="리서치 자료 및 검토 이력 보관·관리" />
+            <Library store={store} onOpen={setSelected} onSave={setSaving} />
+          </>
+        )}
 
         {/* 탭을 옮겨도 검토 중인 내용이 사라지지 않도록 항상 마운트해 두고 숨겨요 */}
         <div hidden={view !== 'dark'}>
@@ -273,6 +279,7 @@ export default function App() {
 
         {view === 'search' && (
           <>
+            <PageHeader title="Explore" sub="타사 UI 레퍼런스 탐색 및 수집" />
             <section className="hero">
               <form
                 className="search"
