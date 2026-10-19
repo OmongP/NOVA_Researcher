@@ -1358,9 +1358,18 @@
 }
 
 .ai-reasoning {
-  margin: 8px 0 !important;
+  display: grid;
+  gap: 6px;
+  margin: 8px 0;
   font-size: 13px;
-  white-space: pre-wrap;
+}
+
+.ai-reasoning p {
+  margin: 0;
+}
+
+.ai-reasoning strong {
+  margin-right: 2px;
 }
 
 .ai-hint {
@@ -2532,4 +2541,12 @@ img.brand-mark {
 /* 규칙 찾기 입력창과 '가까운 규칙' 안내 사이 간격 */
 .inspector-matches {
   margin-top: 12px;
+}
+
+/* 추천 검색어 이름표 */
+.suggestions-label {
+  align-self: center;
+  color: var(--text-sub);
+  font-size: 13px;
+  font-weight: 600;
 }

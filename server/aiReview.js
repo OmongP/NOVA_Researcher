@@ -61,7 +61,7 @@ const AnalysisSchema = z.object({
         verdict: z.enum(['suspect', 'pass', 'hold', 'na']).describe('suspect=위반 의심, pass=기준 충족, hold=판단 보류, na=해당 없음'),
         confidence: z.enum(['low', 'medium', 'high']),
         summary: z.string().describe('판정 한 줄 요약. "위반이다" 같은 확정 표현 금지'),
-        reasoning: z.string().describe('판단 프레임 순서(Decision→Information→Choice→Influence→Obstruction)에 따른 근거'),
+        reasoning: z.string().describe('판단 프레임 순서(Decision→Information→Choice→Influence→Obstruction)에 따른 근거. 단계마다 "Decision: …"처럼 단계 이름으로 시작하고, 단계 사이는 줄바꿈(\\n)으로 구분'),
         questions: z.array(
           z.object({
             question: z.string().describe('규칙의 판단기준 문항 그대로'),

@@ -1,6 +1,6 @@
 // 로컬 검색 프록시 서버 (http://localhost:8787)
 // 브라우저 앱 → 이 서버 → UI Bowl MCP 순서로 검색해요.
-import { createHash } from 'node:crypto'
+import { createHash, timingSafeEqual } from 'node:crypto'
 import { existsSync } from 'node:fs'
 import { networkInterfaces } from 'node:os'
 import { join } from 'node:path'
@@ -22,6 +22,17 @@ const app = express()
 app.use(express.json({ limit: '25mb' }))
 // Vite 프록시(로컬 루프백)를 거쳐 와도 접속한 사람의 IP를 읽어요.
 app.set('trust proxy', 'loopback')
+
+// 터널(cloudflared)을 거쳐 인터넷에서 들어온 요청은 Cloudflare 사이트 Function이 붙인 비밀키가 맞을 때만, 그리고 /api/ai 만 받아요.
+// 터널로 들어온 요청에는 Cloudflare가 cf-ray 헤더를 항상 붙여서, 로컬·사내망 접속은 이 제한을 받지 않아요.
+app.use((req, res, next) => {
+  if (!req.headers['cf-ray'] && !req.headers['cf-connecting-ip']) return next()
+  const secret = process.env.AI_PROXY_SECRET ?? ''
+  const given = String(req.headers['x-ux-lens-proxy'] ?? '')
+  const ok = secret.length >= 16 && given.length === secret.length && timingSafeEqual(Buffer.from(given), Buffer.from(secret))
+  if (!ok || !req.path.startsWith('/api/ai/')) return res.status(403).json({ error: '허용되지 않은 요청이에요' })
+  next()
+})
 
 // 보관함: 접속 IP별로 서버에 보관해요. 로그인이 없어서 같은 IP를 쓰는 사람은 같은 보관함을 봐요.
 // 파일 이름에는 IP를 그대로 쓰지 않고 해시를 써요.

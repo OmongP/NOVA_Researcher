@@ -48,7 +48,8 @@ export const DEMO_SAMPLE_RUN = {
         verdict: 'suspect',
         confidence: 'medium',
         summary: '동의 쪽만 Primary로 강조하고 거절은 텍스트로 약하게 보여 위반 의심으로 검토가 필요해요.',
-        reasoning: '선택동의는 개인정보·마케팅 활용이 걸린 선택이에요. 동의(C2)는 강조하고 거절(C3)은 약하게 둬 사업자에게 유리한 쪽이 두드러져요.',
+        reasoning:
+          'Decision: 고객은 마케팅 정보 수신(선택동의)에 동의할지 결정해요.\nInformation: 동의하면 상담사 연락과 마케팅 활용이 발생한다는 점이 화면에 안내돼 있어요.\nChoice: 거절(C3 "다음에")은 회색 텍스트로 보이지만 누를 수는 있어요.\nInfluence: 동의(C2)만 파란 Primary 버튼으로 강조되어 사업자에게 유리한 쪽이 두드러져요.\nObstruction: 거절을 어렵게 만드는 추가 단계는 이 화면에서 보이지 않아요.',
         questions: [
           { question: '사업자에게 유리하고 고객에게 추가 부담이나 영향을 주는가(비용, 선택 동의, 개인정보 제공 등)', answer: 'yes', basis: '선택동의(T2)에 동의하면 마케팅 정보 활용이 발생해요.' },
           { question: '특정 선택을 과도하게 강조하거나 반대 선택을 약화·은폐했는가?', answer: 'yes', basis: 'C2는 파란 Primary 버튼, C3(다음에)는 회색 텍스트예요.' },
@@ -64,7 +65,8 @@ export const DEMO_SAMPLE_RUN = {
         verdict: 'hold',
         confidence: 'low',
         summary: '이미 거절한 뒤의 재제안인지 확인이 필요해 판단을 보류해요.',
-        reasoning: '고객이 앞서 같은 선택동의를 거절했다면 반복간섭으로 볼 수 있지만, 화면만으로는 이력을 알 수 없어요.',
+        reasoning:
+          'Decision: 고객은 같은 선택동의를 다시 받아볼지 결정해요.\nInformation: 이전 단계에서 같은 동의를 거절했는지는 이 화면에서 알 수 없어요.\nChoice: 거절 선택지(C3)는 있어요.\nInfluence: 거절 이력이 있다면 재권유로 반복간섭이 될 수 있어요.\nObstruction: 해당하는 방해 요소는 보이지 않아요.',
         questions: [
           { question: '고객이 이미 거절한 선택을 다시 요구하는가?', answer: 'unknown', basis: '이전 단계의 거절 여부를 알 수 없어요.' },
         ],
@@ -79,7 +81,8 @@ export const DEMO_SAMPLE_RUN = {
         verdict: 'pass',
         confidence: 'high',
         summary: '선택동의 체크박스가 미리 선택돼 있지 않아 기준을 충족해요.',
-        reasoning: '체크박스(C1)가 체크되지 않은 상태로 노출돼요.',
+        reasoning:
+          'Decision: 고객은 마케팅 수신 동의 여부를 선택해요.\nInformation: (선택) 표기가 있어 필수가 아님을 알 수 있어요.\nChoice: 체크박스(C1)가 체크되지 않은 상태로 노출돼요.\nInfluence: 사전 선택으로 동의를 유도하는 구성은 없어요.\nObstruction: 해당 없음.',
         questions: [
           { question: '고객이 선택하기 전에 특정 옵션이 미리 선택되어 있는가?', answer: 'no', basis: 'C1은 체크 안 됨 상태예요.' },
         ],

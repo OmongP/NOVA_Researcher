@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { GUIDE, RULES, VERDICTS, ruleById } from '../data/darkPatternRules'
+import { aiFetch } from '../lib/aiFetch'
 import { IS_DEMO } from '../lib/demo'
 import { DEMO_SAMPLE_IMAGE, DEMO_SAMPLE_NAME, DEMO_SAMPLE_RUN } from '../data/demoReview'
 
@@ -156,7 +157,8 @@ function toMarkdown({ run, fileName, context, overrides, cases }) {
         `- AI 1차 판정: ${VERDICTS[f.verdict].label} (확신도 ${CONFIDENCE[f.confidence]})${o?.verdict ? ` → 검토자 수정: **${VERDICTS[o.verdict].label}**` : ''}`,
       )
       lines.push(`- 요약: ${f.summary}`)
-      lines.push(`- 근거: ${f.reasoning}`)
+      lines.push('- 근거:')
+      splitReasoning(f.reasoning).forEach((step) => lines.push(`  - ${step.label ? `**${step.label}**: ` : ''}${step.body}`))
       f.questions.forEach((q) => lines.push(`  - ${q.question} → ${ANSWER[q.answer]} (${q.basis})`))
       f.evidence.forEach((e) => lines.push(`- 화면 영역: ${e.description} [${e.elementIds.join(', ')}]`))
       if (f.exceptionApplied) lines.push(`- 적용한 예외: ${f.exceptionApplied}`)
@@ -207,6 +209,19 @@ function DropGraphic({ large }) {
   )
 }
 
+// 판단 프레임 5단계(Decision: … Information: …)로 쓴 근거를 단계별 줄로 나눠요. 단계 표기가 없으면 통째로 돌려줘요.
+const STEP_LABEL = /(?=(?:Decision|Information|Choice|Influence|Obstruction):)/
+export function splitReasoning(text) {
+  const parts = String(text ?? '')
+    .split(STEP_LABEL)
+    .map((t) => t.trim())
+    .filter(Boolean)
+  return parts.map((part) => {
+    const m = part.match(/^(Decision|Information|Choice|Influence|Obstruction):\s*([\s\S]*)$/)
+    return m ? { label: m[1], body: m[2].trim() } : { label: null, body: part }
+  })
+}
+
 export default function AiReview() {
   const [status, setStatus] = useState({ checked: false, active: null })
   const [image, setImage] = useState(null)
@@ -227,6 +242,8 @@ export default function AiReview() {
   const [dragging, setDragging] = useState(false)
   const fileInput = useRef(null)
   const rootRef = useRef(null)
+  // 데모 사이트에서 내 PC의 AI 서버에 연결되지 않으면 미리 만든 샘플 결과만 보여줘요.
+  const sampleOnly = IS_DEMO && !status.active
   const sendingRef = useRef(false) // 상태 반영 전 연속 클릭도 막아요
 
   const run = runs[runIndex]
@@ -238,8 +255,7 @@ export default function AiReview() {
   }, [run, overrides])
 
   useEffect(() => {
-    if (IS_DEMO) return setStatus({ checked: true, active: null })
-    fetch('/api/ai/status')
+    aiFetch('/api/ai/status')
       .then((r) => r.json())
       .then((d) => setStatus({ checked: true, ...d }))
       .catch(() => setStatus({ checked: true, active: null }))
@@ -247,6 +263,7 @@ export default function AiReview() {
 
   // 새로고침해도 진행 중이던 검토를 이어서 확인해요.
   useEffect(() => {
+    if (IS_DEMO) return // 데모에서는 서버 이미지를 팀 코드 없이 불러올 수 없어서 복원하지 않아요
     const saved = loadSavedJob()
     if (!saved?.id) return
     setImage({ dataUrl: `/api/ai/jobs/${saved.id}/image`, name: saved.fileName || '업로드한 화면' })
@@ -260,7 +277,7 @@ export default function AiReview() {
     let stopped = false
     async function poll() {
       try {
-        const data = await fetch(`/api/ai/jobs/${job.id}`).then((r) => r.json())
+        const data = await aiFetch(`/api/ai/jobs/${job.id}`).then((r) => r.json())
         if (stopped) return
         if (data.state === 'done') {
           setRuns((prev) => {
@@ -379,7 +396,7 @@ export default function AiReview() {
   }
 
   async function analyze({ rereview = false } = {}) {
-    if (IS_DEMO) {
+    if (sampleOnly) {
       if (rereview) return setError('데모 사이트에서는 AI가 다시 판정하지 않아요(샘플 결과). 설치 버전에서는 이 의견을 AI에게 보내 새 회차 결과가 쌓여요.')
       return loadDemoSample()
     }
@@ -393,7 +410,7 @@ export default function AiReview() {
         body.previous = run.analysis
         body.reviewerNotes = [overrideNotes(run.analysis.findings, overrides), notes].filter(Boolean).join('\n')
       }
-      const res = await fetch('/api/ai/analyze', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      const res = await aiFetch('/api/ai/analyze', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error ?? `HTTP ${res.status}`)
       const next = { ...data, rereview, createdAt: new Date().toISOString() }
@@ -408,7 +425,7 @@ export default function AiReview() {
   }
 
   async function retry() {
-    const data = await fetch(`/api/ai/jobs/${job.id}/retry`, { method: 'POST' }).then((r) => r.json())
+    const data = await aiFetch(`/api/ai/jobs/${job.id}/retry`, { method: 'POST' }).then((r) => r.json())
     if (data.error) {
       setError(data.error)
       return
@@ -418,7 +435,7 @@ export default function AiReview() {
   }
 
   async function cancel() {
-    await fetch(`/api/ai/jobs/${job.id}`, { method: 'DELETE' }).catch(() => {})
+    await aiFetch(`/api/ai/jobs/${job.id}`, { method: 'DELETE' }).catch(() => {})
     setJob(null)
     saveJob(null)
   }
@@ -493,17 +510,22 @@ export default function AiReview() {
       )}
       <div className="status status-loading">
         AI 결과는 참고용 1차 검토예요. 법적 위반을 확정하지 않으며, 최종 판단은 검토자가 해요.
-        {!IS_DEMO && ' 올린 스크린샷과 가이드 규칙은 분석을 위해 Claude로 전송돼요. 사내 화면은 보안 정책을 먼저 확인해 주세요.'}
+        {!sampleOnly && ' 올린 스크린샷과 가이드 규칙은 분석을 위해 Claude로 전송돼요. 사내 화면은 보안 정책을 먼저 확인해 주세요.'}
       </div>
 
-      {IS_DEMO && (
+      {sampleOnly && status.checked && (
         <div className="status">
           <span>
-            데모 사이트에서는 서버(Claude) 없이 미리 만든 샘플 결과로 검토 화면을 보여줘요. 올린 스크린샷은 분석하지 않아요.{' '}
+            지금은 AI 검토 서버(내 PC)에 연결돼 있지 않아서 미리 만든 샘플 결과로 검토 화면을 보여줘요. 올린 스크린샷은 분석하지 않아요.{' '}
             <button type="button" className="button" onClick={loadDemoSample}>
               샘플 결과 보기
             </button>
           </span>
+        </div>
+      )}
+      {IS_DEMO && status.active && (
+        <div className="status">
+          <span>분석은 서버 PC의 Claude Code로 해요. 처음 요청할 때 팀 코드를 입력해야 해요. 서버 PC가 꺼져 있으면 쓸 수 없어요.</span>
         </div>
       )}
 
@@ -692,7 +714,13 @@ export default function AiReview() {
                     <p className="card-title">{f.summary}</p>
                     <details>
                       <summary>판정 근거 보기</summary>
-                      <p className="ai-reasoning">{f.reasoning}</p>
+                      <div className="ai-reasoning">
+                        {splitReasoning(f.reasoning).map((step, i) => (
+                          <p key={i}>
+                            {step.label && <strong>{step.label}</strong>} {step.body}
+                          </p>
+                        ))}
+                      </div>
                       <ul className="rule-list">
                         {f.questions.map((q) => (
                           <li key={q.question}>
