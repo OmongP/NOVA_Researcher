@@ -7,6 +7,7 @@ import SaveDialog from './components/SaveDialog'
 import Library from './components/Library'
 import DarkPatternInspector from './components/DarkPatternInspector'
 import { useCollections } from './lib/useCollections'
+import { IS_DEMO } from './lib/demo'
 import './App.css'
 
 const DOMAINS = ['전체', '금융', '자동차', '모빌리티']
@@ -19,6 +20,13 @@ const formatTime = (iso) => new Date(iso).toLocaleTimeString('ko-KR', { hour: '2
 function AuthBanner({ auth, onRetry }) {
   if (auth.state === 'checking') return <div className="banner">UI Bowl 로그인 상태를 확인하고 있어요…</div>
   if (auth.state === 'connected') return null
+  if (auth.state === 'demo') {
+    return (
+      <div className="banner">
+        데모 사이트예요. UI Bowl에서 미리 모아 둔 샘플 화면 {sampleScreens.length}개로 검색해요. 실시간 검색과 AI 검토는 사내 설치 버전에서 쓸 수 있어요.
+      </div>
+    )
+  }
   if (auth.state === 'needsLogin') {
     return (
       <div className="banner banner-warn">
@@ -128,6 +136,7 @@ export default function App() {
   const isLive = auth.state === 'connected'
 
   async function checkAuth() {
+    if (IS_DEMO) return setAuth({ state: 'demo' })
     setAuth({ state: 'checking' })
     try {
       const res = await fetch('/api/auth/status')

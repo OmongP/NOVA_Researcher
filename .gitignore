@@ -33,3 +33,6 @@ reviews/
 # 사내 다크패턴 가이드 (공개 저장소에 올리지 않아요)
 src/data/darkPatternRules.js
 docs/rule-verification.md
+
+# 데모 빌드 결과
+dist-demo

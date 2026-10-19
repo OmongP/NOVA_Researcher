@@ -3,6 +3,7 @@ import { FALSE_POSITIVES, FRAMEWORK, GUIDE, OVERLAPS, RULES, TYPES, VERDICTS, ru
 import { reviewKey, reviewsToMarkdown, useReviews } from '../lib/useReviews'
 import ReviewPanel from './ReviewPanel'
 import AiReview from './AiReview'
+import { IS_DEMO } from '../lib/demo'
 
 // 자연어 요청("현재 100명이 신청 중 UI 검토해줘")을 가장 가까운 규칙에 연결해요.
 function matchRules(text) {
@@ -293,6 +294,8 @@ export default function DarkPatternInspector({ isLive, loginUrl }) {
                     <button type="button" className="button button-primary" onClick={findCases} disabled={result.status === 'loading'}>
                       {result.status === 'loading' ? '사례 찾는 중…' : 'UI Bowl에서 사례 찾기'}
                     </button>
+                  ) : IS_DEMO ? (
+                    <span className="card-reason">데모 사이트에서는 UI Bowl 사례 검색을 쓸 수 없어요. 사내 설치 버전에서 쓸 수 있어요.</span>
                   ) : (
                     <a className="button button-primary" href={loginUrl}>
                       UI Bowl 로그인 후 사례 찾기

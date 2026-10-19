@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { GUIDE, RULES, VERDICTS, ruleById } from '../data/darkPatternRules'
+import { IS_DEMO } from '../lib/demo'
 
 const VERDICT_ORDER = ['suspect', 'hold', 'pass', 'na']
 const CONFIDENCE = { low: '낮음', medium: '보통', high: '높음' }
@@ -208,6 +209,7 @@ export default function AiReview() {
   }, [run, overrides])
 
   useEffect(() => {
+    if (IS_DEMO) return setStatus({ checked: true, active: null })
     fetch('/api/ai/status')
       .then((r) => r.json())
       .then((d) => setStatus({ checked: true, ...d }))
@@ -400,6 +402,12 @@ export default function AiReview() {
         AI 결과는 참고용 1차 검토예요. 법적 위반을 확정하지 않으며, 최종 판단은 검토자가 해요. 올린 스크린샷과 가이드 규칙은 분석을 위해 Claude로 전송돼요. 사내
         화면은 보안 정책을 먼저 확인해 주세요.
       </div>
+
+      {IS_DEMO && (
+        <div className="status">
+          <span>데모 사이트에서는 AI 1차 검토를 쓸 수 없어요. 스크린샷을 올리면 사내 설치 버전에서 Claude가 규칙과 대조해 판정해요.</span>
+        </div>
+      )}
 
       {status.active && (
         <div className="status">
