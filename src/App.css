@@ -1171,6 +1171,123 @@
   color: var(--text);
 }
 
+.ai-drop:hover {
+  border-color: var(--accent);
+}
+
+.ai-drop-keys {
+  font-size: 12px;
+  color: var(--text-mute, var(--text-sub));
+}
+
+.ai-drop-keys kbd {
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg, #fff);
+  font: inherit;
+  font-size: 11px;
+}
+
+/* 겹쳐 놓인 문서 그림 */
+.drop-graphic {
+  display: block;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 8px;
+}
+
+.drop-graphic.is-large {
+  width: 168px;
+  height: 168px;
+}
+
+.drop-graphic .dg-bg {
+  fill: var(--border);
+  opacity: 0.45;
+}
+
+.drop-graphic .dg-doc rect:first-child {
+  fill: var(--surface, #fff);
+  stroke: var(--text-sub);
+  stroke-width: 2.5;
+}
+
+.drop-graphic .dg-back rect:first-child {
+  fill: #eef3fb;
+}
+
+.drop-graphic .dg-dot,
+.drop-graphic .dg-chart {
+  fill: var(--accent);
+  opacity: 0.55;
+}
+
+.drop-graphic .dg-line {
+  fill: var(--accent);
+  opacity: 0.35;
+}
+
+.drop-graphic .dg-base {
+  fill: var(--text-sub);
+  opacity: 0.6;
+}
+
+/* 파일을 끌어올 때 화면 전체에 뜨는 드롭 안내 */
+.ai-drop-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 20px;
+  background: rgba(244, 247, 252, 0.88);
+  backdrop-filter: blur(5px);
+  pointer-events: none;
+  animation: ai-drop-in 0.15s ease-out;
+}
+
+.ai-drop-overlay .drop-graphic {
+  animation: ai-drop-float 1.4s ease-in-out infinite;
+}
+
+.ai-drop-overlay-box {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 18px 40px;
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  background: var(--surface, #fff);
+  text-align: center;
+  color: var(--text-sub);
+}
+
+.ai-drop-overlay-box strong {
+  color: var(--text);
+  font-size: 18px;
+}
+
+@keyframes ai-drop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ai-drop-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@media (prefers-color-scheme: dark) {
+  .ai-drop-overlay { background: rgba(14, 17, 24, 0.85); }
+  .drop-graphic .dg-back rect:first-child { fill: #232a38; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-drop-overlay .drop-graphic { animation: none; }
+}
+
 .ai-controls {
   display: grid;
   gap: 8px;

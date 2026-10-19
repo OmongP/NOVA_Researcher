@@ -179,6 +179,33 @@ function toMarkdown({ run, fileName, context, overrides, cases }) {
     .replace(/\n(#{2,3} )/g, '\n\n$1')
 }
 
+// 겹쳐 놓인 문서 그림. 업로드 영역과 전체 화면 드롭 안내에 같이 써요.
+function DropGraphic({ large }) {
+  return (
+    <span className={`drop-graphic ${large ? 'is-large' : ''}`} aria-hidden="true">
+      <svg viewBox="0 0 120 120" width="100%" height="100%">
+        <circle cx="60" cy="60" r="58" className="dg-bg" />
+        <g className="dg-doc dg-back" transform="rotate(-12 60 62)">
+          <rect x="26" y="34" width="46" height="56" rx="5" />
+        </g>
+        <g className="dg-doc dg-back" transform="rotate(12 60 62)">
+          <rect x="48" y="34" width="46" height="56" rx="5" />
+          <circle cx="71" cy="60" r="9" className="dg-chart" />
+        </g>
+        <g className="dg-doc dg-front">
+          <rect x="37" y="28" width="46" height="60" rx="5" />
+          <circle cx="48" cy="42" r="4" className="dg-dot" />
+          <rect x="55" y="39" width="20" height="3" rx="1.5" className="dg-line" />
+          <rect x="44" y="52" width="32" height="3" rx="1.5" className="dg-line" />
+          <rect x="44" y="60" width="32" height="3" rx="1.5" className="dg-line" />
+          <rect x="44" y="68" width="24" height="3" rx="1.5" className="dg-line" />
+        </g>
+        <rect x="32" y="96" width="56" height="3" rx="1.5" className="dg-base" />
+      </svg>
+    </span>
+  )
+}
+
 export default function AiReview() {
   const [status, setStatus] = useState({ checked: false, active: null })
   const [image, setImage] = useState(null)
@@ -196,6 +223,7 @@ export default function AiReview() {
   const [zoom, setZoom] = useState(false)
   const [cases, setCases] = useState({})
   const [copied, setCopied] = useState(false)
+  const [dragging, setDragging] = useState(false)
   const fileInput = useRef(null)
   const rootRef = useRef(null)
   const sendingRef = useRef(false) // 상태 반영 전 연속 클릭도 막아요
@@ -279,6 +307,45 @@ export default function AiReview() {
     }
     window.addEventListener('paste', onPaste)
     return () => window.removeEventListener('paste', onPaste)
+  }, [busy]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // 화면 어디로든 파일을 끌어오면 전체 화면 드롭 안내가 떠요 (이 탭이 보일 때만).
+  useEffect(() => {
+    let depth = 0
+    const hasFiles = (e) => [...(e.dataTransfer?.types ?? [])].includes('Files')
+    const visible = () => Boolean(rootRef.current?.offsetParent)
+    function enter(e) {
+      if (!visible() || !hasFiles(e)) return
+      depth += 1
+      setDragging(true)
+    }
+    function leave(e) {
+      if (!hasFiles(e)) return
+      depth = Math.max(0, depth - 1)
+      if (depth === 0) setDragging(false)
+    }
+    function over(e) {
+      if (visible() && hasFiles(e)) e.preventDefault()
+    }
+    function drop(e) {
+      depth = 0
+      setDragging(false)
+      if (!visible() || !hasFiles(e)) return
+      e.preventDefault()
+      const file = [...e.dataTransfer.files].find((f) => f.type.startsWith('image/'))
+      if (file) loadFile(file)
+      else setError('이미지 파일만 올릴 수 있어요')
+    }
+    window.addEventListener('dragenter', enter)
+    window.addEventListener('dragleave', leave)
+    window.addEventListener('dragover', over)
+    window.addEventListener('drop', drop)
+    return () => {
+      window.removeEventListener('dragenter', enter)
+      window.removeEventListener('dragleave', leave)
+      window.removeEventListener('dragover', over)
+      window.removeEventListener('drop', drop)
+    }
   }, [busy]) // eslint-disable-line react-hooks/exhaustive-deps
 
   async function loadFile(file) {
@@ -398,6 +465,15 @@ export default function AiReview() {
 
   return (
     <div className="ai-review" ref={rootRef}>
+      {dragging && (
+        <div className="ai-drop-overlay" aria-hidden="true">
+          <DropGraphic large />
+          <p className="ai-drop-overlay-box">
+            <strong>파일을 이곳에 드래그 &amp; 드롭하여 업로드하세요</strong>
+            <span>PNG · JPG · WebP · GIF 이미지를 놓으면 바로 올라가요</span>
+          </p>
+        </div>
+      )}
       <div className="status status-loading">
         AI 결과는 참고용 1차 검토예요. 법적 위반을 확정하지 않으며, 최종 판단은 검토자가 해요. 올린 스크린샷과 가이드 규칙은 분석을 위해 Claude로 전송돼요. 사내
         화면은 보안 정책을 먼저 확인해 주세요.
@@ -477,18 +553,13 @@ export default function AiReview() {
               {run && <p className="card-reason">이미지를 클릭하면 판정 영역과 함께 크게 볼 수 있어요.</p>}
             </>
           ) : (
-            <button
-              type="button"
-              className="ai-drop"
-              onClick={() => fileInput.current?.click()}
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={(e) => {
-                e.preventDefault()
-                loadFile(e.dataTransfer.files[0])
-              }}
-            >
+            <button type="button" className="ai-drop" onClick={() => fileInput.current?.click()}>
+              <DropGraphic />
               <strong>UI 스크린샷을 올려 주세요</strong>
-              <span>끌어다 놓기 · 클릭해서 선택 · Cmd/Ctrl+V로 붙여 넣기</span>
+              <span>파일을 이곳에 끌어다 놓거나 클릭해서 선택하세요</span>
+              <span className="ai-drop-keys">
+                또는 <kbd>Cmd</kbd>/<kbd>Ctrl</kbd> + <kbd>V</kbd> 로 붙여 넣기
+              </span>
             </button>
           )}
           <input ref={fileInput} type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden onChange={(e) => loadFile(e.target.files[0])} />

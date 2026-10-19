@@ -212,6 +212,12 @@ export default function DarkPatternInspector({ isLive, loginUrl }) {
                 <h2 className="detail-title">{rule.name}</h2>
                 <p>{rule.definition}</p>
                 <dl className="detail-meta">
+                  {rule.keyQuestion && (
+                    <>
+                      <dt>핵심 질문</dt>
+                      <dd>{rule.keyQuestion}</dd>
+                    </>
+                  )}
                   <dt>판단기준</dt>
                   <dd>
                     <ul className="rule-list">
@@ -220,6 +226,20 @@ export default function DarkPatternInspector({ isLive, loginUrl }) {
                       ))}
                     </ul>
                   </dd>
+                  {rule.extraQuestions?.length > 0 && (
+                    <>
+                      <dt>보강 문항</dt>
+                      <dd>
+                        <ul className="rule-list">
+                          {rule.extraQuestions.map((e) => (
+                            <li key={e.q}>
+                              {e.q} <small>({e.source})</small>
+                            </li>
+                          ))}
+                        </ul>
+                      </dd>
+                    </>
+                  )}
                   <dt>사례</dt>
                   <dd>{rule.example}</dd>
                   <dt>개선</dt>
@@ -233,6 +253,45 @@ export default function DarkPatternInspector({ isLive, loginUrl }) {
                             <li key={ex}>{ex}</li>
                           ))}
                         </ul>
+                      </dd>
+                    </>
+                  )}
+                  {rule.cases?.length > 0 && (
+                    <>
+                      <dt>정탐 사례</dt>
+                      <dd>
+                        <ul className="rule-list">
+                          {rule.cases.map((c) => (
+                            <li key={c.title}>
+                              <strong>{c.title}</strong> <small>({c.frame})</small>
+                              <br />
+                              {c.summary}
+                              {c.improvement && (
+                                <>
+                                  <br />
+                                  <em>개선: {c.improvement}</em>
+                                </>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </dd>
+                    </>
+                  )}
+                  {rule.applyGuide && (
+                    <>
+                      <dt>적용 가이드</dt>
+                      <dd>
+                        <strong>{rule.applyGuide.title}</strong> <small>({rule.applyGuide.frame})</small>
+                        <br />
+                        {rule.applyGuide.summary}
+                        {rule.applyGuide.improvements?.length > 0 && (
+                          <ul className="rule-list">
+                            {rule.applyGuide.improvements.map((i) => (
+                              <li key={i}>{i}</li>
+                            ))}
+                          </ul>
+                        )}
                       </dd>
                     </>
                   )}

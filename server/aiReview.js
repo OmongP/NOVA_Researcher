@@ -8,7 +8,10 @@ import { fileURLToPath } from 'node:url'
 import Anthropic from '@anthropic-ai/sdk'
 import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod'
 import { z } from 'zod'
-import { FALSE_POSITIVES, FRAMEWORK, GUIDE, OVERLAPS, RULES, TYPES } from '../src/data/darkPatternRules.js'
+import * as DB from '../src/data/darkPatternRules.js'
+
+const { FALSE_POSITIVES, FRAMEWORK, GUIDE, OVERLAPS, RULES, TYPES } = DB
+const FIRST_OR_REPEAT = DB.FIRST_OR_REPEAT // 공개 예시 규칙에는 없을 수 있어요
 
 export const MODEL = 'claude-opus-5-5'
 
@@ -90,11 +93,19 @@ function buildSystemPrompt() {
     [
       `### ${r.id} ${r.type} · ${r.name}${r.typeConflict ? ` (유형 표기 확인 필요: ${r.typeConflict})` : ''}`,
       `정의: ${r.definition}`,
-      `판단기준:\n${r.questions.map((q) => `- ${q}`).join('\n')}`,
+      r.keyQuestion ? `핵심 질문: ${r.keyQuestion}` : '',
+      `판단기준(원문):\n${r.questions.map((q) => `- ${q}`).join('\n')}`,
+      r.extraQuestions?.length ? `보강 판단 문항(사례·적용 가이드에서 나온 기준):\n${r.extraQuestions.map((e) => `- ${e.q} (${e.source})`).join('\n')}` : '',
       `원문 사례: ${r.example}`,
       `개선: ${r.improvement}`,
       r.exceptions.length ? `예외:\n${r.exceptions.map((e) => `- ${e}`).join('\n')}` : '예외: 원문에 명시된 예외 없음',
       `단일 화면으로 확인할 수 없는 근거: ${r.evidence.join(' / ')}`,
+      r.cases?.length
+        ? `정탐 사례(가이드가 다크패턴으로 판단한 예):\n${r.cases.map((c) => `- ${c.title}: ${c.summary}${c.basis?.length ? ` [근거: ${c.basis.join('; ')}]` : ''}`).join('\n')}`
+        : '',
+      r.applyGuide
+        ? `적용 가이드: ${r.applyGuide.title} — ${r.applyGuide.summary}${r.applyGuide.improvements?.length ? ` 개선: ${r.applyGuide.improvements.join('; ')}` : ''}`
+        : '',
       r.notes?.length ? `메모:\n${r.notes.map((n) => `- ${n}`).join('\n')}` : '',
       `가이드 근거: ${r.source.frame}`,
     ]
@@ -121,8 +132,9 @@ ${Object.entries(TYPES)
 ${rules}
 
 ## 다크패턴으로 보기 어려운 사례 (오탐 방지)
-${FALSE_POSITIVES.map((f) => `- ${f.title}: ${f.summary} (${f.source})`).join('\n')}
+${FALSE_POSITIVES.map((f) => `- ${f.title}: ${f.summary}${f.conclusion ? ` → ${f.conclusion.result}. ${f.conclusion.detail}` : ''} (${f.source})`).join('\n')}
 
+${FIRST_OR_REPEAT ? `## 최초 제안과 재 제안 (${FIRST_OR_REPEAT.frame})\n${FIRST_OR_REPEAT.summary}\n` : ''}
 ## 겹치는 규칙 구분
 ${OVERLAPS.map((o) => `- ${o.rules.join(' ↔ ')}: ${o.rule} (${o.source})`).join('\n')}
 
