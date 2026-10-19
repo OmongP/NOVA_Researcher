@@ -1587,7 +1587,7 @@
 }
 
 .search-button:hover {
-  background: var(--accent-strong);
+  background: var(--accent-hover);
 }
 
 .hero .search {
@@ -1902,14 +1902,14 @@
 }
 
 .button-primary {
-  border-color: var(--text);
-  background: var(--text);
-  color: var(--white);
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
 }
 
 .button-primary:hover {
-  border-color: var(--text);
-  background: color-mix(in srgb, var(--text) 85%, var(--white));
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
 }
 
 /* 빈 화면 */

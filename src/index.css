@@ -8,11 +8,12 @@
   --text: #191f28;
   --text-sub: #4e5968;
   --text-weak: #8b95a1;
-  --accent: #3182f6;
-  --accent-strong: #1b64da;
-  --accent-soft: #e8f3ff;
-  --finance: #3182f6;
-  --finance-soft: #e8f3ff;
+  --accent: #0066ff; /* color-blue-100 — 버튼·포인트 */
+  --accent-hover: #0046b2; /* color-blue-115 — 마우스 호버 */
+  --accent-strong: #0046b2;
+  --accent-soft: #e5f0ff;
+  --finance: #0066ff;
+  --finance-soft: #e5f0ff;
   --auto: #e5503f;
   --auto-soft: #fdeeec;
   --mobility: #0f9d7a;
@@ -40,9 +41,10 @@
     --text: #f2f4f6;
     --text-sub: #b0b8c1;
     --text-weak: #8b95a1;
-    --accent: #4c94ff;
+    --accent: #3385ff;
+    --accent-hover: #0052cc;
     --accent-strong: #6aa6ff;
-    --accent-soft: #1b2a40;
+    --accent-soft: #0f2340;
     --finance: #6aa6ff;
     --finance-soft: #1b2a40;
     --auto: #ff8a7a;
