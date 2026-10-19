@@ -23,7 +23,7 @@ function AuthBanner({ auth, onRetry }) {
   if (auth.state === 'checking') return <div className="banner">UI Bowl 로그인 상태를 확인하고 있어요…</div>
   if (auth.state === 'connected') {
     // 데모 사이트라도 서버(Cloudflare Function)가 UI Bowl에 연결돼 있으면 실시간으로 검색해요.
-    return IS_DEMO ? <div className="banner">UI Bowl에 실시간으로 연결돼 있어요. AI 1차 검토는 데모에서 샘플 결과로 보여줘요.</div> : null
+    return IS_DEMO ? <div className="banner">UI Bowl에 실시간으로 연결돼 있어요. AI 다크패턴 사전 검토는 데모에서 샘플 결과로 보여줘요.</div> : null
   }
   if (auth.state === 'demo') {
     return (

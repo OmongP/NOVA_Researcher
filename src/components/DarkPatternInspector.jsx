@@ -211,7 +211,7 @@ export default function DarkPatternInspector({ isLive, loginUrl }) {
             가이드 기준 사례 찾기
           </button>
           <button type="button" role="tab" aria-selected={mode === 'ai'} className={`filter ${mode === 'ai' ? 'is-active' : ''}`} onClick={() => setMode('ai')}>
-            내 UI 검토하기 · AI 1차
+            AI 다크패턴 사전 검토
           </button>
         </div>
       </section>
