@@ -1,5 +1,7 @@
 // 로컬 검색 프록시 서버 (http://localhost:8787)
 // 브라우저 앱 → 이 서버 → UI Bowl MCP 순서로 검색해요.
+import { createHash } from 'node:crypto'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import express from 'express'
 import { interpretQuery } from '../src/lib/searchQuery.js'
 import { getAuthStatus, finishLogin, callTool } from './uibowl.js'
@@ -23,7 +25,7 @@ const SEARCH_SCOPES = {
   자동차: AUTO_APPS.map((app_name) => ({ app_name })),
 }
 // 분류 제한이 넓은 탭은 2페이지까지 받아 결과를 넉넉하게 보여줘요(페이지당 3개).
-const PAGES_BY_DOMAIN = { 전체: 2, 금융: 2, 모빌리티: 2, 자동차: 1 }
+const PAGES_BY_DOMAIN = { 전체: 3, 금융: 3, 모빌리티: 3, 자동차: 1 }
 // 문구(OCR) 검색은 UI Bowl에서 결과가 수백 건까지 나와서(예: '가격 비교' 157건) 한 페이지(3건)로는 부족해요.
 const OCR_PAGES = 3
 
@@ -96,6 +98,39 @@ function mergeScreens(screens) {
 
 const app = express()
 app.use(express.json({ limit: '25mb' }))
+// Vite 프록시(로컬 루프백)를 거쳐 와도 접속한 사람의 IP를 읽어요.
+app.set('trust proxy', 'loopback')
+
+// 보관함: 접속 IP별로 서버에 보관해요. 로그인이 없어서 같은 IP를 쓰는 사람은 같은 보관함을 봐요.
+// 파일 이름에는 IP를 그대로 쓰지 않고 해시를 써요.
+const LIBRARY_DIR = new URL('./library/', import.meta.url)
+function libraryFile(req) {
+  const ip = String(req.ip ?? '').replace(/^::ffff:/, '')
+  const owner = ['::1', '127.0.0.1', ''].includes(ip) ? 'localhost' : ip
+  return new URL(`${createHash('sha256').update(owner).digest('hex').slice(0, 24)}.json`, LIBRARY_DIR)
+}
+
+app.get('/api/library', async (req, res) => {
+  try {
+    res.json(JSON.parse(await readFile(libraryFile(req), 'utf8')))
+  } catch (err) {
+    if (err.code === 'ENOENT') return res.json({ state: null, updatedAt: null })
+    res.status(500).json({ error: `보관함을 읽지 못했어요: ${err.message}` })
+  }
+})
+
+app.put('/api/library', async (req, res) => {
+  const { collections, bookmarks } = req.body ?? {}
+  if (!Array.isArray(collections) || !Array.isArray(bookmarks)) return res.status(400).json({ error: '보관함 형식이 올바르지 않아요' })
+  try {
+    await mkdir(LIBRARY_DIR, { recursive: true })
+    const saved = { state: { collections, bookmarks }, updatedAt: new Date().toISOString() }
+    await writeFile(libraryFile(req), JSON.stringify(saved))
+    res.json({ ok: true, updatedAt: saved.updatedAt })
+  } catch (err) {
+    res.status(500).json({ error: `보관함을 저장하지 못했어요: ${err.message}` })
+  }
+})
 
 app.get('/api/auth/status', async (_req, res) => {
   res.json(await getAuthStatus())
@@ -143,9 +178,9 @@ app.post('/api/search', async (req, res) => {
       for (let page = 1; page <= (first ? OCR_PAGES : 1); page++) calls.push(['search_by_ocr_text', { ...base, ...args, ...(page > 1 && { page }) }])
     }
     if (query.ocr) ocrCall({ text_query: query.ocr.text, ...(query.ocr.pattern && { pattern: query.ocr.pattern }) }, true)
-    else if (query.head) {
-      // 입력 순서와 상관없이 같은 결과가 나오도록 띄어 쓴 형태를 먼저 써요.
-      const ordered = [...query.phrases].sort((x, y) => Number(/\s/.test(y)) - Number(/\s/.test(x)))
+    else {
+      // 입력 순서와 상관없이 같은 결과가 나오도록 띄어 쓴 형태를 먼저 써요. 한 단어 검색("명세서")도 문구로 찾아요.
+      const ordered = query.phrases.length ? [...query.phrases].sort((x, y) => Number(/\s/.test(y)) - Number(/\s/.test(x))) : [query.uibowl].filter(Boolean)
       const ocrPhrases = scopes.length > 1 ? ordered.slice(0, 1) : ordered.slice(0, 2)
       ocrPhrases.forEach((text_query, i) => ocrCall({ text_query }, i === 0))
     }

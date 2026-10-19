@@ -1,6 +1,8 @@
-// 북마크·컬렉션을 브라우저 로컬 저장소에 보관해요.
+// 북마크·컬렉션을 접속 IP 기준으로 서버에 보관해요(server/library). 브라우저 로컬 저장소는 캐시로 같이 써요.
+// 서버가 없는 데모 사이트나 서버가 꺼진 때는 이 브라우저에만 보관해요.
 // 이미지 파일은 저장하지 않고 원본 URL과 화면 메타데이터만 남겨요.
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { IS_DEMO } from './demo'
 
 const STORAGE_KEY = 'ux-finder:collections:v1'
 
@@ -39,18 +41,59 @@ function snapshot(screen) {
   return { service, domain, pattern, variant, title, dataMonth, screenCount, image, images, uiUrl, source, searchedAt, matchedTexts, components, relevance }
 }
 
+const SAVE_DELAY_MS = 400
+
+async function pushToServer(next) {
+  const res = await fetch('/api/library', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(next) })
+  if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error ?? `HTTP ${res.status}`)
+}
+
 export function useCollections() {
   const [state, setState] = useState(load)
   const [storageError, setStorageError] = useState(null)
+  // 'checking' → 'server'(IP 기준 서버 보관) | 'local'(이 브라우저에만 보관)
+  const [storageMode, setStorageMode] = useState(IS_DEMO ? 'local' : 'checking')
+  const serverReady = useRef(false)
+  const latest = useRef(state)
+  const timer = useRef(null)
+
+  // 처음 열 때 서버의 보관함을 불러와요. 서버가 비어 있으면 이 브라우저의 보관함을 올려요.
+  useEffect(() => {
+    if (IS_DEMO) return
+    let cancelled = false
+    fetch('/api/library')
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
+      .then(async (data) => {
+        if (cancelled) return
+        if (data.state) setState(data.state)
+        else if (latest.current.bookmarks.length > 0) await pushToServer(latest.current)
+        serverReady.current = true
+        setStorageMode('server')
+      })
+      .catch(() => !cancelled && setStorageMode('local'))
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   useEffect(() => {
+    latest.current = state
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
       setStorageError(null)
     } catch (err) {
       setStorageError(err.message)
     }
+    if (!serverReady.current) return
+    clearTimeout(timer.current)
+    timer.current = setTimeout(() => {
+      pushToServer(latest.current)
+        .then(() => setStorageError(null))
+        .catch((err) => setStorageError(`서버에 보관하지 못했어요: ${err.message}`))
+    }, SAVE_DELAY_MS)
   }, [state])
+
+  useEffect(() => () => clearTimeout(timer.current), [])
 
   const createCollection = useCallback((name) => {
     const trimmed = name.trim()
@@ -106,6 +149,7 @@ export function useCollections() {
     collections: state.collections,
     bookmarks: state.bookmarks,
     storageError,
+    storageMode,
     createCollection,
     renameCollection,
     deleteCollection,

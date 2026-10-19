@@ -36,3 +36,6 @@ docs/rule-verification.md
 
 # 데모 빌드 결과
 dist-demo
+
+# IP별 보관함 (서버가 만드는 사용자 데이터)
+server/library/
