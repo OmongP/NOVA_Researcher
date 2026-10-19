@@ -243,7 +243,7 @@ export default function DarkPatternInspector({ isLive, loginUrl }) {
             </button>
           </form>
           {matches && (
-            <div className="status">
+            <div className="status inspector-matches">
               {matches.length > 0 ? (
                 <span>
                   가까운 규칙:{' '}

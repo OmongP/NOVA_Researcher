@@ -2528,3 +2528,8 @@ img.brand-mark {
   flex: 1 1 260px;
   margin: 0;
 }
+
+/* 규칙 찾기 입력창과 '가까운 규칙' 안내 사이 간격 */
+.inspector-matches {
+  margin-top: 12px;
+}
