@@ -3,6 +3,7 @@ import { FALSE_POSITIVES, FRAMEWORK, GUIDE, OVERLAPS, RULES, TYPES, VERDICTS, ru
 import { reviewKey, reviewsToMarkdown, useReviews } from '../lib/useReviews'
 import ReviewPanel from './ReviewPanel'
 import AiReview from './AiReview'
+import { REGULATION, regulationOf } from '../data/regulationGuideline'
 import { IS_DEMO } from '../lib/demo'
 import { readJson } from '../lib/http'
 
@@ -59,6 +60,54 @@ function CandidateCard({ screen, review, onOpen }) {
   )
 }
 
+// 금융위·금감원 가이드라인 원문(src/data/regulationGuideline.js)을 세부 유형별로 보여줘요.
+function RegulationText({ reg }) {
+  const list = (items) => (
+    <ul className="rule-list">
+      {items.map((t) => (
+        <li key={t}>{t}</li>
+      ))}
+    </ul>
+  )
+  return (
+    <details className="regulation">
+      <summary>
+        {REGULATION.issuer} 가이드라인 ({REGULATION.date}) {reg.page}쪽 · {reg.name}
+      </summary>
+      <p>
+        <strong>정의</strong> {reg.definition}
+      </p>
+      {reg.points?.length > 0 && list(reg.points)}
+      {reg.examples?.length > 0 && (
+        <>
+          <p className="regulation-label">원문 예시</p>
+          {list(reg.examples)}
+        </>
+      )}
+      {reg.duties?.length > 0 && (
+        <>
+          <p className="regulation-label">사업자 준수사항</p>
+          {list(reg.duties)}
+        </>
+      )}
+      {reg.exceptions?.length > 0 && (
+        <>
+          <p className="regulation-label">원문이 인정하는 예외</p>
+          {list(reg.exceptions)}
+        </>
+      )}
+      {reg.combine && <p className="card-reason">결합 시 유의: {reg.combine}</p>}
+      {reg.related?.length > 0 && (
+        <>
+          <p className="regulation-label">함께 적용될 수 있는 법령·가이드라인</p>
+          {list(reg.related)}
+        </>
+      )}
+      {reg.classification && <p className="card-reason">{reg.classification}</p>}
+    </details>
+  )
+}
+
 export default function DarkPatternInspector({ isLive, loginUrl }) {
   const [mode, setMode] = useState('cases')
   const [ruleId, setRuleId] = useState(RULES[0].id)
@@ -108,11 +157,38 @@ export default function DarkPatternInspector({ isLive, loginUrl }) {
     <div className="inspector">
       <section className="inspector-intro">
         <div>
-          <h2 className="library-title">Dark Pattern Inspector</h2>
+          <h2 className="library-title">Inspect</h2>
           <p className="tagline">
-            {GUIDE.title} {GUIDE.version} 기준으로 사례를 찾고 검토해요.{GUIDE.credit && ` (${GUIDE.credit})`}
+            다크패턴 위험 요소 검토 및 UX 개선 가이드 · {GUIDE.title} {GUIDE.version} 기준으로 사례를 찾고 검토해요.{GUIDE.credit && ` (${GUIDE.credit})`}
           </p>
         </div>
+        <details className="regulation regulation-intro">
+          <summary>
+            금융당국 원문: {REGULATION.title} ({REGULATION.issuer}, {REGULATION.date})
+          </summary>
+          <p>{REGULATION.purpose}</p>
+          <p className="regulation-label">일반원칙</p>
+          <ul className="rule-list">
+            {REGULATION.generalPrinciples.map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
+          <p className="regulation-label">취약 소비자상 전제</p>
+          <p>{REGULATION.consumerModel}</p>
+          <p className="regulation-label">적용 대상</p>
+          <ul className="rule-list">
+            {REGULATION.scope.map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
+          <p className="regulation-label">함께 적용되는 법령·가이드라인</p>
+          <ul className="rule-list">
+            {REGULATION.relatedLaws.map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
+          <p className="card-reason">{REGULATION.relation}</p>
+        </details>
         <p className="inspector-principle">
           이 도구는 다크패턴 여부를 확정하지 않아요. 판단기준과 예외를 근거로 검토를 돕고, 결과는 검토자가 정해요. {GUIDE.principle}
         </p>
@@ -293,6 +369,14 @@ export default function DarkPatternInspector({ isLive, loginUrl }) {
                             ))}
                           </ul>
                         )}
+                      </dd>
+                    </>
+                  )}
+                  {regulationOf(rule.id) && (
+                    <>
+                      <dt>금융당국 원문</dt>
+                      <dd>
+                        <RegulationText reg={regulationOf(rule.id)} />
                       </dd>
                     </>
                   )}

@@ -110,7 +110,7 @@ export default function SaveDialog({ screen, store, onClose }) {
           완료
         </button>
 
-        <p className="save-hint">이미지는 저장하지 않고 원본 링크와 화면 정보만 {store.storageMode === 'server' ? '접속 IP 기준으로 서버에' : '이 브라우저에'} 보관해요. 저장한 화면은 위쪽 ‘보관함’에서 볼 수 있어요.</p>
+        <p className="save-hint">이미지는 저장하지 않고 원본 링크와 화면 정보만 {store.storageMode === 'server' ? '접속 IP 기준으로 서버에' : '이 브라우저에'} 보관해요. 저장한 화면은 위쪽 ‘Archive’에서 볼 수 있어요.</p>
         {store.storageError && <p className="save-hint save-error">저장하지 못했어요: {store.storageError}</p>}
       </div>
     </div>

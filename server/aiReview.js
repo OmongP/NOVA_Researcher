@@ -9,9 +9,11 @@ import Anthropic from '@anthropic-ai/sdk'
 import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod'
 import { z } from 'zod'
 import * as DB from '../src/data/darkPatternRules.js'
+import * as RegulationDB from '../src/data/regulationGuideline.js'
 
 const { FALSE_POSITIVES, FRAMEWORK, GUIDE, OVERLAPS, RULES, TYPES } = DB
 const FIRST_OR_REPEAT = DB.FIRST_OR_REPEAT // 공개 예시 규칙에는 없을 수 있어요
+const { REGULATION, REGULATION_BY_RULE } = RegulationDB
 
 export const MODEL = 'claude-opus-5-5'
 
@@ -88,7 +90,17 @@ const AnalysisSchema = z.object({
   }),
 })
 
-function buildSystemPrompt() {
+// 금융위·금감원 가이드라인 원문에서 판단에 쓸 부분만 프롬프트에 넣어요.
+function regulationPrompt(reg) {
+  const lines = [`금융당국 원문(${REGULATION.issuer} ${REGULATION.date}, ${reg.page}쪽): ${reg.definition}`]
+  if (reg.points?.length) lines.push(...reg.points.map((t) => `  - ${t}`))
+  if (reg.duties?.length) lines.push(`  사업자 준수사항: ${reg.duties.join(' / ')}`)
+  if (reg.exceptions?.length) lines.push(`  원문이 인정하는 예외: ${reg.exceptions.join(' / ')}`)
+  if (reg.combine) lines.push(`  결합 시 유의: ${reg.combine}`)
+  return lines.join('\n')
+}
+
+export function buildSystemPrompt() {
   const rules = RULES.map((r) =>
     [
       `### ${r.id} ${r.type} · ${r.name}${r.typeConflict ? ` (유형 표기 확인 필요: ${r.typeConflict})` : ''}`,
@@ -100,6 +112,7 @@ function buildSystemPrompt() {
       `개선: ${r.improvement}`,
       r.exceptions.length ? `예외:\n${r.exceptions.map((e) => `- ${e}`).join('\n')}` : '예외: 원문에 명시된 예외 없음',
       `단일 화면으로 확인할 수 없는 근거: ${r.evidence.join(' / ')}`,
+      REGULATION_BY_RULE[r.id] ? regulationPrompt(REGULATION_BY_RULE[r.id]) : '',
       r.cases?.length
         ? `정탐 사례(가이드가 다크패턴으로 판단한 예):\n${r.cases.map((c) => `- ${c.title}: ${c.summary}${c.basis?.length ? ` [근거: ${c.basis.join('; ')}]` : ''}`).join('\n')}`
         : '',
@@ -118,6 +131,8 @@ function buildSystemPrompt() {
 
 ## 가이드 목적과 원칙
 ${GUIDE.purpose}
+금융당국 원문 일반원칙: ${REGULATION.generalPrinciples.join(' ')}
+취약 소비자상 전제: ${REGULATION.consumerModel}
 ${GUIDE.principle}
 
 ## 판단 프레임 (순서대로 검토)

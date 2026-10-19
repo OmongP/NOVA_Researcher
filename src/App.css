@@ -2307,7 +2307,7 @@
   background: transparent;
 }
 
-/* NOVA Researcher 브랜드 — NOVA 디자인 시스템 로고(굵은 워드마크 + 다크 앱 아이콘) 계열 */
+/* UX Lens 브랜드 — NOVA 디자인 시스템 로고(굵은 워드마크 + 다크 앱 아이콘) 계열 */
 img.brand-mark {
   display: block;
   width: 30px;
@@ -2320,6 +2320,20 @@ img.brand-mark {
   font-size: 18px;
   font-weight: 900;
   letter-spacing: -0.01em;
+}
+
+.brand-slogan {
+  margin-left: 10px;
+  color: var(--text-sub);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 900px) {
+  .brand-slogan {
+    display: none;
+  }
 }
 
 .brand-sub {
@@ -2437,4 +2451,30 @@ img.brand-mark {
   .toast {
     animation: none;
   }
+}
+
+/* 금융당국 가이드라인 원문 */
+.regulation {
+  margin: 4px 0;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  font-size: 13px;
+}
+
+.regulation summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.regulation-label {
+  margin: 10px 0 2px;
+  color: var(--text-sub);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.regulation-intro {
+  margin-top: 10px;
 }

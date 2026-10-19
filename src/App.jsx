@@ -245,20 +245,19 @@ export default function App() {
             }}
           >
             <img className="brand-mark" src="/icon-180.png" alt="" aria-hidden="true" />
-            <span className="brand-name">
-              NOVA <span className="brand-sub">Researcher</span>
-            </span>
+            <span className="brand-name">UX Lens</span>
+            <span className="brand-slogan">Explore UI. Inspect UX.</span>
             <span className="version">v0.3</span>
           </button>
           <nav className="views" aria-label="화면 전환">
             <button type="button" className={`view-tab ${view === 'search' ? 'is-active' : ''}`} onClick={() => setView('search')}>
-              검색
+              Explore
             </button>
             <button type="button" className={`view-tab ${view === 'library' ? 'is-active' : ''}`} onClick={() => setView('library')}>
-              보관함 <span className="library-count">{store.bookmarks.length}</span>
+              Archive <span className="library-count">{store.bookmarks.length}</span>
             </button>
             <button type="button" className={`view-tab ${view === 'dark' ? 'is-active' : ''}`} onClick={() => setView('dark')}>
-              다크패턴 검토
+              Inspect
             </button>
           </nav>
         </div>
@@ -389,7 +388,7 @@ export default function App() {
             <div className="toast" key={toast}>
               ✓ {toast}
               <button type="button" className="toast-action" onClick={() => setView('library')}>
-                보관함 보기
+                Archive 보기
               </button>
             </div>
           )}
