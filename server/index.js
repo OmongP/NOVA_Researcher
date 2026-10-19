@@ -24,6 +24,8 @@ const SEARCH_SCOPES = {
 }
 // 분류 제한이 넓은 탭은 2페이지까지 받아 결과를 넉넉하게 보여줘요(페이지당 3개).
 const PAGES_BY_DOMAIN = { 전체: 2, 금융: 2, 모빌리티: 2, 자동차: 1 }
+// 문구(OCR) 검색은 UI Bowl에서 결과가 수백 건까지 나와서(예: '가격 비교' 157건) 한 페이지(3건)로는 부족해요.
+const OCR_PAGES = 3
 
 // 한 앱의 화면이 앞쪽을 모두 차지하지 않도록 앱별로 번갈아 섞어요(같은 앱 안의 순서는 유지).
 function interleaveByService(screens) {
@@ -137,12 +139,15 @@ app.post('/api/search', async (req, res) => {
     })
     // 문구 검색은 '정확히 일치' 화면을 찾는 보조 검색이에요. 섞여 들어온 엉뚱한 화면은 적합도 판정에서 걸러요.
     // 사전에 정해 둔 문구가 없으면 여러 단어로 된 입력("주소 입력")에 한해 입력한 구절을 화면 속 문구로 찾아요.
-    if (query.ocr) calls.push(['search_by_ocr_text', { ...base, text_query: query.ocr.text, ...(query.ocr.pattern && { pattern: query.ocr.pattern }) }])
+    const ocrCall = (args, first) => {
+      for (let page = 1; page <= (first ? OCR_PAGES : 1); page++) calls.push(['search_by_ocr_text', { ...base, ...args, ...(page > 1 && { page }) }])
+    }
+    if (query.ocr) ocrCall({ text_query: query.ocr.text, ...(query.ocr.pattern && { pattern: query.ocr.pattern }) }, true)
     else if (query.head) {
       // 입력 순서와 상관없이 같은 결과가 나오도록 띄어 쓴 형태를 먼저 써요.
       const ordered = [...query.phrases].sort((x, y) => Number(/\s/.test(y)) - Number(/\s/.test(x)))
       const ocrPhrases = scopes.length > 1 ? ordered.slice(0, 1) : ordered.slice(0, 2)
-      for (const text_query of ocrPhrases) calls.push(['search_by_ocr_text', { ...base, text_query }])
+      ocrPhrases.forEach((text_query, i) => ocrCall({ text_query }, i === 0))
     }
   }
 

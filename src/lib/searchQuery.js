@@ -180,6 +180,11 @@ export function rateRelevance(screen, query) {
 
   if (journeyInInfo) return { tier: 'related', reason: `‘${journeyInInfo}’ 여정에 속한 화면이에요` }
 
+  // 검색어 전체는 아니어도 일부 단어(앞 단어 포함)가 화면 정보나 문구에 있으면 "관련 화면"으로 보여줘요.
+  const words = [...new Set([query.head, ...String(query.core ?? '').split(/\s+/)].filter((w) => w && squash(w).length >= 2))]
+  const partial = hit(info, words) ?? hit(texts, words)
+  if (partial) return { tier: 'related', reason: `검색어 일부인 ‘${partial}’ 표기가 있어요. 화면 목적은 다를 수 있어요` }
+
   return { tier: 'low', reason: '검색 의도와 직접 연결되는 정보가 없어요' }
 }
 

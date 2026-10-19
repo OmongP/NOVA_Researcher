@@ -8,6 +8,7 @@ import Library from './components/Library'
 import DarkPatternInspector from './components/DarkPatternInspector'
 import { useCollections } from './lib/useCollections'
 import { IS_DEMO } from './lib/demo'
+import { readJson } from './lib/http'
 import './App.css'
 
 const DOMAINS = ['전체', '금융', '자동차', '모빌리티']
@@ -142,7 +143,7 @@ export default function App() {
     setAuth({ state: 'checking' })
     try {
       const res = await fetch('/api/auth/status')
-      const data = await res.json()
+      const data = await readJson(res)
       if (data.connected) setAuth({ state: 'connected' })
       else if (data.loginUrl) setAuth({ state: 'needsLogin', loginUrl: data.loginUrl })
       else setAuth({ state: 'error', error: data.error ?? '알 수 없는 오류' })
@@ -165,7 +166,7 @@ export default function App() {
       body: JSON.stringify({ q: query.raw, domain }),
     })
       .then(async (res) => {
-        const data = await res.json()
+        const data = await readJson(res)
         if (cancelled) return
         if (data.loginUrl) {
           setAuth({ state: 'needsLogin', loginUrl: data.loginUrl })

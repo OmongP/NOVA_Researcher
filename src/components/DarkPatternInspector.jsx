@@ -4,6 +4,7 @@ import { reviewKey, reviewsToMarkdown, useReviews } from '../lib/useReviews'
 import ReviewPanel from './ReviewPanel'
 import AiReview from './AiReview'
 import { IS_DEMO } from '../lib/demo'
+import { readJson } from '../lib/http'
 
 // 자연어 요청("현재 100명이 신청 중 UI 검토해줘")을 가장 가까운 규칙에 연결해요.
 function matchRules(text) {
@@ -81,7 +82,7 @@ export default function DarkPatternInspector({ isLive, loginUrl }) {
     setResult({ status: 'loading', screens: [], errors: [] })
     try {
       const res = await fetch('/api/dark/search', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ruleId }) })
-      const data = await res.json()
+      const data = await readJson(res)
       if (!res.ok || (data.calls > 0 && data.failedCalls === data.calls)) {
         setResult({ status: 'failed', screens: [], errors: data.errors?.length ? data.errors : [data.error ?? `HTTP ${res.status}`] })
         return
