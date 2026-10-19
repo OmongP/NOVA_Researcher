@@ -1,6 +1,10 @@
 // 로컬 검색 프록시 서버 (http://localhost:8787)
 // 브라우저 앱 → 이 서버 → UI Bowl MCP 순서로 검색해요.
 import { createHash } from 'node:crypto'
+import { existsSync } from 'node:fs'
+import { networkInterfaces } from 'node:os'
+import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import express from 'express'
 import { interpretQuery } from '../src/lib/searchQuery.js'
@@ -9,8 +13,10 @@ import { getAuthStatus, finishLogin, callTool } from './uibowl.js'
 import { ruleById } from '../src/data/darkPatternRules.js'
 import { cancelJob, getJob, getProviders, jobImagePath, recoverInterruptedJobs, retryJob, startReview } from './aiReview.js'
 
-const PORT = 8787
-const APP_URL = 'http://localhost:5173'
+const PORT = Number(process.env.PORT ?? 8787)
+// 개발 중에는 Vite(5173)가 화면을 서비스하고, 팀 공유 모드(npm run serve)에서는 이 서버가 화면까지 서비스해요.
+const APP_URL = process.env.APP_URL ?? 'http://localhost:5173'
+const HOST = process.env.HOST // 비우면 기존처럼 열고, 팀 공유 모드에서는 0.0.0.0(사내망 접속 허용)
 
 const app = express()
 app.use(express.json({ limit: '25mb' }))
@@ -131,6 +137,24 @@ app.delete('/api/ai/jobs/:id', (req, res) => {
 
 recoverInterruptedJobs()
 
-app.listen(PORT, () => {
+// 팀 공유 모드: npm run build로 만든 화면(dist)을 이 서버가 함께 서비스해요. /api 이외 경로는 화면으로 보내요.
+const DIST = fileURLToPath(new URL('../dist/', import.meta.url))
+if (process.env.SERVE_STATIC && existsSync(DIST)) {
+  app.use(express.static(DIST))
+  app.get(/^(?!\/api\/).*/, (_req, res) => res.sendFile(join(DIST, 'index.html')))
+}
+
+function lanUrls() {
+  return Object.values(networkInterfaces())
+    .flat()
+    .filter((n) => n && n.family === 'IPv4' && !n.internal)
+    .map((n) => `http://${n.address}:${PORT}`)
+}
+
+app.listen(PORT, HOST, () => {
   console.log(`[ux-finder] search proxy on http://localhost:${PORT}`)
+  if (process.env.SERVE_STATIC) {
+    console.log('[ux-finder] 팀 공유 모드: 같은 사내망의 팀원은 아래 주소로 접속해요 (이 PC가 켜져 있을 때만 돼요)')
+    for (const url of lanUrls()) console.log(`  ${url}`)
+  }
 })

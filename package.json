@@ -13,7 +13,9 @@
     "predev": "node scripts/ensure-rules.js",
     "prebuild": "node scripts/ensure-rules.js",
     "predev:api": "node scripts/ensure-rules.js",
-    "build:demo": "vite build --mode demo"
+    "build:demo": "vite build --mode demo",
+    "serve": "npm run build && node --env-file-if-exists=server/.env scripts/serve.js",
+    "start": "node --env-file-if-exists=server/.env scripts/serve.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.135.0",
