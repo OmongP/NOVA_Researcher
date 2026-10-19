@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { sampleScreens } from './data/sampleScreens'
 import { interpretQuery, rateRelevance, searchScreens, TIERS } from './lib/searchQuery'
 import ScreenCard from './components/ScreenCard'
@@ -126,6 +126,8 @@ export default function App() {
   const [showLow, setShowLow] = useState(false)
   const [selected, setSelected] = useState(null)
   const [saving, setSaving] = useState(null)
+  const [toast, setToast] = useState(null)
+  const toastTimer = useRef(null)
   const [view, setView] = useState('search')
   const store = useCollections()
   const isSaved = (screen) => store.collectionsOf(screen).length > 0
@@ -210,7 +212,14 @@ export default function App() {
 
   const counts = { exact: grouped.exact.length, related: grouped.related.length, low: grouped.low.length }
   const closeDetail = useCallback(() => setSelected(null), [])
-  const closeSave = useCallback(() => setSaving(null), [])
+  // 저장 대화상자를 닫을 때 바뀐 내용이 있으면 화면 아래에 잠깐 알려줘요.
+  const closeSave = useCallback((summary) => {
+    setSaving(null)
+    if (typeof summary !== 'string') return
+    setToast(summary)
+    clearTimeout(toastTimer.current)
+    toastTimer.current = setTimeout(() => setToast(null), 2600)
+  }, [])
   const sectionProps = { onOpen: setSelected, isSaved, onSave: setSaving }
 
   function runSearch(text) {
@@ -374,6 +383,16 @@ export default function App() {
 
         {selected && <ScreenDetail screen={selected} onClose={closeDetail} saved={isSaved(selected)} onSave={setSaving} />}
         {saving && <SaveDialog screen={saving} store={store} onClose={closeSave} />}
+        <div className="toast-region" role="status" aria-live="polite">
+          {toast && (
+            <div className="toast" key={toast}>
+              ✓ {toast}
+              <button type="button" className="toast-action" onClick={() => setView('library')}>
+                보관함 보기
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </>
   )
