@@ -6,6 +6,8 @@ const NOTICE_MS = 2200
 // 저장·제거할 때마다 안내 문구를 보여주고, 닫을 때 바뀐 내용이 있으면 onClose(요약)로 알려줘요.
 export default function SaveDialog({ screen, store, onClose }) {
   const [newName, setNewName] = useState('')
+  const [dragId, setDragId] = useState(null) // 순서를 바꾸려고 끌고 있는 컬렉션
+  const [overId, setOverId] = useState(null)
   const [notice, setNotice] = useState(null)
   const savedIn = store.collectionsOf(screen)
   const timer = useRef(null)
@@ -80,15 +82,55 @@ export default function SaveDialog({ screen, store, onClose }) {
         </p>
 
         <ul className="save-list">
-          {store.collections.map((c) => (
-            <li key={c.id}>
-              <label className="save-option">
-                <input type="checkbox" checked={savedIn.includes(c.id)} onChange={() => toggle(c)} />
-                <span>{c.name}</span>
-                <span className="save-option-count">{store.bookmarks.filter((b) => b.collectionId === c.id).length}</span>
-              </label>
-            </li>
-          ))}
+          {store.collections.map((c, index) => {
+            const dragIndex = store.collections.findIndex((x) => x.id === dragId)
+            const dropClass = overId === c.id && dragId && dragId !== c.id ? (dragIndex > index ? 'is-over-before' : 'is-over-after') : ''
+            return (
+              <li
+                key={c.id}
+                draggable
+                className={`save-item ${dragId === c.id ? 'is-dragging' : ''} ${dropClass}`}
+                onDragStart={(e) => {
+                  setDragId(c.id)
+                  e.dataTransfer.effectAllowed = 'move'
+                  e.dataTransfer.setData('text/plain', c.id)
+                }}
+                onDragOver={(e) => {
+                  if (!dragId) return
+                  e.preventDefault()
+                  e.dataTransfer.dropEffect = 'move'
+                  setOverId(c.id)
+                }}
+                onDrop={(e) => {
+                  e.preventDefault()
+                  if (dragId) store.moveCollection(dragId, c.id)
+                  setDragId(null)
+                  setOverId(null)
+                }}
+                onDragEnd={() => {
+                  setDragId(null)
+                  setOverId(null)
+                }}
+                onKeyDown={(e) => {
+                  // 키보드로도 순서를 바꿀 수 있어요: Alt+↑ / Alt+↓
+                  if (e.altKey && (e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
+                    e.preventDefault()
+                    store.moveCollectionBy(c.id, e.key === 'ArrowUp' ? -1 : 1)
+                  }
+                }}
+                title="드래그해서 순서를 바꿀 수 있어요 (Alt+↑/↓)"
+              >
+                <label className="save-option">
+                  <span className="library-grip" aria-hidden="true">
+                    ⋮⋮
+                  </span>
+                  <input type="checkbox" checked={savedIn.includes(c.id)} onChange={() => toggle(c)} />
+                  <span>{c.name}</span>
+                  <span className="save-option-count">{store.bookmarks.filter((b) => b.collectionId === c.id).length}</span>
+                </label>
+              </li>
+            )
+          })}
         </ul>
 
         <form className="save-new" onSubmit={create}>
@@ -110,7 +152,7 @@ export default function SaveDialog({ screen, store, onClose }) {
           완료
         </button>
 
-        <p className="save-hint">이미지는 저장하지 않고 원본 링크와 화면 정보만 {store.storageMode === 'server' ? '접속 IP 기준으로 서버에' : '이 브라우저에'} 보관해요. 저장한 화면은 위쪽 ‘Archive’에서 볼 수 있어요.</p>
+        <p className="save-hint">이미지는 저장하지 않고 원본 링크와 화면 정보만 {store.storageMode === 'server' ? '접속 IP 기준으로 서버에' : '이 브라우저에'} 보관해요. 저장한 화면은 위쪽 ‘Archive’에서 볼 수 있어요. 컬렉션은 끌어서 순서를 바꿀 수 있어요.</p>
         {store.storageError && <p className="save-hint save-error">저장하지 못했어요: {store.storageError}</p>}
       </div>
     </div>

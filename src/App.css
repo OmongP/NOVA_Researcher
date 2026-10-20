@@ -2595,3 +2595,33 @@ img.brand-mark {
 .library-item.is-over-after {
   box-shadow: inset 0 -2px 0 var(--accent);
 }
+
+/* 저장 대화상자의 컬렉션 순서 바꾸기 */
+.save-item {
+  position: relative;
+  cursor: grab;
+  user-select: none;
+  border-radius: var(--radius-8);
+}
+
+.save-item .save-option {
+  position: relative;
+}
+
+.save-item:hover .library-grip,
+.save-item:focus-within .library-grip {
+  opacity: 1;
+}
+
+.save-item.is-dragging {
+  opacity: 0.4;
+  cursor: grabbing;
+}
+
+.save-item.is-over-before {
+  box-shadow: inset 0 2px 0 var(--accent);
+}
+
+.save-item.is-over-after {
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
