@@ -11,11 +11,16 @@ const KV_ID = process.env.UXLENS_KV_ID ?? 'ecf59c5216cf4b76848bb01f381dbad4'
 const ENV_FILE = new URL('../server/.env', import.meta.url)
 const PORT = process.env.PORT ?? 8787
 // PATH에 없어도 ~/.local/bin 에 설치한 cloudflared 를 찾아요.
-const LOCAL_CLOUDFLARED = `${process.env.HOME}/.local/bin/cloudflared`
-const CLOUDFLARED = existsSync(LOCAL_CLOUDFLARED) ? LOCAL_CLOUDFLARED : 'cloudflared'
+// Windows 는 HOME 대신 USERPROFILE, 실행 파일은 cloudflared.exe 예요. CLOUDFLARED_BIN 으로 직접 지정할 수도 있어요.
+const HOME = process.env.HOME ?? process.env.USERPROFILE ?? ''
+const EXE = process.platform === 'win32' ? '.exe' : ''
+const LOCAL_CLOUDFLARED = `${HOME}/.local/bin/cloudflared${EXE}`
+const CLOUDFLARED = process.env.CLOUDFLARED_BIN || (existsSync(LOCAL_CLOUDFLARED) ? LOCAL_CLOUDFLARED : 'cloudflared')
 
 const readEnvValue = (name) => (existsSync(ENV_FILE) ? readFileSync(ENV_FILE, 'utf8').match(new RegExp(`^${name}=(.*)$`, 'm'))?.[1]?.trim() : '') || ''
-const wrangler = (args, input) => execFileSync('npx', ['wrangler', ...args], { input, stdio: ['pipe', 'inherit', 'inherit'] })
+// Windows 에서는 npx 가 npx.cmd 라서 shell 을 거쳐야 실행돼요.
+const wrangler = (args, input) =>
+  execFileSync('npx', ['wrangler', ...args], { input, stdio: ['pipe', 'inherit', 'inherit'], shell: process.platform === 'win32' })
 
 if (process.argv.includes('--setup')) {
   let secret = readEnvValue('AI_PROXY_SECRET')
@@ -45,7 +50,7 @@ const run = (cmd, args, opts = {}) => {
 }
 
 // 1) 화면 + 검색·AI 서버
-run('node', ['--env-file-if-exists=server/.env', 'scripts/serve.js'], { stdio: 'inherit' })
+run(process.execPath, ['--env-file-if-exists=server/.env', 'scripts/serve.js'], { stdio: 'inherit' })
 
 // 2) 터널
 let published = false

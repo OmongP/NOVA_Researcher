@@ -48,6 +48,21 @@ npm run serve   # 화면을 새로 빌드하고 시작 (이미 빌드했다면 n
 - 사내 가이드 파일(`src/data/darkPatternRules.js`)은 서버 PC에만 있으면 돼요.
 - 이 PC에서만 쓰려면 `HOST=127.0.0.1 npm start`로 시작해요.
 
+### 다른 PC로 옮기기 (Windows 기준)
+
+사이트의 AI 검토를 다른 PC에서 돌리고 싶을 때예요. **한 번에 한 PC에서만** `npm run share`를 켜요(나중에 켠 PC가 사이트의 연결 주소를 덮어써요).
+
+1. **코드 받기**: Node.js(22 이상)를 설치하고 저장소를 받아 `npm install`을 실행해요.
+2. **사내 가이드 파일 복사**: `src/data/darkPatternRules.js`는 저장소에 없어요. 기존 PC에서 같은 위치로 직접 복사해요(없으면 예시 규칙으로 켜져요).
+3. **Claude Code 설치 후 로그인**: 공식 설치 방법으로 설치하고 `claude auth login`을 해요. `claude-opus-5-5`를 쓰려면 2.1.280 이상이어야 해요. `claude`를 못 찾으면 `server/.env`에 `CLAUDE_BIN=C:\경로\claude.exe`를 적어요(`.cmd` 파일은 지정하지 마세요. 긴 지시문이 잘려요).
+4. **터널 프로그램**: PowerShell에서 `winget install Cloudflare.cloudflared`. PATH에서 못 찾으면 `server/.env`에 `CLOUDFLARED_BIN=C:\경로\cloudflared.exe`를 적어요.
+5. **비밀키 복사**: 기존 PC의 `server/.env` 에 있는 `AI_PROXY_SECRET=...` 줄을 새 PC의 `server/.env`에 그대로 붙여 넣어요. Cloudflare에 저장된 값과 같아야 해요. **`npm run share -- --setup`을 다시 실행하지 마세요.** 비밀키와 팀 코드가 새로 바뀌어요.
+6. **Cloudflare 로그인**: `npx wrangler login` (터널 주소를 사이트에 알릴 때 필요해요).
+7. **UI Bowl 로그인**: `npm run share`로 켠 뒤 `http://localhost:8787`에서 상단 "UI Bowl 로그인"을 해요. `server/.auth.json`은 복사하지 마세요(토큰이 갱신될 때마다 바뀌어서 두 PC가 서로 로그아웃시켜요).
+8. **실행**: `npm run share` — "터널 연결 완료"가 나오면 사이트에서 AI 검토가 돼요.
+
+> Windows 지원은 Mac에서 만든 스크립트를 고쳐 둔 것이라 아직 Windows에서 직접 실행해 보지는 않았어요. 막히면 터미널에 나온 오류 문구를 알려 주세요.
+
 ### UI Bowl 연결
 
 처음 실행하면 화면 상단의 "UI Bowl 로그인"으로 로그인해요. 토큰은 `server/.auth.json`에만 저장되고 저장소에는 올라가지 않아요. 로그인 전에는 샘플 화면으로 검색해요.
