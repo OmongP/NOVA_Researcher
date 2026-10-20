@@ -1,12 +1,12 @@
 // 사이트(Cloudflare)의 AI 다크패턴 사전 검토를 이 PC의 Claude Code로 돌리게 해요.
 //   npm run share           서버 + Cloudflare Tunnel을 켜고 사이트에 터널 주소를 알려줘요. 이 PC가 켜져 있는 동안만 사이트에서 실제 AI 검토가 돼요.
-//   npm run share -- --setup  처음 한 번: 비밀키(AI_PROXY_SECRET)와 팀 코드(TEAM_CODE)를 만들어 Cloudflare에 저장해요.
+//   npm run share -- --setup  처음 한 번: 비밀키(AI_PROXY_SECRET)와 팀 코드(TEAM_CODE)를 Cloudflare에 저장해요. 기존 비밀키는 server/.env 값을 그대로 쓰고, 팀 코드는 --team-code=코드 로 지정할 수 있어요.
 // 비밀값은 저장소에 올라가지 않아요(server/.env, Cloudflare 비밀 설정).
 import { spawn, execFileSync } from 'node:child_process'
 import { randomBytes } from 'node:crypto'
 import { appendFileSync, existsSync, readFileSync } from 'node:fs'
 
-const PROJECT = 'nova-researcher'
+const PROJECT = 'nova-lens'
 const KV_ID = process.env.UXLENS_KV_ID ?? 'ecf59c5216cf4b76848bb01f381dbad4'
 const ENV_FILE = new URL('../server/.env', import.meta.url)
 const PORT = process.env.PORT ?? 8787
@@ -31,7 +31,13 @@ if (process.argv.includes('--setup')) {
   }
   wrangler(['pages', 'secret', 'put', 'AI_PROXY_SECRET', '--project-name', PROJECT], secret)
 
-  const code = randomBytes(4).toString('hex') // 8자리 팀 코드
+  // --team-code=코드 로 기존 팀 코드를 그대로 쓸 수 있어요. 없으면 새로 만들어요.
+  const given = process.argv.find((a) => a.startsWith('--team-code='))?.slice('--team-code='.length)
+  if (given && given.length < 6) {
+    console.error('팀 코드는 6자 이상이어야 해요.')
+    process.exit(1)
+  }
+  const code = given || randomBytes(4).toString('hex') // 8자리 팀 코드
   wrangler(['pages', 'secret', 'put', 'TEAM_CODE', '--project-name', PROJECT], code)
   console.log(`\n팀 코드: ${code}\n사이트에서 AI 검토를 처음 요청할 때 입력하는 코드예요. 팀원에게만 알려 주세요. 사이트를 다시 배포해야 적용돼요.`)
   process.exit(0)
