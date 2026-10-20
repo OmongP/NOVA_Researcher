@@ -109,6 +109,31 @@ export function useCollections() {
     setState((s) => ({ ...s, collections: s.collections.map((c) => (c.id === id ? { ...c, name: trimmed } : c)) }))
   }, [])
 
+  // 컬렉션 순서 바꾸기: id를 targetId 자리로 옮겨요(아래로 옮기면 target 뒤, 위로 옮기면 target 앞에 놓여요).
+  const moveCollection = useCallback((id, targetId) => {
+    setState((s) => {
+      const from = s.collections.findIndex((c) => c.id === id)
+      const to = s.collections.findIndex((c) => c.id === targetId)
+      if (from < 0 || to < 0 || from === to) return s
+      const collections = [...s.collections]
+      const [item] = collections.splice(from, 1)
+      collections.splice(to, 0, item)
+      return { ...s, collections }
+    })
+  }, [])
+
+  const moveCollectionBy = useCallback((id, delta) => {
+    setState((s) => {
+      const from = s.collections.findIndex((c) => c.id === id)
+      const to = from + delta
+      if (from < 0 || to < 0 || to >= s.collections.length) return s
+      const collections = [...s.collections]
+      const [item] = collections.splice(from, 1)
+      collections.splice(to, 0, item)
+      return { ...s, collections }
+    })
+  }, [])
+
   const deleteCollection = useCallback((id) => {
     setState((s) => ({
       collections: s.collections.filter((c) => c.id !== id),
@@ -153,6 +178,8 @@ export function useCollections() {
     createCollection,
     renameCollection,
     deleteCollection,
+    moveCollection,
+    moveCollectionBy,
     toggleBookmark,
     updateNote,
     removeBookmark,

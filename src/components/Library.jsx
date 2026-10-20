@@ -8,6 +8,8 @@ const ALL = 'all'
 export default function Library({ store, onOpen, onSave }) {
   const [activeId, setActiveId] = useState(ALL)
   const [copied, setCopied] = useState(false)
+  const [dragId, setDragId] = useState(null) // 순서를 바꾸려고 끌고 있는 컬렉션
+  const [overId, setOverId] = useState(null) // 지금 위에 올려 둔 컬렉션
 
   const active = store.collections.find((c) => c.id === activeId)
   const bookmarks = activeId === ALL ? store.bookmarks : store.bookmarks.filter((b) => b.collectionId === activeId)
@@ -48,17 +50,54 @@ export default function Library({ store, onOpen, onSave }) {
           <span>전체 저장</span>
           <span className="library-count">{store.bookmarks.length}</span>
         </button>
-        {store.collections.map((c) => (
-          <button
-            key={c.id}
-            type="button"
-            className={`library-item ${activeId === c.id ? 'is-active' : ''}`}
-            onClick={() => setActiveId(c.id)}
-          >
-            <span>{c.name}</span>
-            <span className="library-count">{store.bookmarks.filter((b) => b.collectionId === c.id).length}</span>
-          </button>
-        ))}
+        {store.collections.map((c, index) => {
+          const dragIndex = store.collections.findIndex((x) => x.id === dragId)
+          const dropClass = overId === c.id && dragId && dragId !== c.id ? (dragIndex > index ? 'is-over-before' : 'is-over-after') : ''
+          return (
+            <button
+              key={c.id}
+              type="button"
+              draggable
+              className={`library-item is-sortable ${activeId === c.id ? 'is-active' : ''} ${dragId === c.id ? 'is-dragging' : ''} ${dropClass}`}
+              onClick={() => setActiveId(c.id)}
+              onDragStart={(e) => {
+                setDragId(c.id)
+                e.dataTransfer.effectAllowed = 'move'
+                e.dataTransfer.setData('text/plain', c.id)
+              }}
+              onDragOver={(e) => {
+                if (!dragId) return
+                e.preventDefault()
+                e.dataTransfer.dropEffect = 'move'
+                setOverId(c.id)
+              }}
+              onDrop={(e) => {
+                e.preventDefault()
+                if (dragId) store.moveCollection(dragId, c.id)
+                setDragId(null)
+                setOverId(null)
+              }}
+              onDragEnd={() => {
+                setDragId(null)
+                setOverId(null)
+              }}
+              onKeyDown={(e) => {
+                // 키보드로도 순서를 바꿀 수 있어요: Alt+↑ / Alt+↓
+                if (e.altKey && (e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
+                  e.preventDefault()
+                  store.moveCollectionBy(c.id, e.key === 'ArrowUp' ? -1 : 1)
+                }
+              }}
+              title="드래그해서 순서를 바꿀 수 있어요 (Alt+↑/↓)"
+            >
+              <span className="library-grip" aria-hidden="true">
+                ⋮⋮
+              </span>
+              <span className="library-item-name">{c.name}</span>
+              <span className="library-count">{store.bookmarks.filter((b) => b.collectionId === c.id).length}</span>
+            </button>
+          )
+        })}
         <button
           type="button"
           className="library-item library-add"
