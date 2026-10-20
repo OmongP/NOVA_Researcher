@@ -1,0 +1,37 @@
+{
+  "routes": [
+    {
+      "routePath": "/api/auth/status",
+      "mountPath": "/api/auth",
+      "method": "GET",
+      "module": [
+        "api/auth/status.js:onRequestGet"
+      ]
+    },
+    {
+      "routePath": "/api/dark/search",
+      "mountPath": "/api/dark",
+      "method": "POST",
+      "module": [
+        "api/dark/search.js:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/ai/:path*",
+      "mountPath": "/api/ai",
+      "method": "",
+      "module": [
+        "api/ai/[[path]].js:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/search",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/search.js:onRequestPost"
+      ]
+    }
+  ],
+  "baseURL": "/"
+}
