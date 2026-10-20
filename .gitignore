@@ -39,3 +39,6 @@ dist-demo
 
 # IP별 보관함 (서버가 만드는 사용자 데이터)
 server/library/
+
+# 서버 PC 실행 로그
+share.log

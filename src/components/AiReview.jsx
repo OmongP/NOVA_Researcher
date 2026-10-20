@@ -529,6 +529,14 @@ export default function AiReview() {
         </div>
       )}
 
+      {status.active === 'bridge' && (
+        <div className="status status-error">
+          <span>
+            Claude Code를 쓸 수 없어서 <strong>대화 대기열 방식</strong>으로 동작 중이에요. 이 방식은 사람이 Claude Code 대화에서 처리해야 결과가 나와서, 기다려도 끝나지 않아요.
+            {status.cliReason && <> 이유: {status.cliReason}</>}
+          </span>
+        </div>
+      )}
       {status.active && (
         <div className="status">
           <span>

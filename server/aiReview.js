@@ -4,6 +4,7 @@ import { execFileSync, spawn } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import Anthropic from '@anthropic-ai/sdk'
 import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod'
@@ -183,17 +184,55 @@ const OUTBOX = new URL('outbox/', REVIEWS_DIR)
 export const ANALYSIS_JSON_SCHEMA = z.toJSONSchema(AnalysisSchema)
 
 // claude 실행 파일. PATH와 다른 위치에 설치했다면 server/.env의 CLAUDE_BIN으로 지정해요.
-const CLAUDE_BIN = process.env.CLAUDE_BIN || 'claude'
+// Windows에서는 공식 설치 위치도 함께 찾아봐요(.cmd 파일은 긴 지시문 전달이 안 돼서 지원하지 않아요).
+const CLAUDE_CANDIDATES = [
+  ...new Set(
+    [
+      process.env.CLAUDE_BIN,
+      'claude',
+      ...(process.platform === 'win32'
+        ? [
+            join(process.env.USERPROFILE ?? '', '.local', 'bin', 'claude.exe'),
+            join(process.env.APPDATA ?? '', 'npm', 'node_modules', '@anthropic-ai', 'claude-code', 'bin', 'claude.exe'),
+          ]
+        : []),
+    ].filter(Boolean),
+  ),
+]
+let claudeBin = null // 실제로 동작을 확인한 실행 파일
 
-let cliState = { checkedAt: 0, loggedIn: false }
+let cliState = { checkedAt: 0, loggedIn: false, reason: '' }
 function checkCli() {
   if (Date.now() - cliState.checkedAt < 30_000) return cliState.loggedIn
-  cliState.checkedAt = Date.now()
-  try {
-    const out = execFileSync(CLAUDE_BIN, ['auth', 'status'], { encoding: 'utf8', timeout: 10_000 })
-    cliState.loggedIn = JSON.parse(out).loggedIn === true
-  } catch {
-    cliState.loggedIn = false
+  cliState = { checkedAt: Date.now(), loggedIn: false, reason: '' }
+  let notFound = true
+  for (const bin of claudeBin ? [claudeBin] : CLAUDE_CANDIDATES) {
+    let out = ''
+    try {
+      out = execFileSync(bin, ['auth', 'status'], { encoding: 'utf8', timeout: 10_000 })
+    } catch (e) {
+      // 로그아웃 상태면 종료 코드가 0이 아니어도 stdout에 상태가 있어요.
+      out = typeof e.stdout === 'string' ? e.stdout : ''
+      if (!out) {
+        if (e.code !== 'ENOENT') {
+          notFound = false
+          cliState.reason = `Claude Code 상태를 확인하지 못했어요: ${String(e.message ?? '').split('\n')[0].slice(0, 160)}`
+        }
+        continue
+      }
+    }
+    notFound = false
+    claudeBin = bin
+    try {
+      cliState.loggedIn = JSON.parse(out).loggedIn === true
+    } catch {
+      cliState.loggedIn = false
+    }
+    cliState.reason = cliState.loggedIn ? '' : 'Claude Code에 로그인되어 있지 않아요. 터미널에서 claude auth login 을 실행해 주세요'
+    break
+  }
+  if (notFound && !cliState.reason) {
+    cliState.reason = `claude 실행 파일을 찾지 못했어요(찾아본 곳: ${CLAUDE_CANDIDATES.join(', ')}). server/.env 에 CLAUDE_BIN=전체경로 를 적어 주세요`
   }
   return cliState.loggedIn
 }
@@ -203,7 +242,7 @@ export function getProviders() {
   const cli = checkCli()
   const active = api ? 'api' : cli ? 'cli' : 'bridge'
   const model = active === 'api' ? MODEL : active === 'cli' ? (process.env.CLAUDE_REVIEW_MODEL ?? 'Claude Code CLI 기본 모델') : 'Claude Code (대화)'
-  return { api, cli, bridge: true, active, model }
+  return { api, cli, bridge: true, active, model, cliReason: cli ? '' : cliState.reason }
 }
 
 function parseImage(dataUrl) {
@@ -281,6 +320,13 @@ function extractJson(text) {
   return JSON.parse(body.slice(start, end + 1))
 }
 
+// 지시문이 3만 자에 가까워서(Windows 명령줄 한도 약 3.3만 자) 명령줄 대신 파일로 전달해요.
+function systemPromptFile() {
+  const file = join(tmpdir(), 'ux-lens-cli-system-prompt.txt')
+  writeFileSync(file, CLI_SYSTEM_PROMPT, 'utf8')
+  return file
+}
+
 function viaCli(request) {
   const { mediaType, data } = parseImage(request.dataUrl)
   const args = [
@@ -289,7 +335,7 @@ function viaCli(request) {
     '--output-format', 'stream-json',
     '--verbose',
     '--json-schema', JSON.stringify(CLI_SCHEMA),
-    '--system-prompt', CLI_SYSTEM_PROMPT,
+    '--system-prompt-file', systemPromptFile(),
     '--tools', '',
     '--strict-mcp-config',
     '--setting-sources', '',
@@ -307,7 +353,7 @@ function viaCli(request) {
     },
   })
   return new Promise((resolve, reject) => {
-    const child = spawn(CLAUDE_BIN, args, { cwd: tmpdir(), stdio: ['pipe', 'pipe', 'pipe'] })
+    const child = spawn(claudeBin ?? CLAUDE_CANDIDATES[0], args, { cwd: tmpdir(), stdio: ['pipe', 'pipe', 'pipe'] })
     let out = ''
     let err = ''
     let settled = false
@@ -326,7 +372,7 @@ function viaCli(request) {
     child.stderr.on('data', (d) => (err += d))
     // CLI가 입력을 읽기 전에 끝나도 서버가 죽지 않도록 stdin 오류를 받아요.
     child.stdin.on('error', () => {})
-    child.on('error', (e) => finish(reject, new Error(e.code === 'ENOENT' ? 'claude CLI를 찾을 수 없어요' : e.message)))
+    child.on('error', (e) => finish(reject, new Error(e.code === 'ENOENT' ? `claude CLI를 찾을 수 없어요(${CLAUDE_CANDIDATES[0]})` : e.message)))
     child.on('close', () => {
       try {
         const events = out

@@ -42,37 +42,80 @@ if (readEnvValue('AI_PROXY_SECRET').length < 16) {
   process.exit(1)
 }
 
-const children = []
+const children = new Set()
+let shuttingDown = false
 const run = (cmd, args, opts = {}) => {
   const child = spawn(cmd, args, opts)
-  children.push(child)
+  children.add(child)
+  child.on('exit', () => children.delete(child))
   return child
 }
 
-// 1) 화면 + 검색·AI 서버
-run(process.execPath, ['--env-file-if-exists=server/.env', 'scripts/serve.js'], { stdio: 'inherit' })
-
-// 2) 터널
-let published = false
-const tunnel = run(CLOUDFLARED, ['tunnel', '--no-autoupdate', '--url', `http://localhost:${PORT}`], { stdio: ['ignore', 'ignore', 'pipe'] })
-tunnel.on('error', (err) => {
-  console.error(`cloudflared 를 실행할 수 없어요(${err.code ?? err.message}). 설치되어 있는지 확인해 주세요. 찾은 위치: ${CLOUDFLARED}`)
-  shutdown(1)
-})
-tunnel.stderr.on('data', (chunk) => {
-  const url = String(chunk).match(/https:\/\/[a-z0-9-]+\.trycloudflare\.com/)?.[0]
-  if (!url || published) return
-  published = true
-  try {
-    wrangler(['kv', 'key', 'put', 'ai_tunnel', url, '--namespace-id', KV_ID, '--remote'])
-    console.log(`\n[share] 터널 연결 완료 → ${url}\n[share] 사이트에서 AI 검토가 내 PC의 Claude Code로 돌아가요. 끝내려면 Ctrl+C.`)
-  } catch {
-    console.error('[share] 사이트에 터널 주소를 알리지 못했어요(wrangler 로그인 확인).')
+// 1) 화면 + 검색·AI 서버. 이게 꺼지면 전체를 종료해요(작업 스케줄러가 다시 켜 줘요).
+const server = run(process.execPath, ['--env-file-if-exists=server/.env', 'scripts/serve.js'], { stdio: 'inherit' })
+server.on('exit', (code) => {
+  if (!shuttingDown) {
+    console.error(`[share] 서버가 종료됐어요(코드 ${code}).`)
+    shutdown(1)
   }
 })
 
+const SECRET = readEnvValue('AI_PROXY_SECRET')
+async function tunnelHealthy(url) {
+  try {
+    const res = await fetch(`${url}/api/ai/status`, { headers: { 'x-ux-lens-proxy': SECRET }, signal: AbortSignal.timeout(10_000) })
+    return res.ok
+  } catch {
+    return false
+  }
+}
+
+// 2) 터널. 끊기면 몇 초 뒤 다시 연결하고, 새 주소를 사이트에 알려요(임시 터널은 주소가 바뀌어요).
+let retryMs = 5_000
+function startTunnel() {
+  let published = false
+  const tunnel = run(CLOUDFLARED, ['tunnel', '--no-autoupdate', '--url', `http://localhost:${PORT}`], { stdio: ['ignore', 'ignore', 'pipe'] })
+  tunnel.on('error', (err) => {
+    console.error(`cloudflared 를 실행할 수 없어요(${err.code ?? err.message}). 설치되어 있는지 확인해 주세요. 찾은 위치: ${CLOUDFLARED}`)
+    shutdown(1)
+  })
+  tunnel.stderr.on('data', (chunk) => {
+    const url = String(chunk).match(/https:\/\/[a-z0-9-]+\.trycloudflare\.com/)?.[0]
+    if (!url || published) return
+    published = true
+    retryMs = 5_000
+    try {
+      wrangler(['kv', 'key', 'put', 'ai_tunnel', url, '--namespace-id', KV_ID, '--remote'])
+      console.log(`\n[share] 터널 연결 완료 → ${url}\n[share] 사이트에서 AI 검토가 이 PC의 Claude Code로 돌아가요. 끝내려면 Ctrl+C.`)
+    } catch {
+      console.error('[share] 사이트에 터널 주소를 알리지 못했어요(wrangler 로그인 확인).')
+    }
+    // 프로그램은 살아 있는데 터널만 죽는 경우가 있어서, 1분마다 실제로 응답하는지 확인해요. 연속 3번 실패하면 다시 연결해요.
+    let fails = 0
+    health = setInterval(async () => {
+      if (shuttingDown) return
+      if (await tunnelHealthy(url)) return void (fails = 0)
+      if (++fails >= 3) {
+        console.error('[share] 터널이 응답하지 않아요. 다시 연결해요.')
+        tunnel.kill()
+      }
+    }, 60_000)
+  })
+  let health = null
+  tunnel.on('exit', (code) => {
+    clearInterval(health)
+    if (shuttingDown) return
+    console.error(`[share] 터널이 끊겼어요(코드 ${code}). ${Math.round(retryMs / 1000)}초 뒤 다시 연결해요.`)
+    setTimeout(startTunnel, retryMs)
+    retryMs = Math.min(retryMs * 2, 60_000)
+  })
+}
+startTunnel()
+
 // 종료하면 사이트가 샘플 모드로 돌아가도록 터널 주소를 지워요.
 function shutdown(code = 0) {
+  if (shuttingDown) return
+  shuttingDown = true
   try {
     wrangler(['kv', 'key', 'delete', 'ai_tunnel', '--namespace-id', KV_ID, '--remote'])
   } catch {

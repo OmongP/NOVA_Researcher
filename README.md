@@ -63,6 +63,23 @@ npm run serve   # 화면을 새로 빌드하고 시작 (이미 빌드했다면 n
 
 > Windows 지원은 Mac에서 만든 스크립트를 고쳐 둔 것이라 아직 Windows에서 직접 실행해 보지는 않았어요. 막히면 터미널에 나온 오류 문구를 알려 주세요.
 
+### 항상 켜 두기 (서버 PC로 쓰기)
+
+사이트의 AI 검토는 `npm run share`가 켜진 PC에서 돌아요. 그 PC를 서버처럼 24시간 켜 두려면 이렇게 해요.
+
+- **잠자기를 꺼요.** 전원에 연결된 상태에서 잠자기·최대 절전이 없어야 해요.
+- **자동 재연결**: 터널이 끊기거나 응답이 없으면(1분마다 확인, 연속 3번 실패) 스스로 다시 연결하고 새 주소를 사이트에 알려요. 서버가 종료되면 프로그램 전체가 종료돼요.
+- **Windows 자동 시작**: 프로젝트 폴더에서 PowerShell로 한 번 등록하면 로그인할 때마다 자동으로 켜져요.
+
+```powershell
+.\scripts\windows-autostart.ps1          # 등록 (잠자기도 꺼요. 건드리지 않으려면 -KeepSleepSettings)
+Start-ScheduledTask -TaskName UX-Lens-Share   # 지금 바로 켜기
+.\scripts\windows-autostart.ps1 -Remove   # 해제
+```
+
+로그는 프로젝트 폴더의 `share.log`에 쌓여요. 이 PC에서 `npm run dev`는 함께 켜지 마세요(같은 8787 포트를 써서 서버가 꺼져요).
+처음 한 번은 직접 `npm run share`로 켜서 `http://localhost:8787`에서 UI Bowl 로그인을 해 두세요.
+
 ### UI Bowl 연결
 
 처음 실행하면 화면 상단의 "UI Bowl 로그인"으로 로그인해요. 토큰은 `server/.auth.json`에만 저장되고 저장소에는 올라가지 않아요. 로그인 전에는 샘플 화면으로 검색해요.
