@@ -543,6 +543,9 @@ export default function AiReview() {
             검토 방식: <strong>{PROVIDERS[status.active].label}</strong> · {PROVIDERS[status.active].desc}
             {status.active === 'bridge' && ' API 키를 server/.env에 넣거나 터미널에서 claude auth login을 하면 웹에서 바로 분석돼요.'}
           </span>
+          <button type="button" className="button" disabled={busy} onClick={loadDemoSample} title="미리 만든 샘플 결과로 검토 화면을 확인해요(올린 스크린샷은 분석하지 않아요)">
+            샘플 확인
+          </button>
         </div>
       )}
 
