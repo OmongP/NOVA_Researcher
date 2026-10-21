@@ -531,6 +531,7 @@ export default function AiReview() {
             </span>
             <strong>{method.label}</strong>
             {method.desc && <span className="ai-notice-desc">· {method.desc}</span>}
+            <span className="ai-notice-desc">(문의: 박혜영M)</span>
           </p>
           {(status.active || sampleOnly) && (
             <button type="button" className="button" disabled={busy} onClick={loadDemoSample} title="미리 만든 샘플 결과로 검토 화면을 확인해요(올린 스크린샷은 분석하지 않아요)">
