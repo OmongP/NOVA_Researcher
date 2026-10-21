@@ -1,4 +1,4 @@
-// AI 검토 API 호출. 로컬(npm run dev/serve)에서는 그냥 fetch예요.
+// 내 PC 서버로 가는 API(AI 검토, 팀·개인 보관함) 호출. 로컬(npm run dev/serve)에서는 그냥 fetch예요.
 // 데모 사이트에서는 요청이 내 PC로 전달되기 때문에, 팀 코드(x-team-code 헤더)가 필요해요.
 import { IS_DEMO } from './demo'
 
@@ -19,12 +19,15 @@ const write = (code) => {
   }
 }
 
-export async function aiFetch(url, options = {}) {
+export const hasTeamCode = () => Boolean(read())
+
+// prompt: false 면 팀 코드가 없거나 틀려도 입력창을 띄우지 않고 401을 그대로 돌려줘요(백그라운드 조회용).
+export async function aiFetch(url, options = {}, { prompt = true } = {}) {
   if (!IS_DEMO) return fetch(url, options)
   const send = (code) => fetch(url, { ...options, headers: { ...options.headers, 'x-team-code': code } })
 
   let res = await send(read())
-  if (res.status === 401) {
+  if (res.status === 401 && prompt) {
     const code = window.prompt('팀 코드를 입력해 주세요 (AI 다크패턴 사전 검토를 쓰려면 필요해요)')?.trim()
     if (!code) return res
     res = await send(code)

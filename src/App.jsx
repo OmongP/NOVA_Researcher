@@ -5,9 +5,13 @@ import ScreenCard from './components/ScreenCard'
 import ScreenDetail from './components/ScreenDetail'
 import SaveDialog from './components/SaveDialog'
 import Library from './components/Library'
+import ArchiveBar from './components/ArchiveBar'
+import NameDialog from './components/NameDialog'
 import DarkPatternInspector from './components/DarkPatternInspector'
 import { useCollections } from './lib/useCollections'
 import PageHeader from './components/PageHeader'
+import { useName } from './lib/identity'
+import { useTeamLibrary } from './lib/useTeamLibrary'
 import { IS_DEMO } from './lib/demo'
 import { readJson } from './lib/http'
 import './App.css'
@@ -134,8 +138,28 @@ export default function App() {
   const [toast, setToast] = useState(null)
   const toastTimer = useRef(null)
   const [view, setView] = useState('search')
-  const store = useCollections()
-  const isSaved = (screen) => store.collectionsOf(screen).length > 0
+  const [name, setName] = useName()
+  const [epoch, setEpoch] = useState(0) // 팀 코드를 새로 입력하는 등 서버 연결 조건이 바뀌면 올려서 보관함을 다시 맞춰요
+  const store = useCollections(name, epoch)
+  const team = useTeamLibrary(name, epoch)
+  const [archiveScope, setArchiveScope] = useState('mine')
+  const [askName, setAskName] = useState(null) // 이름 입력창: { next } 이름을 입력한 뒤(또는 건너뛴 뒤) 이어서 할 일
+  const nameAsked = useRef(false)
+  const isSaved = (screen) => store.collectionsOf(screen).length > 0 || team.collectionsOf(screen).length > 0
+
+  // 이름이 없으면 한 번만 물어본 뒤 하려던 일을 이어서 해요.
+  const withName = useCallback(
+    (next) => {
+      if (name || nameAsked.current) return next()
+      nameAsked.current = true
+      setAskName({ next })
+    },
+    [name],
+  )
+  const openSave = useCallback((screen) => withName(() => setSaving(screen)), [withName])
+  const connectTeam = useCallback(async () => {
+    if (await team.connect()) setEpoch((e) => e + 1)
+  }, [team])
   const [retryKey, setRetryKey] = useState(0)
   const [auth, setAuth] = useState({ state: 'checking' })
   const [search, setSearch] = useState({ status: 'idle', screens: [], errors: [] })
@@ -235,7 +259,7 @@ export default function App() {
     clearTimeout(toastTimer.current)
     toastTimer.current = setTimeout(() => setToast(null), 2600)
   }, [])
-  const sectionProps = { onOpen: setSelected, isSaved, onSave: setSaving }
+  const sectionProps = { onOpen: setSelected, isSaved, onSave: openSave }
 
   function runSearch(text) {
     setInput(text)
@@ -267,7 +291,7 @@ export default function App() {
             <button type="button" className={`view-tab ${view === 'search' ? 'is-active' : ''}`} onClick={() => setView('search')}>
               Explore
             </button>
-            <button type="button" className={`view-tab ${view === 'library' ? 'is-active' : ''}`} onClick={() => setView('library')}>
+            <button type="button" className={`view-tab ${view === 'library' ? 'is-active' : ''}`} onClick={() => withName(() => setView('library'))}>
               Archive <span className="library-count">{store.bookmarks.length}</span>
             </button>
             <button type="button" className={`view-tab ${view === 'dark' ? 'is-active' : ''}`} onClick={() => setView('dark')}>
@@ -281,7 +305,16 @@ export default function App() {
         {view === 'library' && (
           <>
             <PageHeader title="Archive" sub="리서치 자료 및 검토 이력 보관·관리" />
-            <Library store={store} onOpen={setSelected} onSave={setSaving} />
+            <ArchiveBar
+              scope={archiveScope}
+              onScope={setArchiveScope}
+              name={name}
+              onChangeName={() => setAskName({ next: () => {}, change: true })}
+              team={team}
+              mineCount={store.bookmarks.length}
+              onConnect={connectTeam}
+            />
+            <Library key={archiveScope} store={archiveScope === 'team' ? team : store} onOpen={setSelected} onSave={openSave} showSavedBy={archiveScope === 'team'} />
           </>
         )}
 
@@ -402,8 +435,24 @@ export default function App() {
           </>
         )}
 
-        {selected && <ScreenDetail screen={selected} onClose={closeDetail} saved={isSaved(selected)} onSave={setSaving} />}
-        {saving && <SaveDialog screen={saving} store={store} onClose={closeSave} />}
+        {selected && <ScreenDetail screen={selected} onClose={closeDetail} saved={isSaved(selected)} onSave={openSave} />}
+        {saving && <SaveDialog screen={saving} store={store} team={team} name={name} onClose={closeSave} />}
+        {askName && (
+          <NameDialog
+            initial={askName.change ? name : ''}
+            onClose={() => {
+              const { next } = askName
+              setAskName(null)
+              next()
+            }}
+            onSubmit={(value) => {
+              const { next } = askName
+              setName(value)
+              setAskName(null)
+              next()
+            }}
+          />
+        )}
         <div className="toast-region" role="status" aria-live="polite">
           {toast && (
             <div className="toast" key={toast}>

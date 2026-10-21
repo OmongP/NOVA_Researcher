@@ -4,8 +4,11 @@ const NOTICE_MS = 2200
 
 // 화면을 어느 컬렉션에 저장할지 고르는 작은 대화상자예요. 여러 컬렉션에 동시에 담을 수 있어요.
 // 저장·제거할 때마다 안내 문구를 보여주고, 닫을 때 바뀐 내용이 있으면 onClose(요약)로 알려줘요.
-export default function SaveDialog({ screen, store, onClose }) {
+export default function SaveDialog({ screen, store: mine, team, name, onClose }) {
   const [newName, setNewName] = useState('')
+  const [dest, setDest] = useState('mine') // 저장할 곳: 내 보관함 / 팀 보관함
+  const store = dest === 'team' ? team : mine
+  const where = dest === 'team' ? '팀 보관함 ' : ''
   const [dragId, setDragId] = useState(null) // 순서를 바꾸려고 끌고 있는 컬렉션
   const [overId, setOverId] = useState(null)
   const [notice, setNotice] = useState(null)
@@ -50,16 +53,16 @@ export default function SaveDialog({ screen, store, onClose }) {
   function toggle(collection) {
     const wasSaved = savedIn.includes(collection.id)
     store.toggleBookmark(screen, collection.id)
-    flash(wasSaved ? `‘${collection.name}’에서 뺐어요` : `‘${collection.name}’에 저장했어요`, wasSaved ? 'removed' : 'saved')
+    flash(wasSaved ? `${where}‘${collection.name}’에서 뺐어요` : `${where}‘${collection.name}’에 저장했어요`, wasSaved ? 'removed' : 'saved')
   }
 
   function create(e) {
     e.preventDefault()
-    const name = newName.trim()
-    const id = store.createCollection(name)
+    const collectionName = newName.trim()
+    const id = store.createCollection(collectionName)
     if (id) {
       store.toggleBookmark(screen, id)
-      flash(`새 컬렉션 ‘${name}’을 만들고 저장했어요`, 'saved')
+      flash(`${where}새 컬렉션 ‘${collectionName}’을 만들고 저장했어요`, 'saved')
       setNewName('')
     }
   }
@@ -76,6 +79,25 @@ export default function SaveDialog({ screen, store, onClose }) {
         <p className="save-target">
           {screen.service} · {screen.pattern} / {screen.title}
         </p>
+
+        {name && (
+          <div className="segmented save-dest" role="tablist" aria-label="저장할 곳">
+            <button type="button" role="tab" aria-selected={dest === 'mine'} className={dest === 'mine' ? 'is-active' : ''} onClick={() => setDest('mine')}>
+              내 보관함
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={dest === 'team'}
+              className={dest === 'team' ? 'is-active' : ''}
+              disabled={team.status !== 'ready'}
+              title={team.status === 'ready' ? '팀 모두가 함께 쓰는 보관함이에요' : '서버 PC에 연결돼 있고 팀 코드를 입력했을 때 쓸 수 있어요'}
+              onClick={() => setDest('team')}
+            >
+              팀 보관함
+            </button>
+          </div>
+        )}
 
         <p className={`save-state ${savedIn.length > 0 ? 'is-saved' : ''}`}>
           {savedIn.length > 0 ? `✓ ${savedIn.length}개 컬렉션에 저장됨` : '아직 저장하지 않았어요. 컬렉션을 골라 주세요'}
@@ -152,7 +174,7 @@ export default function SaveDialog({ screen, store, onClose }) {
           완료
         </button>
 
-        <p className="save-hint">이미지는 저장하지 않고 원본 링크와 화면 정보만 {store.storageMode === 'server' ? '접속 IP 기준으로 서버에' : '이 브라우저에'} 보관해요. 저장한 화면은 위쪽 ‘Archive’에서 볼 수 있어요. 컬렉션은 끌어서 순서를 바꿀 수 있어요.</p>
+        <p className="save-hint">이미지는 저장하지 않고 원본 링크와 화면 정보만 {dest === 'team' ? '팀 모두가 함께 보는 서버 PC의 팀 보관함에' : store.storageMode === 'server' ? (name ? '이름 기준으로 서버 PC에' : '접속 IP 기준으로 서버 PC에') : '이 브라우저에'} 보관해요. 저장한 화면은 위쪽 ‘Archive’에서 볼 수 있어요. 컬렉션은 끌어서 순서를 바꿀 수 있어요.</p>
         {store.storageError && <p className="save-hint save-error">저장하지 못했어요: {store.storageError}</p>}
       </div>
     </div>

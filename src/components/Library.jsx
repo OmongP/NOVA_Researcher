@@ -5,7 +5,7 @@ import { collectionToMarkdown } from '../lib/useCollections'
 const ALL = 'all'
 
 // 보관함: 컬렉션별로 저장한 화면을 모아 보고, 메모·삭제·내보내기를 해요.
-export default function Library({ store, onOpen, onSave }) {
+export default function Library({ store, onOpen, onSave, showSavedBy = false }) {
   const [activeId, setActiveId] = useState(ALL)
   const [copied, setCopied] = useState(false)
   const [dragId, setDragId] = useState(null) // 순서를 바꾸려고 끌고 있는 컬렉션
@@ -145,7 +145,9 @@ export default function Library({ store, onOpen, onSave }) {
                 <ScreenCard screen={b.screen} onOpen={onOpen} saved onSave={onSave} />
                 <div className="saved-meta">
                   {activeId === ALL && <span className="chip chip-stage">{nameOf(b.collectionId)}</span>}
-                  <span>저장 {new Date(b.savedAt).toLocaleDateString('ko-KR')}</span>
+                  <span>
+                    {showSavedBy && b.savedBy ? `${b.savedBy} · ` : ''}저장 {new Date(b.savedAt).toLocaleDateString('ko-KR')}
+                  </span>
                   <button type="button" className="saved-remove" onClick={() => store.removeBookmark(b.id)}>
                     빼기
                   </button>
@@ -154,7 +156,7 @@ export default function Library({ store, onOpen, onSave }) {
                   className="saved-note"
                   value={b.note}
                   onChange={(e) => store.updateNote(b.id, e.target.value)}
-                  placeholder="메모 (예: CTA 위치, 금액 강조 방식)"
+                  placeholder={showSavedBy ? "팀 메모 (모두가 보고 고칠 수 있어요)" : "메모 (예: CTA 위치, 금액 강조 방식)"}
                   rows={2}
                 />
               </div>
