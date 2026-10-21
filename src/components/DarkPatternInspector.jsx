@@ -126,6 +126,10 @@ export default function DarkPatternInspector({ isLive, loginUrl }) {
   function selectRule(id) {
     setRuleId(id)
     setResult({ status: 'idle', screens: [], errors: [] })
+    // 좁은 화면에서는 목록 아래에 상세가 있어서, 고르면 상세 위치로 스크롤해요.
+    if (window.matchMedia('(max-width: 760px)').matches) {
+      setTimeout(() => document.querySelector('.rule-card')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60)
+    }
   }
 
   async function findCases() {
@@ -265,7 +269,7 @@ export default function DarkPatternInspector({ isLive, loginUrl }) {
           )}
 
           <div className="library">
-            <nav className="library-nav" aria-label="다크패턴 규칙">
+            <nav className="library-nav rule-nav" aria-label="다크패턴 규칙">
               {Object.keys(TYPES).map((type) => (
                 <div key={type} className="rule-group">
                   <p className="rule-group-title" title={TYPES[type]}>

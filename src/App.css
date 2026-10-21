@@ -2709,3 +2709,64 @@ img.brand-mark {
 .ai-notice-list li + li {
   margin-top: 2px;
 }
+
+/* 모바일: Inspect 규칙 목록은 유형별로 세로로 쌓고, 규칙은 줄바꿈되는 칩으로 보여줘요 */
+@media (max-width: 760px) {
+  .library-nav.rule-nav {
+    flex-direction: column;
+    gap: 16px;
+    overflow: visible;
+  }
+
+  .rule-nav .rule-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+  }
+
+  .rule-nav .rule-group + .rule-group {
+    margin-top: 0;
+  }
+
+  .rule-nav .rule-group-title {
+    flex: 1 1 100%;
+    margin: 0 0 2px;
+  }
+
+  .rule-nav .library-item {
+    flex: 0 1 auto;
+    align-items: baseline;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-8);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .rule-nav .library-item.is-active {
+    border-color: var(--text);
+    background: var(--bg);
+    font-weight: 700;
+  }
+}
+
+/* 모바일: Archive 위쪽 줄(보관함 전환 + 이름)을 세로로 쌓아요 */
+@media (max-width: 640px) {
+  .archive-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .archive-bar .segmented {
+    align-self: stretch;
+  }
+
+  .archive-bar .segmented button {
+    flex: 1;
+  }
+}
