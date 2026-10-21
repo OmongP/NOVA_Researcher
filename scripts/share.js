@@ -57,6 +57,12 @@ const run = (cmd, args, opts = {}) => {
   return child
 }
 
+// 0) 서버를 켜 둔 동안 Mac이 잠들지 않게 해요(잠들면 터널이 끊겨요). 이 프로그램이 끝나면 함께 풀려요.
+if (process.platform === 'darwin') {
+  const keepAwake = run('caffeinate', ['-i', '-s', '-w', String(process.pid)], { stdio: 'ignore' })
+  keepAwake.on('error', () => {}) // caffeinate 가 없어도 괜찮아요
+}
+
 // 1) 화면 + 검색·AI 서버. 이게 꺼지면 전체를 종료해요(작업 스케줄러가 다시 켜 줘요).
 const server = run(process.execPath, ['--env-file-if-exists=server/.env', 'scripts/serve.js'], { stdio: 'inherit' })
 server.on('exit', (code) => {
@@ -77,6 +83,24 @@ async function tunnelHealthy(url) {
 }
 
 // 2) 터널. 끊기면 몇 초 뒤 다시 연결하고, 새 주소를 사이트에 알려요(임시 터널은 주소가 바뀌어요).
+// 사이트에 터널 주소를 알려요. Cloudflare 로그인 갱신이 잠깐 실패할 수 있어서, 성공할 때까지 재시도해요.
+let publishToken = 0
+function publish(url, attempt = 1) {
+  const token = ++publishToken // 터널이 바뀌어 새 주소가 생기면 예전 주소의 재시도는 멈춰요
+  const tryOnce = (n) => {
+    if (shuttingDown || token !== publishToken) return
+    try {
+      wrangler(['kv', 'key', 'put', 'ai_tunnel', url, '--namespace-id', KV_ID, '--remote'])
+      console.log(`\n[share] 터널 연결 완료 → ${url}\n[share] 사이트에서 AI 검토와 팀 보관함이 이 PC로 연결돼요. 끝내려면 Ctrl+C.`)
+    } catch {
+      const wait = Math.min(10_000 * n, 60_000)
+      console.error(`[share] 사이트에 터널 주소를 알리지 못했어요(${n}번째). ${wait / 1000}초 뒤 다시 시도해요. 계속 실패하면 npx wrangler login 을 확인해 주세요.`)
+      setTimeout(() => tryOnce(n + 1), wait)
+    }
+  }
+  tryOnce(attempt)
+}
+
 let retryMs = 5_000
 function startTunnel() {
   let published = false
@@ -90,12 +114,7 @@ function startTunnel() {
     if (!url || published) return
     published = true
     retryMs = 5_000
-    try {
-      wrangler(['kv', 'key', 'put', 'ai_tunnel', url, '--namespace-id', KV_ID, '--remote'])
-      console.log(`\n[share] 터널 연결 완료 → ${url}\n[share] 사이트에서 AI 검토가 이 PC의 Claude Code로 돌아가요. 끝내려면 Ctrl+C.`)
-    } catch {
-      console.error('[share] 사이트에 터널 주소를 알리지 못했어요(wrangler 로그인 확인).')
-    }
+    publish(url)
     // 프로그램은 살아 있는데 터널만 죽는 경우가 있어서, 1분마다 실제로 응답하는지 확인해요. 연속 3번 실패하면 다시 연결해요.
     let fails = 0
     health = setInterval(async () => {
