@@ -244,6 +244,11 @@ export default function AiReview() {
   const rootRef = useRef(null)
   // 데모 사이트에서 내 PC의 AI 서버에 연결되지 않으면 미리 만든 샘플 결과만 보여줘요.
   const sampleOnly = IS_DEMO && !status.active
+  const method = sampleOnly
+    ? { label: '샘플 결과', desc: status.checked ? '서버 PC의 AI에 연결돼 있지 않아요' : '확인 중…' }
+    : status.active
+      ? { label: PROVIDERS[status.active].label, desc: IS_DEMO ? '서버 PC의 Claude Code로 검토해요' : PROVIDERS[status.active].desc }
+      : { label: '확인 중…', desc: '' }
   const sendingRef = useRef(false) // 상태 반영 전 연속 클릭도 막아요
 
   const run = runs[runIndex]
@@ -508,46 +513,41 @@ export default function AiReview() {
           </p>
         </div>
       )}
-      <div className="status status-loading">
-        AI 결과는 참고용 1차 검토예요. 법적 위반을 확정하지 않으며, 최종 판단은 검토자가 해요.
-        {!sampleOnly && ' 올린 스크린샷과 가이드 규칙은 분석을 위해 Claude로 전송돼요. 사내 화면은 보안 정책을 먼저 확인해 주세요.'}
-      </div>
-
-      {sampleOnly && status.checked && (
-        <div className="status">
-          <span>
-            지금은 AI 검토 서버(내 PC)에 연결돼 있지 않아서 미리 만든 샘플 결과로 검토 화면을 보여줘요. 올린 스크린샷은 분석하지 않아요.{' '}
-            <button type="button" className="button" onClick={loadDemoSample}>
-              샘플 결과 보기
-            </button>
-          </span>
-        </div>
-      )}
-      {IS_DEMO && status.active && (
-        <div className="status">
-          <span>분석은 서버 PC의 Claude Code로 해요. 처음 요청할 때 팀 코드를 입력해야 해요. 서버 PC가 꺼져 있으면 쓸 수 없어요.</span>
-        </div>
-      )}
-
       {status.active === 'bridge' && (
         <div className="status status-error">
           <span>
             Claude Code를 쓸 수 없어서 <strong>대화 대기열 방식</strong>으로 동작 중이에요. 이 방식은 사람이 Claude Code 대화에서 처리해야 결과가 나와서, 기다려도 끝나지 않아요.
-            {status.cliReason && <> 이유: {status.cliReason}</>}
+            {status.cliReason && <> 이유: {status.cliReason}</>} API 키를 server/.env에 넣거나 터미널에서 claude auth login을 하면 웹에서 바로 분석돼요.
           </span>
         </div>
       )}
-      {status.active && (
-        <div className="status">
-          <span>
-            검토 방식: <strong>{PROVIDERS[status.active].label}</strong> · {PROVIDERS[status.active].desc}
-            {status.active === 'bridge' && ' API 키를 server/.env에 넣거나 터미널에서 claude auth login을 하면 웹에서 바로 분석돼요.'}
-          </span>
-          <button type="button" className="button" disabled={busy} onClick={loadDemoSample} title="미리 만든 샘플 결과로 검토 화면을 확인해요(올린 스크린샷은 분석하지 않아요)">
-            샘플 확인
-          </button>
+
+      {/* 검토 방식, 주의사항, 샘플 확인을 한 박스로 모아요 */}
+      <section className="ai-notice" aria-label="AI 검토 안내">
+        <div className="ai-notice-head">
+          <p className="ai-notice-method">
+            <span className="ai-notice-label">
+              <span aria-hidden="true">⚠️ </span>검토 방식
+            </span>
+            <strong>{method.label}</strong>
+            {method.desc && <span className="ai-notice-desc">· {method.desc}</span>}
+          </p>
+          {(status.active || sampleOnly) && (
+            <button type="button" className="button" disabled={busy} onClick={loadDemoSample} title="미리 만든 샘플 결과로 검토 화면을 확인해요(올린 스크린샷은 분석하지 않아요)">
+              샘플 확인
+            </button>
+          )}
         </div>
-      )}
+        <ul className="ai-notice-list">
+          <li>참고용 1차 검토예요. 법적 위반을 확정하지 않으며, 최종 판단은 검토자가 해요.</li>
+          {sampleOnly ? (
+            <li>올린 스크린샷은 분석하지 않고, 미리 만든 샘플 결과를 보여줘요.</li>
+          ) : (
+            <li>올린 스크린샷과 가이드 규칙은 분석을 위해 Claude로 전송돼요. 사내 화면은 보안 정책을 먼저 확인해 주세요.</li>
+          )}
+          {IS_DEMO && status.active && <li>처음 요청할 때 팀 코드를 입력해야 해요. 서버 PC가 꺼져 있으면 쓸 수 없어요.</li>}
+        </ul>
+      </section>
 
       {job && job.state !== 'done' && (
         <section className={`ai-job ai-job-${job.state}`} aria-live="polite">

@@ -2663,3 +2663,49 @@ img.brand-mark {
   cursor: not-allowed;
   opacity: 0.5;
 }
+
+/* AI 검토 안내: 검토 방식 + 주의사항 + 샘플 확인을 한 박스로 */
+.ai-notice {
+  margin-bottom: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius-12);
+  background: var(--bg);
+}
+
+.ai-notice-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+
+.ai-notice-method {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.ai-notice-label {
+  color: var(--text-sub);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ai-notice-desc {
+  color: var(--text-sub);
+}
+
+.ai-notice-list {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--text-sub);
+  font-size: 13px;
+}
+
+.ai-notice-list li + li {
+  margin-top: 2px;
+}
