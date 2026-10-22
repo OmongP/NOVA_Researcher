@@ -1,79 +1,75 @@
 import { useMemo } from 'react'
 import { COMPANIES } from '../data/benchmark/companies'
-import { DOMAINS, SCREEN_TYPES, TASKS, UI_PATTERNS, VERIFICATION } from '../data/benchmark/taxonomy'
-import { EMPTY_FILTERS, OTHER_COMPANY, facetCounts, hasActiveFilter } from '../lib/benchmark'
+import { SCREEN_TYPES, TASKS, UI_PATTERNS } from '../data/benchmark/taxonomy'
+import { EMPTY_FILTERS, FACETS, OTHER_COMPANY, facetCounts, facetOptions, filterLabel, hasActiveFilter } from '../lib/benchmark'
 
-// 기업·도메인·과업·화면 유형·UI 패턴·검증 상태 필터. 개수는 다른 필터를 적용한 상태에서 고르면 나오는 수예요.
-function Select({ label, value, onChange, options, counts, emptyLabel = '전체' }) {
+const GROUPS = [
+  { key: 'company', label: '기업' },
+  { key: 'task', label: '사용자 과업' },
+  { key: 'screenType', label: '화면 유형' },
+  { key: 'pattern', label: 'UI 패턴' },
+]
+
+// 분류 체계 순서대로 정렬한 선택지 전체(데이터에 있는 것만 골라 써요)
+const ORDER = {
+  company: [...COMPANIES.map((c) => c.id), OTHER_COMPANY],
+  task: TASKS.map((t) => t.id),
+  screenType: SCREEN_TYPES.map((t) => t.id),
+  pattern: UI_PATTERNS.map((p) => p.id),
+}
+
+const toggle = (list, id) => (list.includes(id) ? list.filter((v) => v !== id) : [...list, id])
+
+// 상세 필터 패널. 선택지는 지금 검색 가능한 화면에 실제로 있는 값만 나오고, 개수는 다른 필터를 적용한 상태에서 고르면 나오는 수예요.
+export default function BenchmarkFilters({ screens, filters, onChange }) {
+  const counts = useMemo(() => facetCounts(screens, filters), [screens, filters])
+  const present = useMemo(() => facetOptions(screens), [screens])
+
   return (
-    <label className="bm-filter">
-      <span className="bm-filter-label">{label}</span>
-      <select value={value} onChange={(e) => onChange(e.target.value)} aria-label={label}>
-        <option value="">{emptyLabel}</option>
-        {options.map((o) => {
-          const n = counts[o.id] ?? 0
-          return (
-            <option key={o.id} value={o.id} disabled={n === 0 && value !== o.id}>
-              {o.label} ({n})
-            </option>
-          )
-        })}
-      </select>
-    </label>
+    <section className="bm-panel" aria-label="상세 필터">
+      {GROUPS.map(({ key, label }) => {
+        const ids = ORDER[key].filter((id) => present[key].has(id))
+        // 고를 수 있는 값이 하나뿐이면 필터가 의미 없어서 숨겨요.
+        if (ids.length < 2 && filters[key].length === 0) return null
+        return (
+          <fieldset key={key} className="bm-group">
+            <legend className="bm-group-label">{label}</legend>
+            <div className="bm-options">
+              {ids.map((id) => {
+                const on = filters[key].includes(id)
+                const n = counts[key][id] ?? 0
+                return (
+                  <label key={id} className={`bm-option ${on ? 'is-on' : ''} ${n === 0 && !on ? 'is-disabled' : ''}`}>
+                    <input type="checkbox" checked={on} disabled={n === 0 && !on} onChange={() => onChange({ ...filters, [key]: toggle(filters[key], id) })} />
+                    <span>{filterLabel(key, id)}</span>
+                    <span className="bm-option-count">{n}</span>
+                  </label>
+                )
+              })}
+            </div>
+          </fieldset>
+        )
+      })}
+      {FACETS.every((k) => present[k].size < 2) && <p className="bm-panel-empty">이 범위에는 나눠 볼 수 있는 분류가 아직 부족해요.</p>}
+    </section>
   )
 }
 
-export default function BenchmarkFilters({ screens, filters, onChange }) {
-  const facets = useMemo(() => facetCounts(screens, filters), [screens, filters])
-  const set = (key) => (value) => onChange({ ...filters, [key]: value })
-  const companies = useMemo(() => {
-    const kr = COMPANIES.filter((c) => c.country === 'KR').map((c) => ({ id: c.id, label: c.name }))
-    const global = COMPANIES.filter((c) => c.country !== 'KR').map((c) => ({ id: c.id, label: c.name }))
-    return { kr, global }
-  }, [])
-  const active = hasActiveFilter(filters)
-  const companyCounts = facets.company
-
+// 선택한 필터를 칩으로 보여주고 하나씩 뺄 수 있게 해요.
+export function FilterChips({ filters, onChange }) {
+  if (!hasActiveFilter(filters)) return null
   return (
-    <section className="bm-filters" aria-label="벤치마킹 필터">
-      <label className="bm-filter">
-        <span className="bm-filter-label">기업</span>
-        <select value={filters.company} onChange={(e) => set('company')(e.target.value)} aria-label="기업">
-          <option value="">전체</option>
-          <optgroup label="국내">
-            {companies.kr.map((c) => (
-              <option key={c.id} value={c.id} disabled={!companyCounts[c.id] && filters.company !== c.id}>
-                {c.label} ({companyCounts[c.id] ?? 0})
-              </option>
-            ))}
-          </optgroup>
-          <optgroup label="해외">
-            {companies.global.map((c) => (
-              <option key={c.id} value={c.id} disabled={!companyCounts[c.id] && filters.company !== c.id}>
-                {c.label} ({companyCounts[c.id] ?? 0})
-              </option>
-            ))}
-          </optgroup>
-          <option value={OTHER_COMPANY}>기타 서비스 ({companyCounts[OTHER_COMPANY] ?? 0})</option>
-        </select>
-      </label>
-      <Select label="도메인" value={filters.domain} onChange={set('domain')} options={DOMAINS} counts={facets.domain} />
-      <Select label="사용자 과업" value={filters.task} onChange={set('task')} options={TASKS} counts={facets.task} />
-      <Select label="화면 유형" value={filters.screenType} onChange={set('screenType')} options={SCREEN_TYPES} counts={facets.screenType} />
-      <Select label="UI 패턴" value={filters.pattern} onChange={set('pattern')} options={UI_PATTERNS} counts={facets.pattern} />
-      <Select label="검증 상태" value={filters.verification} onChange={set('verification')} options={VERIFICATION} counts={facets.verification} />
-      {Object.keys(facets.platform).length > 0 && (
-        <Select label="웹/앱" value={filters.platform} onChange={set('platform')} options={[{ id: 'app', label: '앱' }, { id: 'web', label: '웹' }]} counts={facets.platform} />
+    <div className="bm-chips" aria-label="선택한 필터">
+      {GROUPS.flatMap(({ key, label }) =>
+        filters[key].map((id) => (
+          <button key={`${key}:${id}`} type="button" className="bm-selected" onClick={() => onChange({ ...filters, [key]: filters[key].filter((v) => v !== id) })} aria-label={`${label} ${filterLabel(key, id)} 해제`}>
+            <span className="bm-selected-group">{label}</span> {filterLabel(key, id)} <span aria-hidden="true">×</span>
+          </button>
+        )),
       )}
-      <label className="bm-filter bm-check">
-        <input type="checkbox" checked={filters.targetOnly} onChange={(e) => set('targetOnly')(e.target.checked)} />
-        <span>벤치마킹 대상 기업만</span>
-      </label>
-      {active && (
-        <button type="button" className="button" onClick={() => onChange(EMPTY_FILTERS)}>
-          필터 초기화
-        </button>
-      )}
-    </section>
+      <button type="button" className="link-button" onClick={() => onChange(EMPTY_FILTERS)}>
+        초기화
+      </button>
+    </div>
   )
 }

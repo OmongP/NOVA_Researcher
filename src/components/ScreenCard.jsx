@@ -3,7 +3,7 @@ import { TIERS } from '../lib/searchQuery'
 import BenchmarkTags from './BenchmarkTags'
 
 function sourceLine(screen) {
-  if (screen.bm) return `${screen.source ?? 'UI Bowl'} · 수집월 ${screen.dataMonth ?? '미확인'} · ${labelOf.platform(screen.bm.platform)} · ${labelOf.verification(screen.bm.verification)}`
+  if (screen.bm) return `${screen.source ?? 'UI Bowl'} · 수집월 ${screen.dataMonth ?? '미확인'}${screen.bm.platform ? ` · ${labelOf.platform(screen.bm.platform)}` : ''}`
   return `${screen.source ?? 'UI Bowl'} · 수집월 ${screen.dataMonth ?? '미확인'} · 앱 버전 미확인`
 }
 

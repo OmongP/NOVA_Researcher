@@ -15,6 +15,7 @@ import { DOMAIN_BY_ID, PATTERN_BY_ID, SCREEN_TYPE_BY_ID, TASK_BY_ID, TASKS, UI_P
 import { squash } from './searchQuery'
 
 const OTHER_COMPANY = '_other'
+const COMPANY_BY_ID = Object.fromEntries(COMPANIES.map((c) => [c.id, c]))
 const CAR_DOMAINS = ['automotive', 'auto-finance', 'mobility']
 const DOMAIN_FROM_UIBOWL = { 금융: 'finance', 자동차: 'automotive', 모빌리티: 'mobility' }
 
@@ -194,44 +195,53 @@ export const labelOf = {
 }
 
 // ── 필터 ──
-export const EMPTY_FILTERS = { company: '', domain: '', task: '', screenType: '', pattern: '', verification: '', platform: '', targetOnly: false }
+// 사용자에게 보이는 상세 필터: 기업·사용자 과업·화면 유형·UI 패턴. 같은 항목 안에서는 OR, 항목끼리는 AND예요.
+// (도메인은 분야 탭이 맡고, 검증 상태는 내부 품질 정보라 사용자 필터에서 뺐어요)
+export const FACETS = ['company', 'task', 'screenType', 'pattern']
+export const EMPTY_FILTERS = { company: [], task: [], screenType: [], pattern: [] }
 
-const TESTS = {
-  company: (bm, v) => bm.companyId === v,
-  domain: (bm, v) => bm.domainId === v,
-  task: (bm, v) => bm.taskIds.includes(v),
-  screenType: (bm, v) => bm.screenTypeId === v,
-  pattern: (bm, v) => bm.patternIds.includes(v),
-  verification: (bm, v) => bm.verification === v,
-  platform: (bm, v) => bm.platform === v,
-  targetOnly: (bm, v) => !v || bm.isTarget,
+// 화면이 가진 값들(항목 하나에 값이 여러 개일 수 있어요)
+const VALUES = {
+  company: (bm) => [bm.companyId],
+  task: (bm) => bm.taskIds,
+  screenType: (bm) => (bm.screenTypeId ? [bm.screenTypeId] : []),
+  pattern: (bm) => bm.patternIds,
 }
 
 function passes(screen, filters, skip) {
-  const bm = screen.bm
-  return Object.keys(TESTS).every((key) => key === skip || !filters[key] || TESTS[key](bm, filters[key]))
+  return FACETS.every((key) => {
+    const picked = filters[key]
+    return key === skip || picked.length === 0 || VALUES[key](screen.bm).some((v) => picked.includes(v))
+  })
 }
 
 export const applyFilters = (screens, filters) => screens.filter((s) => passes(s, filters))
-export const hasActiveFilter = (filters) => Object.entries(filters).some(([k, v]) => Boolean(v) && k !== 'targetOnly') || filters.targetOnly
+export const activeFilterCount = (filters) => FACETS.reduce((n, key) => n + filters[key].length, 0)
+export const hasActiveFilter = (filters) => activeFilterCount(filters) > 0
 
-// 항목별 개수. 다른 필터를 모두 적용한 상태에서 이 항목을 고르면 몇 개가 나오는지 보여줘요.
+// 항목별 개수. 다른 항목의 필터는 모두 적용하고, 이 항목을 고르면 몇 개가 나오는지 보여줘요.
+// universe(전체 화면)에 있는 값만 선택지로 쓰도록 키도 함께 모아요.
 export function facetCounts(screens, filters) {
-  const out = { company: {}, domain: {}, task: {}, screenType: {}, pattern: {}, verification: {}, platform: {} }
-  const bump = (facet, id) => {
-    if (id) out[facet][id] = (out[facet][id] ?? 0) + 1
-  }
+  const out = Object.fromEntries(FACETS.map((key) => [key, {}]))
   for (const s of screens) {
-    const bm = s.bm
-    if (passes(s, filters, 'company')) bump('company', bm.companyId)
-    if (passes(s, filters, 'domain')) bump('domain', bm.domainId)
-    if (passes(s, filters, 'task')) bm.taskIds.forEach((id) => bump('task', id))
-    if (passes(s, filters, 'screenType')) bump('screenType', bm.screenTypeId)
-    if (passes(s, filters, 'pattern')) bm.patternIds.forEach((id) => bump('pattern', id))
-    if (passes(s, filters, 'verification')) bump('verification', bm.verification)
-    if (passes(s, filters, 'platform')) bump('platform', bm.platform)
+    for (const key of FACETS) {
+      if (!passes(s, filters, key)) continue
+      for (const v of VALUES[key](s.bm)) out[key][v] = (out[key][v] ?? 0) + 1
+    }
   }
   return out
+}
+
+// 데이터에 실제로 있는 선택지만 만들어요(필터와 상관없이 전체 기준).
+export function facetOptions(screens) {
+  const out = Object.fromEntries(FACETS.map((key) => [key, new Set()]))
+  for (const s of screens) for (const key of FACETS) VALUES[key](s.bm).forEach((v) => out[key].add(v))
+  return out
+}
+
+export function filterLabel(facet, id) {
+  if (facet === 'company') return id === OTHER_COMPANY ? '기타 서비스' : COMPANY_BY_ID[id]?.name ?? id
+  return labelOf[facet](id)
 }
 
 export { OTHER_COMPANY }

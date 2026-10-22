@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, lazy, Suspense } from 'react'
 import { sampleScreens } from './data/sampleScreens'
-import { interpretQuery, rateRelevance, searchScreens, TIERS } from './lib/searchQuery'
+import { interpretQuery, rateRelevance, searchScreens, squash, TIERS } from './lib/searchQuery'
 import ScreenCard from './components/ScreenCard'
 import ScreenDetail from './components/ScreenDetail'
 import SaveDialog from './components/SaveDialog'
@@ -10,8 +10,8 @@ import NameDialog from './components/NameDialog'
 import { useCollections } from './lib/useCollections'
 import PageHeader from './components/PageHeader'
 import { IS_LITE, SHOW_AI_REVIEW, SHOW_INSPECT } from './lib/features'
-import { EMPTY_FILTERS, applyFilters, enrich, hasActiveFilter } from './lib/benchmark'
-import BenchmarkFilters from './components/BenchmarkFilters'
+import { EMPTY_FILTERS, activeFilterCount, applyFilters, enrich, hasActiveFilter } from './lib/benchmark'
+import BenchmarkFilters, { FilterChips } from './components/BenchmarkFilters'
 import { useName } from './lib/identity'
 import { useTeamLibrary } from './lib/useTeamLibrary'
 import { IS_DEMO } from './lib/demo'
@@ -19,7 +19,7 @@ import { readJson } from './lib/http'
 import './App.css'
 
 const DOMAINS = ['전체', '금융', '자동차', '모빌리티']
-const SORTS = { relevance: '정확도순', recent: '최신순' }
+const SORTS = { relevance: '관련도순', recent: '최신순' } // 최신순 기준은 UI Bowl 수집월이에요(원본 앱 게시일이 아니에요)
 // Inspect(다크패턴 검토)는 필요할 때만 불러와요. Light 빌드에서는 이 코드와 사내 가이드 데이터가 번들에 아예 들어가지 않아요.
 // (조건을 import.meta.env로 직접 써야 번들러가 빌드할 때 통째로 걷어내요)
 const DarkPatternInspector = import.meta.env.VITE_LITE === '1' ? null : lazy(() => import('./components/DarkPatternInspector'))
@@ -34,6 +34,8 @@ function AuthBanner({ auth, onRetry }) {
   if (auth.state === 'checking') return <div className="banner">UI Bowl 로그인 상태를 확인하고 있어요…</div>
   if (auth.state === 'connected') {
     // 데모 사이트라도 서버(Cloudflare Function)가 UI Bowl에 연결돼 있으면 실시간으로 검색해요.
+    // Light: 연결 상태는 평소에 알리지 않아요. 문제가 있을 때만 배너로 알려요.
+    if (IS_LITE) return null
     return IS_DEMO ? <div className="banner">UI Bowl에 실시간으로 연결돼 있어요.{SHOW_AI_REVIEW && ' AI 다크패턴 사전 검토는 서버 PC가 연결돼 있을 때만 실제로 분석하고, 아니면 샘플 결과로 보여줘요.'}</div> : null
   }
   if (auth.state === 'demo') {
@@ -138,7 +140,8 @@ export default function App() {
   const [input, setInput] = useState(DEFAULT_QUERY)
   const [query, setQuery] = useState(() => interpretQuery(DEFAULT_QUERY))
   const [domain, setDomain] = useState('전체')
-  const [sort, setSort] = useState('relevance')
+  const [sort, setSort] = useState(DEFAULT_QUERY ? 'relevance' : 'recent')
+  const [showFilters, setShowFilters] = useState(false)
   const [showLow, setShowLow] = useState(false)
   const [bmFilters, setBmFilters] = useState(EMPTY_FILTERS) // Light: 기업·과업·화면 유형·UI 패턴 필터
   const [limit, setLimit] = useState(PAGE)
@@ -283,11 +286,16 @@ export default function App() {
     setInput(text)
     setShowLow(false)
     setLimit(PAGE)
-    setQuery(interpretQuery(text))
+    const next = interpretQuery(text)
+    setSort(next ? 'relevance' : 'recent') // 검색어가 있으면 관련도순, 없으면 최신순이 기본이에요
+    setQuery(next)
   }
 
   const loading = search.status === 'loading'
   const visible = counts.exact + counts.related
+  const total = visible + counts.low // 필터까지 적용한 뒤 실제로 보여줄 수 있는 화면 묶음 수
+  const filterCount = activeFilterCount(bmFilters)
+  const storedImages = useMemo(() => enriched.reduce((n, s) => n + (s.screenCount ?? 1), 0), [enriched])
 
   return (
     <>
@@ -400,29 +408,59 @@ export default function App() {
                       </button>
                     ))}
                   </div>
-                  <div className="sorts" aria-label="정렬">
-                    {Object.entries(SORTS).map(([key, label]) => (
-                      <button key={key} type="button" className={`sort ${sort === key ? 'is-active' : ''}`} onClick={() => setSort(key)}>
-                        {label}
+                  <div className="toolbar-right">
+                    {IS_LITE && (
+                      <button type="button" className="button filter-toggle" aria-expanded={showFilters} onClick={() => setShowFilters((v) => !v)}>
+                        상세 필터
+                        {filterCount > 0 && <span className="filter-toggle-count">{filterCount}</span>}
                       </button>
-                    ))}
+                    )}
+                    {/* 결과가 1개 이하이거나 검색어 없이 둘러볼 때는 정렬을 고를 의미가 없어서 숨겨요 */}
+                    {!(IS_LITE && (browsing || total <= 1)) && (
+                      <div className="sorts" aria-label="정렬" title="최신순은 UI Bowl 수집월 기준이에요">
+                        {Object.entries(SORTS).map(([key, label]) => (
+                          <button key={key} type="button" className={`sort ${sort === key ? 'is-active' : ''}`} onClick={() => setSort(key)}>
+                            {label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                {IS_LITE && <BenchmarkFilters screens={enriched} filters={bmFilters} onChange={(f) => { setBmFilters(f); setLimit(PAGE) }} />}
+                {IS_LITE && showFilters && (
+                  <BenchmarkFilters
+                    screens={enriched}
+                    filters={bmFilters}
+                    onChange={(f) => {
+                      setBmFilters(f)
+                      setLimit(PAGE)
+                    }}
+                  />
+                )}
+                {IS_LITE && (
+                  <FilterChips
+                    filters={bmFilters}
+                    onChange={(f) => {
+                      setBmFilters(f)
+                      setLimit(PAGE)
+                    }}
+                  />
+                )}
 
                 {query && (
                   <div className="intent">
-                    <strong>검색 의도</strong> {query.core}
+                    <strong>검색 의도</strong>{' '}
+                    {squash(query.raw) === squash(query.core) ? query.core : `‘${query.raw}’ → ${query.core} 관련 화면으로 넓혀 찾아요`}
                     {query.related.length > 0 && <span className="intent-related"> · 확장 검색어: {query.related.join(', ')}</span>}
                   </div>
                 )}
 
                 {browsing && (
-                  <div className="status">
-                    벤치마킹 DB {enriched.length}개 화면 묶음{hasActiveFilter(bmFilters) ? ` 중 ${filtered.length}개` : ''} ·{' '}
-                    {isLive ? '검색어를 입력하면 UI Bowl에서 실시간으로 더 찾아요' : '샘플 데이터예요(실시간 결과가 아니에요)'}
-                  </div>
+                  <p className="result-summary">
+                    저장된 화면 묶음 {enriched.length}개{storedImages > enriched.length ? ` (낱장 ${storedImages}장)` : ''} ·{' '}
+                    {hasActiveFilter(bmFilters) || domain !== '전체' ? '조건에 맞는 화면' : '둘러볼 수 있는 화면'} <strong>{total}개</strong> · 검색어를 입력하면 UI Bowl에서 더 찾아요
+                  </p>
                 )}
                 {!browsing && (
                 <SearchStatus
@@ -473,16 +511,32 @@ export default function App() {
                   )}
                   {!browsing && showLow && <ResultSection title={TIERS.low.label} screens={grouped.low} {...sectionProps} />}
 
-                  {IS_LITE && visible + counts.low === 0 && !loading && search.status !== 'failed' && (
+                  {IS_LITE && total === 0 && !loading && search.status !== 'failed' && (
                     <div className="empty">
-                      <p className="empty-title">{hasActiveFilter(bmFilters) ? '선택한 필터에 맞는 화면이 없어요' : query ? `‘${query.core}’에 맞는 화면이 없어요` : '보여줄 화면이 없어요'}</p>
+                      <p className="empty-title">
+                        {enriched.length === 0 && !hasActiveFilter(bmFilters)
+                          ? query
+                            ? `‘${query.core}’에 맞는 화면을 찾지 못했어요`
+                            : '저장된 화면이 아직 없어요'
+                          : '선택한 조건에 맞는 화면이 없어요'}
+                      </p>
                       <p className="empty-desc">
-                        수집된 실제 화면이 없다는 뜻이에요. 비슷한 화면을 만들어 보여주지 않아요.
+                        {hasActiveFilter(bmFilters)
+                          ? `필터를 적용하기 전에는 ${enriched.length}개 화면이 있어요. 조건을 줄이거나 초기화해 보세요.`
+                          : '수집된 실제 화면이 없다는 뜻이에요. 비슷한 화면을 만들어 보여주지 않아요.'}
                         {hasActiveFilter(bmFilters) && (
                           <>
                             {' '}
                             <button type="button" className="link-button" onClick={() => setBmFilters(EMPTY_FILTERS)}>
                               필터 초기화
+                            </button>
+                          </>
+                        )}
+                        {!hasActiveFilter(bmFilters) && domain !== '전체' && (
+                          <>
+                            {' '}
+                            <button type="button" className="link-button" onClick={() => setDomain('전체')}>
+                              전체 분야 보기
                             </button>
                           </>
                         )}
