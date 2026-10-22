@@ -2791,9 +2791,9 @@ img.brand-mark {
 
 .bm-panel {
   display: grid;
-  margin: 0 0 12px;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  gap: 14px;
+  margin: 0 0 16px;
+  padding: 4px 0;
 }
 
 /* 항목 이름은 왼쪽, 선택지는 오른쪽에 가로로 펼쳐요 */
@@ -2803,13 +2803,8 @@ img.brand-mark {
   gap: 12px;
   min-width: 0;
   margin: 0;
-  padding: 12px 0;
+  padding: 0;
   border: 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.bm-group:last-child {
-  border-bottom: 0;
 }
 
 .bm-group-label {
@@ -2862,9 +2857,10 @@ img.brand-mark {
   color: var(--text);
 }
 
-/* 선택 상태: 토스 증권 칩처럼 연한 포인트 컬러 배경 + 포인트 컬러 글자 */
+/* 선택 상태: 흰 배경 + 포인트 컬러 테두리·글자 (선은 선택 칩에만 써요) */
 .bm-option.is-on {
-  background: var(--accent-soft);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--accent);
   color: var(--accent);
   font-weight: 600;
 }
@@ -2895,7 +2891,8 @@ img.brand-mark {
   padding: 6px 10px;
   border: 0;
   border-radius: var(--radius-8);
-  background: var(--accent-soft);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--accent);
   color: var(--accent);
   font-size: 13px;
   font-weight: 600;
@@ -2903,7 +2900,7 @@ img.brand-mark {
 }
 
 .bm-selected:hover {
-  background: color-mix(in srgb, var(--accent) 16%, var(--surface));
+  background: var(--accent-soft);
 }
 
 .bm-selected-group {
