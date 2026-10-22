@@ -286,7 +286,7 @@ export default function App() {
             <img className="brand-mark" src="/icon-180.png" alt="" aria-hidden="true" />
             <span className="brand-name">UX Lens</span>
             <span className="brand-slogan">Explore UI. Inspect UX.</span>
-            <span className="version">v0.3</span>
+            <span className="version">v1.0</span>
           </button>
           <nav className="views" aria-label="화면 전환">
             <button type="button" className={`view-tab ${view === 'search' ? 'is-active' : ''}`} onClick={() => setView('search')}>
