@@ -1,0 +1,7 @@
+{
+  // 두 번째 사이트(nova-lens-lite). 배포: VITE_HIDE_AI_REVIEW=1 npm run build:demo && npx wrangler pages deploy --config wrangler.lite.jsonc
+  "name": "nova-lens-lite",
+  "pages_build_output_dir": "./dist-demo",
+  "compatibility_date": "2026-10-01",
+  "kv_namespaces": [{ "binding": "UXLENS_AUTH", "id": "ecf59c5216cf4b76848bb01f381dbad4" }]
+}

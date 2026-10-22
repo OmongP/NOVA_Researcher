@@ -1,12 +1,13 @@
 // 사이트(Cloudflare)의 AI 다크패턴 사전 검토를 이 PC의 Claude Code로 돌리게 해요.
 //   npm run share           서버 + Cloudflare Tunnel을 켜고 사이트에 터널 주소를 알려줘요. 이 PC가 켜져 있는 동안만 사이트에서 실제 AI 검토가 돼요.
-//   npm run share -- --setup  처음 한 번: 비밀키(AI_PROXY_SECRET)와 팀 코드(TEAM_CODE)를 Cloudflare에 저장해요. 기존 비밀키는 server/.env 값을 그대로 쓰고, 팀 코드는 --team-code=코드 로 지정할 수 있어요.
+//   npm run share -- --setup [--project=사이트이름]  처음 한 번: 비밀키(AI_PROXY_SECRET)와 팀 코드(TEAM_CODE)를 Cloudflare에 저장해요. 기존 비밀키는 server/.env 값을 그대로 쓰고, 팀 코드는 --team-code=코드 로 지정할 수 있어요.
 // 비밀값은 저장소에 올라가지 않아요(server/.env, Cloudflare 비밀 설정).
 import { spawn, execFileSync } from 'node:child_process'
 import { randomBytes } from 'node:crypto'
 import { appendFileSync, existsSync, readFileSync } from 'node:fs'
 
-const PROJECT = 'nova-lens'
+// --project=이름 으로 다른 Cloudflare Pages 사이트에 비밀값을 저장할 수 있어요(기본 nova-lens).
+const PROJECT = process.argv.find((a) => a.startsWith('--project='))?.slice('--project='.length) || 'nova-lens'
 const KV_ID = process.env.UXLENS_KV_ID ?? 'ecf59c5216cf4b76848bb01f381dbad4'
 const ENV_FILE = new URL('../server/.env', import.meta.url)
 const PORT = process.env.PORT ?? 8787

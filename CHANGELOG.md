@@ -17,7 +17,7 @@ UX Lens(구 NOVA Researcher)의 변경 이력이에요. 괄호 안은 git 커밋
 ## 2026-10-22 — 버전 표시, AI 검토 숨김
 
 - 화면의 버전 표시와 `package.json`을 **v1.0**으로 맞춤. 태그 `ux-lens-v1.0-team-archive`(`07f92da`)는 이 변경 이전 커밋이라 화면에는 `v0.3`으로 보여요.
-- **AI 다크패턴 사전 검토를 화면에서 숨김.** 코드는 그대로 두고 `src/lib/features.js` 스위치로만 가려요. 다시 켜려면 `VITE_SHOW_AI_REVIEW=1 npm run build`(사이트는 `build:demo`)로 빌드해요. 서버 쪽 AI API와 `npm run share`는 그대로예요.
+- AI 다크패턴 사전 검토 숨김을 **원복**(다시 보임). 숨긴 버전이 필요하면 `src/lib/features.js` 스위치로 빌드해요: `VITE_HIDE_AI_REVIEW=1 npm run build`(사이트는 `build:demo`). 서버 쪽 AI API와 `npm run share`는 그대로예요.
 
 ## 2026-10-21 — 팀 보관함, 안내 정리, 모바일
 
