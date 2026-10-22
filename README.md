@@ -27,7 +27,7 @@ AI 결과는 참고용 1차 검토예요. 법적 위반을 확정하지 않아�
 
 ## Light 버전 (벤치마킹 전용)
 
-`nova-lens-lite`는 다크패턴 기능을 모두 빼고 자동차·금융 UX 벤치마킹(검색·필터·분류)에 집중한 버전이에요. 자세한 내용은 [docs/light-benchmark.md](docs/light-benchmark.md)를 보세요.
+`nova-lens-lite`는 다크패턴 기능을 모두 빼고 자동차금융 UX 벤치마킹(검색·필터·분류)에 집중한 버전이에요. 자세한 내용은 [docs/light-benchmark.md](docs/light-benchmark.md)를 보세요.
 배포: `npm run deploy`(기본), `npm run deploy:lite`(Light).
 
 ## 실행

@@ -10,7 +10,7 @@ import NameDialog from './components/NameDialog'
 import { useCollections } from './lib/useCollections'
 import PageHeader from './components/PageHeader'
 import { IS_LITE, SHOW_AI_REVIEW, SHOW_INSPECT } from './lib/features'
-import { EMPTY_FILTERS, activeFilterCount, applyFilters, enrich, hasActiveFilter } from './lib/benchmark'
+import { EMPTY_FILTERS, applyFilters, enrich, hasActiveFilter } from './lib/benchmark'
 import ScreenAnalyzer from './components/ScreenAnalyzer'
 import BenchmarkFilters, { FilterChips } from './components/BenchmarkFilters'
 import { useName } from './lib/identity'
@@ -67,7 +67,8 @@ function AuthBanner({ auth, onRetry }) {
 }
 
 // "연결됐어요"는 실제 검색 호출이 성공했을 때만 보여줘요.
-function SearchStatus({ isLive, query, search, counts, onRetry, onSuggest }) {
+function SearchStatus({ lite, isLive, query, search, counts, onRetry, onSuggest }) {
+  if (lite && (!isLive || !query || search.status === 'loading' || search.status === 'idle')) return null // Light: 정상 상태는 알리지 않고, 결과 수는 결과 위에 따로 보여줘요
   if (!isLive) {
     return query ? <div className="status">샘플 데이터 검색 결과예요 · 실시간 결과가 아니에요</div> : null
   }
@@ -88,12 +89,14 @@ function SearchStatus({ isLive, query, search, counts, onRetry, onSuggest }) {
   if (search.status === 'idle') return null
 
   const total = counts.exact + counts.related + counts.low
+  // 검색 시각·호출 수 같은 기술 정보는 화면 대신 개발자 콘솔에 남겨요.
+  if (lite) console.debug('[UX Lens] UI Bowl 검색', { calls: search.calls, failedCalls: search.failedCalls, searchedAt: search.searchedAt, counts })
   return (
     <>
-      <div className="status status-ok">
+      {!lite && <div className="status status-ok">
         UI Bowl 실시간 검색 성공 · {formatTime(search.searchedAt)} · {total}개 화면 묶음 (정확히 일치 {counts.exact} · 관련 {counts.related}{' '}
         · 관련성 낮음 {counts.low})
-      </div>
+      </div>}
       {search.failedCalls > 0 && (
         <div className="status status-error">
           <span>
@@ -124,9 +127,11 @@ function ResultSection({ title, screens, onOpen, isSaved, onSave }) {
   if (screens.length === 0) return null
   return (
     <section className="result-section">
-      <h2 className="section-title">
-        {title} <span className="section-count">{screens.length}</span>
-      </h2>
+      {title && (
+        <h2 className="section-title">
+          {title} <span className="section-count">{screens.length}</span>
+        </h2>
+      )}
       <div className="grid">
         {screens.map((s) => (
           <ScreenCard key={s.id} screen={s} onOpen={onOpen} saved={isSaved(s)} onSave={onSave} />
@@ -142,7 +147,6 @@ export default function App() {
   const [query, setQuery] = useState(() => interpretQuery(DEFAULT_QUERY))
   const [domain, setDomain] = useState('전체')
   const [sort, setSort] = useState(DEFAULT_QUERY ? 'relevance' : 'recent')
-  const [showFilters, setShowFilters] = useState(false)
   const [showLow, setShowLow] = useState(false)
   const [bmFilters, setBmFilters] = useState(EMPTY_FILTERS) // Light: 기업·과업·화면 유형·UI 패턴 필터
   const [limit, setLimit] = useState(PAGE)
@@ -209,7 +213,7 @@ export default function App() {
 
   useEffect(() => {
     if (IS_LITE) document.title = 'UX Lens Light'
-    if (IS_LITE) document.querySelector('meta[name="description"]')?.setAttribute('content', 'UX Lens Light — 자동차·금융 UX 벤치마킹. 실제 서비스 화면을 사용자 과업 기준으로 탐색해요.')
+    if (IS_LITE) document.querySelector('meta[name="description"]')?.setAttribute('content', 'UX Lens Light — 자동차금융 UX 벤치마킹. 실제 서비스 화면을 사용자 과업 기준으로 탐색해요.')
   }, [])
 
   useEffect(() => {
@@ -296,8 +300,12 @@ export default function App() {
   const loading = search.status === 'loading'
   const visible = counts.exact + counts.related
   const total = visible + counts.low // 필터까지 적용한 뒤 실제로 보여줄 수 있는 화면 묶음 수
-  const filterCount = activeFilterCount(bmFilters)
-  const storedImages = useMemo(() => enriched.reduce((n, s) => n + (s.screenCount ?? 1), 0), [enriched])
+  // 화면 위에 보여주는 결과 수: 관련성 낮은 화면은 펼쳤을 때만 포함해요.
+  const resultCount = browsing ? total : visible + (showLow ? counts.low : 0)
+  const changeFilters = (f) => {
+    setBmFilters(f)
+    setLimit(PAGE)
+  }
 
   return (
     <>
@@ -313,7 +321,7 @@ export default function App() {
           >
             <img className="brand-mark" src="/icon-180.png" alt="" aria-hidden="true" />
             <span className="brand-name">UX Lens</span>
-            <span className="brand-slogan">{IS_LITE ? '자동차·금융 UX 벤치마킹' : 'Explore UI. Inspect UX.'}</span>
+            <span className="brand-slogan">{IS_LITE ? '자동차금융 UX 벤치마킹' : 'Explore UI. Inspect UX.'}</span>
             <span className="version">{IS_LITE ? 'v1.0 Light' : 'v1.0'}</span>
           </button>
           <nav className="views" aria-label="화면 전환">
@@ -385,7 +393,7 @@ export default function App() {
                   className="search-input"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder={IS_LITE ? '예: 한도 조회, 약관 동의 같은 자동차·금융 화면을 찾아보세요' : '대출한도 화면을 찾아줘'}
+                  placeholder={IS_LITE ? '예: 한도 조회, 약관 동의 같은 자동차금융 화면을 찾아보세요' : '대출한도 화면을 찾아줘'}
                   aria-label="화면 검색"
                 />
                 <button className="search-button" type="submit">
@@ -422,15 +430,8 @@ export default function App() {
                       </button>
                     ))}
                   </div>
-                  <div className="toolbar-right">
-                    {IS_LITE && (
-                      <button type="button" className="button filter-toggle" aria-expanded={showFilters} onClick={() => setShowFilters((v) => !v)}>
-                        상세 필터
-                        {filterCount > 0 && <span className="filter-toggle-count">{filterCount}</span>}
-                      </button>
-                    )}
-                    {/* 결과가 1개 이하이거나 검색어 없이 둘러볼 때는 정렬을 고를 의미가 없어서 숨겨요 */}
-                    {!(IS_LITE && (browsing || total <= 1)) && (
+                  {!IS_LITE && (
+                    <div className="toolbar-right">
                       <div className="sorts" aria-label="정렬" title="최신순은 UI Bowl 수집월 기준이에요">
                         {Object.entries(SORTS).map(([key, label]) => (
                           <button key={key} type="button" className={`sort ${sort === key ? 'is-active' : ''}`} onClick={() => setSort(key)}>
@@ -438,31 +439,33 @@ export default function App() {
                           </button>
                         ))}
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
 
-                {IS_LITE && showFilters && (
-                  <BenchmarkFilters
-                    screens={enriched}
-                    filters={bmFilters}
-                    onChange={(f) => {
-                      setBmFilters(f)
-                      setLimit(PAGE)
-                    }}
-                  />
-                )}
                 {IS_LITE && (
-                  <FilterChips
-                    filters={bmFilters}
-                    onChange={(f) => {
-                      setBmFilters(f)
-                      setLimit(PAGE)
-                    }}
-                  />
+                  <>
+                    <div className="result-bar">
+                      <p className="result-summary">{loading ? '검색 중…' : <>검색 결과 <strong>{resultCount}개</strong></>}</p>
+                      <div className="toolbar-right">
+                        <BenchmarkFilters screens={enriched} filters={bmFilters} onChange={changeFilters} />
+                        {/* 결과가 1개 이하이거나 검색어 없이 둘러볼 때는 정렬을 고를 의미가 없어서 숨겨요 */}
+                        {!browsing && resultCount > 1 && (
+                          <div className="sorts" aria-label="정렬" title="최신순은 UI Bowl 수집월 기준이에요">
+                            {Object.entries(SORTS).map(([key, label]) => (
+                              <button key={key} type="button" className={`sort ${sort === key ? 'is-active' : ''}`} onClick={() => setSort(key)}>
+                                {label}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <FilterChips filters={bmFilters} onChange={changeFilters} />
+                  </>
                 )}
 
-                {query && (
+                {query && !IS_LITE && (
                   <div className="intent">
                     <strong>검색 의도</strong>{' '}
                     {squash(query.raw) === squash(query.core) ? query.core : `‘${query.raw}’ → ${query.core} 관련 화면으로 넓혀 찾아요`}
@@ -470,14 +473,9 @@ export default function App() {
                   </div>
                 )}
 
-                {browsing && (
-                  <p className="result-summary">
-                    저장된 화면 묶음 {enriched.length}개{storedImages > enriched.length ? ` (낱장 ${storedImages}장)` : ''} ·{' '}
-                    {hasActiveFilter(bmFilters) || domain !== '전체' ? '조건에 맞는 화면' : '둘러볼 수 있는 화면'} <strong>{total}개</strong> · 검색어를 입력하면 UI Bowl에서 더 찾아요
-                  </p>
-                )}
                 {!browsing && (
                 <SearchStatus
+                  lite={IS_LITE}
                   isLive={isLive}
                   query={query}
                   search={search}
@@ -491,7 +489,7 @@ export default function App() {
                   {browsing ? (
                     <>
                       <ResultSection
-                        title="벤치마킹 DB · 최신 수집순"
+                        title=""
                         screens={[...grouped.exact, ...grouped.related, ...grouped.low].sort((a, b) => (b.dataMonth ?? '').localeCompare(a.dataMonth ?? '')).slice(0, limit)}
                         {...sectionProps}
                       />

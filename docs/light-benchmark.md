@@ -1,6 +1,6 @@
 # UX Lens Light — 벤치마킹 (Phase 1)
 
-자동차·금융 UX 벤치마킹에 특화한 버전이에요. 프로젝트명은 **UX Lens Light — 자동차금융 UX 벤치마킹 AI Agent**예요. 다크패턴 관련 기능(Inspect, AI 다크패턴 사전 검토)은 Light 화면과 번들에서 모두 빠져요.
+자동차금융 UX 벤치마킹에 특화한 버전이에요. 프로젝트명은 **UX Lens Light — 자동차금융 UX 벤치마킹 AI Agent**예요. 다크패턴 관련 기능(Inspect, AI 다크패턴 사전 검토)은 Light 화면과 번들에서 모두 빠져요.
 사이트: https://nova-lens-lite.pages.dev (기존 `nova-lens`와 같은 코드에서 빌드 스위치로 갈라져요)
 
 ## 빌드·배포

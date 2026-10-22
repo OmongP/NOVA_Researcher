@@ -1,6 +1,9 @@
 import { labelOf } from '../lib/benchmark'
 import { TIERS } from '../lib/searchQuery'
-import BenchmarkTags from './BenchmarkTags'
+
+function cardMeta(bm) {
+  return [bm.taskIds[0] && labelOf.task(bm.taskIds[0]), bm.screenTypeId && labelOf.screenType(bm.screenTypeId)].filter(Boolean).join(' · ')
+}
 
 function sourceLine(screen) {
   if (screen.bm) return `${screen.source ?? 'UI Bowl'} · 수집월 ${screen.dataMonth ?? '미확인'}${screen.bm.platform ? ` · ${labelOf.platform(screen.bm.platform)}` : ''}`
@@ -37,10 +40,14 @@ export default function ScreenCard({ screen, onOpen, saved, onSave }) {
         </div>
         <h3 className="card-service">{screen.service}</h3>
         <p className="card-title">{screen.title}</p>
-        <p className="card-pattern">
-          {screen.pattern} · {screen.screenCount}장
-        </p>
-        {screen.bm && <BenchmarkTags bm={screen.bm} compact />}
+        {screen.bm ? (
+          // 이미지가 먼저 보이도록 분류는 한 줄 보조 정보로만 보여줘요(칩 없이).
+          cardMeta(screen.bm) && <p className="card-pattern">{cardMeta(screen.bm)}</p>
+        ) : (
+          <p className="card-pattern">
+            {screen.pattern} · {screen.screenCount}장
+          </p>
+        )}
         {screen.relevance?.reason && <p className="card-reason">{screen.relevance.reason}</p>}
         <div className="card-footer">
           <span>{sourceLine(screen)}</span>
