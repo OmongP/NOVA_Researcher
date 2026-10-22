@@ -11,6 +11,7 @@ import { useCollections } from './lib/useCollections'
 import PageHeader from './components/PageHeader'
 import { IS_LITE, SHOW_AI_REVIEW, SHOW_INSPECT } from './lib/features'
 import { EMPTY_FILTERS, activeFilterCount, applyFilters, enrich, hasActiveFilter } from './lib/benchmark'
+import ScreenAnalyzer from './components/ScreenAnalyzer'
 import BenchmarkFilters, { FilterChips } from './components/BenchmarkFilters'
 import { useName } from './lib/identity'
 import { useTeamLibrary } from './lib/useTeamLibrary'
@@ -319,6 +320,11 @@ export default function App() {
             <button type="button" className={`view-tab ${view === 'search' ? 'is-active' : ''}`} onClick={() => setView('search')}>
               Explore
             </button>
+            {IS_LITE && (
+              <button type="button" className={`view-tab ${view === 'analyze' ? 'is-active' : ''}`} onClick={() => setView('analyze')}>
+                Analyze
+              </button>
+            )}
             <button type="button" className={`view-tab ${view === 'library' ? 'is-active' : ''}`} onClick={() => withName(() => setView('library'))}>
               Archive <span className="library-count">{store.bookmarks.length}</span>
             </button>
@@ -332,6 +338,13 @@ export default function App() {
       </header>
 
       <div className="page">
+        {IS_LITE && view === 'analyze' && (
+          <>
+            <PageHeader title="Analyze" sub="화면 이미지를 AI로 분석해 과업·화면 유형·UI 패턴 태그 만들기" />
+            <ScreenAnalyzer />
+          </>
+        )}
+
         {view === 'library' && (
           <>
             <PageHeader title="Archive" sub="리서치 자료 및 검토 이력 보관·관리" />

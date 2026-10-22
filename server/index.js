@@ -11,6 +11,7 @@ import { interpretQuery } from '../src/lib/searchQuery.js'
 import { runDarkSearch, runSearch } from './searchCore.js'
 import { registerLibraryRoutes } from './library.js'
 import { getAuthStatus, finishLogin, callTool } from './uibowl.js'
+import { analyzeScreen } from './screenAnalysis.js'
 import { ruleById } from '../src/data/darkPatternRules.js'
 import { cancelJob, getJob, getProviders, jobImagePath, recoverInterruptedJobs, retryJob, startReview } from './aiReview.js'
 
@@ -102,6 +103,15 @@ app.post('/api/dark/search', async (req, res) => {
   if (!status.connected) return res.status(401).json(status)
 
   res.json(await runDarkSearch(rule, callTool))
+})
+
+// Light 화면 분석: 올린 이미지는 메모리에서만 처리하고 저장·로그하지 않아요(server/screenAnalysis.js).
+app.post('/api/analyze', async (req, res) => {
+  try {
+    res.json(await analyzeScreen(req.body?.dataUrl))
+  } catch (err) {
+    res.status(400).json({ error: err.message })
+  }
 })
 
 // AI 1차 검토: 스크린샷과 가이드 규칙을 Claude API로 보내 참고용 판정을 받아요.
