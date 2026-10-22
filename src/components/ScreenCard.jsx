@@ -1,6 +1,9 @@
+import { labelOf } from '../lib/benchmark'
 import { TIERS } from '../lib/searchQuery'
+import BenchmarkTags from './BenchmarkTags'
 
 function sourceLine(screen) {
+  if (screen.bm) return `${screen.source ?? 'UI Bowl'} · 수집월 ${screen.dataMonth ?? '미확인'} · ${labelOf.platform(screen.bm.platform)} · ${labelOf.verification(screen.bm.verification)}`
   return `${screen.source ?? 'UI Bowl'} · 수집월 ${screen.dataMonth ?? '미확인'} · 앱 버전 미확인`
 }
 
@@ -37,6 +40,7 @@ export default function ScreenCard({ screen, onOpen, saved, onSave }) {
         <p className="card-pattern">
           {screen.pattern} · {screen.screenCount}장
         </p>
+        {screen.bm && <BenchmarkTags bm={screen.bm} compact />}
         {screen.relevance?.reason && <p className="card-reason">{screen.relevance.reason}</p>}
         <div className="card-footer">
           <span>{sourceLine(screen)}</span>

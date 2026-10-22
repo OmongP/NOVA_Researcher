@@ -14,6 +14,13 @@ UX Lens(구 NOVA Researcher)의 변경 이력이에요. 괄호 안은 git 커밋
 - **공유**: `npm run share`로 서버 PC를 사이트(Cloudflare)에 연결(터널 자동 재연결, 팀 코드), `npm run serve`로 사내망 공유.
 - 디자인: 포인트 컬러 `#0066FF`(호버 `#0046B2`), Radius 4/8/12/16/half, 모바일 레이아웃 정리.
 
+## 2026-10-23 — Light 버전 Phase 1 (벤치마킹 분류·필터)
+
+- `VITE_LITE=1` 빌드: Inspect·AI 다크패턴 사전 검토를 화면과 번들에서 제외(Inspect는 lazy import로 분리), 제목·배지 "Light" (사이트 `nova-lens-lite`)
+- 분류 체계(도메인 4·과업 13·화면 유형 9·UI 패턴 14)와 벤치마킹 대상 29개사 데이터, UI Bowl 메타데이터 기반 자동 분류(근거 표시)
+- Explore: 기업·도메인·과업·화면 유형·UI 패턴·검증 상태 필터, 검색어 없이 DB 둘러보기, 카드 태그·상세 분류 근거, 빈 결과 안내
+- 서버가 UI Bowl 웹/앱(platform) 값을 가져오도록 수정, `scripts/deploy.js`로 사이트별 빌드·배포, `npm run check:benchmark`
+
 ## 2026-10-22 — 버전 표시, AI 검토 숨김
 
 - 화면의 버전 표시와 `package.json`을 **v1.0**으로 맞춤. 태그 `ux-lens-v1.0-team-archive`(`07f92da`)는 이 변경 이전 커밋이라 화면에는 `v0.3`으로 보여요.

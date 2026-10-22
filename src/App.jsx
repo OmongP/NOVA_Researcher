@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, lazy, Suspense } from 'react'
 import { sampleScreens } from './data/sampleScreens'
 import { interpretQuery, rateRelevance, searchScreens, TIERS } from './lib/searchQuery'
 import ScreenCard from './components/ScreenCard'
@@ -7,10 +7,11 @@ import SaveDialog from './components/SaveDialog'
 import Library from './components/Library'
 import ArchiveBar from './components/ArchiveBar'
 import NameDialog from './components/NameDialog'
-import DarkPatternInspector from './components/DarkPatternInspector'
 import { useCollections } from './lib/useCollections'
 import PageHeader from './components/PageHeader'
-import { SHOW_AI_REVIEW } from './lib/features'
+import { IS_LITE, SHOW_AI_REVIEW, SHOW_INSPECT } from './lib/features'
+import { EMPTY_FILTERS, applyFilters, enrich, hasActiveFilter } from './lib/benchmark'
+import BenchmarkFilters from './components/BenchmarkFilters'
 import { useName } from './lib/identity'
 import { useTeamLibrary } from './lib/useTeamLibrary'
 import { IS_DEMO } from './lib/demo'
@@ -19,7 +20,12 @@ import './App.css'
 
 const DOMAINS = ['전체', '금융', '자동차', '모빌리티']
 const SORTS = { relevance: '정확도순', recent: '최신순' }
-const DEFAULT_QUERY = '한도 조회'
+// Inspect(다크패턴 검토)는 필요할 때만 불러와요. Light 빌드에서는 이 코드와 사내 가이드 데이터가 번들에 아예 들어가지 않아요.
+// (조건을 import.meta.env로 직접 써야 번들러가 빌드할 때 통째로 걷어내요)
+const DarkPatternInspector = import.meta.env.VITE_LITE === '1' ? null : lazy(() => import('./components/DarkPatternInspector'))
+
+const DEFAULT_QUERY = IS_LITE ? '' : '한도 조회'
+const PAGE = 24 // Light: 검색어 없이 둘러볼 때 한 번에 보여주는 화면 수
 const SUGGESTIONS = ['한도 조회', '약관 동의', '견적 비교', '내 차 팔기', '명세서', '해지', '리스', '챗봇']
 
 const formatTime = (iso) => new Date(iso).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })
@@ -134,6 +140,8 @@ export default function App() {
   const [domain, setDomain] = useState('전체')
   const [sort, setSort] = useState('relevance')
   const [showLow, setShowLow] = useState(false)
+  const [bmFilters, setBmFilters] = useState(EMPTY_FILTERS) // Light: 기업·과업·화면 유형·UI 패턴 필터
+  const [limit, setLimit] = useState(PAGE)
   const [selected, setSelected] = useState(null)
   const [saving, setSaving] = useState(null)
   const [toast, setToast] = useState(null)
@@ -196,6 +204,10 @@ export default function App() {
   }, [])
 
   useEffect(() => {
+    if (IS_LITE) document.title = 'UX Lens Light'
+  }, [])
+
+  useEffect(() => {
     if (!isLive || !query) return
     let cancelled = false
     setSearch((prev) => ({ ...prev, status: 'loading', errors: [] }))
@@ -236,8 +248,13 @@ export default function App() {
     [isLive, query, domain, search.screens],
   )
 
+  // Light: 모든 화면에 벤치마킹 분류(bm)를 붙이고, 필터를 적용해요.
+  const enriched = useMemo(() => (IS_LITE ? rawResults.map(enrich) : rawResults), [rawResults])
+  const filtered = useMemo(() => (IS_LITE ? applyFilters(enriched, bmFilters) : enriched), [enriched, bmFilters])
+  const browsing = IS_LITE && !query // 검색어 없이 벤치마킹 DB를 둘러보는 중
+
   const grouped = useMemo(() => {
-    const rated = rawResults.map((s) => ({ ...s, relevance: rateRelevance(s, query) }))
+    const rated = filtered.map((s) => ({ ...s, relevance: rateRelevance(s, query) }))
     rated.sort((a, b) =>
       sort === 'recent'
         ? (b.dataMonth ?? '').localeCompare(a.dataMonth ?? '')
@@ -248,7 +265,7 @@ export default function App() {
       related: rated.filter((s) => s.relevance.tier === 'related'),
       low: rated.filter((s) => s.relevance.tier === 'low'),
     }
-  }, [rawResults, query, sort])
+  }, [filtered, query, sort])
 
   const counts = { exact: grouped.exact.length, related: grouped.related.length, low: grouped.low.length }
   const closeDetail = useCallback(() => setSelected(null), [])
@@ -265,6 +282,7 @@ export default function App() {
   function runSearch(text) {
     setInput(text)
     setShowLow(false)
+    setLimit(PAGE)
     setQuery(interpretQuery(text))
   }
 
@@ -285,8 +303,8 @@ export default function App() {
           >
             <img className="brand-mark" src="/icon-180.png" alt="" aria-hidden="true" />
             <span className="brand-name">UX Lens</span>
-            <span className="brand-slogan">Explore UI. Inspect UX.</span>
-            <span className="version">v1.0</span>
+            <span className="brand-slogan">{IS_LITE ? '금융·자동차 UX 벤치마킹' : 'Explore UI. Inspect UX.'}</span>
+            <span className="version">{IS_LITE ? 'v1.0 Light' : 'v1.0'}</span>
           </button>
           <nav className="views" aria-label="화면 전환">
             <button type="button" className={`view-tab ${view === 'search' ? 'is-active' : ''}`} onClick={() => setView('search')}>
@@ -295,9 +313,11 @@ export default function App() {
             <button type="button" className={`view-tab ${view === 'library' ? 'is-active' : ''}`} onClick={() => withName(() => setView('library'))}>
               Archive <span className="library-count">{store.bookmarks.length}</span>
             </button>
-            <button type="button" className={`view-tab ${view === 'dark' ? 'is-active' : ''}`} onClick={() => setView('dark')}>
-              Inspect
-            </button>
+            {SHOW_INSPECT && (
+              <button type="button" className={`view-tab ${view === 'dark' ? 'is-active' : ''}`} onClick={() => setView('dark')}>
+                Inspect
+              </button>
+            )}
           </nav>
         </div>
       </header>
@@ -320,9 +340,13 @@ export default function App() {
         )}
 
         {/* 탭을 옮겨도 검토 중인 내용이 사라지지 않도록 항상 마운트해 두고 숨겨요 */}
-        <div hidden={view !== 'dark'}>
-          <DarkPatternInspector isLive={isLive} loginUrl={auth.loginUrl} />
-        </div>
+        {SHOW_INSPECT && (
+          <div hidden={view !== 'dark'}>
+            <Suspense fallback={null}>
+              <DarkPatternInspector isLive={isLive} loginUrl={auth.loginUrl} />
+            </Suspense>
+          </div>
+        )}
 
         {view === 'search' && (
           <>
@@ -359,7 +383,7 @@ export default function App() {
 
             <AuthBanner auth={auth} onRetry={checkAuth} />
 
-            {query && (
+            {(query || IS_LITE) && (
               <>
                 <div className="toolbar">
                   <div className="filters" role="tablist" aria-label="서비스 분야">
@@ -385,6 +409,8 @@ export default function App() {
                   </div>
                 </div>
 
+                {IS_LITE && <BenchmarkFilters screens={enriched} filters={bmFilters} onChange={(f) => { setBmFilters(f); setLimit(PAGE) }} />}
+
                 {query && (
                   <div className="intent">
                     <strong>검색 의도</strong> {query.core}
@@ -392,6 +418,13 @@ export default function App() {
                   </div>
                 )}
 
+                {browsing && (
+                  <div className="status">
+                    벤치마킹 DB {enriched.length}개 화면 묶음{hasActiveFilter(bmFilters) ? ` 중 ${filtered.length}개` : ''} ·{' '}
+                    {isLive ? '검색어를 입력하면 UI Bowl에서 실시간으로 더 찾아요' : '샘플 데이터예요(실시간 결과가 아니에요)'}
+                  </div>
+                )}
+                {!browsing && (
                 <SearchStatus
                   isLive={isLive}
                   query={query}
@@ -400,9 +433,25 @@ export default function App() {
                   onRetry={() => setRetryKey((k) => k + 1)}
                   onSuggest={runSearch}
                 />
+                )}
 
                 <div className={loading ? 'results is-loading' : 'results'}>
-                  {sort === 'recent' ? (
+                  {browsing ? (
+                    <>
+                      <ResultSection
+                        title="벤치마킹 DB · 최신 수집순"
+                        screens={[...grouped.exact, ...grouped.related, ...grouped.low].sort((a, b) => (b.dataMonth ?? '').localeCompare(a.dataMonth ?? '')).slice(0, limit)}
+                        {...sectionProps}
+                      />
+                      {visible + counts.low > limit && (
+                        <div className="bm-more-wrap">
+                          <button type="button" className="button" onClick={() => setLimit((n) => n + PAGE)}>
+                            더 보기 ({Math.min(limit, visible + counts.low)} / {visible + counts.low})
+                          </button>
+                        </div>
+                      )}
+                    </>
+                  ) : sort === 'recent' ? (
                     <ResultSection
                       title="최신순 · 정확히 일치 + 관련 화면"
                       screens={[...grouped.exact, ...grouped.related].sort((a, b) => (b.dataMonth ?? '').localeCompare(a.dataMonth ?? ''))}
@@ -415,16 +464,32 @@ export default function App() {
                     </>
                   )}
 
-                  {counts.low > 0 && (
+                  {!browsing && counts.low > 0 && (
                     <div className="low-toggle">
                       <button type="button" className="button" onClick={() => setShowLow((v) => !v)}>
                         관련성 낮은 화면 {counts.low}개 {showLow ? '숨기기' : '보기'}
                       </button>
                     </div>
                   )}
-                  {showLow && <ResultSection title={TIERS.low.label} screens={grouped.low} {...sectionProps} />}
+                  {!browsing && showLow && <ResultSection title={TIERS.low.label} screens={grouped.low} {...sectionProps} />}
 
-                  {query && visible === 0 && counts.low === 0 && !loading && search.status !== 'failed' && !isLive && (
+                  {IS_LITE && visible + counts.low === 0 && !loading && search.status !== 'failed' && (
+                    <div className="empty">
+                      <p className="empty-title">{hasActiveFilter(bmFilters) ? '선택한 필터에 맞는 화면이 없어요' : query ? `‘${query.core}’에 맞는 화면이 없어요` : '보여줄 화면이 없어요'}</p>
+                      <p className="empty-desc">
+                        수집된 실제 화면이 없다는 뜻이에요. 비슷한 화면을 만들어 보여주지 않아요.
+                        {hasActiveFilter(bmFilters) && (
+                          <>
+                            {' '}
+                            <button type="button" className="link-button" onClick={() => setBmFilters(EMPTY_FILTERS)}>
+                              필터 초기화
+                            </button>
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  )}
+                  {!IS_LITE && query && visible === 0 && counts.low === 0 && !loading && search.status !== 'failed' && !isLive && (
                     <div className="empty">
                       <p className="empty-title">샘플 데이터에 맞는 화면이 없어요</p>
                       <p className="empty-desc">UI Bowl에 로그인하면 실시간으로 더 많은 화면을 찾아요.</p>

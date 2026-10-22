@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { TIERS } from '../lib/searchQuery'
+import BenchmarkDetail from './BenchmarkDetail'
 
 function formatDate(iso) {
   if (!iso) return '미확인'
@@ -88,6 +89,8 @@ export default function ScreenDetail({ screen, onClose, saved, onSave }) {
               ))}
             </div>
           )}
+
+          {screen.bm && <BenchmarkDetail screen={screen} />}
 
           <dl className="detail-meta">
             <dt>출처</dt>

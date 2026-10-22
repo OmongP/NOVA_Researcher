@@ -34,6 +34,7 @@ for (const term of TERMS) {
         service: s.service,
         domain: s.domain,
         category: s.category,
+        platform: prev?.platform ?? s.platform ?? null,
         pattern: s.pattern,
         variant: s.variant,
         title: s.title,

@@ -2770,3 +2770,100 @@ img.brand-mark {
     flex: 1;
   }
 }
+
+/* Light: 벤치마킹 필터·태그 */
+.bm-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px 12px;
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  border-radius: var(--radius-12);
+  background: var(--bg);
+}
+
+.bm-filter {
+  display: grid;
+  gap: 4px;
+  min-width: 132px;
+}
+
+.bm-filter-label {
+  color: var(--text-sub);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.bm-filter select {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-8);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.bm-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding-bottom: 8px;
+  font-size: 13px;
+}
+
+.bm-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 6px 0;
+}
+
+.bm-chip {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-sub);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.bm-company {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.bm-task {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.bm-none {
+  border-style: dashed;
+}
+
+.bm-detail {
+  margin: 16px 0;
+}
+
+.bm-evidence {
+  color: var(--text-sub);
+  font-size: 12px;
+}
+
+.bm-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
+}
+
+@media (max-width: 640px) {
+  .bm-filters {
+    padding: 12px;
+  }
+
+  .bm-filter {
+    flex: 1 1 calc(50% - 6px);
+    min-width: 0;
+  }
+}

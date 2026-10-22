@@ -60,6 +60,7 @@ export function toScreens(data, sourceTool) {
       sourceTool,
       sourceTools: [sourceTool],
       mau: result.mau ?? null,
+      platform: result.platform ?? group.platform ?? null, // UI Bowl의 MOBILE/WEB 구분
     }
   })
 }

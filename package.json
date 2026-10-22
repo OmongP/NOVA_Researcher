@@ -16,7 +16,10 @@
     "build:demo": "vite build --mode demo",
     "serve": "npm run build && node --env-file-if-exists=server/.env scripts/serve.js",
     "start": "node --env-file-if-exists=server/.env scripts/serve.js",
-    "share": "node scripts/share.js"
+    "share": "node scripts/share.js",
+    "deploy": "node scripts/deploy.js nova-lens",
+    "deploy:lite": "node scripts/deploy.js nova-lens-lite",
+    "check:benchmark": "node scripts/benchmark-check.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.135.0",
