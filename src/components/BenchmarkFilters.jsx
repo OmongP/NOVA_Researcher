@@ -1,19 +1,23 @@
 import { useMemo } from 'react'
 import { COMPANIES } from '../data/benchmark/companies'
 import { SCREEN_TYPES, TASKS, UI_PATTERNS } from '../data/benchmark/taxonomy'
-import { EMPTY_FILTERS, FACETS, OTHER_COMPANY, facetCounts, facetOptions, filterLabel, hasActiveFilter } from '../lib/benchmark'
+import { EMPTY_FILTERS, FACETS, NO_TASK, OTHER_COMPANY, facetCounts, facetOptions, filterLabel, hasActiveFilter } from '../lib/benchmark'
 
 const GROUPS = [
-  { key: 'company', label: '기업' },
   { key: 'task', label: '사용자 과업' },
   { key: 'screenType', label: '화면 유형' },
   { key: 'pattern', label: 'UI 패턴' },
+  { key: 'company', label: '기업' },
 ]
+
+// 기업 필터는 화면이 충분히 쌓인 기업이 3곳 이상일 때만 보여줘요(화면이 1~2개뿐인 기업을 고르는 건 의미가 없어서요).
+const MIN_COMPANY_SCREENS = 5
+const MIN_COMPANIES = 3
 
 // 분류 체계 순서대로 정렬한 선택지 전체(데이터에 있는 것만 골라 써요)
 const ORDER = {
   company: [...COMPANIES.map((c) => c.id), OTHER_COMPANY],
-  task: TASKS.map((t) => t.id),
+  task: [...TASKS.map((t) => t.id), NO_TASK],
   screenType: SCREEN_TYPES.map((t) => t.id),
   pattern: UI_PATTERNS.map((p) => p.id),
 }
@@ -24,11 +28,17 @@ const toggle = (list, id) => (list.includes(id) ? list.filter((v) => v !== id) :
 export default function BenchmarkFilters({ screens, filters, onChange }) {
   const counts = useMemo(() => facetCounts(screens, filters), [screens, filters])
   const present = useMemo(() => facetOptions(screens), [screens])
+  const totals = useMemo(() => facetCounts(screens, EMPTY_FILTERS), [screens]) // 필터와 상관없는 전체 개수
 
   return (
     <section className="bm-panel" aria-label="상세 필터">
       {GROUPS.map(({ key, label }) => {
-        const ids = ORDER[key].filter((id) => present[key].has(id))
+        let ids = ORDER[key].filter((id) => present[key].has(id))
+        if (key === 'company') {
+          const enough = ids.filter((id) => id !== OTHER_COMPANY && totals.company[id] >= MIN_COMPANY_SCREENS)
+          if (enough.length < MIN_COMPANIES && filters.company.length === 0) return null
+          ids = ids.filter((id) => id === OTHER_COMPANY || totals.company[id] >= MIN_COMPANY_SCREENS || filters.company.includes(id))
+        }
         // 고를 수 있는 값이 하나뿐이면 필터가 의미 없어서 숨겨요.
         if (ids.length < 2 && filters[key].length === 0) return null
         return (

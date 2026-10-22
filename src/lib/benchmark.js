@@ -197,13 +197,14 @@ export const labelOf = {
 // ── 필터 ──
 // 사용자에게 보이는 상세 필터: 기업·사용자 과업·화면 유형·UI 패턴. 같은 항목 안에서는 OR, 항목끼리는 AND예요.
 // (도메인은 분야 탭이 맡고, 검증 상태는 내부 품질 정보라 사용자 필터에서 뺐어요)
-export const FACETS = ['company', 'task', 'screenType', 'pattern']
-export const EMPTY_FILTERS = { company: [], task: [], screenType: [], pattern: [] }
+export const FACETS = ['task', 'screenType', 'pattern', 'company'] // 사용자 과업이 가장 중요한 탐색 기준이에요
+export const NO_TASK = '_none' // 과업을 판단할 근거가 없는 화면. 숨기지 않고 따로 보여줘요
+export const EMPTY_FILTERS = { task: [], screenType: [], pattern: [], company: [] }
 
 // 화면이 가진 값들(항목 하나에 값이 여러 개일 수 있어요)
 const VALUES = {
   company: (bm) => [bm.companyId],
-  task: (bm) => bm.taskIds,
+  task: (bm) => (bm.taskIds.length ? bm.taskIds : [NO_TASK]),
   screenType: (bm) => (bm.screenTypeId ? [bm.screenTypeId] : []),
   pattern: (bm) => bm.patternIds,
 }
@@ -240,6 +241,7 @@ export function facetOptions(screens) {
 }
 
 export function filterLabel(facet, id) {
+  if (facet === 'task' && id === NO_TASK) return '과업 미분류'
   if (facet === 'company') return id === OTHER_COMPANY ? '기타 서비스' : COMPANY_BY_ID[id]?.name ?? id
   return labelOf[facet](id)
 }

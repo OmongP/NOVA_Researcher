@@ -208,6 +208,7 @@ export default function App() {
 
   useEffect(() => {
     if (IS_LITE) document.title = 'UX Lens Light'
+    if (IS_LITE) document.querySelector('meta[name="description"]')?.setAttribute('content', 'UX Lens Light — 자동차·금융 UX 벤치마킹. 실제 서비스 화면을 사용자 과업 기준으로 탐색해요.')
   }, [])
 
   useEffect(() => {
@@ -311,7 +312,7 @@ export default function App() {
           >
             <img className="brand-mark" src="/icon-180.png" alt="" aria-hidden="true" />
             <span className="brand-name">UX Lens</span>
-            <span className="brand-slogan">{IS_LITE ? '금융·자동차 UX 벤치마킹' : 'Explore UI. Inspect UX.'}</span>
+            <span className="brand-slogan">{IS_LITE ? '자동차·금융 UX 벤치마킹' : 'Explore UI. Inspect UX.'}</span>
             <span className="version">{IS_LITE ? 'v1.0 Light' : 'v1.0'}</span>
           </button>
           <nav className="views" aria-label="화면 전환">
@@ -371,7 +372,7 @@ export default function App() {
                   className="search-input"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="대출한도 화면을 찾아줘"
+                  placeholder={IS_LITE ? '예: 한도 조회, 약관 동의 같은 자동차·금융 화면을 찾아보세요' : '대출한도 화면을 찾아줘'}
                   aria-label="화면 검색"
                 />
                 <button className="search-button" type="submit">
