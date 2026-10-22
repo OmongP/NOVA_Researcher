@@ -12,7 +12,7 @@ import PageHeader from './components/PageHeader'
 import { IS_LITE, SHOW_AI_REVIEW, SHOW_INSPECT } from './lib/features'
 import { EMPTY_FILTERS, applyFilters, enrich, hasActiveFilter } from './lib/benchmark'
 import ScreenAnalyzer from './components/ScreenAnalyzer'
-import BenchmarkFilters, { FilterChips } from './components/BenchmarkFilters'
+import BenchmarkFilters, { FilterButton, FilterChips, useFilterGroups } from './components/BenchmarkFilters'
 import { useName } from './lib/identity'
 import { useTeamLibrary } from './lib/useTeamLibrary'
 import { IS_DEMO } from './lib/demo'
@@ -302,6 +302,8 @@ export default function App() {
   const total = visible + counts.low // 필터까지 적용한 뒤 실제로 보여줄 수 있는 화면 묶음 수
   // 화면 위에 보여주는 결과 수: 관련성 낮은 화면은 펼쳤을 때만 포함해요.
   const resultCount = browsing ? total : visible + (showLow ? counts.low : 0)
+  const [showFilters, setShowFilters] = useState(false)
+  const fg = useFilterGroups(enriched, bmFilters)
   const changeFilters = (f) => {
     setBmFilters(f)
     setLimit(PAGE)
@@ -448,7 +450,7 @@ export default function App() {
                     <div className="result-bar">
                       <p className="result-summary">{loading ? '검색 중…' : <>검색 결과 <strong>{resultCount}개</strong></>}</p>
                       <div className="toolbar-right">
-                        <BenchmarkFilters screens={enriched} filters={bmFilters} onChange={changeFilters} />
+                        <FilterButton fg={fg} open={showFilters} onToggle={() => setShowFilters((v) => !v)} />
                         {/* 결과가 1개 이하이거나 검색어 없이 둘러볼 때는 정렬을 고를 의미가 없어서 숨겨요 */}
                         {!browsing && resultCount > 1 && (
                           <div className="sorts" aria-label="정렬" title="최신순은 UI Bowl 수집월 기준이에요">
@@ -461,6 +463,7 @@ export default function App() {
                         )}
                       </div>
                     </div>
+                    {showFilters && <BenchmarkFilters fg={fg} filters={bmFilters} onChange={changeFilters} />}
                     <FilterChips filters={bmFilters} onChange={changeFilters} />
                   </>
                 )}
