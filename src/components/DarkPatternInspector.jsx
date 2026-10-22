@@ -4,6 +4,7 @@ import { reviewKey, reviewsToMarkdown, useReviews } from '../lib/useReviews'
 import PageHeader from './PageHeader'
 import ReviewPanel from './ReviewPanel'
 import AiReview from './AiReview'
+import { SHOW_AI_REVIEW } from '../lib/features'
 import { REGULATION, regulationOf } from '../data/regulationGuideline'
 import { IS_DEMO } from '../lib/demo'
 import { readJson } from '../lib/http'
@@ -204,25 +205,30 @@ export default function DarkPatternInspector({ isLive, loginUrl }) {
             </li>
           ))}
         </ol>
-        <div className="filters" role="tablist" aria-label="검토 방식">
-          <button
-            type="button"
-            role="tab"
-            aria-selected={mode === 'cases'}
-            className={`filter ${mode === 'cases' ? 'is-active' : ''}`}
-            onClick={() => setMode('cases')}
-          >
-            가이드 기준 사례 찾기
-          </button>
-          <button type="button" role="tab" aria-selected={mode === 'ai'} className={`filter ${mode === 'ai' ? 'is-active' : ''}`} onClick={() => setMode('ai')}>
-            AI 다크패턴 사전 검토
-          </button>
-        </div>
+        {/* AI 다크패턴 사전 검토는 지금 숨겨 둬요(src/lib/features.js). 탭이 하나뿐이면 탭 줄도 숨겨요 */}
+        {SHOW_AI_REVIEW && (
+          <div className="filters" role="tablist" aria-label="검토 방식">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={mode === 'cases'}
+              className={`filter ${mode === 'cases' ? 'is-active' : ''}`}
+              onClick={() => setMode('cases')}
+            >
+              가이드 기준 사례 찾기
+            </button>
+            <button type="button" role="tab" aria-selected={mode === 'ai'} className={`filter ${mode === 'ai' ? 'is-active' : ''}`} onClick={() => setMode('ai')}>
+              AI 다크패턴 사전 검토
+            </button>
+          </div>
+        )}
       </section>
 
-      <div hidden={mode !== 'ai'}>
-        <AiReview />
-      </div>
+      {SHOW_AI_REVIEW && (
+        <div hidden={mode !== 'ai'}>
+          <AiReview />
+        </div>
+      )}
 
       {mode === 'cases' && (
         <>

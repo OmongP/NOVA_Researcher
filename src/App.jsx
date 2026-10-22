@@ -10,6 +10,7 @@ import NameDialog from './components/NameDialog'
 import DarkPatternInspector from './components/DarkPatternInspector'
 import { useCollections } from './lib/useCollections'
 import PageHeader from './components/PageHeader'
+import { SHOW_AI_REVIEW } from './lib/features'
 import { useName } from './lib/identity'
 import { useTeamLibrary } from './lib/useTeamLibrary'
 import { IS_DEMO } from './lib/demo'
@@ -27,7 +28,7 @@ function AuthBanner({ auth, onRetry }) {
   if (auth.state === 'checking') return <div className="banner">UI Bowl 로그인 상태를 확인하고 있어요…</div>
   if (auth.state === 'connected') {
     // 데모 사이트라도 서버(Cloudflare Function)가 UI Bowl에 연결돼 있으면 실시간으로 검색해요.
-    return IS_DEMO ? <div className="banner">UI Bowl에 실시간으로 연결돼 있어요. AI 다크패턴 사전 검토는 서버 PC가 연결돼 있을 때만 실제로 분석하고, 아니면 샘플 결과로 보여줘요.</div> : null
+    return IS_DEMO ? <div className="banner">UI Bowl에 실시간으로 연결돼 있어요.{SHOW_AI_REVIEW && ' AI 다크패턴 사전 검토는 서버 PC가 연결돼 있을 때만 실제로 분석하고, 아니면 샘플 결과로 보여줘요.'}</div> : null
   }
   if (auth.state === 'demo') {
     return (
