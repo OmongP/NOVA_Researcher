@@ -48,6 +48,7 @@ export default function ScreenCard({ screen, onOpen, saved, onSave }) {
             {screen.pattern} · {screen.screenCount}장
           </p>
         )}
+        {screen.taskRelation === 'related' && <p className="card-reason">관련 과업 확장 결과 · {labelOf.task(screen.bm.primaryTaskId)}</p>}
         {screen.relevance?.reason && <p className="card-reason">{screen.relevance.reason}</p>}
         <div className="card-footer">
           <span>{sourceLine(screen)}</span>

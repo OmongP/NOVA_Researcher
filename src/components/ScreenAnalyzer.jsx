@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { DOMAINS, SCREEN_TYPES, TASKS, UI_PATTERNS } from '../data/benchmark/taxonomy'
+import { DOMAINS, SCREEN_TYPES, TASK_BY_ID, TASK_GROUPS, TASKS, UI_PATTERNS } from '../data/benchmark/taxonomy'
 import { labelOf } from '../lib/benchmark'
 import { readJson } from '../lib/http'
 
@@ -29,17 +29,24 @@ function toDataUrl(file) {
 
 const CONFIDENCE = { high: '확실', medium: '보통', low: '낮음' }
 
-function Select({ label, value, options, onChange }) {
+function Select({ label, value, options, onChange, grouped, emptyLabel = '분류 안 함' }) {
+  const option = (o) => (
+    <option key={o.id} value={o.id}>
+      {o.label}
+    </option>
+  )
   return (
     <label className="an-field">
       <span className="an-label">{label}</span>
       <select value={value ?? ''} onChange={(e) => onChange(e.target.value || null)}>
-        <option value="">분류 안 함</option>
-        {options.map((o) => (
-          <option key={o.id} value={o.id}>
-            {o.label}
-          </option>
-        ))}
+        <option value="">{emptyLabel}</option>
+        {grouped
+          ? TASK_GROUPS.map((g) => (
+              <optgroup key={g.id} label={g.label}>
+                {options.filter((o) => o.group === g.id).map(option)}
+              </optgroup>
+            ))
+          : options.map(option)}
       </select>
     </label>
   )
@@ -64,6 +71,7 @@ export default function ScreenAnalyzer() {
   const [state, setState] = useState({ status: 'idle' }) // idle | loading | done | error
   const [tags, setTags] = useState(null) // 사용자가 확인·수정하는 값
   const [edited, setEdited] = useState(false)
+  const [userEdited, setUserEdited] = useState({}) // 사용자가 직접 고친 항목: 재분석해도 덮어쓰지 않아요
   const [dragging, setDragging] = useState(false)
   const [copied, setCopied] = useState(false)
   const input = useRef(null)
@@ -73,6 +81,7 @@ export default function ScreenAnalyzer() {
     setState({ status: 'idle' })
     setTags(null)
     setEdited(false)
+    setUserEdited({})
     try {
       setPreview({ dataUrl: await toDataUrl(file), name: file.name })
     } catch (e) {
@@ -99,13 +108,17 @@ export default function ScreenAnalyzer() {
       const data = await readJson(res)
       if (!res.ok) throw new Error(data.error ?? `HTTP ${res.status}`)
       setState({ status: 'done', result: data })
-      setTags({
+      const fresh = {
         domain: data.analysis.domain.id,
         userTask: data.analysis.userTask.id,
+        category: data.analysis.userTask.categoryId,
+        secondary: data.analysis.userTask.secondaryIds,
         screenType: data.analysis.screenType.id,
         uiPatterns: data.analysis.uiPatterns.map((p) => p.id),
         components: data.analysis.components,
-      })
+      }
+      // 재분석: 사용자가 고친 항목은 그대로 두고, 나머지만 새 AI 결과로 바꿔요.
+      setTags((prev) => (prev ? Object.fromEntries(Object.entries(fresh).map(([k, v]) => [k, userEdited[k] ? prev[k] : v])) : fresh))
     } catch (e) {
       setState({ status: 'error', error: e.message.includes('Failed to fetch') ? '분석 서버에 연결하지 못했어요. npm run dev로 서버를 켜 주세요' : e.message })
     }
@@ -113,6 +126,7 @@ export default function ScreenAnalyzer() {
 
   const change = (patch) => {
     setTags((t) => ({ ...t, ...patch }))
+    setUserEdited((u) => ({ ...u, ...Object.fromEntries(Object.keys(patch).map((k) => [k, true])) }))
     setEdited(true)
   }
   const togglePattern = (id) => change({ uiPatterns: tags.uiPatterns.includes(id) ? tags.uiPatterns.filter((p) => p !== id) : [...tags.uiPatterns, id] })
@@ -121,6 +135,7 @@ export default function ScreenAnalyzer() {
     setPreview(null)
     setTags(null)
     setEdited(false)
+    setUserEdited({})
     setState({ status: 'idle' })
     if (input.current) input.current.value = ''
   }
@@ -132,7 +147,13 @@ export default function ScreenAnalyzer() {
     JSON.stringify(
       {
         domain: tags.domain,
-        userTask: tags.userTask,
+        primaryTaskCategory: tags.category,
+        primaryTask: tags.userTask,
+        secondaryTasks: tags.secondary,
+        classificationConfidence: a.userTask.confidence,
+        taskNeedsReview: !tags.userTask,
+        evidence: a.userTask.evidence,
+        tagSources: Object.fromEntries(['domain', 'userTask', 'screenType', 'uiPatterns', 'components'].map((k) => [k, userEdited[k] ? 'user' : 'ai'])),
         screenType: tags.screenType,
         uiComponents: tags.components,
         uiPatterns: tags.uiPatterns,
@@ -196,9 +217,26 @@ export default function ScreenAnalyzer() {
 
               <div className="an-fields">
                 <Select label="도메인" value={tags.domain} options={DOMAINS} onChange={(v) => change({ domain: v })} />
-                <Select label="사용자 과업" value={tags.userTask} options={TASKS} onChange={(v) => change({ userTask: v })} />
+                <Select label="대표 과업" value={tags.userTask} options={TASKS} grouped emptyLabel="분류 검토 필요" onChange={(v) => change({ userTask: v, category: v ? TASK_BY_ID[v].group : tags.category })} />
                 <Select label="화면 유형" value={tags.screenType} options={SCREEN_TYPES} onChange={(v) => change({ screenType: v })} />
               </div>
+              {!tags.userTask && (
+                <p className="an-evidence">
+                  분류 검토 필요 — 이 화면만으로는 세부 과업을 확정하지 못했어요{tags.category ? ` (상위 과업: ${labelOf.taskGroup(tags.category)})` : ''}. 직접 골라 주세요.
+                </p>
+              )}
+              {tags.secondary.length > 0 && (
+                <div className="an-block">
+                  <h4 className="an-label">보조 과업 (누르면 뺄 수 있어요)</h4>
+                  <div className="bm-chips">
+                    {tags.secondary.map((id) => (
+                      <button key={id} type="button" className="bm-selected" onClick={() => change({ secondary: tags.secondary.filter((x) => x !== id) })}>
+                        {labelOf.task(id)} <span aria-hidden="true">×</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
               <p className="an-evidence">
                 {[a.domain, a.userTask, a.screenType]
                   .filter((x) => x.evidence)

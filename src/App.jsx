@@ -10,9 +10,9 @@ import NameDialog from './components/NameDialog'
 import { useCollections } from './lib/useCollections'
 import PageHeader from './components/PageHeader'
 import { IS_LITE, SHOW_AI_REVIEW, SHOW_INSPECT } from './lib/features'
-import { EMPTY_FILTERS, applyFilters, enrich, hasActiveFilter } from './lib/benchmark'
+import { EMPTY_FILTERS, applyFilters, enrich, hasActiveFilter, labelOf, taskFromQuery, taskRelation } from './lib/benchmark'
 import ScreenAnalyzer from './components/ScreenAnalyzer'
-import BenchmarkFilters, { FilterButton, FilterChips, useFilterGroups } from './components/BenchmarkFilters'
+import BenchmarkFilters, { FilterChips } from './components/BenchmarkFilters'
 import { useName } from './lib/identity'
 import { useTeamLibrary } from './lib/useTeamLibrary'
 import { IS_DEMO } from './lib/demo'
@@ -262,19 +262,24 @@ export default function App() {
   const filtered = useMemo(() => (IS_LITE ? applyFilters(enriched, bmFilters) : enriched), [enriched, bmFilters])
   const browsing = IS_LITE && !query // 검색어 없이 벤치마킹 DB를 둘러보는 중
 
+  // Light: 검색어를 사용자 과업으로 정규화해요(예: '대출 가능 금액 확인' → 한도·금리 조회)
+  const taskMatch = useMemo(() => (IS_LITE && query ? taskFromQuery(query.raw) : null), [query])
+
   const grouped = useMemo(() => {
-    const rated = filtered.map((s) => ({ ...s, relevance: rateRelevance(s, query) }))
+    const rated = filtered.map((s) => ({ ...s, relevance: rateRelevance(s, query), taskRelation: s.bm ? taskRelation(s.bm, taskMatch) : null }))
+    // 같은 과업의 화면을 먼저, 같은 대분류의 다른 과업(확장 결과)은 그다음에 보여줘요.
+    const relRank = (s) => (s.taskRelation === 'same' ? 0 : s.taskRelation === 'related' ? 1 : 2)
     rated.sort((a, b) =>
       sort === 'recent'
         ? (b.dataMonth ?? '').localeCompare(a.dataMonth ?? '')
-        : TIERS[a.relevance.tier].rank - TIERS[b.relevance.tier].rank || (b.dataMonth ?? '').localeCompare(a.dataMonth ?? ''),
+        : (taskMatch ? relRank(a) - relRank(b) : 0) || TIERS[a.relevance.tier].rank - TIERS[b.relevance.tier].rank || (b.dataMonth ?? '').localeCompare(a.dataMonth ?? ''),
     )
     return {
       exact: rated.filter((s) => s.relevance.tier === 'exact'),
       related: rated.filter((s) => s.relevance.tier === 'related'),
       low: rated.filter((s) => s.relevance.tier === 'low'),
     }
-  }, [filtered, query, sort])
+  }, [filtered, query, sort, taskMatch])
 
   const counts = { exact: grouped.exact.length, related: grouped.related.length, low: grouped.low.length }
   const closeDetail = useCallback(() => setSelected(null), [])
@@ -302,8 +307,6 @@ export default function App() {
   const total = visible + counts.low // 필터까지 적용한 뒤 실제로 보여줄 수 있는 화면 묶음 수
   // 화면 위에 보여주는 결과 수: 관련성 낮은 화면은 펼쳤을 때만 포함해요.
   const resultCount = browsing ? total : visible + (showLow ? counts.low : 0)
-  const [showFilters, setShowFilters] = useState(false)
-  const fg = useFilterGroups(enriched, bmFilters)
   const changeFilters = (f) => {
     setBmFilters(f)
     setLimit(PAGE)
@@ -448,9 +451,18 @@ export default function App() {
                 {IS_LITE && (
                   <>
                     <div className="result-bar">
-                      <p className="result-summary">{loading ? '검색 중…' : <>검색 결과 <strong>{resultCount}개</strong></>}</p>
+                      <p className="result-summary">
+                        {loading ? '검색 중…' : <>검색 결과 <strong>{resultCount}개</strong></>}
+                        {!loading && taskMatch && (
+                          <span className="result-task">
+                            {' '}
+                            · ‘{taskMatch.taskIds.map(labelOf.task).join(', ')}’ 과업 {grouped.exact.concat(grouped.related, grouped.low).filter((s) => s.taskRelation === 'same').length}개
+                            {grouped.exact.concat(grouped.related, grouped.low).some((s) => s.taskRelation === 'related') && ' + 관련 과업 확장 결과'}
+                          </span>
+                        )}
+                      </p>
                       <div className="toolbar-right">
-                        <FilterButton fg={fg} open={showFilters} onToggle={() => setShowFilters((v) => !v)} />
+                        <BenchmarkFilters screens={enriched} filters={bmFilters} onChange={changeFilters} />
                         {/* 결과가 1개 이하이거나 검색어 없이 둘러볼 때는 정렬을 고를 의미가 없어서 숨겨요 */}
                         {!browsing && resultCount > 1 && (
                           <div className="sorts" aria-label="정렬" title="최신순은 UI Bowl 수집월 기준이에요">
@@ -463,7 +475,6 @@ export default function App() {
                         )}
                       </div>
                     </div>
-                    {showFilters && <BenchmarkFilters fg={fg} filters={bmFilters} onChange={changeFilters} />}
                     <FilterChips filters={bmFilters} onChange={changeFilters} />
                   </>
                 )}

@@ -11,7 +11,7 @@ import {
   PATTERN_UI_PATTERN,
   TASK_RULES,
 } from '../data/benchmark/rules'
-import { DOMAIN_BY_ID, PATTERN_BY_ID, SCREEN_TYPE_BY_ID, TASK_BY_ID, TASKS, UI_PATTERNS, VERIFICATION_BY_ID } from '../data/benchmark/taxonomy'
+import { DOMAIN_BY_ID, PATTERN_BY_ID, SCREEN_TYPE_BY_ID, TASK_BY_ID, TASK_GROUP_BY_ID, TASKS, UI_PATTERNS, VERIFICATION_BY_ID } from '../data/benchmark/taxonomy'
 import { squash } from './searchQuery'
 
 const OTHER_COMPANY = '_other'
@@ -49,34 +49,41 @@ function classifyTasks(screen, isCarContext) {
     ['제목', screen.title],
   ]
   const texts = screen.matchedTexts ?? []
-  const strong = new Map() // 과업 → 근거
+  const strong = new Map() // 세부 과업 → { evidence, level }
   const weak = new Map()
+  const categories = new Map() // 대분류만 알 수 있는 경우 → { evidence, level }
   for (const rule of TASK_RULES) {
     if (rule.carOnly && !isCarContext) continue
     const evidence = []
     let level = null
-    if (rule.patterns.includes(screen.pattern)) {
+    if ((rule.patterns ?? []).includes(screen.pattern)) {
       evidence.push(`패턴 ‘${screen.pattern}’`)
-      level = 'high'
+      level = 'medium' // UI Bowl 패턴은 범용 분류라서 제목·세부 패턴에 과업 단어가 있는 것보다 약한 근거예요
     }
     for (const [label, value] of fields) {
-      const hit = rule.words.find((w) => includesWord(value ?? '', w))
+      const hit = (rule.words ?? []).find((w) => includesWord(value ?? '', w))
       if (hit) {
         evidence.push(`${label}에 ‘${hit}’ 포함`)
-        level ??= 'medium'
+        level = 'high'
       }
     }
-    if (!level) {
-      const hit = texts.find((t) => rule.words.some((w) => includesWord(t, w)))
-      if (hit) {
-        weak.set(rule.task, [`화면 문구 ‘${hit}’ (근거 약함)`])
-      }
+    if (rule.category) {
+      if (level && !categories.has(rule.category)) categories.set(rule.category, { evidence, level })
       continue
     }
-    strong.set(rule.task, evidence)
+    if (!level) {
+      const hit = texts.find((t) => (rule.words ?? []).some((w) => includesWord(t, w)))
+      if (hit) weak.set(rule.task, [`화면 문구 ‘${hit}’ (근거 약함)`])
+      continue
+    }
+    strong.set(rule.task, { evidence, level })
   }
   for (const id of strong.keys()) weak.delete(id)
-  return { strong, weak }
+  // 대표 과업: 근거가 강한 순서(high → medium), 같으면 규칙 순서. 나머지는 보조 과업이에요.
+  const rank = (id) => (strong.get(id).level === 'high' ? 0 : 1)
+  const order = TASKS.map((t) => t.id)
+  const ids = [...strong.keys()].sort((a, b) => rank(a) - rank(b) || order.indexOf(a) - order.indexOf(b))
+  return { strong, weak, ids, categories }
 }
 
 function classifyScreenType(screen) {
@@ -147,16 +154,25 @@ export function classify(screen) {
     isTarget: Boolean(company),
     serviceId: `${company?.id ?? 'other'}:${slug(screen.service)}`,
     domainId,
-    taskIds: TASKS.map((t) => t.id).filter((id) => tasks.strong.has(id)),
+    taskIds: tasks.ids, // 앞이 대표 과업, 뒤는 보조 과업
+    primaryTaskId: tasks.ids[0] ?? null,
+    taskGroupIds: [...new Set(tasks.ids.map((id) => TASK_BY_ID[id].group))],
+    // 대분류: 세부 과업이 있으면 그 대분류, 없으면 대분류만 알 수 있는 근거(있을 때)로 지정해요.
+    primaryCategoryId: tasks.ids[0] ? TASK_BY_ID[tasks.ids[0]].group : [...tasks.categories.keys()][0] ?? null,
+    classificationConfidence: tasks.ids[0] ? tasks.strong.get(tasks.ids[0]).level : 'low',
+    taskConfidence: Object.fromEntries(tasks.ids.map((id) => [id, tasks.strong.get(id).level])),
+    // 근거가 없거나 약하면 확정하지 않고 '분류 검토 필요'로 둬요(사용자 필터에는 나오지 않는 내부 검수 대상이에요).
+    taskStatus: tasks.ids.length ? 'classified' : 'review', // 세부 과업을 확정하지 못하면 '분류 검토 필요'(내부 검수 상태)
+    tagSource: 'metadata',
     weakTaskIds: TASKS.map((t) => t.id).filter((id) => tasks.weak.has(id)),
     screenTypeId: screenType.id,
     patternIds: patterns.map(([id]) => id),
     platform: classifyPlatform(screen.platform),
     verification: verificationOf(screen),
-    tagSource: 'metadata', // UI Bowl 메타데이터 기반 자동 분류 (이미지 AI 분석이나 사람 수정이 아니에요)
     evidence: {
       domain: domainEvidence.filter(Boolean),
-      tasks: Object.fromEntries([...tasks.strong, ...tasks.weak]),
+      tasks: Object.fromEntries([...[...tasks.strong].map(([id, v]) => [id, v.evidence]), ...tasks.weak]),
+      categories: Object.fromEntries([...tasks.categories].map(([id, v]) => [id, v.evidence])),
       screenType: screenType.evidence,
       patterns: Object.fromEntries(patterns),
     },
@@ -179,6 +195,8 @@ export function toBenchmarkRecord(screen) {
     verificationStatus: bm.verification,
     screenType: bm.screenTypeId,
     taskIds: bm.taskIds,
+    primaryTaskId: bm.primaryTaskId,
+    taskStatus: bm.taskStatus,
     patternIds: bm.patternIds,
     analysis: { source: bm.tagSource, evidence: bm.evidence },
   }
@@ -188,31 +206,59 @@ export function toBenchmarkRecord(screen) {
 export const labelOf = {
   domain: (id) => DOMAIN_BY_ID[id]?.label ?? '분류 안 됨',
   task: (id) => TASK_BY_ID[id]?.label ?? id,
+  taskGroup: (id) => TASK_GROUP_BY_ID[id]?.label ?? id,
   screenType: (id) => SCREEN_TYPE_BY_ID[id]?.label ?? '분류 안 됨',
   pattern: (id) => PATTERN_BY_ID[id]?.label ?? id,
   verification: (id) => VERIFICATION_BY_ID[id]?.label ?? id,
   platform: (id) => ({ app: '앱', web: '웹' })[id] ?? '확인 필요',
 }
 
+// ── 검색어 → 사용자 과업 정규화 ──
+// '한도 조회', '대출 가능 금액 확인'처럼 표현이 달라도 같은 과업으로 묶어요. 가장 긴 동의어가 맞는 과업을 골라요.
+export function taskFromQuery(raw) {
+  const q = squash(raw ?? '')
+  if (q.length < 2) return null
+  let best = 0
+  let hits = []
+  for (const task of TASKS) {
+    for (const word of [task.label, ...task.synonyms]) {
+      const w = squash(word)
+      if (w.length < 2 || !q.includes(w)) continue
+      if (w.length > best) {
+        best = w.length
+        hits = [task.id]
+      } else if (w.length === best && !hits.includes(task.id)) hits.push(task.id)
+    }
+  }
+  return hits.length ? { taskIds: hits, groupIds: [...new Set(hits.map((id) => TASK_BY_ID[id].group))] } : null
+}
+
+// 화면이 검색어의 과업과 어떤 관계인지: same(같은 과업) / related(같은 대분류의 다른 과업, 확장 결과) / null
+export function taskRelation(bm, match) {
+  if (!match) return null
+  if (bm.taskIds.some((id) => match.taskIds.includes(id))) return 'same'
+  return bm.taskGroupIds.some((g) => match.groupIds.includes(g)) ? 'related' : null
+}
+
 // ── 필터 ──
-// 사용자에게 보이는 상세 필터: 기업·사용자 과업·화면 유형·UI 패턴. 같은 항목 안에서는 OR, 항목끼리는 AND예요.
-// (도메인은 분야 탭이 맡고, 검증 상태는 내부 품질 정보라 사용자 필터에서 뺐어요)
-export const FACETS = ['task', 'screenType', 'pattern', 'company'] // 사용자 과업이 가장 중요한 탐색 기준이에요
-export const NO_TASK = '_none' // 과업을 판단할 근거가 없는 화면. 숨기지 않고 따로 보여줘요
-export const EMPTY_FILTERS = { task: [], screenType: [], pattern: [], company: [] }
+// 사용자에게 보이는 상세 필터: 사용자 과업(세부 과업)·화면 유형·UI 패턴·기업. 같은 항목 안에서는 OR, 항목끼리는 AND예요.
+// 과업은 기본적으로 '대표 과업'만 검색 대상이고, secondary를 켜면 보조 과업까지 포함해요.
+// 도메인은 분야 탭이 맡고, 검증 상태·과업 미분류는 내부 관리용이라 사용자 필터에 나오지 않아요.
+export const FACETS = ['task', 'screenType', 'pattern', 'company']
+export const EMPTY_FILTERS = { task: [], screenType: [], pattern: [], company: [], secondary: false }
 
 // 화면이 가진 값들(항목 하나에 값이 여러 개일 수 있어요)
 const VALUES = {
-  company: (bm) => [bm.companyId],
-  task: (bm) => (bm.taskIds.length ? bm.taskIds : [NO_TASK]),
+  task: (bm, filters) => (filters.secondary ? bm.taskIds : bm.taskIds.slice(0, 1)),
   screenType: (bm) => (bm.screenTypeId ? [bm.screenTypeId] : []),
   pattern: (bm) => bm.patternIds,
+  company: (bm) => [bm.companyId],
 }
 
 function passes(screen, filters, skip) {
   return FACETS.every((key) => {
     const picked = filters[key]
-    return key === skip || picked.length === 0 || VALUES[key](screen.bm).some((v) => picked.includes(v))
+    return key === skip || picked.length === 0 || VALUES[key](screen.bm, filters).some((v) => picked.includes(v))
   })
 }
 
@@ -221,27 +267,25 @@ export const activeFilterCount = (filters) => FACETS.reduce((n, key) => n + filt
 export const hasActiveFilter = (filters) => activeFilterCount(filters) > 0
 
 // 항목별 개수. 다른 항목의 필터는 모두 적용하고, 이 항목을 고르면 몇 개가 나오는지 보여줘요.
-// universe(전체 화면)에 있는 값만 선택지로 쓰도록 키도 함께 모아요.
 export function facetCounts(screens, filters) {
   const out = Object.fromEntries(FACETS.map((key) => [key, {}]))
   for (const s of screens) {
     for (const key of FACETS) {
       if (!passes(s, filters, key)) continue
-      for (const v of VALUES[key](s.bm)) out[key][v] = (out[key][v] ?? 0) + 1
+      for (const v of VALUES[key](s.bm, filters)) out[key][v] = (out[key][v] ?? 0) + 1
     }
   }
   return out
 }
 
-// 데이터에 실제로 있는 선택지만 만들어요(필터와 상관없이 전체 기준).
-export function facetOptions(screens) {
+// 데이터에 실제로 있는 선택지만 만들어요(필터와 상관없이 전체 기준). 화면이 없는 과업은 Taxonomy에만 있고 필터에는 나오지 않아요.
+export function facetOptions(screens, filters = EMPTY_FILTERS) {
   const out = Object.fromEntries(FACETS.map((key) => [key, new Set()]))
-  for (const s of screens) for (const key of FACETS) VALUES[key](s.bm).forEach((v) => out[key].add(v))
+  for (const s of screens) for (const key of FACETS) VALUES[key](s.bm, filters).forEach((v) => out[key].add(v))
   return out
 }
 
 export function filterLabel(facet, id) {
-  if (facet === 'task' && id === NO_TASK) return '과업 미분류'
   if (facet === 'company') return id === OTHER_COMPANY ? '기타 서비스' : COMPANY_BY_ID[id]?.name ?? id
   return labelOf[facet](id)
 }

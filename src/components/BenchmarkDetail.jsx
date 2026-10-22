@@ -1,5 +1,5 @@
 import { COMPANIES } from '../data/benchmark/companies'
-import { VERIFICATION_BY_ID } from '../data/benchmark/taxonomy'
+import { TASK_BY_ID, VERIFICATION_BY_ID } from '../data/benchmark/taxonomy'
 import { labelOf } from '../lib/benchmark'
 import BenchmarkTags from './BenchmarkTags'
 
@@ -36,14 +36,20 @@ export default function BenchmarkDetail({ screen }) {
         <dd>
           {bm.taskIds.length ? (
             <ul className="rule-list">
-              {bm.taskIds.map((id) => (
+              {bm.taskIds.map((id, i) => (
                 <li key={id}>
-                  {labelOf.task(id)} <span className="bm-evidence">— {ev.tasks[id]?.join(', ')}</span>
+                  <strong>{labelOf.task(id)}</strong>{' '}
+                  <span className="bm-evidence">
+                    ({i === 0 ? '대표' : '보조'} · {labelOf.taskGroup(TASK_BY_ID[id].group)} · 신뢰도 {bm.taskConfidence[id] === 'high' ? '높음' : '보통'}) — {ev.tasks[id]?.join(', ')}
+                  </span>
                 </li>
               ))}
             </ul>
           ) : (
-            '분류된 과업이 없어요(메타데이터에 근거가 없어서 추측하지 않았어요)'
+            <>
+              <strong>분류 검토 필요</strong>
+              <span className="bm-evidence"> — 메타데이터에 근거가 없어서 과업을 추측하지 않았어요</span>
+            </>
           )}
           {bm.weakTaskIds.length > 0 && (
             <p className="bm-evidence">
