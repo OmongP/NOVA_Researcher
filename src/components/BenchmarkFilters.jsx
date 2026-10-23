@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { COMPANIES } from '../data/benchmark/companies'
 import { SCREEN_TYPES, TASKS, TASK_GROUPS, UI_PATTERNS } from '../data/benchmark/taxonomy'
-import { EMPTY_FILTERS, OTHER_COMPANY, activeFilterCount, facetCounts, facetOptions, filterLabel, hasActiveFilter } from '../lib/benchmark'
+import { EMPTY_FILTERS, OTHER_COMPANY, activeFilterCount, applyFilters, facetCounts, facetOptions, filterLabel, hasActiveFilter } from '../lib/benchmark'
 
 const SECTIONS = [
   { key: 'task', label: '사용자 과업' },
@@ -26,7 +26,8 @@ const GROUP_OF = Object.fromEntries(TASKS.map((t) => [t.id, t.group]))
 const toggle = (list, id) => (list.includes(id) ? list.filter((v) => v !== id) : [...list, id])
 
 // 상세 필터 버튼 + Popover. 기본은 닫혀 있고 선택 상태는 닫아도 유지돼요(상태는 위에서 들고 있어요).
-// 사용자 과업은 좌측 대분류 → 우측 세부 과업이에요. 대분류를 눌러도 선택되지 않고 우측 목록만 바뀌어요.
+// 사용자 과업은 서핏(surfit.io) 카테고리 선택처럼 위쪽 대분류 탭 → 아래 세부 과업 타일이에요.
+// 대분류 탭을 눌러도 선택되지 않고 타일 목록만 바뀌어요. 탭의 숫자는 그 대분류에서 고른 과업 수예요.
 // 지금 검색 결과에 화면이 있는 과업만 나오고, 개수는 다른 필터를 적용한 상태에서 고르면 나오는 수예요(0이면 고를 수 없어요).
 export default function BenchmarkFilters({ screens, filters, onChange }) {
   const [open, setOpen] = useState(false)
@@ -39,6 +40,7 @@ export default function BenchmarkFilters({ screens, filters, onChange }) {
   const totals = useMemo(() => facetCounts(screens, { ...EMPTY_FILTERS, secondary: filters.secondary }), [screens, filters.secondary])
   const hasSecondary = useMemo(() => screens.some((s) => s.bm.taskIds.length > 1), [screens])
   const selected = activeFilterCount(filters)
+  const resultCount = useMemo(() => applyFilters(screens, filters).length, [screens, filters])
 
   useEffect(() => {
     if (!open) return
@@ -69,19 +71,6 @@ export default function BenchmarkFilters({ screens, filters, onChange }) {
   const activeTab = sections.some((s) => s.key === tab) ? tab : sections[0]?.key
   const set = (key, list) => onChange({ ...filters, [key]: list })
 
-  const row = (key, id, label) => {
-    const on = filters[key].includes(id)
-    const n = counts[key][id] ?? 0
-    return (
-      <label key={id} className={`bm-row ${on ? 'is-on' : ''} ${n === 0 && !on ? 'is-disabled' : ''}`}>
-        <input type="checkbox" checked={on} disabled={n === 0 && !on} onChange={() => set(key, toggle(filters[key], id))} />
-        <span className="bm-check" aria-hidden="true" />
-        <span className="bm-row-label">{label}</span>
-        <span className="bm-option-count">{n}</span>
-      </label>
-    )
-  }
-
   return (
     <div className="bm-pop" ref={root}>
       <button type="button" className="button filter-toggle" aria-expanded={open} aria-haspopup="dialog" onClick={() => setOpen((v) => !v)}>
@@ -103,24 +92,39 @@ export default function BenchmarkFilters({ screens, filters, onChange }) {
 
           {activeTab === 'task' && activeGroup && (
             <>
-              <div className="bm-split">
-                <ul className="bm-master" aria-label="대분류">
-                  {groups.map((g) => {
-                    const n = filters.task.filter((id) => GROUP_OF[id] === g.id).length
+              <div className="bm-group-tabs" role="tablist" aria-label="대분류">
+                {groups.map((g) => {
+                  const n = filters.task.filter((id) => GROUP_OF[id] === g.id).length
+                  return (
+                    <button
+                      key={g.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={activeGroup.id === g.id}
+                      className={`bm-group-tab ${activeGroup.id === g.id ? 'is-active' : ''}`}
+                      onClick={() => setGroup(g.id)}
+                    >
+                      {g.label}
+                      <span className={`bm-group-count ${n > 0 ? 'is-on' : ''}`}>{n}</span>
+                    </button>
+                  )
+                })}
+              </div>
+              <div className="bm-tiles" role="group" aria-label={`${activeGroup.label} 세부 과업`}>
+                {taskIds
+                  .filter((id) => GROUP_OF[id] === activeGroup.id)
+                  .map((id) => {
+                    const on = filters.task.includes(id)
+                    const n = counts.task[id] ?? 0
                     return (
-                      <li key={g.id}>
-                        <button type="button" className={`bm-master-item ${activeGroup.id === g.id ? 'is-active' : ''}`} onClick={() => setGroup(g.id)}>
-                          <span>{g.label}</span>
-                          {n > 0 && <span className="bm-tab-count">{n}</span>}
-                          <span className="bm-chevron" aria-hidden="true">›</span>
-                        </button>
-                      </li>
+                      <label key={id} className={`bm-tile ${on ? 'is-on' : ''} ${n === 0 && !on ? 'is-disabled' : ''}`}>
+                        <input type="checkbox" checked={on} disabled={n === 0 && !on} onChange={() => set('task', toggle(filters.task, id))} />
+                        <span className="bm-tile-check" aria-hidden="true" />
+                        <span className="bm-tile-label">{filterLabel('task', id)}</span>
+                        <span className="bm-option-count">{n}</span>
+                      </label>
                     )
                   })}
-                </ul>
-                <div className="bm-detail-list" role="group" aria-label={`${activeGroup.label} 세부 과업`}>
-                  {taskIds.filter((id) => GROUP_OF[id] === activeGroup.id).map((id) => row('task', id, filterLabel('task', id)))}
-                </div>
               </div>
               {hasSecondary && (
                 <label className="bm-secondary">
@@ -150,13 +154,16 @@ export default function BenchmarkFilters({ screens, filters, onChange }) {
             </div>
           )}
 
-          {selected > 0 && (
-            <div className="bm-panel-foot">
+          <div className="bm-panel-foot">
+            {selected > 0 && (
               <button type="button" className="link-button" onClick={() => onChange({ ...EMPTY_FILTERS, secondary: filters.secondary })}>
                 전체 초기화
               </button>
-            </div>
-          )}
+            )}
+            <button type="button" className="button button-primary bm-done" onClick={() => setOpen(false)}>
+              {resultCount}개 화면 보기
+            </button>
+          </div>
         </div>
       )}
     </div>
