@@ -2925,6 +2925,28 @@ img.brand-mark {
   padding: 6px;
 }
 
+/* 기업: 분야별 묶음 */
+.bm-list-group + .bm-list-group {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
+
+.bm-list-head {
+  margin: 0;
+  padding: 6px 8px 2px;
+  color: var(--text-weak);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.bm-list-empty {
+  margin: 0;
+  padding: 4px 8px 8px;
+  color: var(--text-weak);
+  font-size: 12px;
+}
+
 /* 컴팩트한 체크박스 행 */
 .bm-row {
   display: flex;

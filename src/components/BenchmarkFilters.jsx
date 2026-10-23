@@ -22,6 +22,14 @@ const ORDER = {
   company: [...COMPANIES.map((c) => c.id), OTHER_COMPANY],
 }
 const GROUP_OF = Object.fromEntries(TASKS.map((t) => [t.id, t.group]))
+// 기업은 분야별로 묶어 보여줘요. 자동차금융은 데이터가 없어도 칸을 두고 '아직 없어요'라고 알려요(빈 칸을 숨기면 원래 없는 건지 알 수 없어서요).
+const COMPANY_GROUPS = [
+  { domain: 'finance', label: '금융' },
+  { domain: 'auto-finance', label: '자동차금융', alwaysShow: true },
+  { domain: 'automotive', label: '자동차' },
+  { domain: 'mobility', label: '모빌리티' },
+]
+const DOMAIN_OF_COMPANY = Object.fromEntries(COMPANIES.map((c) => [c.id, c.domain]))
 const ZERO_HINT = '지금 검색 조건에서는 결과가 없어요'
 
 const toggle = (list, id) => (list.includes(id) ? list.filter((v) => v !== id) : [...list, id])
@@ -179,7 +187,27 @@ export default function BenchmarkFilters({ screens, universe, filters, onChange 
                   </div>
                 </div>
               )}
-              {activeTab !== 'task' && activeTab && <div className="bm-list">{optionsOf(activeTab).map((id) => row(activeTab, id))}</div>}
+              {activeTab === 'company' && (
+                <div className="bm-list">
+                  {COMPANY_GROUPS.map((g) => {
+                    const ids = optionsOf('company').filter((id) => DOMAIN_OF_COMPANY[id] === g.domain)
+                    if (ids.length === 0 && !g.alwaysShow) return null
+                    return (
+                      <div key={g.domain} className="bm-list-group" role="group" aria-label={g.label}>
+                        <p className="bm-list-head">{g.label}</p>
+                        {ids.length > 0 ? ids.map((id) => row('company', id)) : <p className="bm-list-empty">UI Bowl에 수집된 {g.label} 기업 화면이 아직 없어요</p>}
+                      </div>
+                    )
+                  })}
+                  {optionsOf('company').includes(OTHER_COMPANY) && (
+                    <div className="bm-list-group" role="group" aria-label="기타">
+                      <p className="bm-list-head">기타</p>
+                      {row('company', OTHER_COMPANY)}
+                    </div>
+                  )}
+                </div>
+              )}
+              {activeTab !== 'task' && activeTab !== 'company' && activeTab && <div className="bm-list">{optionsOf(activeTab).map((id) => row(activeTab, id))}</div>}
             </div>
 
             <div className="bm-panel-foot">
