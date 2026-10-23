@@ -27,6 +27,7 @@ const PROMPT = `당신은 자동차·금융 서비스의 UX 벤치마킹 분석�
 실제 앱의 메뉴 이름이 아니라 사용자의 목적으로 판단해요(같은 목적이면 서비스가 달라도 같은 과업이에요).
 ${TASK_GROUPS.map((g) => `### ${g.id} · ${g.label}\n${list(TASKS.filter((t) => t.group === g.id))}`).join('\n')}
 
+판단 우선순위: ① 화면의 실제 목적 ② 가장 강조된 핵심 CTA(primaryCta) ③ 화면에 보이는 주요 정보 ④ 화면 제목·앱 이름·메뉴 이름(가장 약한 근거). 제목이나 메뉴 이름이 같아도 화면의 목적이 다르면 목적을 따라요.
 과업 선택 규칙
 - 화면의 주요 목적을 대표하는 세부 과업 하나를 primaryTask(id)로 정하고, 그 대분류를 primaryCategory(id)로 적어요.
 - 한 화면에서 명확히 확인되는 다른 목적이 있을 때만 secondaryTasks(id, 최대 2개)로 더해요.
@@ -36,7 +37,22 @@ ${TASK_GROUPS.map((g) => `### ${g.id} · ${g.label}\n${list(TASKS.filter((t) => 
   · 심사 결과 확인(승인·거절·조건부 승인 같은 심사 상태) ↔ 금융 실행·지급 결과 확인(거래가 실제 실행·완료된 상태)
   · 결제·납부 내역 조회(이미 낸 금액과 이력) ↔ 상환 일정 조회(앞으로 낼 금액과 예정일)
   · 차량 구매 견적 조회(차량 가격·옵션 등 차량 구매 비용) ↔ 할부·리스·렌트 견적 조회(금융 조건에 따른 금융 비용)
-- 이 한 장만으로 세부 과업을 확정할 수 없으면 primaryTask를 null로 두고, 알 수 있는 상위 대분류만 primaryCategory에 적은 뒤 needsReview를 true로 해요. 대분류도 알 수 없으면 둘 다 null이에요.
+  · 차량 검색(검색창·필터·조건 입력으로 특정 차량·매물을 찾는 화면) ↔ 차종·모델 탐색(제조사·차종·모델 카테고리를 둘러보며 고르는 화면)
+  · 차량 상세 정보 확인(차량·매물 한 대의 정보 중심) ↔ 차량 가격·제원 확인(가격·제원 수치 중심) ↔ 모델·트림·옵션 비교(둘 이상을 나란히 비교)
+  · 대출 한도 조회(이용 가능한 금액 중심) ↔ 대출 금리 조회(이율 중심)
+  · 주요 서비스 바로가기(아이콘 메뉴가 중심인 홈) ↔ 맞춤형 추천 확인(추천 카드가 중심인 홈)
+  · 한 화면에 목적이 여러 개면 가장 크게·위에 강조된 목적을 대표 과업으로 하고, 다른 목적은 보조 과업이에요.
+- 분류가 불확실하면 억지로 과업을 정하지 않아요. 비슷한 과업 사이에서 한 장만으로 고를 수 없으면 primaryTask는 null로 두고, 알 수 있는 상위 대분류만 primaryCategory에 적어요(status: needs_review).
+- 이미지가 잘렸거나 흐리거나 목적을 알 수 없을 만큼 정보가 부족하면 status를 insufficient_evidence로 해요(범위 밖과는 다른 상태예요).
+
+## 자동차금융 관련성 (relevance) — 과업 분류와 별도로 먼저 판단해요
+- direct: 자동차·금융 서비스의 과업을 수행하는 화면(차량 탐색·견적·한도·신청·계약·결제·상환·계약 관리·차량 관리 등)
+- common: 자동차금융에 한정되지 않지만 서비스 공통 UX로 참고할 수 있는 화면(로그인, 홈, 설정, 알림, 고객센터, 약관 동의 등)
+- out_of_scope: 자동차금융과 관련이 없는 화면(쇼핑·부동산·음식 등 다른 업종의 과업 화면)이거나 실제 사용 화면이 아닌 홍보·스토어 이미지
+relevance가 out_of_scope면 과업을 정하지 않고(primaryTask·primaryCategory null) status를 out_of_scope로 해요.
+
+## 상태 (status)
+classified(세부 과업 확정) | needs_review(대분류까지만 알거나 유사 과업 사이에서 확정 불가) | out_of_scope(분류 범위 밖) | insufficient_evidence(분석 근거 부족)
 - 화면에서 확인되지 않는 기능을 이 서비스가 제공한다고 단정하지 않아요.
 
 ## 화면 유형 (screenType)
@@ -52,7 +68,7 @@ ${list(DOMAINS)}
 JSON 객체 하나만 출력해요(마크다운·설명 금지). 키:
 {
   "domain": {"id": 도메인 id|null, "evidence": string},
-  "userTask": {"primaryCategory": 대분류 id|null, "primaryTask": 대표 세부 과업 id|null, "secondaryTasks": 보조 세부 과업 id[](최대 2), "classificationConfidence": "high"|"medium"|"low", "needsReview": boolean, "evidence": string},
+  "userTask": {"primaryCategory": 대분류 id|null, "primaryTask": 대표 세부 과업 id|null, "secondaryTasks": 보조 세부 과업 id[](최대 2), "classificationConfidence": "high"|"medium"|"low", "relevance": "direct"|"common"|"out_of_scope", "status": "classified"|"needs_review"|"out_of_scope"|"insufficient_evidence", "primaryCta": string|null, "evidence": string},
   "screenType": {"id": 화면 유형 id|null, "evidence": string},
   "components": string[],            // 화면에서 식별한 UI 요소 이름(예: "상단 앱바", "금액 입력 필드", "하단 고정 버튼")
   "uiPatterns": [{"id": UI 패턴 id, "evidence": string}],
@@ -98,17 +114,28 @@ const pick = (value, allowed) => (allowed.includes(value) ? value : null)
 const str = (v, max = 300) => (typeof v === 'string' ? v.slice(0, max) : '')
 const strs = (v, max = 12) => (Array.isArray(v) ? v.filter((x) => typeof x === 'string').map((x) => x.slice(0, 200)).slice(0, max) : [])
 
-// 대표 과업·대분류가 목록에 없으면 걸러내고, 세부 과업을 정하지 못했거나 목록 밖 값이면 '분류 검토 필요'로 둬요.
+// 대표 과업·대분류가 목록에 없으면 걸러내요. 분류 범위 밖·근거 부족·검토 필요는 서로 다른 상태로 두고, 이때는 과업을 억지로 정하지 않아요.
+const RELEVANCE = ['direct', 'common', 'out_of_scope']
+const STATUSES = ['classified', 'needs_review', 'out_of_scope', 'insufficient_evidence']
 function validateTask(raw) {
   const taskIds = ids(TASKS)
-  const primary = pick(raw?.primaryTask, taskIds)
-  const category = primary ? TASKS.find((t) => t.id === primary).group : pick(raw?.primaryCategory, ids(TASK_GROUPS))
+  const relevance = pick(raw?.relevance, RELEVANCE) ?? 'direct'
+  let status = pick(raw?.status, STATUSES) ?? (raw?.primaryTask ? 'classified' : 'needs_review')
+  if (relevance === 'out_of_scope') status = 'out_of_scope'
+  if (status === 'out_of_scope' && relevance !== 'out_of_scope') status = 'needs_review'
+  let primary = pick(raw?.primaryTask, taskIds)
+  if (status !== 'classified') primary = null
+  else if (!primary) status = 'needs_review'
+  const category = primary ? TASKS.find((t) => t.id === primary).group : status === 'needs_review' ? pick(raw?.primaryCategory, ids(TASK_GROUPS)) : null
   return {
     categoryId: category,
     id: primary,
-    secondaryIds: (Array.isArray(raw?.secondaryTasks) ? raw.secondaryTasks : []).filter((id) => taskIds.includes(id) && id !== primary).slice(0, 2),
+    secondaryIds: primary ? (Array.isArray(raw?.secondaryTasks) ? raw.secondaryTasks : []).filter((id) => taskIds.includes(id) && id !== primary).slice(0, 2) : [],
     confidence: ['high', 'medium', 'low'].includes(raw?.classificationConfidence) ? raw.classificationConfidence : 'low',
-    needsReview: !primary || raw?.needsReview === true,
+    relevance,
+    status,
+    needsReview: status === 'needs_review' || status === 'insufficient_evidence', // 사용자 확인이 필요한 상태(범위 밖은 확인 대상이 아니에요)
+    primaryCta: str(raw?.primaryCta, 100) || null,
     evidence: str(raw?.evidence),
   }
 }

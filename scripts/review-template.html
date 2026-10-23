@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>사용자 과업 분류 검수</title>
+<style>
+:root{--text:#111;--sub:#6b7280;--weak:#9ca3af;--bg:#f7f8fa;--border:#e5e7eb;--accent:#0066ff;--ok:#067647;--warn:#b54708;--bad:#d92d20}
+*{box-sizing:border-box}
+body{margin:0;font:14px/1.55 -apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic Neo',sans-serif;color:var(--text);background:#fff}
+header{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:12px 24px;background:#fff;border-bottom:1px solid var(--border)}
+h1{margin:0;font-size:16px}
+.progress{flex:1;min-width:200px}
+.bar{height:6px;border-radius:3px;background:var(--bg);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--text);width:0}
+.progress small{color:var(--sub)}
+button,select,input,textarea{font:inherit;color:inherit}
+.btn{padding:7px 12px;border:1px solid var(--border);border-radius:8px;background:#fff;cursor:pointer}
+.btn:hover{border-color:var(--weak)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.grid{display:flex;flex-wrap:wrap;gap:4px;padding:10px 24px;border-bottom:1px solid var(--border)}
+.dot{width:28px;height:24px;border:0;border-radius:6px;background:var(--bg);font-size:12px;color:var(--sub);cursor:pointer}
+.dot.done{background:#e8f3ff;color:var(--accent)}
+.dot.hold{background:#fff4e5;color:var(--warn)}
+.dot.cur{outline:2px solid var(--text)}
+main{display:grid;grid-template-columns:minmax(260px,420px) minmax(0,1fr);gap:28px;padding:24px;max-width:1200px;margin:0 auto}
+.shot{position:sticky;top:96px;align-self:start}
+.shot img{display:block;width:100%;max-height:calc(100vh - 160px);object-fit:contain;object-position:top;border:1px solid var(--border);border-radius:12px;cursor:zoom-in;background:var(--bg)}
+.shot p{margin:8px 0 0;color:var(--sub);font-size:13px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{padding:14px 16px;border:1px solid var(--border);border-radius:12px}
+.card h3{margin:0 0 8px;font-size:12px;color:var(--sub);font-weight:600}
+.big{font-size:16px;font-weight:700}
+.muted{color:var(--sub);font-size:13px}
+.tag{display:inline-block;margin:2px 4px 2px 0;padding:1px 8px;border-radius:4px;background:var(--bg);font-size:12px;color:var(--sub)}
+.tag.warn{background:#fff4e5;color:var(--warn)}.tag.bad{background:#fef3f2;color:var(--bad)}.tag.ok{background:#ecfdf3;color:var(--ok)}
+.ev{margin:8px 0 0;font-size:13px;color:var(--sub)}
+h2{margin:22px 0 8px;font-size:14px}
+.verdicts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.v{padding:12px 8px;border:1px solid var(--border);border-radius:10px;background:#fff;cursor:pointer;font-weight:600}
+.v small{display:block;color:var(--weak);font-weight:400}
+.v.on{border-color:var(--text);background:var(--text);color:#fff}.v.on small{color:#cbd5e1}
+.fix{margin-top:12px;padding:14px 16px;border:1px solid var(--border);border-radius:12px;background:var(--bg)}
+.fix label{display:block;margin:0 0 4px;font-size:12px;color:var(--sub);font-weight:600}
+.fix select,.fix input{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:#fff}
+.list{max-height:220px;overflow:auto;margin-top:8px;border:1px solid var(--border);border-radius:8px;background:#fff}
+.opt{display:flex;justify-content:space-between;gap:8px;width:100%;padding:8px 10px;border:0;border-bottom:1px solid var(--bg);background:#fff;text-align:left;cursor:pointer}
+.opt:hover{background:var(--bg)}.opt.on{background:#e8f3ff;color:var(--accent);font-weight:600}
+.opt small{color:var(--weak)}
+.row{display:flex;flex-wrap:wrap;gap:6px 14px}
+.row label{display:flex;gap:6px;align-items:center;cursor:pointer}
+textarea{width:100%;min-height:60px;padding:8px 10px;border:1px solid var(--border);border-radius:8px}
+.nav{display:flex;justify-content:space-between;margin-top:20px}
+.lightbox{position:fixed;inset:0;z-index:20;display:none;overflow:auto;background:rgba(0,0,0,.8);padding:24px;cursor:zoom-out}
+.lightbox.open{display:block}.lightbox img{display:block;margin:0 auto;max-width:min(900px,100%);border-radius:8px}
+@media(max-width:860px){main{grid-template-columns:1fr}.shot{position:static}.shot img{max-height:60vh}.cards{grid-template-columns:1fr}.verdicts{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+  <h1>사용자 과업 분류 검수</h1>
+  <div class="progress"><div class="bar"><i id="bar"></i></div><small id="progressText"></small></div>
+  <button class="btn" id="csv">검수 결과 CSV 내보내기</button>
+  <button class="btn" id="reset">전체 초기화</button>
+</header>
+<div class="grid" id="grid" aria-label="화면 목록"></div>
+<main>
+  <div class="shot">
+    <img id="img" alt="검수할 화면" title="클릭하면 크게 봐요">
+    <p><span id="svc"></span> · <a id="src" target="_blank" rel="noreferrer">원본(UI Bowl) ↗</a></p>
+    <p>이미지를 누르면 확대돼요. 전체 화면은 원본 링크에서 볼 수 있어요.</p>
+  </div>
+  <section>
+    <div class="cards">
+      <div class="card"><h3>규칙 분류 (UI Bowl 메타데이터 기반)</h3><div id="rule"></div></div>
+      <div class="card"><h3>AI 분류 (화면 이미지 기반)</h3><div id="ai"></div></div>
+    </div>
+    <h2>검수 선택 <span class="muted">단축키 1~4 · ← →</span></h2>
+    <div class="verdicts" id="verdicts"></div>
+    <div class="fix" id="fix" hidden>
+      <label for="grp">올바른 과업 — 대분류</label>
+      <select id="grp"></select>
+      <label for="q" style="margin-top:10px">세부 과업 (검색해서 고르세요)</label>
+      <input id="q" type="search" placeholder="예: 한도, 월 납입, 결제일…" autocomplete="off">
+      <div class="list" id="tasks"></div>
+    </div>
+    <h2>자동차금융 관련성 <span class="muted">(선택 · 비워두면 AI 판정을 따라요)</span></h2>
+    <div class="row" id="rel"></div>
+    <h2>메모</h2>
+    <textarea id="memo" placeholder="판단 이유, 헷갈린 점 등"></textarea>
+    <div class="nav"><button class="btn" id="prev">← 이전</button><button class="btn primary" id="next">다음 →</button></div>
+  </section>
+</main>
+<div class="lightbox" id="lb"><img id="lbImg" alt=""></div>
+<script>
+const DATA = /*__DATA__*/null;
+const KEY = 'ux-lens-task-review:v2';
+const T = Object.fromEntries(DATA.tasks.map(t => [t.id, t]));
+const G = Object.fromEntries(DATA.groups.map(g => [g.id, g.label]));
+const tn = id => id ? T[id].label : null;
+const REL = {direct:'직접 관련', common:'공통 UX 참고', out_of_scope:'분류 범위 밖'};
+const STATUS = {classified:'분류됨', needs_review:'분류 검토 필요', out_of_scope:'분류 범위 밖', insufficient_evidence:'분석 근거 부족'};
+const CONF = {high:'높음', medium:'보통', low:'낮음'};
+const VERDICTS = [['ai','AI가 맞음','1'],['rule','규칙이 맞음','2'],['both-wrong','둘 다 틀림','3'],['hold','판단 보류','4']];
+let state = {}; try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch {}
+let cur = 0;
+const $ = s => document.querySelector(s);
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} };
+const rv = r => state[r.id] ??= {};
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function taskBlock(id, cat, secondary) {
+  const main = id ? `<div class="big">${esc(tn(id))}</div><div class="muted">${esc(G[T[id].group])}</div>`
+    : cat ? `<div class="big">세부 과업 미확정</div><div class="muted">상위 과업: ${esc(G[cat])}</div>` : `<div class="big">과업 없음</div>`;
+  const sec = (secondary || []).length ? `<p class="ev">보조: ${secondary.map(x => esc(tn(x))).join(', ')}</p>` : '';
+  return main + sec;
+}
+function render() {
+  const r = DATA.items[cur], s = rv(r);
+  $('#img').src = r.image; $('#lbImg').src = r.image;
+  $('#svc').textContent = `#${r.n} ${r.service} · ${r.pattern} / ${r.variant}`; $('#src').href = r.uiUrl;
+  const ruleStatus = r.rule ? '분류됨' : '분류 검토 필요';
+  $('#rule').innerHTML = taskBlock(r.rule, r.ruleCategory, r.ruleSecondary) + `<p class="ev"><span class="tag ${r.rule ? 'ok' : 'warn'}">${ruleStatus}</span>${r.ruleConfidence ? `<span class="tag">근거 수준 ${CONF[r.ruleConfidence] ?? r.ruleConfidence}</span>` : ''}</p>`;
+  if (r.error) $('#ai').innerHTML = '<span class="tag bad">분석 실패</span>';
+  else $('#ai').innerHTML = taskBlock(r.ai, r.aiCategory, r.aiSecondary) +
+    `<p class="ev"><span class="tag ${r.aiStatus === 'classified' ? 'ok' : r.aiStatus === 'out_of_scope' ? 'bad' : 'warn'}">${STATUS[r.aiStatus] ?? '-'}</span><span class="tag">관련성 ${REL[r.aiRelevance] ?? '-'}</span><span class="tag">신뢰도 ${CONF[r.aiConfidence] ?? '-'}</span></p>` +
+    (r.aiCta ? `<p class="ev">핵심 CTA: ${esc(r.aiCta)}</p>` : '') + `<p class="ev">근거: ${esc(r.aiEvidence)}</p>`;
+  $('#verdicts').innerHTML = VERDICTS.map(([v, l, k]) => `<button class="v ${s.verdict === v ? 'on' : ''}" data-v="${v}">${l}<small>${k}</small></button>`).join('');
+  $('#fix').hidden = s.verdict !== 'both-wrong';
+  renderFix(s);
+  $('#rel').innerHTML = Object.entries(REL).map(([k, l]) => `<label><input type="radio" name="rel" value="${k}" ${s.rel === k ? 'checked' : ''}>${l}</label>`).join('') + `<label><input type="radio" name="rel" value="" ${!s.rel ? 'checked' : ''}>AI 판정 따름</label>`;
+  $('#memo').value = s.memo ?? '';
+  renderProgress();
+}
+function renderFix(s) {
+  $('#grp').innerHTML = '<option value="">대분류 전체</option>' + DATA.groups.map(g => `<option value="${g.id}" ${s.grp === g.id ? 'selected' : ''}>${esc(g.label)}</option>`).join('');
+  const q = $('#q').value.trim().toLowerCase();
+  const list = DATA.tasks.filter(t => (!s.grp || t.group === s.grp) && (!q || (t.label + ' ' + t.synonyms.join(' ') + ' ' + G[t.group]).toLowerCase().includes(q)));
+  $('#tasks').innerHTML = `<button class="opt ${s.fix === 'unclassifiable' ? 'on' : ''}" data-fix="unclassifiable">분류 불가 (검토 필요가 적절해요)</button>` +
+    list.map(t => `<button class="opt ${s.fix === t.id ? 'on' : ''}" data-fix="${t.id}"><span>${esc(t.label)}</span><small>${esc(G[t.group])}</small></button>`).join('');
+}
+function status(r) { const s = state[r.id]; if (!s?.verdict) return ''; if (s.verdict === 'hold') return 'hold'; if (s.verdict === 'both-wrong' && !s.fix) return ''; return 'done'; }
+function renderProgress() {
+  const items = DATA.items, done = items.filter(r => status(r) === 'done').length, hold = items.filter(r => status(r) === 'hold').length;
+  $('#bar').style.width = (done + hold) / items.length * 100 + '%';
+  $('#progressText').textContent = `검수 ${done}/${items.length} 완료 · 보류 ${hold} · 남음 ${items.length - done - hold}`;
+  $('#grid').innerHTML = items.map((r, i) => `<button class="dot ${status(r)} ${i === cur ? 'cur' : ''}" data-i="${i}">${r.n}</button>`).join('');
+}
+function go(i) { cur = Math.max(0, Math.min(DATA.items.length - 1, i)); $('#q').value = ''; render(); scrollTo(0, 0); }
+function setVerdict(v) { const s = rv(DATA.items[cur]); s.verdict = v; save(); render(); }
+
+$('#verdicts').onclick = e => { const b = e.target.closest('.v'); if (b) setVerdict(b.dataset.v); };
+$('#grp').onchange = e => { const s = rv(DATA.items[cur]); s.grp = e.target.value; save(); renderFix(s); };
+$('#q').oninput = () => renderFix(rv(DATA.items[cur]));
+$('#tasks').onclick = e => { const b = e.target.closest('.opt'); if (!b) return; const s = rv(DATA.items[cur]); s.fix = b.dataset.fix; save(); renderFix(s); renderProgress(); };
+$('#rel').onchange = e => { const s = rv(DATA.items[cur]); s.rel = e.target.value; save(); };
+$('#memo').oninput = e => { rv(DATA.items[cur]).memo = e.target.value; save(); };
+$('#grid').onclick = e => { const b = e.target.closest('.dot'); if (b) go(+b.dataset.i); };
+$('#prev').onclick = () => go(cur - 1); $('#next').onclick = () => go(cur + 1);
+$('#img').onclick = () => $('#lb').classList.add('open'); $('#lb').onclick = () => $('#lb').classList.remove('open');
+$('#reset').onclick = () => { if (confirm('모든 검수 내용을 지울까요? (CSV로 내보내지 않았다면 사라져요)')) { state = {}; save(); render(); } };
+addEventListener('keydown', e => {
+  if (/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+  if (e.key === 'ArrowRight') go(cur + 1); else if (e.key === 'ArrowLeft') go(cur - 1);
+  else if (e.key === 'Escape') $('#lb').classList.remove('open');
+  else { const v = VERDICTS.find(x => x[2] === e.key); if (v) setVerdict(v[0]); }
+});
+
+// 정답 과업: 'AI가 맞음'이면 AI 값, '규칙이 맞음'이면 규칙 값, '둘 다 틀림'이면 디자이너가 고른 값
+function resolve(r, s) {
+  if (s.verdict === 'ai') return { st: r.ai ? 'task' : 'unclassifiable', id: r.ai ?? '' };
+  if (s.verdict === 'rule') return { st: r.rule ? 'task' : 'unclassifiable', id: r.rule ?? '' };
+  if (s.verdict === 'both-wrong') return !s.fix ? { st: 'pending', id: '' } : s.fix === 'unclassifiable' ? { st: 'unclassifiable', id: '' } : { st: 'task', id: s.fix };
+  return { st: s.verdict === 'hold' ? 'hold' : 'pending', id: '' };
+}
+const VERDICT_LABEL = {ai:'AI가 맞음', rule:'규칙이 맞음', 'both-wrong':'둘 다 틀림', hold:'판단 보류'};
+$('#csv').onclick = () => {
+  const head = ['번호','id','서비스','UI Bowl 패턴/세부','원본 URL','규칙 대표 과업 id','규칙 대표 과업','규칙 상태','AI 대표 과업 id','AI 대표 과업','AI 보조 과업','AI 관련성','AI 상태','AI 신뢰도','AI 근거','검수 판정','정답 상태','정답 과업 id','정답 과업','정답 대분류','디자이너 관련성','메모'];
+  const rows = DATA.items.map(r => {
+    const s = state[r.id] ?? {}, a = resolve(r, s);
+    return [r.n, r.id, r.service, `${r.pattern} / ${r.variant}`, r.uiUrl, r.rule ?? '', tn(r.rule) ?? '분류 검토 필요', r.rule ? '분류됨' : '분류 검토 필요', r.ai ?? '', tn(r.ai) ?? '', (r.aiSecondary ?? []).map(tn).join('; '), r.aiRelevance ?? '', r.aiStatus ?? '', r.aiConfidence ?? '', r.aiEvidence ?? '',
+      VERDICT_LABEL[s.verdict] ?? '', a.st, a.id, tn(a.id) ?? '', a.id ? G[T[a.id].group] : '', s.rel || '', s.memo ?? ''];
+  });
+  const csv = [head, ...rows].map(row => row.map(v => '"' + String(v).replace(/"/g, '""').replace(/\n/g, ' ') + '"').join(',')).join('\r\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob(['﻿' + csv], {type: 'text/csv;charset=utf-8'}));
+  a.download = 'task-review-result.csv'; a.click();
+};
+go(0);
+</script>
+</body>
+</html>

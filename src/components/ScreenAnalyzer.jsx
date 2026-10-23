@@ -28,6 +28,7 @@ function toDataUrl(file) {
 }
 
 const CONFIDENCE = { high: '확실', medium: '보통', low: '낮음' }
+const RELEVANCE_LABEL = { direct: '직접 관련', common: '공통 UX 참고', out_of_scope: '분류 범위 밖' }
 
 function Select({ label, value, options, onChange, grouped, emptyLabel = '분류 안 함' }) {
   const option = (o) => (
@@ -151,6 +152,8 @@ export default function ScreenAnalyzer() {
         primaryTask: tags.userTask,
         secondaryTasks: tags.secondary,
         classificationConfidence: a.userTask.confidence,
+        relevance: a.userTask.relevance,
+        taskStatus: a.userTask.status,
         taskNeedsReview: !tags.userTask,
         evidence: a.userTask.evidence,
         tagSources: Object.fromEntries(['domain', 'userTask', 'screenType', 'uiPatterns', 'components'].map((k) => [k, userEdited[k] ? 'user' : 'ai'])),
@@ -222,9 +225,13 @@ export default function ScreenAnalyzer() {
               </div>
               {!tags.userTask && (
                 <p className="an-evidence">
-                  분류 검토 필요 — 이 화면만으로는 세부 과업을 확정하지 못했어요{tags.category ? ` (상위 과업: ${labelOf.taskGroup(tags.category)})` : ''}. 직접 골라 주세요.
+                  {{
+                    out_of_scope: '분류 범위 밖 — 자동차금융과 관련 없는 화면으로 판단해 과업을 지정하지 않았어요.',
+                    insufficient_evidence: '분석 근거 부족 — 화면이 잘렸거나 흐려서 목적을 판단하지 못했어요.',
+                  }[a.userTask.status] ?? `분류 검토 필요 — 이 화면만으로는 세부 과업을 확정하지 못했어요${tags.category ? ` (상위 과업: ${labelOf.taskGroup(tags.category)})` : ''}. 직접 골라 주세요.`}
                 </p>
               )}
+              <p className="an-evidence">자동차금융 관련성: {RELEVANCE_LABEL[a.userTask.relevance]}{a.userTask.primaryCta ? ` · 핵심 CTA: ${a.userTask.primaryCta}` : ''}</p>
               {tags.secondary.length > 0 && (
                 <div className="an-block">
                   <h4 className="an-label">보조 과업 (누르면 뺄 수 있어요)</h4>
