@@ -213,7 +213,7 @@ export default function App() {
 
   useEffect(() => {
     if (IS_LITE) document.title = 'UX Lens Light'
-    if (IS_LITE) document.querySelector('meta[name="description"]')?.setAttribute('content', 'UX Lens Light — 자동차금융 UX 벤치마킹. 실제 서비스 화면을 사용자 과업 기준으로 탐색해요.')
+    if (IS_LITE) document.querySelector('meta[name="description"]')?.setAttribute('content', 'UX Lens Light — 자동차•금융 UX 벤치마킹. 실제 서비스 화면을 사용자 과업 기준으로 탐색해요.')
   }, [])
 
   useEffect(() => {
@@ -257,29 +257,39 @@ export default function App() {
     [isLive, query, domain, search.screens],
   )
 
-  // Light: 모든 화면에 벤치마킹 분류(bm)를 붙이고, 필터를 적용해요.
+  // Light: 모든 화면에 벤치마킹 분류(bm)를 붙여요.
   const enriched = useMemo(() => (IS_LITE ? rawResults.map(enrich) : rawResults), [rawResults])
-  const filtered = useMemo(() => (IS_LITE ? applyFilters(enriched, bmFilters) : enriched), [enriched, bmFilters])
   const browsing = IS_LITE && !query // 검색어 없이 벤치마킹 DB를 둘러보는 중
 
   // Light: 검색어를 사용자 과업으로 정규화해요(예: '대출 가능 금액 확인' → 한도·금리 조회)
   const taskMatch = useMemo(() => (IS_LITE && query ? taskFromQuery(query.raw) : null), [query])
 
+  // 관련도는 필터와 상관없이 정해져서, 필터보다 먼저 매겨요. 그래야 필터 건수를 화면에 보이는 결과와 같은 기준으로 셀 수 있어요.
+  const rated = useMemo(
+    () => enriched.map((s) => ({ ...s, relevance: rateRelevance(s, query), taskRelation: s.bm ? taskRelation(s.bm, taskMatch) : null })),
+    [enriched, query, taskMatch],
+  )
+  const filtered = useMemo(() => (IS_LITE ? applyFilters(rated, bmFilters) : rated), [rated, bmFilters])
+  // 상세 필터의 건수 기준: 결과 수에 들어가는 화면만 세요(관련성 낮은 화면은 펼쳤을 때만 결과 수에 들어가요).
+  const countBase = useMemo(() => (browsing || showLow ? rated : rated.filter((s) => s.relevance.tier !== 'low')), [rated, browsing, showLow])
+  // 선택지 기준: 벤치마킹 DB 전체(데모는 수집한 681개)와 지금 결과에 있는 값. 여기에 없는 과업은 데이터가 없어서 숨겨요.
+  const universe = useMemo(() => (IS_LITE ? [...sampleScreens.map(enrich), ...enriched] : []), [enriched])
+
   const grouped = useMemo(() => {
-    const rated = filtered.map((s) => ({ ...s, relevance: rateRelevance(s, query), taskRelation: s.bm ? taskRelation(s.bm, taskMatch) : null }))
+    const sorted = [...filtered]
     // 같은 과업의 화면을 먼저, 같은 대분류의 다른 과업(확장 결과)은 그다음에 보여줘요.
     const relRank = (s) => (s.taskRelation === 'same' ? 0 : s.taskRelation === 'related' ? 1 : 2)
-    rated.sort((a, b) =>
+    sorted.sort((a, b) =>
       sort === 'recent'
         ? (b.dataMonth ?? '').localeCompare(a.dataMonth ?? '')
         : (taskMatch ? relRank(a) - relRank(b) : 0) || TIERS[a.relevance.tier].rank - TIERS[b.relevance.tier].rank || (b.dataMonth ?? '').localeCompare(a.dataMonth ?? ''),
     )
     return {
-      exact: rated.filter((s) => s.relevance.tier === 'exact'),
-      related: rated.filter((s) => s.relevance.tier === 'related'),
-      low: rated.filter((s) => s.relevance.tier === 'low'),
+      exact: sorted.filter((s) => s.relevance.tier === 'exact'),
+      related: sorted.filter((s) => s.relevance.tier === 'related'),
+      low: sorted.filter((s) => s.relevance.tier === 'low'),
     }
-  }, [filtered, query, sort, taskMatch])
+  }, [filtered, sort, taskMatch])
 
   const counts = { exact: grouped.exact.length, related: grouped.related.length, low: grouped.low.length }
   const closeDetail = useCallback(() => setSelected(null), [])
@@ -326,7 +336,7 @@ export default function App() {
           >
             <img className="brand-mark" src="/icon-180.png" alt="" aria-hidden="true" />
             <span className="brand-name">UX Lens</span>
-            <span className="brand-slogan">{IS_LITE ? '자동차금융 UX 벤치마킹' : 'Explore UI. Inspect UX.'}</span>
+            <span className="brand-slogan">{IS_LITE ? '자동차•금융 UX 벤치마킹' : 'Explore UI. Inspect UX.'}</span>
             <span className="version">{IS_LITE ? 'v1.0 Light' : 'v1.0'}</span>
           </button>
           <nav className="views" aria-label="화면 전환">
@@ -462,7 +472,7 @@ export default function App() {
                         )}
                       </p>
                       <div className="toolbar-right">
-                        <BenchmarkFilters screens={enriched} filters={bmFilters} onChange={changeFilters} />
+                        <BenchmarkFilters screens={countBase} universe={universe} filters={bmFilters} onChange={changeFilters} />
                         {/* 결과가 1개 이하이거나 검색어 없이 둘러볼 때는 정렬을 고를 의미가 없어서 숨겨요 */}
                         {!browsing && resultCount > 1 && (
                           <div className="sorts" aria-label="정렬" title="최신순은 UI Bowl 수집월 기준이에요">

@@ -22,168 +22,211 @@ const ORDER = {
   company: [...COMPANIES.map((c) => c.id), OTHER_COMPANY],
 }
 const GROUP_OF = Object.fromEntries(TASKS.map((t) => [t.id, t.group]))
+const ZERO_HINT = '지금 검색 조건에서는 결과가 없어요'
 
 const toggle = (list, id) => (list.includes(id) ? list.filter((v) => v !== id) : [...list, id])
+const MOBILE = '(max-width: 640px)'
 
-// 상세 필터 버튼 + Popover. 기본은 닫혀 있고 선택 상태는 닫아도 유지돼요(상태는 위에서 들고 있어요).
-// 사용자 과업은 서핏(surfit.io) 카테고리 선택처럼 위쪽 대분류 탭 → 아래 세부 과업 타일이에요.
-// 대분류 탭을 눌러도 선택되지 않고 타일 목록만 바뀌어요. 탭의 숫자는 그 대분류에서 고른 과업 수예요.
-// 지금 검색 결과에 화면이 있는 과업만 나오고, 개수는 다른 필터를 적용한 상태에서 고르면 나오는 수예요(0이면 고를 수 없어요).
-export default function BenchmarkFilters({ screens, filters, onChange }) {
+// 상세 필터: '상세 필터' 버튼으로 여는 팝오버(모바일은 바텀시트)예요.
+// - 안에서 고른 내용은 초안(draft)이에요. '결과 보기'를 눌러야 적용되고, 바깥을 누르거나 Esc로 닫으면 취소돼요.
+// - 사용자 과업은 왼쪽 대분류 → 오른쪽 세부 과업 2단이에요. 대분류를 눌러도 선택되지 않고 오른쪽 목록만 바뀌어요.
+// - 건수는 결과 수와 같은 기준(screens)으로 세요. 다른 그룹의 조건은 적용하고, 같은 그룹은 여러 개를 고를 수 있으니(OR) 빼고 세요.
+// - 선택지는 벤치마킹 DB(universe)에 있는 값만 보여줘요. DB에 있지만 지금 조건에서 0개인 항목은 흐리게 두고 고를 수 없게 해요.
+export default function BenchmarkFilters({ screens, universe, filters, onChange }) {
   const [open, setOpen] = useState(false)
+  const [draft, setDraft] = useState(filters)
   const [tab, setTab] = useState('task')
   const [group, setGroup] = useState(null)
-  const root = useRef(null)
+  const button = useRef(null)
+  const panel = useRef(null)
 
-  const present = useMemo(() => facetOptions(screens, filters), [screens, filters])
-  const counts = useMemo(() => facetCounts(screens, filters), [screens, filters])
-  const totals = useMemo(() => facetCounts(screens, { ...EMPTY_FILTERS, secondary: filters.secondary }), [screens, filters.secondary])
-  const hasSecondary = useMemo(() => screens.some((s) => s.bm.taskIds.length > 1), [screens])
-  const selected = activeFilterCount(filters)
-  const resultCount = useMemo(() => applyFilters(screens, filters).length, [screens, filters])
+  const present = useMemo(() => facetOptions(universe, { ...EMPTY_FILTERS, secondary: draft.secondary }), [universe, draft.secondary])
+  const counts = useMemo(() => facetCounts(screens, draft), [screens, draft])
+  const totals = useMemo(() => facetCounts(universe, { ...EMPTY_FILTERS, secondary: draft.secondary }), [universe, draft.secondary])
+  const resultCount = useMemo(() => applyFilters(screens, draft).length, [screens, draft])
+  const hasSecondary = useMemo(() => universe.some((s) => s.bm.taskIds.length > 1), [universe])
+  const applied = activeFilterCount(filters)
+  const picked = activeFilterCount(draft)
 
+  const openPanel = () => {
+    setDraft(filters)
+    setOpen(true)
+  }
+  const cancel = () => setOpen(false)
+  const apply = () => {
+    onChange(draft)
+    setOpen(false)
+  }
+
+  // 바깥 클릭·Esc는 '취소'예요. 적용하지 않은 선택은 버려져요.
   useEffect(() => {
     if (!open) return
-    const close = (e) => (e.type === 'keydown' ? e.key === 'Escape' && setOpen(false) : !root.current?.contains(e.target) && setOpen(false))
-    document.addEventListener('mousedown', close)
-    document.addEventListener('keydown', close)
+    const onDown = (e) => !panel.current?.contains(e.target) && !button.current?.contains(e.target) && setOpen(false)
+    const onKey = (e) => e.key === 'Escape' && setOpen(false)
+    document.addEventListener('mousedown', onDown)
+    document.addEventListener('keydown', onKey)
+    // 모바일 바텀시트가 열려 있는 동안 뒤 화면이 스크롤되지 않게 해요.
+    const lock = window.matchMedia(MOBILE).matches
+    if (lock) document.body.style.overflow = 'hidden'
     return () => {
-      document.removeEventListener('mousedown', close)
-      document.removeEventListener('keydown', close)
+      document.removeEventListener('mousedown', onDown)
+      document.removeEventListener('keydown', onKey)
+      if (lock) document.body.style.overflow = ''
     }
   }, [open])
 
-  // 선택지가 있는 섹션만 보여줘요(고를 값이 하나뿐인 항목은 숨겨요).
+  // 선택지가 있는 그룹만 보여줘요(고를 값이 하나뿐인 항목은 숨겨요).
   const taskIds = ORDER.task.filter((id) => present.task.has(id))
+  const optionsOf = (key) =>
+    ORDER[key]
+      .filter((id) => present[key].has(id))
+      .filter((id) => key !== 'company' || id === OTHER_COMPANY || (totals.company[id] ?? 0) >= MIN_COMPANY_SCREENS || draft.company.includes(id))
   const sections = SECTIONS.filter(({ key }) => {
     if (key === 'task') return taskIds.length >= 1
-    let ids = ORDER[key].filter((id) => present[key].has(id))
     if (key === 'company') {
-      const enough = ids.filter((id) => id !== OTHER_COMPANY && totals.company[id] >= MIN_COMPANY_SCREENS)
+      const enough = ORDER.company.filter((id) => id !== OTHER_COMPANY && (totals.company[id] ?? 0) >= MIN_COMPANY_SCREENS)
       if (enough.length < MIN_COMPANIES && filters.company.length === 0) return false
     }
-    return ids.length >= 2 || filters[key].length > 0
+    return optionsOf(key).length >= 2 || filters[key].length > 0
   })
-  if (sections.length === 0 && selected === 0) return null
+  if (sections.length === 0 && applied === 0) return null
 
+  // 데이터가 하나도 없는 대분류는 숨겨요.
   const groups = TASK_GROUPS.filter((g) => taskIds.some((id) => GROUP_OF[id] === g.id))
-  const activeGroup = groups.find((g) => g.id === group) ?? groups.find((g) => taskIds.some((id) => GROUP_OF[id] === g.id && filters.task.includes(id))) ?? groups[0]
+  const groupCount = (g) => applyFilters(screens, { ...draft, task: taskIds.filter((id) => GROUP_OF[id] === g.id) }).length
+  const activeGroup = groups.find((g) => g.id === group) ?? groups.find((g) => draft.task.some((id) => GROUP_OF[id] === g.id)) ?? groups[0]
   const activeTab = sections.some((s) => s.key === tab) ? tab : sections[0]?.key
-  const set = (key, list) => onChange({ ...filters, [key]: list })
+  const setKey = (key, list) => setDraft((d) => ({ ...d, [key]: list }))
+
+  const row = (key, id) => {
+    const on = draft[key].includes(id)
+    const n = counts[key][id] ?? 0
+    const off = n === 0 && !on // 0개 항목은 고를 수 없어요(고르면 결과가 0이 돼요). 이미 고른 건 뺄 수 있게 둬요.
+    return (
+      <label key={id} className={`bm-row ${on ? 'is-on' : ''} ${off ? 'is-disabled' : ''}`} title={off ? ZERO_HINT : undefined}>
+        <input type="checkbox" checked={on} disabled={off} onChange={() => setKey(key, toggle(draft[key], id))} />
+        <span className="bm-check" aria-hidden="true" />
+        <span className="bm-row-label">{filterLabel(key, id)}</span>
+        <span className="bm-row-count">{n}</span>
+      </label>
+    )
+  }
 
   return (
-    <div className="bm-pop" ref={root}>
-      <button type="button" className="button filter-toggle" aria-expanded={open} aria-haspopup="dialog" onClick={() => setOpen((v) => !v)}>
-        상세 필터
-        {selected > 0 && <span className="filter-toggle-count">{selected}</span>}
+    <div className="bm-pop">
+      <button
+        ref={button}
+        type="button"
+        className={`button filter-toggle ${applied > 0 ? 'is-active' : ''}`}
+        aria-expanded={open}
+        aria-haspopup="dialog"
+        onClick={() => (open ? cancel() : openPanel())}
+      >
+        <span>상세 필터</span>
+        {applied > 0 && (
+          <span className="filter-toggle-count" aria-label={`적용된 조건 ${applied}개`}>
+            {applied}
+          </span>
+        )}
       </button>
       {open && (
-        <div className="bm-panel" role="dialog" aria-label="상세 필터">
-          {sections.length > 1 && (
-            <div className="bm-tabs" role="tablist">
-              {sections.map(({ key, label }) => (
-                <button key={key} type="button" role="tab" aria-selected={activeTab === key} className={`bm-tab ${activeTab === key ? 'is-active' : ''}`} onClick={() => setTab(key)}>
-                  {label}
-                  {filters[key].length > 0 && <span className="bm-tab-count">{filters[key].length}</span>}
-                </button>
-              ))}
+        <>
+          <div className="bm-backdrop" aria-hidden="true" />
+          <div className="bm-panel" role="dialog" aria-label="상세 필터" ref={panel}>
+            <div className="bm-sheet-head">
+              <strong>상세 필터</strong>
+              <button type="button" className="bm-close" aria-label="닫기" onClick={cancel}>
+                ×
+              </button>
             </div>
-          )}
 
-          {activeTab === 'task' && activeGroup && (
-            <>
-              <div className="bm-group-tabs" role="tablist" aria-label="대분류">
-                {groups.map((g) => {
-                  const n = filters.task.filter((id) => GROUP_OF[id] === g.id).length
-                  return (
-                    <button
-                      key={g.id}
-                      type="button"
-                      role="tab"
-                      aria-selected={activeGroup.id === g.id}
-                      className={`bm-group-tab ${activeGroup.id === g.id ? 'is-active' : ''}`}
-                      onClick={() => setGroup(g.id)}
-                    >
-                      {g.label}
-                      <span className={`bm-group-count ${n > 0 ? 'is-on' : ''}`}>{n}</span>
-                    </button>
-                  )
-                })}
+            {sections.length > 1 && (
+              <div className="bm-seg" role="tablist" aria-label="필터 그룹">
+                {sections.map(({ key, label }) => (
+                  <button key={key} type="button" role="tab" aria-selected={activeTab === key} className={`bm-seg-item ${activeTab === key ? 'is-active' : ''}`} onClick={() => setTab(key)}>
+                    {label}
+                    {draft[key].length > 0 && <span className="bm-seg-count">{draft[key].length}</span>}
+                  </button>
+                ))}
               </div>
-              <div className="bm-tiles" role="group" aria-label={`${activeGroup.label} 세부 과업`}>
-                {taskIds
-                  .filter((id) => GROUP_OF[id] === activeGroup.id)
-                  .map((id) => {
-                    const on = filters.task.includes(id)
-                    const n = counts.task[id] ?? 0
-                    return (
-                      <label key={id} className={`bm-tile ${on ? 'is-on' : ''} ${n === 0 && !on ? 'is-disabled' : ''}`}>
-                        <input type="checkbox" checked={on} disabled={n === 0 && !on} onChange={() => set('task', toggle(filters.task, id))} />
-                        <span className="bm-tile-check" aria-hidden="true" />
-                        <span className="bm-tile-label">{filterLabel('task', id)}</span>
-                        <span className="bm-option-count">{n}</span>
-                      </label>
-                    )
-                  })}
-              </div>
-              {hasSecondary && (
+            )}
+
+            <div className="bm-body">
+              {activeTab === 'task' && activeGroup && (
+                <div className="bm-split">
+                  <ul className="bm-master" aria-label="대분류">
+                    {groups.map((g) => {
+                      const n = draft.task.filter((id) => GROUP_OF[id] === g.id).length
+                      const total = groupCount(g)
+                      const empty = total === 0 && n === 0
+                      return (
+                        <li key={g.id}>
+                          <button
+                            type="button"
+                            className={`bm-master-item ${activeGroup.id === g.id ? 'is-active' : ''} ${empty ? 'is-empty' : ''}`}
+                            title={empty ? ZERO_HINT : undefined}
+                            onClick={() => setGroup(g.id)}
+                          >
+                            <span className="bm-master-label">{g.label}</span>
+                            {n > 0 ? <span className="bm-master-picked">{n}</span> : <span className="bm-row-count">{total}</span>}
+                          </button>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                  <div className="bm-sub" role="group" aria-label={`${activeGroup.label} 세부 과업`}>
+                    {taskIds.filter((id) => GROUP_OF[id] === activeGroup.id).map((id) => row('task', id))}
+                  </div>
+                </div>
+              )}
+              {activeTab !== 'task' && activeTab && <div className="bm-list">{optionsOf(activeTab).map((id) => row(activeTab, id))}</div>}
+            </div>
+
+            <div className="bm-panel-foot">
+              {activeTab === 'task' && hasSecondary && (
                 <label className="bm-secondary">
-                  <input type="checkbox" checked={filters.secondary} onChange={(e) => onChange({ ...filters, secondary: e.target.checked })} />
-                  <span>보조 과업이 일치하는 화면도 포함</span>
+                  <input type="checkbox" checked={draft.secondary} onChange={(e) => setDraft((d) => ({ ...d, secondary: e.target.checked }))} />
+                  <span>보조 과업 포함</span>
                 </label>
               )}
-            </>
-          )}
-
-          {activeTab !== 'task' && activeTab && (
-            <div className="bm-options bm-simple">
-              {ORDER[activeTab]
-                .filter((id) => present[activeTab].has(id))
-                .filter((id) => activeTab !== 'company' || id === OTHER_COMPANY || totals.company[id] >= MIN_COMPANY_SCREENS || filters.company.includes(id))
-                .map((id) => {
-                  const on = filters[activeTab].includes(id)
-                  const n = counts[activeTab][id] ?? 0
-                  return (
-                    <label key={id} className={`bm-option ${on ? 'is-on' : ''} ${n === 0 && !on ? 'is-disabled' : ''}`}>
-                      <input type="checkbox" checked={on} disabled={n === 0 && !on} onChange={() => set(activeTab, toggle(filters[activeTab], id))} />
-                      <span>{filterLabel(activeTab, id)}</span>
-                      <span className="bm-option-count">{n}</span>
-                    </label>
-                  )
-                })}
-            </div>
-          )}
-
-          <div className="bm-panel-foot">
-            {selected > 0 && (
-              <button type="button" className="link-button" onClick={() => onChange({ ...EMPTY_FILTERS, secondary: filters.secondary })}>
-                전체 초기화
+              <button type="button" className="link-button bm-reset" disabled={picked === 0} onClick={() => setDraft({ ...EMPTY_FILTERS, secondary: draft.secondary })}>
+                초기화
               </button>
-            )}
-            <button type="button" className="button button-primary bm-done" onClick={() => setOpen(false)}>
-              {resultCount}개 화면 보기
-            </button>
+              <button type="button" className="button button-primary bm-apply" onClick={apply}>
+                결과 {resultCount}개 보기
+              </button>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   )
 }
 
-// 선택한 필터를 칩으로 보여주고 하나씩 뺄 수 있게 해요.
+// 적용된 필터를 결과 위에 칩으로 보여주고, 하나씩 빼면 바로 결과에 반영돼요.
 export function FilterChips({ filters, onChange }) {
   if (!hasActiveFilter(filters)) return null
   return (
-    <div className="bm-chips" aria-label="선택한 필터">
+    <div className="bm-applied" aria-label="적용된 필터">
       {SECTIONS.flatMap(({ key, label }) =>
         filters[key].map((id) => (
-          <button key={`${key}:${id}`} type="button" className="bm-selected" onClick={() => onChange({ ...filters, [key]: filters[key].filter((v) => v !== id) })} aria-label={`${label} ${filterLabel(key, id)} 해제`}>
-            <span className="bm-selected-group">{label}</span> {filterLabel(key, id)} <span aria-hidden="true">×</span>
+          <button
+            key={`${key}:${id}`}
+            type="button"
+            className="bm-applied-chip"
+            onClick={() => onChange({ ...filters, [key]: filters[key].filter((v) => v !== id) })}
+            aria-label={`${label} ${filterLabel(key, id)} 해제`}
+          >
+            <span className="bm-applied-group">{label}</span>
+            {filterLabel(key, id)}
+            <span className="bm-applied-x" aria-hidden="true">
+              ×
+            </span>
           </button>
         )),
       )}
-      <button type="button" className="link-button" onClick={() => onChange({ ...EMPTY_FILTERS, secondary: filters.secondary })}>
-        초기화
+      <button type="button" className="link-button bm-applied-reset" onClick={() => onChange({ ...EMPTY_FILTERS, secondary: filters.secondary })}>
+        모두 지우기
       </button>
     </div>
   )
