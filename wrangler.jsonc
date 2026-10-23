@@ -1,6 +1,6 @@
 {
   // Cloudflare Pages 데모 사이트(UX Lens). 배포: npm run build:demo && npx wrangler pages deploy
-  "name": "nova-lens",
+  "name": "nova-lens-lite",
   "pages_build_output_dir": "./dist-demo",
   "compatibility_date": "2026-10-01",
   "kv_namespaces": [{ "binding": "UXLENS_AUTH", "id": "ecf59c5216cf4b76848bb01f381dbad4" }]
