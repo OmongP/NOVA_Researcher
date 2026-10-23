@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { DOMAINS, SCREEN_TYPES, TASK_BY_ID, TASK_GROUPS, TASKS, UI_PATTERNS } from '../data/benchmark/taxonomy'
 import { labelOf } from '../lib/benchmark'
 import { readJson } from '../lib/http'
+import { aiFetch } from '../lib/aiFetch'
+import { IS_DEMO } from '../lib/demo'
 
 const MAX_SIDE = 1600
 
@@ -104,8 +106,11 @@ export default function ScreenAnalyzer() {
   async function analyze() {
     setState({ status: 'loading' })
     try {
-      const res = await fetch('/api/analyze', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ dataUrl: preview.dataUrl }) })
-      if (res.status === 404 || res.status === 405) throw new Error('이 사이트에는 화면 분석 서버가 연결돼 있지 않아요. 내 PC에서 npm run dev로 실행하면 쓸 수 있어요')
+      // 사이트에서는 요청이 서버 PC(npm run share)로 전달되고, 팀 코드가 필요해요(aiFetch가 물어봐요).
+      const res = await aiFetch('/api/analyze', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ dataUrl: preview.dataUrl }) })
+      if (res.status === 404 || res.status === 405) throw new Error('화면 분석 서버를 찾지 못했어요. 서버를 최신 코드로 다시 켜 주세요')
+      if (res.status === 401) throw new Error('팀 코드가 필요해요. 다시 분석하면 팀 코드를 물어봐요')
+      if (res.status === 502 || res.status === 503) throw new Error('지금은 화면 분석 서버 PC가 꺼져 있어요. 서버 PC에서 npm run share가 켜져 있어야 분석할 수 있어요')
       const data = await readJson(res)
       if (!res.ok) throw new Error(data.error ?? `HTTP ${res.status}`)
       setState({ status: 'done', result: data })
@@ -121,7 +126,7 @@ export default function ScreenAnalyzer() {
       // 재분석: 사용자가 고친 항목은 그대로 두고, 나머지만 새 AI 결과로 바꿔요.
       setTags((prev) => (prev ? Object.fromEntries(Object.entries(fresh).map(([k, v]) => [k, userEdited[k] ? prev[k] : v])) : fresh))
     } catch (e) {
-      setState({ status: 'error', error: e.message.includes('Failed to fetch') ? '분석 서버에 연결하지 못했어요. npm run dev로 서버를 켜 주세요' : e.message })
+      setState({ status: 'error', error: e.message.includes('Failed to fetch') ? (IS_DEMO ? '분석 서버에 연결하지 못했어요. 잠시 뒤에 다시 시도해 주세요' : '분석 서버에 연결하지 못했어요. npm run dev로 서버를 켜 주세요') : e.message })
     }
   }
 
@@ -192,7 +197,7 @@ export default function ScreenAnalyzer() {
             파일 선택
           </button>
           <input ref={input} type="file" accept="image/png,image/jpeg,image/webp" hidden onChange={(e) => load(e.target.files?.[0])} />
-          <p className="an-note">올린 이미지는 분석하는 동안만 쓰고 서버·DB에 저장하지 않아요. 분석은 이 PC의 Claude Code로 해요.</p>
+          <p className="an-note">올린 이미지는 분석하는 동안만 쓰고 서버·DB에 저장하지 않아요. 분석은 {IS_DEMO ? '팀 서버 PC' : '이 PC'}의 Claude Code로 해요{IS_DEMO && '(팀 코드 필요)'}.</p>
           {state.status === 'error' && <p className="an-error">{state.error}</p>}
         </div>
       ) : (

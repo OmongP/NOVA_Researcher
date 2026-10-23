@@ -25,14 +25,14 @@ app.use(express.json({ limit: '25mb' }))
 // Vite 프록시(로컬 루프백)를 거쳐 와도 접속한 사람의 IP를 읽어요.
 app.set('trust proxy', 'loopback')
 
-// 터널(cloudflared)을 거쳐 인터넷에서 들어온 요청은 Cloudflare 사이트 Function이 붙인 비밀키가 맞을 때만, 그리고 /api/ai·팀·개인 보관함 API만 받아요.
+// 터널(cloudflared)을 거쳐 인터넷에서 들어온 요청은 Cloudflare 사이트 Function이 붙인 비밀키가 맞을 때만, 그리고 /api/ai·화면 분석·팀·개인 보관함 API만 받아요.
 // 터널로 들어온 요청에는 Cloudflare가 cf-ray 헤더를 항상 붙여서, 로컬·사내망 접속은 이 제한을 받지 않아요.
 app.use((req, res, next) => {
   if (!req.headers['cf-ray'] && !req.headers['cf-connecting-ip']) return next()
   const secret = process.env.AI_PROXY_SECRET ?? ''
   const given = String(req.headers['x-ux-lens-proxy'] ?? '')
   const ok = secret.length >= 16 && given.length === secret.length && timingSafeEqual(Buffer.from(given), Buffer.from(secret))
-  const allowed = ['/api/ai/', '/api/team-library', '/api/user-library'].some((p) => req.path.startsWith(p))
+  const allowed = ['/api/ai/', '/api/analyze', '/api/team-library', '/api/user-library'].some((p) => req.path.startsWith(p))
   if (!ok || !allowed) return res.status(403).json({ error: '허용되지 않은 요청이에요' })
   next()
 })
