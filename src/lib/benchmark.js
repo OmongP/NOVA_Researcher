@@ -54,6 +54,8 @@ function classifyTasks(screen, isCarContext) {
   const categories = new Map() // 대분류만 알 수 있는 경우 → { evidence, level }
   for (const rule of TASK_RULES) {
     if (rule.carOnly && !isCarContext) continue
+    // 제외 단어가 제목·세부 패턴에 있으면 이 과업으로 보지 않아요(예: '이체한도'는 대출 한도가 아니에요).
+    if ((rule.excludeWords ?? []).some((w) => fields.some(([, value]) => includesWord(value ?? '', w)))) continue
     const evidence = []
     let level = null
     if ((rule.patterns ?? []).includes(screen.pattern)) {

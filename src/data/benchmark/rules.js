@@ -104,7 +104,8 @@ export const PATTERN_UI_PATTERN = {
 // (예: '한도'=금융 이용 가능 금액, '견적'=선택한 조건의 예상 비용, '월 납입'=월 납입금 계산).
 export const TASK_RULES = [
   // 견적·한도 조회
-  { task: 'ESTIMATION.LIMIT', words: ['한도', '내한도', '대출조회', '대출 조회', '대출 가능'] },
+  // '한도'만 보면 이체·송금·결제·카드 이용 한도까지 대출 한도로 잡혀서, 그런 화면은 빼요(excludeWords).
+  { task: 'ESTIMATION.LIMIT', words: ['한도', '내한도', '대출조회', '대출 조회', '대출 가능'], excludeWords: ['이체한도', '이체 한도', '송금한도', '송금 한도', '출금한도', '출금 한도', '결제한도', '결제 한도', '이용한도', '이용 한도', '카드한도', '카드 한도'] },
   { task: 'ESTIMATION.RATE', words: ['금리 조회', '금리조회', '내 금리'] },
   { task: 'ESTIMATION.MONTHLY_PAYMENT', words: ['월 납입', '월납입', '월 납부', '월 요금'] },
   { task: 'ESTIMATION.INSTALLMENT_QUOTE', words: ['할부 견적'] },
