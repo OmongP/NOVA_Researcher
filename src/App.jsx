@@ -273,7 +273,8 @@ export default function App() {
   // 상세 필터의 건수 기준: 결과 수에 들어가는 화면만 세요(관련성 낮은 화면은 펼쳤을 때만 결과 수에 들어가요).
   const countBase = useMemo(() => (browsing || showLow ? rated : rated.filter((s) => s.relevance.tier !== 'low')), [rated, browsing, showLow])
   // 선택지 기준: 벤치마킹 DB 전체(데모는 수집한 681개)와 지금 결과에 있는 값. 여기에 없는 과업은 데이터가 없어서 숨겨요.
-  const universe = useMemo(() => (IS_LITE ? [...sampleScreens.map(enrich), ...enriched] : []), [enriched])
+  const benchmarkDb = useMemo(() => (IS_LITE ? sampleScreens.map(enrich) : []), [])
+  const universe = useMemo(() => (IS_LITE ? [...benchmarkDb, ...enriched] : []), [benchmarkDb, enriched])
 
   const grouped = useMemo(() => {
     const sorted = [...filtered]
@@ -363,8 +364,18 @@ export default function App() {
       <div className="page">
         {IS_LITE && view === 'analyze' && (
           <>
-            <PageHeader title="Analyze" sub="화면 이미지를 AI로 분석해 과업·화면 유형·UI 패턴 태그 만들기" />
-            <ScreenAnalyzer />
+            <PageHeader title="Analyze" sub="화면의 사용자 목적과 설계 방식을 분석하고, 자동차•금융 UX 사례와 비교해보세요" />
+            <ScreenAnalyzer
+              pool={benchmarkDb}
+              onFindSimilar={(taskIds) => {
+                // Analyze에서 고른 과업으로 Explore를 열어요(검색어·분야는 비우고 과업 필터만 걸어요).
+                runSearch('')
+                setDomain('전체')
+                changeFilters({ ...EMPTY_FILTERS, task: taskIds })
+                setView('search')
+                window.scrollTo(0, 0)
+              }}
+            />
           </>
         )}
 

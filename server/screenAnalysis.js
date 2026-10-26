@@ -64,6 +64,17 @@ ${list(UI_PATTERNS)}
 ## 도메인 (domain)
 ${list(DOMAINS)}
 
+## 설계 분석 (design) — PM과 디자이너가 '이 화면의 설계 의도'를 이해하고 자기 서비스에 참고하도록 써요
+- 관찰(observed)과 추정(inferred)을 반드시 구분해요. 관찰은 이미지에서 직접 보이는 사실(예: "총지출 금액이 가장 크게 보여요"), 추정은 보이는 것을 바탕으로 한 해석(예: "상세 조회 이용을 늘리려는 구성으로 보여요")이에요.
+- summary: 이 화면이 무엇을 보여주고 어디로 연결하는지 한 문장(예: "월별 모빌리티 지출과 차량 정보를 요약하고, 차계부 상세 조회로 연결하는 리포트 화면").
+- userGoal: 사용자가 이 화면에서 알거나 하려는 것 한 문장(예: "이번 달 얼마나 지출했는지, 지난달과 얼마나 달라졌는지 파악하기").
+- keyInfo: 화면이 주는 핵심 정보 3~5개(보이는 순서대로).
+- flow: 정보 구조를 화살표로 이은 한 줄(예: "총지출 → 월별 비교 → 항목별 상세 → 상세 조회 CTA"). 화면이 잘려 전체 배치를 알 수 없으면 flowNote에 "전체 화면에서 실제 배치 확인 필요"처럼 적어요.
+- composition: 카드·차트·리스트·탭 등을 어떻게 묶고 조합했는지 2~4개.
+- takeaways.pm: 기능 범위·진입 구조·흐름 관점에서 다른 서비스가 참고할 만한 접근 1~3개. takeaways.designer: 정보 묶음·위계·표현·인터랙션 관점에서 재사용할 만한 구성 1~3개. 칭찬이 아니라 '어떤 방식인지'를 써요.
+- openQuestions.pm: 이미지로 판단할 수 없어 확인해야 할 정책·데이터 기준·앞뒤 흐름 1~3개. openQuestions.designer: 확인해야 할 상태 변화·빈 데이터·오류·예외 화면 1~3개.
+- uncertain: 분류나 해석 중 불확실한 항목과 이유(예: {"field":"userTask","reason":"차량 유지비와 대중교통 소비가 함께 포함돼 대표 과업을 하나로 정하기 어려워요"}). 확실하면 빈 배열이에요. field는 userTask|screenType|domain|uiPatterns|flow|userGoal 중 하나예요.
+
 ## 출력
 JSON 객체 하나만 출력해요(마크다운·설명 금지). 키:
 {
@@ -77,7 +88,17 @@ JSON 객체 하나만 출력해요(마크다운·설명 금지). 키:
   "primaryAction": {"label": string, "description": string} | null,  // 가장 강조된 행동. 없으면 null
   "notVisible": string[],            // 이 한 장만으로 알 수 없는 것
   "confidence": "high" | "medium" | "low",
-  "reasoning": string                // 전체 판단을 2~3문장으로
+  "reasoning": string,               // 전체 판단을 2~3문장으로
+  "design": {
+    "summary": string,
+    "userGoal": {"text": string, "basis": "observed"|"inferred"},
+    "keyInfo": string[],
+    "flow": string, "flowNote": string|null,
+    "composition": [{"text": string, "basis": "observed"|"inferred"}],
+    "takeaways": {"pm": [{"text": string, "basis": "observed"|"inferred"}], "designer": [{"text": string, "basis": "observed"|"inferred"}]},
+    "openQuestions": {"pm": string[], "designer": string[]},
+    "uncertain": [{"field": string, "reason": string}]
+  }
 }`
 
 const CLI_ARGS = (promptFile) => [
@@ -140,6 +161,32 @@ function validateTask(raw) {
   }
 }
 
+// 설계 분석: 관찰/추정 표시가 없으면 '추정'으로 둬요(사실처럼 보이지 않게).
+const BASIS = ['observed', 'inferred']
+const UNCERTAIN_FIELDS = ['userTask', 'screenType', 'domain', 'uiPatterns', 'flow', 'userGoal']
+const noted = (v, max = 4) =>
+  (Array.isArray(v) ? v : [])
+    .map((x) => (typeof x === 'string' ? { text: x } : x))
+    .filter((x) => typeof x?.text === 'string' && x.text.trim())
+    .slice(0, max)
+    .map((x) => ({ text: str(x.text), basis: pick(x.basis, BASIS) ?? 'inferred' }))
+function validateDesign(raw) {
+  return {
+    summary: str(raw?.summary, 200),
+    userGoal: raw?.userGoal?.text ? { text: str(raw.userGoal.text, 200), basis: pick(raw.userGoal.basis, BASIS) ?? 'inferred' } : null,
+    keyInfo: strs(raw?.keyInfo, 6),
+    flow: str(raw?.flow, 200),
+    flowNote: str(raw?.flowNote, 120) || null,
+    composition: noted(raw?.composition),
+    takeaways: { pm: noted(raw?.takeaways?.pm, 3), designer: noted(raw?.takeaways?.designer, 3) },
+    openQuestions: { pm: strs(raw?.openQuestions?.pm, 3), designer: strs(raw?.openQuestions?.designer, 3) },
+    uncertain: (Array.isArray(raw?.uncertain) ? raw.uncertain : [])
+      .filter((u) => UNCERTAIN_FIELDS.includes(u?.field) && typeof u?.reason === 'string')
+      .slice(0, 4)
+      .map((u) => ({ field: u.field, reason: str(u.reason, 200) })),
+  }
+}
+
 export function validateScreenAnalysis(raw) {
   const one = (node, allowed) => ({ id: pick(node?.id, allowed), evidence: str(node?.evidence) })
   const seen = new Set()
@@ -158,6 +205,7 @@ export function validateScreenAnalysis(raw) {
     notVisible: strs(raw?.notVisible),
     confidence: ['high', 'medium', 'low'].includes(raw?.confidence) ? raw.confidence : 'low',
     reasoning: str(raw?.reasoning, 600),
+    design: validateDesign(raw?.design),
   }
 }
 

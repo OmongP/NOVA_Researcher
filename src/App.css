@@ -3449,9 +3449,163 @@ img.brand-mark {
   font-size: 14px;
 }
 
+/* Analyze 결과: 화면 요약 → 설계 분석 → 추가 확인 → 분류·태그 → 비교 순서의 섹션 */
+.an-section {
+  display: grid;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.an-h {
+  margin: 0;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.an-lead {
+  margin: 0;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* AI 해석(추정) 표시: 사실과 구분되게 작게 */
+.an-badge {
+  display: inline-block;
+  margin-left: 2px;
+  padding: 0 5px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-4);
+  color: var(--text-weak);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  vertical-align: 1px;
+}
+
+.an-uncertain {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-8);
+  background: var(--bg);
+  color: var(--text-sub);
+  font-size: 13px;
+  list-style: none;
+}
+
+.an-uncertain strong {
+  color: var(--text);
+}
+
+.an-flow {
+  font-weight: 600;
+}
+
+.an-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.an-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.an-tag {
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-4);
+  color: var(--text);
+  font-size: 12px;
+}
+
+.an-edit summary,
+.an-meta-details summary {
+  color: var(--text-sub);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.an-edit-body {
+  display: grid;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.an-meta-details {
+  display: grid;
+  gap: 6px;
+}
+
+.an-meta-details[open] summary {
+  margin-bottom: 6px;
+}
+
+/* 같은 과업의 벤치마킹 화면 미리보기 */
+.an-similar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.an-similar-item {
+  display: grid;
+  gap: 2px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.an-similar-item img {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  margin-bottom: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-8);
+  object-fit: cover;
+  object-position: top;
+}
+
+.an-similar-name {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.an-similar-title {
+  overflow: hidden;
+  color: var(--text-sub);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 @media (max-width: 720px) {
   .an-layout {
     grid-template-columns: 1fr;
+  }
+
+  /* 모바일: 올린 화면은 위쪽만 보여주고 분석 결과가 빨리 보이게 해요 */
+  .an-shot img {
+    max-height: 45vh;
+    object-fit: cover;
+    object-position: top;
+  }
+}
+
+@media (max-width: 640px) {
+  .an-two {
+    grid-template-columns: 1fr;
+  }
+
+  .an-similar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
