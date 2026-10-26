@@ -3537,8 +3537,7 @@ img.brand-mark {
   font-size: 12px;
 }
 
-.an-edit summary,
-.an-meta-details summary {
+.an-more summary {
   color: var(--text-sub);
   font-size: 13px;
   font-weight: 600;
@@ -3551,37 +3550,206 @@ img.brand-mark {
   margin-top: 12px;
 }
 
-.an-meta-details {
+.an-more {
   display: grid;
-  gap: 6px;
-}
-
-.an-meta-details[open] summary {
-  margin-bottom: 6px;
-}
-
-/* 같은 과업의 벤치마킹 화면 미리보기 */
-.an-similar {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
 }
 
-.an-similar-item {
-  display: grid;
-  gap: 2px;
-  color: inherit;
-  text-decoration: none;
+.an-more[open] summary {
+  margin-bottom: 8px;
 }
 
-.an-similar-item img {
+/* 상단 바로가기: 비교 사례 보기 · 분석 내용 복사 */
+.an-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* 분석 전 '참고하려는 점' */
+.an-focus {
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.an-focus textarea {
   width: 100%;
-  aspect-ratio: 9 / 16;
-  margin-bottom: 4px;
+  padding: 8px 10px;
   border: 1px solid var(--border);
   border-radius: var(--radius-8);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  resize: vertical;
+}
+
+.an-focus-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.an-chip {
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-4);
+  background: var(--surface);
+  color: var(--text-sub);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.an-chip.is-on {
+  border-color: var(--text);
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* 참고할 점: 방식 + 조건·한계·검토안 */
+.an-takeaways {
+  display: grid;
+  gap: 10px;
+}
+
+.an-cond {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-sub);
+  font-size: 12px;
+}
+
+.an-empty-cases {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: var(--radius-8);
+  background: var(--bg);
+  font-size: 13px;
+}
+
+.an-empty-cases p {
+  margin: 0;
+}
+
+.an-empty-cases .link-button {
+  justify-self: start;
+  font-size: 13px;
+}
+
+/* 추천 사례 카드: 추천 이유 + 비교에 추가 */
+.an-cases {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.an-case {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-8);
+}
+
+.an-case.is-on {
+  border-color: var(--text);
+}
+
+.an-case img {
+  width: 100%;
+  aspect-ratio: 9 / 14;
+  margin-bottom: 4px;
+  border-radius: var(--radius-4);
+  background: var(--bg);
   object-fit: cover;
   object-position: top;
+}
+
+.an-case-reasons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 4px 0;
+}
+
+.an-case-reasons span {
+  padding: 1px 6px;
+  border-radius: var(--radius-4);
+  background: var(--bg);
+  color: var(--text-sub);
+  font-size: 11px;
+}
+
+.an-case-pick {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.an-case-pick.is-disabled {
+  color: var(--text-weak);
+  cursor: not-allowed;
+}
+
+/* 나란히 비교 표 */
+.an-compare {
+  display: grid;
+  gap: 12px;
+}
+
+.an-compare-scroll {
+  overflow-x: auto;
+}
+
+.an-compare table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.an-compare th,
+.an-compare td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.an-compare thead th {
+  color: var(--text-sub);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.an-compare thead img {
+  display: block;
+  width: 56px;
+  height: 90px;
+  margin-bottom: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-4);
+  object-fit: cover;
+  object-position: top;
+}
+
+.an-compare tbody th {
+  width: 96px;
+  color: var(--text-sub);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.an-boxed-single {
+  padding: 12px 14px;
+  border-radius: var(--radius-8);
+  background: var(--bg);
 }
 
 .an-similar-name {
@@ -3615,7 +3783,7 @@ img.brand-mark {
     grid-template-columns: 1fr;
   }
 
-  .an-similar {
+  .an-cases {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

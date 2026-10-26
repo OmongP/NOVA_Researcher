@@ -71,7 +71,10 @@ ${list(DOMAINS)}
 - keyInfo: 화면이 주는 핵심 정보 3~5개(보이는 순서대로).
 - flow: 정보 구조를 화살표로 이은 한 줄(예: "총지출 → 월별 비교 → 항목별 상세 → 상세 조회 CTA"). 화면이 잘려 전체 배치를 알 수 없으면 flowNote에 "전체 화면에서 실제 배치 확인 필요"처럼 적어요.
 - composition: 카드·차트·리스트·탭 등을 어떻게 묶고 조합했는지 2~4개.
-- takeaways.pm: 기능 범위·진입 구조·흐름 관점에서 다른 서비스가 참고할 만한 접근 1~3개. takeaways.designer: 정보 묶음·위계·표현·인터랙션 관점에서 재사용할 만한 구성 1~3개. 칭찬이 아니라 '어떤 방식인지'를 써요.
+- takeaways.pm: 기능 범위·진입 구조·흐름 관점에서 다른 서비스가 참고할 만한 접근 1~3개. takeaways.designer: 정보 묶음·위계·표현·인터랙션 관점에서 재사용할 만한 구성 1~3개.
+  각 항목은 설계 선택지로 써요(효과가 검증된 것처럼 단정하지 않아요): text=참고할 방식, when=적용하기 좋은 조건("~할 때"), limit=검토할 한계, idea=우리 서비스에서 검토해 볼 안("~할지 검토"). 칭찬이 아니라 '어떤 방식인지'를 써요.
+- benchmarkKeywords: 비슷한 사례를 찾을 때 쓸 화면 목적 키워드 3~6개. 다른 앱 화면 이름에 붙을 법한 짧은 명사로 써요(예: "지출", "리포트", "차계부", "소비 분석"). 앱 이름·UI 요소 이름은 넣지 않아요.
+- 사용자가 '참고하려는 점'을 함께 보내면 summary를 뺀 모든 설계 분석(keyInfo·takeaways·openQuestions)을 그 관점에 맞춰 구체적으로 써요. 없으면 일반적인 관점으로 써요.
 - openQuestions.pm: 이미지로 판단할 수 없어 확인해야 할 정책·데이터 기준·앞뒤 흐름 1~3개. openQuestions.designer: 확인해야 할 상태 변화·빈 데이터·오류·예외 화면 1~3개.
 - uncertain: 분류나 해석 중 불확실한 항목과 이유(예: {"field":"userTask","reason":"차량 유지비와 대중교통 소비가 함께 포함돼 대표 과업을 하나로 정하기 어려워요"}). 확실하면 빈 배열이에요. field는 userTask|screenType|domain|uiPatterns|flow|userGoal 중 하나예요.
 
@@ -95,7 +98,8 @@ JSON 객체 하나만 출력해요(마크다운·설명 금지). 키:
     "keyInfo": string[],
     "flow": string, "flowNote": string|null,
     "composition": [{"text": string, "basis": "observed"|"inferred"}],
-    "takeaways": {"pm": [{"text": string, "basis": "observed"|"inferred"}], "designer": [{"text": string, "basis": "observed"|"inferred"}]},
+    "takeaways": {"pm": [{"text": string, "when": string, "limit": string, "idea": string, "basis": "observed"|"inferred"}], "designer": [같은 형식]},
+    "benchmarkKeywords": string[],
     "openQuestions": {"pm": string[], "designer": string[]},
     "uncertain": [{"field": string, "reason": string}]
   }
@@ -170,6 +174,11 @@ const noted = (v, max = 4) =>
     .filter((x) => typeof x?.text === 'string' && x.text.trim())
     .slice(0, max)
     .map((x) => ({ text: str(x.text), basis: pick(x.basis, BASIS) ?? 'inferred' }))
+const takeaway = (v) =>
+  noted(v, 3).map((t, i) => {
+    const src = (Array.isArray(v) ? v : []).filter((x) => (typeof x === 'string' ? x : x?.text)?.trim())[i] ?? {}
+    return { ...t, when: str(src.when, 160), limit: str(src.limit, 160), idea: str(src.idea, 160) }
+  })
 function validateDesign(raw) {
   return {
     summary: str(raw?.summary, 200),
@@ -178,7 +187,8 @@ function validateDesign(raw) {
     flow: str(raw?.flow, 200),
     flowNote: str(raw?.flowNote, 120) || null,
     composition: noted(raw?.composition),
-    takeaways: { pm: noted(raw?.takeaways?.pm, 3), designer: noted(raw?.takeaways?.designer, 3) },
+    takeaways: { pm: takeaway(raw?.takeaways?.pm), designer: takeaway(raw?.takeaways?.designer) },
+    benchmarkKeywords: strs(raw?.benchmarkKeywords, 6).map((k) => k.slice(0, 20)),
     openQuestions: { pm: strs(raw?.openQuestions?.pm, 3), designer: strs(raw?.openQuestions?.designer, 3) },
     uncertain: (Array.isArray(raw?.uncertain) ? raw.uncertain : [])
       .filter((u) => UNCERTAIN_FIELDS.includes(u?.field) && typeof u?.reason === 'string')
@@ -210,15 +220,13 @@ export function validateScreenAnalysis(raw) {
 }
 
 let busy = 0 // 동시에 너무 많이 돌리지 않게 막아요
-export function analyzeScreen(dataUrl) {
-  const { mediaType, data } = parseImage(dataUrl)
-  if (busy >= 2) return Promise.reject(new Error('분석 중인 요청이 많아요. 잠시 뒤에 다시 시도해 주세요.'))
-  const promptFile = join(tmpdir(), 'ux-lens-screen-analysis-prompt.txt') // 지시문만 들어 있고 이미지는 없어요
-  writeFileSync(promptFile, PROMPT, 'utf8')
-  const input = JSON.stringify({
-    type: 'user',
-    message: { role: 'user', content: [{ type: 'image', source: { type: 'base64', media_type: mediaType, data } }, { type: 'text', text: '이 화면을 분석해 주세요.' }] },
-  })
+
+// Claude Code CLI를 도구 없이 실행해요. 이미지는 표준 입력(base64)으로만 보내요. 화면 분석·화면 비교가 같이 써요.
+export function runClaude(prompt, content, { label = '분석', promptName = 'screen-analysis' } = {}) {
+  if (busy >= 2) return Promise.reject(new Error(`${label} 중인 요청이 많아요. 잠시 뒤에 다시 시도해 주세요.`))
+  const promptFile = join(tmpdir(), `ux-lens-${promptName}-prompt.txt`) // 지시문만 들어 있고 이미지는 없어요
+  writeFileSync(promptFile, prompt, 'utf8')
+  const input = JSON.stringify({ type: 'user', message: { role: 'user', content } })
   busy++
   return new Promise((resolve, reject) => {
     const bin = process.env.CLAUDE_BIN || 'claude'
@@ -235,7 +243,7 @@ export function analyzeScreen(dataUrl) {
     }
     const timer = setTimeout(() => {
       child.kill('SIGTERM')
-      finish(reject, new Error('분석이 3분 안에 끝나지 않았어요. 다시 시도해 주세요.'))
+      finish(reject, new Error(`${label}이 3분 안에 끝나지 않았어요. 다시 시도해 주세요.`))
     }, TIMEOUT_MS)
     child.stdout.on('data', (d) => (out += d))
     child.stderr.on('data', (d) => (err += d))
@@ -248,11 +256,22 @@ export function analyzeScreen(dataUrl) {
         if (!result) throw new Error(err.trim().slice(0, 200) || 'Claude Code가 결과를 돌려주지 않았어요')
         if (result.is_error) throw new Error(String(result.result || 'Claude Code 실행 실패').slice(0, 200))
         const model = events.find((e) => e.type === 'system' && e.subtype === 'init')?.model ?? 'Claude Code'
-        finish(resolve, { analysis: validateScreenAnalysis(extractJson(result.result)), model: `${model} (Claude Code CLI)`, source: 'ai', analyzedAt: new Date().toISOString() })
+        finish(resolve, { text: result.result, model: `${model} (Claude Code CLI)` })
       } catch (e) {
         finish(reject, e)
       }
     })
     child.stdin.end(input + '\n')
   })
+}
+
+// focus: 사용자가 이번에 참고하려는 점(선택). 분석 관점을 구체화하는 데만 써요.
+export async function analyzeScreen(dataUrl, focus) {
+  const { mediaType, data } = parseImage(dataUrl)
+  const note = typeof focus === 'string' && focus.trim() ? `\n참고하려는 점: ${focus.trim().slice(0, 300)}` : ''
+  const { text, model } = await runClaude(PROMPT, [
+    { type: 'image', source: { type: 'base64', media_type: mediaType, data } },
+    { type: 'text', text: `이 화면을 분석해 주세요.${note}` },
+  ])
+  return { analysis: validateScreenAnalysis(extractJson(text)), model, source: 'ai', analyzedAt: new Date().toISOString(), focus: note ? focus.trim().slice(0, 300) : null }
 }

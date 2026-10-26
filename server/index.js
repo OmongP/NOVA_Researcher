@@ -12,6 +12,7 @@ import { runDarkSearch, runSearch } from './searchCore.js'
 import { registerLibraryRoutes } from './library.js'
 import { getAuthStatus, finishLogin, callTool } from './uibowl.js'
 import { analyzeScreen } from './screenAnalysis.js'
+import { compareScreens } from './screenCompare.js'
 import { ruleById } from '../src/data/darkPatternRules.js'
 import { cancelJob, getJob, getProviders, jobImagePath, recoverInterruptedJobs, retryJob, startReview } from './aiReview.js'
 
@@ -25,14 +26,14 @@ app.use(express.json({ limit: '25mb' }))
 // Vite 프록시(로컬 루프백)를 거쳐 와도 접속한 사람의 IP를 읽어요.
 app.set('trust proxy', 'loopback')
 
-// 터널(cloudflared)을 거쳐 인터넷에서 들어온 요청은 Cloudflare 사이트 Function이 붙인 비밀키가 맞을 때만, 그리고 /api/ai·화면 분석·팀·개인 보관함 API만 받아요.
+// 터널(cloudflared)을 거쳐 인터넷에서 들어온 요청은 Cloudflare 사이트 Function이 붙인 비밀키가 맞을 때만, 그리고 /api/ai·화면 분석·비교·팀·개인 보관함 API만 받아요.
 // 터널로 들어온 요청에는 Cloudflare가 cf-ray 헤더를 항상 붙여서, 로컬·사내망 접속은 이 제한을 받지 않아요.
 app.use((req, res, next) => {
   if (!req.headers['cf-ray'] && !req.headers['cf-connecting-ip']) return next()
   const secret = process.env.AI_PROXY_SECRET ?? ''
   const given = String(req.headers['x-ux-lens-proxy'] ?? '')
   const ok = secret.length >= 16 && given.length === secret.length && timingSafeEqual(Buffer.from(given), Buffer.from(secret))
-  const allowed = ['/api/ai/', '/api/analyze', '/api/team-library', '/api/user-library'].some((p) => req.path.startsWith(p))
+  const allowed = ['/api/ai/', '/api/analyze', '/api/compare', '/api/team-library', '/api/user-library'].some((p) => req.path.startsWith(p))
   if (!ok || !allowed) return res.status(403).json({ error: '허용되지 않은 요청이에요' })
   next()
 })
@@ -108,7 +109,16 @@ app.post('/api/dark/search', async (req, res) => {
 // Light 화면 분석: 올린 이미지는 메모리에서만 처리하고 저장·로그하지 않아요(server/screenAnalysis.js).
 app.post('/api/analyze', async (req, res) => {
   try {
-    res.json(await analyzeScreen(req.body?.dataUrl))
+    res.json(await analyzeScreen(req.body?.dataUrl, req.body?.focus))
+  } catch (err) {
+    res.status(400).json({ error: err.message })
+  }
+})
+
+// Light 화면 비교: 분석한 화면과 벤치마킹 사례 2~3개를 같은 기준으로 비교해요(이미지는 저장하지 않아요).
+app.post('/api/compare', async (req, res) => {
+  try {
+    res.json(await compareScreens(req.body ?? {}))
   } catch (err) {
     res.status(400).json({ error: err.message })
   }
