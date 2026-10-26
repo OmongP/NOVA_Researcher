@@ -323,7 +323,7 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
                 )}
                 <Notes title="구성 방식" items={d.composition.length ? d.composition : a.layout.characteristics} />
                 {(d.takeaways.pm.length > 0 || d.takeaways.designer.length > 0) && (
-                  <div className="an-two">
+                  <div className="an-two an-boxed">
                     <Notes title="참고할 점 · PM 관점" items={d.takeaways.pm} />
                     <Notes title="참고할 점 · 디자이너 관점" items={d.takeaways.designer} />
                   </div>
