@@ -13,6 +13,8 @@ const safeEqual = (a, b) => {
   return diff === 0
 }
 
+const PC_OFF = '서버 PC가 꺼져 있어요. 서버 PC에서 npm run share를 다시 켜 주세요'
+
 export async function proxyToPc({ request, env, path, requireCode = true }) {
   if (!sameSite(request) && request.method !== 'GET') return json({ error: '허용되지 않은 요청이에요' }, 403)
 
@@ -22,7 +24,7 @@ export async function proxyToPc({ request, env, path, requireCode = true }) {
   }
 
   const tunnel = (await env.UXLENS_AUTH?.get('ai_tunnel')) ?? ''
-  if (!tunnel || !env.AI_PROXY_SECRET) return json({ error: '서버 PC가 연결돼 있지 않아요' }, 503)
+  if (!tunnel || !env.AI_PROXY_SECRET) return json({ error: PC_OFF }, 503)
 
   const url = new URL(request.url)
   const headers = new Headers({ 'x-ux-lens-proxy': env.AI_PROXY_SECRET })
@@ -35,11 +37,15 @@ export async function proxyToPc({ request, env, path, requireCode = true }) {
       headers,
       body: ['GET', 'HEAD'].includes(request.method) ? undefined : request.body,
     })
-    const out = new Headers({ 'Cache-Control': 'no-store' })
     const outType = upstream.headers.get('content-type')
+    // 터널은 있는데 PC 쪽이 꺼져 있으면 Cloudflare가 HTML 오류 페이지(530·52x 등)를 돌려줘요. 알아보기 쉬운 안내로 바꿔요.
+    if (upstream.status >= 500 && !(outType ?? '').includes('application/json')) {
+      return json({ error: PC_OFF }, 503)
+    }
+    const out = new Headers({ 'Cache-Control': 'no-store' })
     if (outType) out.set('content-type', outType)
     return new Response(upstream.body, { status: upstream.status, headers: out })
   } catch {
-    return json({ error: '서버 PC에 연결할 수 없어요. PC가 꺼져 있거나 터널이 끊겼을 수 있어요' }, 502)
+    return json({ error: PC_OFF }, 503)
   }
 }
