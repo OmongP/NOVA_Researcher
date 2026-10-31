@@ -5,6 +5,7 @@
 import { spawn, execFileSync } from 'node:child_process'
 import { randomBytes } from 'node:crypto'
 import { appendFileSync, existsSync, readFileSync } from 'node:fs'
+import { connect } from 'node:net'
 
 // --project=이름 으로 다른 Cloudflare Pages 사이트에 비밀값을 저장할 수 있어요(기본 nova-lens).
 const PROJECT = process.argv.find((a) => a.startsWith('--project='))?.slice('--project='.length) || 'nova-lens'
@@ -49,6 +50,20 @@ if (readEnvValue('AI_PROXY_SECRET').length < 16) {
   process.exit(1)
 }
 
+// 이미 서버가 켜져 있으면(자동 실행 등) 그냥 끝내요. 그대로 진행하면 포트 충돌로 종료되면서, 켜져 있는 서버의 터널 주소까지 지워 버려요.
+const portBusy = await new Promise((resolve) => {
+  const socket = connect(Number(PORT), '127.0.0.1')
+  socket.once('connect', () => {
+    socket.destroy()
+    resolve(true)
+  })
+  socket.once('error', () => resolve(false))
+})
+if (portBusy) {
+  console.error(`[share] ${PORT} 포트에 이미 서버가 켜져 있어요. 새로 켜지 않고 끝내요. (자동 실행 중이거나 npm run dev가 켜져 있을 수 있어요)`)
+  process.exit(0)
+}
+
 const children = new Set()
 let shuttingDown = false
 const run = (cmd, args, opts = {}) => {
@@ -64,7 +79,7 @@ if (process.platform === 'darwin') {
   keepAwake.on('error', () => {}) // caffeinate 가 없어도 괜찮아요
 }
 
-// 1) 화면 + 검색·AI 서버. 이게 꺼지면 전체를 종료해요(작업 스케줄러가 다시 켜 줘요).
+// 1) 화면 + 검색·AI 서버. 이게 꺼지면 전체를 종료해요(자동 실행으로 등록했으면 launchd·작업 스케줄러가 다시 켜 줘요).
 const server = run(process.execPath, ['--env-file-if-exists=server/.env', 'scripts/serve.js'], { stdio: 'inherit' })
 server.on('exit', (code) => {
   if (!shuttingDown) {
@@ -151,4 +166,5 @@ function shutdown(code = 0) {
   process.exit(code)
 }
 process.on('SIGINT', () => shutdown(0))
+process.on('SIGTERM', () => shutdown(0)) // 자동 실행(launchd)을 끌 때 보내는 신호예요
 process.on('SIGTERM', () => shutdown(0))

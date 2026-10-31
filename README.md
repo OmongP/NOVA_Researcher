@@ -85,6 +85,18 @@ Start-ScheduledTask -TaskName UX-Lens-Share   # 지금 바로 켜기
 .\scripts\windows-autostart.ps1 -Remove   # 해제
 ```
 
+- **Mac 자동 시작**: 한 번 등록하면 로그인할 때 자동으로 켜지고, 꺼져도 30초 안에 다시 켜져요(launchd). 터미널 탭을 닫아도 꺼지지 않아요.
+
+```bash
+npm run autostart:mac               # 등록 (바로 켜져요)
+npm run autostart:mac -- --status   # 상태 확인
+npm run autostart:mac -- --remove   # 해제
+```
+
+켜져 있는 동안은 share가 Mac 잠자기를 막아요(전원 연결 시). 노트북 덮개를 닫거나 배터리로 잠들면 그동안은 끊기고, 깨어나면 다시 연결해요. 이미 켜져 있을 때 `npm run share`를 또 실행하면 아무것도 건드리지 않고 끝나요.
+
+**화면 분석이 인증 오류로 실패하면** 서버 PC의 Claude Code 로그인이 만료된 거예요. `~/.local/bin/claude auth login`으로 다시 로그인해요(사이트의 AI 상태 표시는 로그인 만료를 알아채지 못해요).
+
 로그는 프로젝트 폴더의 `share.log`에 쌓여요. 이 PC에서 `npm run dev`는 함께 켜지 마세요(같은 8787 포트를 써서 서버가 꺼져요).
 처음 한 번은 직접 `npm run share`로 켜서 `http://localhost:8787`에서 UI Bowl 로그인을 해 두세요.
 
