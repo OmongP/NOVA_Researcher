@@ -3398,6 +3398,58 @@ img.brand-mark {
   min-width: 0;
 }
 
+.an-progress {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-12);
+}
+
+.an-progress-title {
+  display: block;
+  font-size: 16px;
+}
+
+.an-progress-note {
+  margin: 6px 0 16px;
+  color: var(--text-sub);
+  font-size: 13px;
+}
+
+.an-progress-time {
+  margin-left: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.an-progress-lines {
+  display: grid;
+  gap: 10px;
+}
+
+.an-progress-lines span {
+  display: block;
+  height: 12px;
+  border-radius: 6px;
+  background: var(--border);
+  animation: ai-pulse 1.6s ease-in-out infinite;
+}
+
+.an-progress-lines span:nth-child(2) {
+  width: 85%;
+  animation-delay: 0.2s;
+}
+
+.an-progress-lines span:nth-child(3) {
+  width: 60%;
+  animation-delay: 0.4s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .an-progress-lines span {
+    animation: none;
+  }
+}
+
 .an-meta,
 .an-evidence {
   margin: 0;

@@ -105,6 +105,9 @@ JSON 객체 하나만 출력해요(마크다운·설명 금지). 키:
   }
 }`
 
+// 화면 분석·비교는 속도가 중요해서 CLAUDE_ANALYZE_MODEL로 따로 정할 수 있어요(없으면 AI 검토와 같은 모델).
+const ANALYZE_MODEL = () => process.env.CLAUDE_ANALYZE_MODEL || process.env.CLAUDE_REVIEW_MODEL
+
 const CLI_ARGS = (promptFile) => [
   '-p',
   '--input-format', 'stream-json',
@@ -115,7 +118,7 @@ const CLI_ARGS = (promptFile) => [
   '--strict-mcp-config',
   '--setting-sources', '',
   '--no-session-persistence',
-  ...(process.env.CLAUDE_REVIEW_MODEL ? ['--model', process.env.CLAUDE_REVIEW_MODEL] : []),
+  ...(ANALYZE_MODEL() ? ['--model', ANALYZE_MODEL()] : []),
 ]
 
 function parseImage(dataUrl) {

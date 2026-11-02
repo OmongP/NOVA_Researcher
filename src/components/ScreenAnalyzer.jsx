@@ -184,6 +184,28 @@ function toMarkdown({ a, tags, result, focus, compare, cases }) {
 }
 
 // pool: 비교할 벤치마킹 화면(벤치마킹 DB, bm 분류가 붙은 화면). onFindSimilar(taskIds): Explore에서 같은 과업 화면 보기.
+// 분석하는 동안 결과 자리에 보여줘요. 서버가 단계를 알려주지 않아서 경과 시간만 실제 값으로 보여줘요.
+function AnalyzingPanel() {
+  const [seconds, setSeconds] = useState(0)
+  useEffect(() => {
+    const timer = setInterval(() => setSeconds((s) => s + 1), 1000)
+    return () => clearInterval(timer)
+  }, [])
+  return (
+    <div className="an-progress" role="status">
+      <strong className="an-progress-title">화면을 분석하고 있어요</strong>
+      <p className="an-progress-note">
+        {seconds < 45 ? '보통 30초 안팎 걸려요.' : '복잡한 화면은 조금 더 걸릴 수 있어요.'} <span className="an-progress-time">{seconds}초 지남</span>
+      </p>
+      <div className="an-progress-lines" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+      </div>
+    </div>
+  )
+}
+
 export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
   const [preview, setPreview] = useState(null) // { dataUrl, name }
   const [focus, setFocus] = useState('') // 이번에 참고하려는 점(선택)
@@ -396,7 +418,7 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
             </div>
             <div className="an-actions">
               <button type="button" className="button button-primary" onClick={analyze} disabled={state.status === 'loading'}>
-                {state.status === 'loading' ? '분석하는 중… (1~2분)' : result ? '다시 분석' : '분석하기'}
+                {state.status === 'loading' ? '분석하는 중…' : result ? '다시 분석' : '분석하기'}
               </button>
               <button type="button" className="button" onClick={reset} disabled={state.status === 'loading'}>
                 다른 이미지
@@ -404,6 +426,8 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
             </div>
             {state.status === 'error' && <p className="an-error">{state.error}</p>}
           </div>
+
+          {state.status === 'loading' && <AnalyzingPanel />}
 
           {result && tags && (
             <div className="an-result">
