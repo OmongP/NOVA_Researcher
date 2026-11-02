@@ -6,10 +6,10 @@ import { spawn, execFileSync } from 'node:child_process'
 import { randomBytes } from 'node:crypto'
 import { appendFileSync, existsSync, readFileSync } from 'node:fs'
 import { connect } from 'node:net'
+import { kv } from './tunnel-kv.js'
 
 // --project=이름 으로 다른 Cloudflare Pages 사이트에 비밀값을 저장할 수 있어요(기본 nova-lens).
 const PROJECT = process.argv.find((a) => a.startsWith('--project='))?.slice('--project='.length) || 'nova-lens'
-const KV_ID = process.env.UXLENS_KV_ID ?? 'ecf59c5216cf4b76848bb01f381dbad4'
 const ENV_FILE = new URL('../server/.env', import.meta.url)
 const PORT = process.env.PORT ?? 8787
 // PATH에 없어도 ~/.local/bin 에 설치한 cloudflared 를 찾아요.
@@ -106,11 +106,11 @@ function publish(url, attempt = 1) {
   const tryOnce = (n) => {
     if (shuttingDown || token !== publishToken) return
     try {
-      wrangler(['kv', 'key', 'put', 'ai_tunnel', url, '--namespace-id', KV_ID, '--remote'])
+      kv(['put', 'ai_tunnel', url])
       console.log(`\n[share] 터널 연결 완료 → ${url}\n[share] 사이트에서 AI 검토와 팀 보관함이 이 PC로 연결돼요. 끝내려면 Ctrl+C.`)
     } catch {
       const wait = Math.min(10_000 * n, 60_000)
-      console.error(`[share] 사이트에 터널 주소를 알리지 못했어요(${n}번째). ${wait / 1000}초 뒤 다시 시도해요. 계속 실패하면 npx wrangler login 을 확인해 주세요.`)
+      console.error(`[share] 사이트에 터널 주소를 알리지 못했어요(${n}번째). ${wait / 1000}초 뒤 다시 시도해요. 계속 실패하면 npm run cf-token 으로 토큰을 다시 넣거나 npx wrangler login 을 확인해 주세요.`)
       setTimeout(() => tryOnce(n + 1), wait)
     }
   }
@@ -158,7 +158,7 @@ function shutdown(code = 0) {
   if (shuttingDown) return
   shuttingDown = true
   try {
-    wrangler(['kv', 'key', 'delete', 'ai_tunnel', '--namespace-id', KV_ID, '--remote'])
+    kv(['delete', 'ai_tunnel'])
   } catch {
     // 이미 없으면 무시
   }

@@ -93,6 +93,8 @@ npm run autostart:mac -- --status   # 상태 확인
 npm run autostart:mac -- --remove   # 해제
 ```
 
+- **Cloudflare 전용 토큰(권장)**: `npx wrangler login`은 만료되면 새 터널 주소를 사이트에 알리지 못해요. [API Tokens](https://dash.cloudflare.com/profile/api-tokens)에서 권한이 `Account > Workers KV Storage > Edit`인 토큰을 만들어 복사한 뒤 `pbpaste | npm run -s cf-token`(Mac)으로 넣으면 share는 이 토큰을 써요(`server/.cf-token`, 저장소에 올라가지 않아요). 배포와 `--setup`은 그대로 `wrangler login`을 써요.
+
 켜져 있는 동안은 share가 Mac 잠자기를 막아요(전원 연결 시). 노트북 덮개를 닫거나 배터리로 잠들면 그동안은 끊기고, 깨어나면 다시 연결해요. 이미 켜져 있을 때 `npm run share`를 또 실행하면 아무것도 건드리지 않고 끝나요.
 
 **화면 분석이 인증 오류로 실패하면** 서버 PC의 Claude Code 로그인이 만료된 거예요. `~/.local/bin/claude auth login`으로 다시 로그인해요(사이트의 AI 상태 표시는 로그인 만료를 알아채지 못해요).

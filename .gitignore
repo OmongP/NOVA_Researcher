@@ -26,6 +26,7 @@ dist-ssr
 # UI Bowl OAuth 토큰
 server/.auth.json
 server/.env
+server/.cf-token
 
 # 다크패턴 검토 대기열 (사내 화면 포함 가능)
 reviews/

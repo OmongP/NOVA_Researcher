@@ -15,7 +15,7 @@
 
 ## 사이트가 동작하려면
 
-- **AI 기능(화면 분석·비교·AI 검토·팀 보관함)**: 서버 PC(사용자 Mac)에서 share가 켜져 있어야 해요. Mac은 launchd 자동 실행으로 등록돼 있어요(`npm run autostart:mac -- --status`로 확인, 로그 `share.log`). 인증 오류로 실패하면 `~/.local/bin/claude auth login`.
+- **AI 기능(화면 분석·비교·AI 검토·팀 보관함)**: 서버 PC(사용자 Mac)에서 share가 켜져 있어야 해요. Mac은 launchd 자동 실행으로 등록돼 있어요(`npm run autostart:mac -- --status`로 확인, 로그 `share.log`). 인증 오류로 실패하면 `~/.local/bin/claude auth login`. 서버는 켜져 있는데 사이트만 "서버 PC가 꺼져 있어요"라면 `share.log`에서 "터널 주소를 알리지 못했어요"를 확인하고 `npm run cf-token`으로 토큰을 다시 넣어요(README의 Cloudflare 전용 토큰 참고).
 - **UI Bowl 실시간 검색**: Cloudflare KV의 클라우드 로그인을 써요. 사이트가 "샘플 화면으로 검색해요"로 돌아가면 `node scripts/cloud-auth.js`로 다시 로그인해요(브라우저는 자동으로 안 열려요. 10분 안에 로그인해야 해요).
 - 검색어 없이 처음 보이는 화면은 미리 모아 둔 681개(`src/data/demoScreens.js`)예요. UI Bowl에는 전체 목록을 받는 기능이 없어요.
 

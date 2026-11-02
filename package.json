@@ -18,6 +18,7 @@
     "start": "node --env-file-if-exists=server/.env scripts/serve.js",
     "share": "node scripts/share.js",
     "autostart:mac": "sh scripts/mac-autostart.sh",
+    "cf-token": "node scripts/set-cf-token.js",
     "deploy": "node scripts/deploy.js nova-lens",
     "deploy:lite": "node scripts/deploy.js nova-lens-lite",
     "check:benchmark": "node scripts/benchmark-check.mjs"
