@@ -5,7 +5,10 @@ import { collectionToMarkdown } from '../lib/useCollections'
 const ALL = 'all'
 
 // 보관함: 컬렉션별로 저장한 화면을 모아 보고, 메모·삭제·내보내기를 해요.
-export default function Library({ store, onOpen, onSave, showSavedBy = false }) {
+// scope 'mine'(내 보관함): 화면마다 '팀에 공유'. 'team'(팀 보관함): 공유한 사람·참고할 지점·관련 업무를 보여줘요.
+// 내 저장과 팀 공유는 따로 관리해요. 내 보관함에서 빼도 팀에 공유한 자료는 남아요.
+export default function Library({ store, onOpen, onSave, isSaved, scope = 'mine', team, onShare }) {
+  const isTeam = scope === 'team'
   const [activeId, setActiveId] = useState(ALL)
   const [copied, setCopied] = useState(false)
   const [dragId, setDragId] = useState(null) // 순서를 바꾸려고 끌고 있는 컬렉션
@@ -47,7 +50,7 @@ export default function Library({ store, onOpen, onSave, showSavedBy = false }) 
     <div className="library">
       <nav className="library-nav" aria-label="컬렉션">
         <button type="button" className={`library-item ${activeId === ALL ? 'is-active' : ''}`} onClick={() => setActiveId(ALL)}>
-          <span>전체 저장</span>
+          <span>{isTeam ? '전체 공유' : '전체 저장'}</span>
           <span className="library-count">{store.bookmarks.length}</span>
         </button>
         {store.collections.map((c, index) => {
@@ -113,7 +116,7 @@ export default function Library({ store, onOpen, onSave, showSavedBy = false }) 
 
       <div className="library-main">
         <div className="library-head">
-          <h2 className="library-title">{active ? active.name : '전체 저장'}</h2>
+          <h2 className="library-title">{active ? active.name : isTeam ? '전체 공유' : '전체 저장'}</h2>
           <div className="library-actions">
             <button type="button" className="button" onClick={exportMarkdown} disabled={store.bookmarks.length === 0}>
               {copied ? '복사했어요' : 'Markdown으로 복사'}
@@ -135,32 +138,59 @@ export default function Library({ store, onOpen, onSave, showSavedBy = false }) 
 
         {sorted.length === 0 ? (
           <div className="empty">
-            <p className="empty-title">아직 저장한 화면이 없어요</p>
-            <p className="empty-desc">검색 결과 카드의 ☆을 눌러 컬렉션에 담아 보세요.</p>
+            <p className="empty-title">{isTeam ? '아직 팀에 공유한 화면이 없어요' : '아직 저장한 화면이 없어요'}</p>
+            <p className="empty-desc">{isTeam ? '내 보관함에서 화면의 ‘팀에 공유’를 누르면 여기에 모여요.' : '검색 결과 카드의 ☆을 눌러 내 보관함에 담아 보세요.'}</p>
           </div>
         ) : (
           <div className="grid">
-            {sorted.map((b) => (
-              <div key={b.id} className="saved">
-                <ScreenCard screen={b.screen} onOpen={onOpen} saved onSave={onSave} />
-                <div className="saved-meta">
-                  {activeId === ALL && <span className="chip chip-stage">{nameOf(b.collectionId)}</span>}
-                  <span>
-                    {showSavedBy && b.savedBy ? `${b.savedBy} · ` : ''}저장 {new Date(b.savedAt).toLocaleDateString('ko-KR')}
-                  </span>
-                  <button type="button" className="saved-remove" onClick={() => store.removeBookmark(b.id)}>
-                    빼기
-                  </button>
+            {sorted.map((b) => {
+              const shared = !isTeam && team?.collectionsOf(b.screen).length > 0
+              return (
+                <div key={b.id} className="saved">
+                  <ScreenCard screen={b.screen} onOpen={onOpen} saved={isSaved ? isSaved(b.screen) : true} onSave={onSave} />
+                  {isTeam && (
+                    <div className="saved-share">
+                      <p className="saved-reason">{b.reason ? <><span>참고</span> {b.reason}</> : <span className="saved-reason-empty">참고할 지점이 아직 없어요</span>}</p>
+                      <p className="saved-by">
+                        {b.work && <span className="chip chip-stage">{b.work}</span>}
+                        <span>
+                          {b.savedBy || '이름 없음'} 님이 공유 · {new Date(b.savedAt).toLocaleDateString('ko-KR')}
+                        </span>
+                      </p>
+                    </div>
+                  )}
+                  <div className="saved-meta">
+                    {activeId === ALL && <span className="chip chip-stage">{nameOf(b.collectionId)}</span>}
+                    {!isTeam && <span>저장 {new Date(b.savedAt).toLocaleDateString('ko-KR')}</span>}
+                    {onShare && (
+                      <button
+                        type="button"
+                        className={`saved-share-button ${shared ? 'is-shared' : ''}`}
+                        onClick={() => onShare(b.screen)}
+                        title={isTeam ? '참고할 지점·관련 업무 고치기' : shared ? '팀에 공유됨 · 공유 내용 고치기' : '팀 보관함에 공유해요'}
+                      >
+                        {isTeam ? '고치기' : shared ? '✓ 팀 공유됨' : '팀에 공유'}
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      className="saved-remove"
+                      title={isTeam ? '팀 보관함에서 빼요(모두에게서 빠져요)' : '내 보관함에서만 빼요. 팀에 공유한 자료는 남아요'}
+                      onClick={() => (!isTeam || window.confirm('팀 보관함에서 빼면 팀 모두에게서 빠져요. 뺄까요?')) && store.removeBookmark(b.id)}
+                    >
+                      {isTeam ? '팀에서 빼기' : '빼기'}
+                    </button>
+                  </div>
+                  <textarea
+                    className="saved-note"
+                    value={b.note}
+                    onChange={(e) => store.updateNote(b.id, e.target.value)}
+                    placeholder={isTeam ? '팀 메모 (모두가 보고 고칠 수 있어요)' : '내 메모 (예: CTA 위치, 금액 강조 방식)'}
+                    rows={2}
+                  />
                 </div>
-                <textarea
-                  className="saved-note"
-                  value={b.note}
-                  onChange={(e) => store.updateNote(b.id, e.target.value)}
-                  placeholder={showSavedBy ? "팀 메모 (모두가 보고 고칠 수 있어요)" : "메모 (예: CTA 위치, 금액 강조 방식)"}
-                  rows={2}
-                />
-              </div>
-            ))}
+              )
+            })}
           </div>
         )}
       </div>

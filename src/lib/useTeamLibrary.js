@@ -203,6 +203,24 @@ export function useTeamLibrary(name, epoch = 0) {
     [state.bookmarks, apply, send],
   )
 
+  // 내 보관함에서 팀에 공유해요. 참고할 지점(reason)·관련 업무(work)를 같이 남겨요. 이미 그 컬렉션에 있으면 내용만 고쳐요.
+  const share = useCallback(
+    (screen, collectionId, { reason = '', work = '' } = {}) => {
+      const key = screenKey(screen)
+      const exists = state.bookmarks.find((b) => b.key === key && b.collectionId === collectionId)
+      if (exists) {
+        apply((s) => ({ ...s, bookmarks: s.bookmarks.map((b) => (b.id === exists.id ? { ...b, reason, work } : b)) }))
+        send({ type: 'updateShare', bookmarkId: exists.id, reason, work })
+        return
+      }
+      const id = makeId()
+      const snap = snapshot(screen)
+      apply((s) => ({ ...s, bookmarks: [...s.bookmarks, { id, key, collectionId, savedAt: new Date().toISOString(), savedBy: nameRef.current, reason, work, note: '', screen: snap }] }))
+      send({ type: 'addBookmark', id, key, collectionId, screen: snap, reason, work })
+    },
+    [state.bookmarks, apply, send],
+  )
+
   // 메모는 입력할 때마다 보내지 않고, 멈추면 한 번에 보내요.
   const updateNote = useCallback(
     (bookmarkId, note) => {
@@ -250,6 +268,7 @@ export function useTeamLibrary(name, epoch = 0) {
     moveCollection,
     moveCollectionBy,
     toggleBookmark,
+    share,
     updateNote,
     removeBookmark,
     collectionsOf,

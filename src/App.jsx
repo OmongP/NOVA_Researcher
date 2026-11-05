@@ -4,6 +4,7 @@ import { interpretQuery, rateRelevance, searchScreens, squash, TIERS } from './l
 import ScreenCard from './components/ScreenCard'
 import ScreenDetail from './components/ScreenDetail'
 import SaveDialog from './components/SaveDialog'
+import ShareDialog from './components/ShareDialog'
 import Library from './components/Library'
 import ArchiveBar from './components/ArchiveBar'
 import NameDialog from './components/NameDialog'
@@ -162,7 +163,9 @@ export default function App() {
   const [archiveScope, setArchiveScope] = useState('mine')
   const [askName, setAskName] = useState(null) // 이름 입력창: { next } 이름을 입력한 뒤(또는 건너뛴 뒤) 이어서 할 일
   const nameAsked = useRef(false)
-  const isSaved = (screen) => store.collectionsOf(screen).length > 0 || team.collectionsOf(screen).length > 0
+  // ★는 '내 보관함'에 저장했는지만 보여줘요(팀 공유는 따로 관리해요).
+  const isSaved = (screen) => store.collectionsOf(screen).length > 0
+  const [sharing, setSharing] = useState(null)
 
   // 이름이 없으면 한 번만 물어본 뒤 하려던 일을 이어서 해요.
   const withName = useCallback(
@@ -391,7 +394,16 @@ export default function App() {
               mineCount={store.bookmarks.length}
               onConnect={connectTeam}
             />
-            <Library key={archiveScope} store={archiveScope === 'team' ? team : store} onOpen={setSelected} onSave={openSave} showSavedBy={archiveScope === 'team'} />
+            <Library
+              key={archiveScope}
+              scope={archiveScope}
+              store={archiveScope === 'team' ? team : store}
+              team={team}
+              isSaved={isSaved}
+              onOpen={setSelected}
+              onSave={openSave}
+              onShare={(screen) => withName(() => setSharing(screen))}
+            />
           </>
         )}
 
@@ -603,7 +615,17 @@ export default function App() {
         )}
 
         {selected && <ScreenDetail screen={selected} onClose={closeDetail} saved={isSaved(selected)} onSave={openSave} />}
-        {saving && <SaveDialog screen={saving} store={store} team={team} name={name} onClose={closeSave} />}
+        {saving && <SaveDialog screen={saving} store={store} name={name} onClose={closeSave} />}
+        {sharing && (
+          <ShareDialog
+            screen={sharing}
+            team={team}
+            onClose={(summary) => {
+              setSharing(null)
+              closeSave(summary)
+            }}
+          />
+        )}
         {askName && (
           <NameDialog
             initial={askName.change ? name : ''}

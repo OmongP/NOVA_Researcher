@@ -237,6 +237,9 @@ export function collectionToMarkdown(collection, bookmarks) {
     lines.push(`  - 출처: ${s.source ?? 'UI Bowl'} · UI Bowl 수집월 ${s.dataMonth ?? '미확인'} · 앱 버전 미확인`)
     lines.push(`  - 저장일: ${new Date(b.savedAt).toLocaleDateString('ko-KR')}`)
     lines.push(`  - 원본: ${s.uiUrl}`)
+    if (b.reason) lines.push(`  - 참고할 지점: ${b.reason}`)
+    if (b.work) lines.push(`  - 관련 업무: ${b.work}`)
+    if (b.savedBy) lines.push(`  - 공유: ${b.savedBy}`)
     if (b.note) lines.push(`  - 메모: ${b.note}`)
   }
   return lines.join('\n')

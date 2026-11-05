@@ -20,8 +20,8 @@ export default function ScreenCard({ screen, onOpen, saved, onSave }) {
           type="button"
           className={`card-save ${saved ? 'is-saved' : ''}`}
           onClick={() => onSave(screen)}
-          aria-label={saved ? '저장됨 · 컬렉션 바꾸기' : '컬렉션에 저장'}
-          title={saved ? '저장됨 · 컬렉션 바꾸기' : '컬렉션에 저장'}
+          aria-label={saved ? '내 보관함에 저장됨 · 컬렉션 바꾸기' : '내 보관함에 저장'}
+          title={saved ? '내 보관함에 저장됨 · 컬렉션 바꾸기' : '내 보관함에 저장'}
         >
           {saved ? '★' : '☆'}
         </button>

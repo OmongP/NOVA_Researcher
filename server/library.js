@@ -65,6 +65,8 @@ const str = (v, label, max = 200) => {
   return v
 }
 
+const shareText = (v, max) => String(v ?? '').trim().replace(/\s+/g, ' ').slice(0, max)
+
 function move(list, id, targetId) {
   const from = list.findIndex((c) => c.id === id)
   const to = list.findIndex((c) => c.id === targetId)
@@ -104,7 +106,8 @@ export function applyTeamOp(state, op) {
       need(op.screen && typeof op.screen === 'object' && JSON.stringify(op.screen).length <= MAX_SCREEN_BYTES, '화면 정보가 올바르지 않아요')
       const exists = state.bookmarks.find((b) => b.key === key && b.collectionId === op.collectionId)
       if (exists) return { id: exists.id, existed: true }
-      const bookmark = { id: pickId(op.id, state.bookmarks), key, collectionId: op.collectionId, savedAt: new Date().toISOString(), savedBy: by, note: '', screen: op.screen }
+      // 팀 공유: 동료가 어디를 참고하면 좋은지(reason)와 관련 업무(work)를 같이 남겨요.
+      const bookmark = { id: pickId(op.id, state.bookmarks), key, collectionId: op.collectionId, savedAt: new Date().toISOString(), savedBy: by, reason: shareText(op.reason, 200), work: shareText(op.work, 60), note: '', screen: op.screen }
       state.bookmarks.push(bookmark)
       return { id: bookmark.id }
     }
@@ -112,6 +115,13 @@ export function applyTeamOp(state, op) {
       const before = state.bookmarks.length
       state.bookmarks = state.bookmarks.filter((b) => (op.bookmarkId ? b.id !== op.bookmarkId : !(b.key === op.key && b.collectionId === op.collectionId)))
       return { removed: before - state.bookmarks.length }
+    }
+    case 'updateShare': {
+      const b = state.bookmarks.find((x) => x.id === op.bookmarkId)
+      need(b, '저장한 화면을 찾을 수 없어요')
+      b.reason = shareText(op.reason, 200)
+      b.work = shareText(op.work, 60)
+      return {}
     }
     case 'updateNote': {
       const b = state.bookmarks.find((x) => x.id === op.bookmarkId)

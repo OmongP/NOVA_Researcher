@@ -2654,14 +2654,84 @@ img.brand-mark {
   margin: 0;
 }
 
-.save-dest {
-  align-self: flex-start;
-  margin: 4px 0 8px;
+/* 팀에 공유: 참고할 지점·관련 업무 */
+.share-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0 0 12px;
+  font-size: 13px;
 }
 
-.save-dest button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
+.share-field > span {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.share-field input,
+.share-field select {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-8);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+.share-field small {
+  color: var(--text-sub);
+  font-size: 12px;
+}
+
+.saved-share {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 10px;
+  border-radius: var(--radius-8);
+  background: var(--accent-soft);
+}
+
+.saved-reason {
+  margin: 0;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.saved-reason > span:first-child:not(.saved-reason-empty) {
+  margin-right: 4px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.saved-reason-empty {
+  color: var(--text-sub);
+}
+
+.saved-by {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--text-sub);
+  font-size: 12px;
+}
+
+.saved-share-button {
+  padding: 2px 8px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: none;
+  color: var(--accent);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.saved-share-button.is-shared {
+  border-color: var(--border);
+  color: var(--text-sub);
 }
 
 /* AI 검토 안내: 검토 방식 + 주의사항 + 샘플 확인을 한 박스로 */
