@@ -1,6 +1,6 @@
 // Light: 분석한 화면(원본)과 벤치마킹 사례 2~3개를 같은 기준으로 나란히 비교해요.
 // 원본 이미지는 브라우저가 보낸 것을 메모리에서만 쓰고, 사례 이미지는 UI Bowl 이미지 서버에서만 받아요(저장하지 않아요).
-import { runClaude } from './screenAnalysis.js'
+import { extractJson, runClaude } from './screenAnalysis.js'
 
 const MAX_CASES = 3
 const MAX_BYTES = 8 * 1024 * 1024
@@ -61,15 +61,6 @@ async function fetchCaseImage(url) {
   return { type: 'image', source: { type: 'base64', media_type: mediaType, data: buf.toString('base64') } }
 }
 
-function extractJson(text) {
-  const fenced = /```(?:json)?\s*([\s\S]*?)```/.exec(text ?? '')
-  const body = fenced ? fenced[1] : (text ?? '')
-  const start = body.indexOf('{')
-  const end = body.lastIndexOf('}')
-  if (start < 0 || end <= start) throw new Error('AI 응답에서 비교 결과(JSON)를 찾지 못했어요. 다시 시도해 주세요.')
-  return JSON.parse(body.slice(start, end + 1))
-}
-
 export function validateCompare(raw, count) {
   const byId = Object.fromEntries((Array.isArray(raw?.rows) ? raw.rows : []).map((r) => [r?.id, r]))
   return {
@@ -105,5 +96,5 @@ export async function compareScreens({ dataUrl, cases, focus, summary } = {}) {
     [original, ...images, { type: 'text', text: `원본과 사례를 비교해 주세요.\n${names}${note ? `\n${note}` : ''}` }],
     { label: '비교', promptName: 'screen-compare' },
   )
-  return { compare: validateCompare(extractJson(text), list.length + 1), model, comparedAt: new Date().toISOString() }
+  return { compare: validateCompare(extractJson(text, '비교 결과'), list.length + 1), model, comparedAt: new Date().toISOString() }
 }

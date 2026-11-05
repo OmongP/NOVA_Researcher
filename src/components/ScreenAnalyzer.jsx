@@ -92,21 +92,66 @@ function Notes({ title, items }) {
   )
 }
 
-// 참고할 점: 방식 + 적용하기 좋은 조건 + 검토할 한계 + 우리 서비스 검토안
-function Takeaways({ title, items }) {
+// 벤치마킹 포인트: 확인한 사실 / 기대 효과(검증 필요한 해석) / 적용 시 검토할 점을 나누고, 이 방식을 쓴 사례를 옆에 붙여요.
+function Takeaways({ title, items, casesOf, picked, onPick }) {
   if (!items?.length) return null
   return (
     <div className="an-block">
       <h4 className="an-label">{title}</h4>
       <ul className="an-takeaways">
-        {items.map((t, i) => (
-          <li key={i}>
-            <strong>{t.text}</strong> <Basis basis={t.basis} />
-            {t.when && <span className="an-cond">적용하기 좋은 조건 · {t.when}</span>}
-            {t.limit && <span className="an-cond">검토할 한계 · {t.limit}</span>}
-            {t.idea && <span className="an-cond">우리 서비스 검토안 · {t.idea}</span>}
-          </li>
-        ))}
+        {items.map((t, i) => {
+          const cases = casesOf(i)
+          return (
+            <li key={i} className="an-point">
+              <strong>{t.text}</strong>
+              <dl className="an-point-rows">
+                {t.observed && (
+                  <div>
+                    <dt>화면에서 확인한 사실</dt>
+                    <dd>{t.observed}</dd>
+                  </div>
+                )}
+                {t.effect && (
+                  <div>
+                    <dt>
+                      기대 효과 <span className="an-badge">검증 필요</span>
+                    </dt>
+                    <dd>{t.effect}</dd>
+                  </div>
+                )}
+                {t.consider && (
+                  <div>
+                    <dt>우리 서비스 적용 시 검토할 점</dt>
+                    <dd>{t.consider}</dd>
+                  </div>
+                )}
+              </dl>
+              {cases.length > 0 && (
+                <div className="an-point-cases">
+                  <span className="an-point-cases-title">이 방식을 쓴 사례</span>
+                  <div className="an-point-thumbs">
+                    {cases.map(({ s, reason }) => {
+                      const on = picked.includes(s.id)
+                      const full = !on && picked.length >= MAX_COMPARE
+                      return (
+                        <div key={s.id} className={`an-point-case ${on ? 'is-on' : ''}`}>
+                          <a href={s.uiUrl} target="_blank" rel="noreferrer" title={`${s.service} — ${s.title} (UI Bowl 원본 보기)`}>
+                            <img src={s.image} alt="" loading="lazy" />
+                          </a>
+                          <span className="an-similar-name">{s.service}</span>
+                          <span className="an-point-reason">{reason}</span>
+                          <label className={`an-case-pick ${full ? 'is-disabled' : ''}`} title={full ? `최대 ${MAX_COMPARE}개까지 비교할 수 있어요` : undefined}>
+                            <input type="checkbox" checked={on} disabled={full} onChange={() => onPick(s.id)} /> 비교
+                          </label>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
@@ -146,20 +191,65 @@ export function recommend(pool, analysis, tags) {
   }
 }
 
+// 벤치마킹 포인트 하나에 맞는 사례: 포인트 키워드가 화면 이름에 들어 있거나, 같은 UI 패턴을 쓰면서 대표 과업도 같은 화면이에요.
+// UI 패턴('리스트'·'카드' 등)과 화면 유형('목록' 등)은 범위가 넓어서 그것만 같은 화면은 고르지 않아요.
+// 한 포인트 안에서는 같은 앱을 한 번만, 앞 포인트에서 이미 붙인 사례는 뒤로 미뤄요.
+function casesForPoint(pool, point, tags, used, limit = 3) {
+  const want = new Set(point.patterns ?? [])
+  // '월별 내역'처럼 여러 단어면 마지막 단어('내역')로도 찾아요. 한국어 복합어는 보통 마지막 단어가 화면의 대상이에요.
+  const words = [...new Set((point.keywords ?? []).flatMap((k) => [k, k.trim().split(/\s+/).at(-1)]))].filter((k) => squash(k).length >= 2)
+  if (!want.size && !words.length) return []
+  const scored = []
+  for (const s of pool) {
+    if (!s.bm || !s.image) continue
+    const shared = s.bm.patternIds.filter((p) => want.has(p))
+    const text = squash([s.title, s.variant].join('|')) // 키워드는 화면 이름에서만 찾아요(태그·분류명까지 보면 너무 넓어져요)
+    const word = words.find((k) => text.includes(squash(k)))
+    const sameTask = Boolean(tags.userTask) && s.bm.taskIds[0] === tags.userTask
+    const sameType = Boolean(tags.screenType) && s.bm.screenTypeId === tags.screenType
+    if (!word && !(shared.length && sameTask)) continue
+    const score = (word ? 4 : 0) + shared.length * 2 + (sameTask ? 3 : 0) + (sameType ? 2 : 0) + (tags.domain && s.bm.domainId === tags.domain ? 1 : 0) - (used.has(s.id) ? 4 : 0)
+    const how = word ? `‘${word}’ 화면` : `같은 방식 · ${labelOf.pattern(shared[0])}`
+    scored.push({ s, score, reason: sameTask ? `${how} · 같은 과업` : how })
+  }
+  scored.sort((a, b) => b.score - a.score || (b.s.dataMonth ?? '').localeCompare(a.s.dataMonth ?? ''))
+  const services = new Set()
+  const out = []
+  for (const x of scored) {
+    if (services.has(x.s.service)) continue
+    services.add(x.s.service)
+    out.push(x)
+    if (out.length === limit) break
+  }
+  return out
+}
+
 // 기획서·디자인 검토에 붙여 넣을 Markdown
-function toMarkdown({ a, tags, result, focus, compare, cases }) {
+function toMarkdown({ a, tags, result, focus, compare, cases, pointCases }) {
   const d = a.design
   const list = (items) => items.map((t) => `- ${typeof t === 'string' ? t : t.text + md(t.basis)}`).join('\n')
-  const tk = (items) =>
-    items.map((t) => [`- **${t.text}**${md(t.basis)}`, t.when && `  - 적용하기 좋은 조건: ${t.when}`, t.limit && `  - 검토할 한계: ${t.limit}`, t.idea && `  - 우리 서비스 검토안: ${t.idea}`].filter(Boolean).join('\n')).join('\n')
+  const tk = (items, side) =>
+    items
+      .map((t, i) =>
+        [
+          `- **${t.text}**`,
+          t.observed && `  - 화면에서 확인한 사실: ${t.observed}`,
+          t.effect && `  - 기대 효과(검증 필요): ${t.effect}`,
+          t.consider && `  - 우리 서비스 적용 시 검토할 점: ${t.consider}`,
+          pointCases[`${side}-${i}`]?.length && `  - 이 방식을 쓴 사례: ${pointCases[`${side}-${i}`].map(({ s }) => `${s.service} — ${s.title}`).join(', ')}`,
+        ]
+          .filter(Boolean)
+          .join('\n'),
+      )
+      .join('\n')
   const parts = [`# 화면 분석${d.summary ? ` — ${d.summary}` : ''}`]
   if (focus) parts.push(`**참고하려는 점** ${focus}`)
   if (d.userGoal) parts.push(`**사용자 목적** ${d.userGoal.text}${md(d.userGoal.basis)}`)
+  if (d.takeaways.pm.length || d.takeaways.designer.length)
+    parts.push(`## 핵심 벤치마킹 포인트\n${d.takeaways.pm.length ? `**PM 관점**\n${tk(d.takeaways.pm, 'pm')}\n` : ''}${d.takeaways.designer.length ? `**디자이너 관점**\n${tk(d.takeaways.designer, 'designer')}` : ''}`)
   if (d.keyInfo.length) parts.push(`## 핵심 정보\n${list(d.keyInfo)}`)
   if (a.primaryAction) parts.push(`**주요 행동** ${a.primaryAction.label} — ${a.primaryAction.description}`)
   if (d.flow) parts.push(`## 정보 구조\n${d.flow}${d.flowNote ? `\n※ ${d.flowNote}` : ''}`)
-  if (d.takeaways.pm.length || d.takeaways.designer.length)
-    parts.push(`## 핵심 벤치마킹 포인트\n${d.takeaways.pm.length ? `**PM 관점**\n${tk(d.takeaways.pm)}\n` : ''}${d.takeaways.designer.length ? `**디자이너 관점**\n${tk(d.takeaways.designer)}` : ''}`)
   if (compare) {
     const head = ['비교 항목', '원본', ...cases.map((c, i) => `사례 ${i + 1}`)]
     const rows = compare.rows.map((r) => [r.label, ...r.cells].map((c) => c.replace(/\|/g, '/')))
@@ -220,6 +310,12 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
   const [cmp, setCmp] = useState({ status: 'idle' }) // 비교 결과
   const input = useRef(null)
   const casesRef = useRef(null)
+  const editRef = useRef(null)
+  const openEdit = () => {
+    if (!editRef.current) return
+    editRef.current.open = true
+    editRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   function clearResult() {
     setState({ status: 'idle' })
@@ -300,7 +396,22 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
 
   const rec = useMemo(() => (a && tags ? recommend(pool, a, tags) : { purpose: [], broader: [] }), [pool, a, tags])
   const shown = rec.purpose.length ? rec.purpose : broaden ? rec.broader : []
-  const caseById = useMemo(() => Object.fromEntries([...rec.purpose, ...rec.broader].map((x) => [x.s.id, x.s])), [rec])
+  // 포인트별 사례: 키는 'pm-0', 'designer-1'처럼 관점과 순서예요.
+  const pointCases = useMemo(() => {
+    if (!d || !tags) return {}
+    const out = {}
+    const used = new Set()
+    for (const side of ['pm', 'designer'])
+      d.takeaways[side].forEach((t, i) => {
+        out[`${side}-${i}`] = casesForPoint(pool, t, tags, used)
+        out[`${side}-${i}`].forEach(({ s }) => used.add(s.id))
+      })
+    return out
+  }, [pool, d, tags])
+  const caseById = useMemo(
+    () => Object.fromEntries([...rec.purpose, ...rec.broader, ...Object.values(pointCases).flat()].map((x) => [x.s.id, x.s])),
+    [rec, pointCases],
+  )
   const pickedCases = picked.map((id) => caseById[id]).filter(Boolean)
   const sameTaskIds = tags?.userTask && rec.purpose.some((x) => x.s.bm.taskIds[0] === tags.userTask) ? [tags.userTask] : null
 
@@ -328,7 +439,7 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
   const copy = async (kind) => {
     const text =
       kind === 'md'
-        ? toMarkdown({ a, tags, result, focus: result.focus, compare: cmp.status === 'done' ? cmp.result : null, cases: cmp.cases ?? [] })
+        ? toMarkdown({ a, tags, result, focus: result.focus, compare: cmp.status === 'done' ? cmp.result : null, cases: cmp.cases ?? [], pointCases })
         : JSON.stringify(
             {
               focus: result.focus,
@@ -354,6 +465,29 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
     setCopied(kind)
     setTimeout(() => setCopied(null), 1800)
   }
+
+  // AI가 대표 과업을 정하지 못했는데 '확인 필요'에 넣지 않았으면, 고칠 수 있게 직접 넣어요.
+  const taskReason = (t) =>
+    t.status === 'out_of_scope'
+      ? '자동차·금융 과업 범위 밖으로 봤어요. 참고하려는 과업이 있으면 골라 주세요.'
+      : t.categoryId
+        ? `${labelOf.taskGroup(t.categoryId)}까지는 알 수 있지만 세부 과업을 하나로 정하지 못했어요.`
+        : '이 화면만으로는 대표 과업을 하나로 정하지 못했어요.'
+  const uncertain =
+    d && !a.userTask.id && !d.uncertain.some((u) => u.field === 'userTask') ? [{ field: 'userTask', reason: taskReason(a.userTask) }, ...d.uncertain] : (d?.uncertain ?? [])
+
+  // '확인 필요'에서 고친 분류: 'AI 값 → 고친 값'으로 보여줘요(예: 금융 → 모빌리티).
+  const named = (label, id) => (id ? label(id) : '없음')
+  const fixes =
+    a && tags
+      ? [
+          ['domain', a.domain.id, labelOf.domain],
+          ['userTask', a.userTask.id, labelOf.task],
+          ['screenType', a.screenType.id, labelOf.screenType],
+        ]
+          .filter(([k, ai]) => userEdited[k] && tags[k] !== ai)
+          .map(([k, ai, label]) => `${FIELD_LABEL[k]} ${named(label, ai)} → ${named(label, tags[k])}`)
+      : []
 
   const tagChips = tags && [
     tags.domain && labelOf.domain(tags.domain),
@@ -446,26 +580,50 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
                 {result.focus && <p className="an-evidence">참고하려는 점 · {result.focus}</p>}
                 {d.summary ? <p className="an-lead">{d.summary}</p> : <p className="an-lead">{a.reasoning}</p>}
                 {d.userGoal && (
-                  <div className="an-block">
-                    <h4 className="an-label">사용자 목적</h4>
-                    <p>
-                      {d.userGoal.text} <Basis basis={d.userGoal.basis} />
-                    </p>
-                  </div>
+                  <p className="an-goal">
+                    <span className="an-label">사용자 목적</span> {d.userGoal.text} <Basis basis={d.userGoal.basis} />
+                  </p>
                 )}
-                <Notes title="핵심 정보" items={d.keyInfo} />
-                <div className="an-block">
-                  <h4 className="an-label">주요 행동</h4>
-                  <p>{a.primaryAction ? `${a.primaryAction.label} — ${a.primaryAction.description}` : '뚜렷한 주요 행동이 보이지 않아요'}</p>
-                </div>
-                {d.uncertain.length > 0 && (
-                  <ul className="an-uncertain" aria-label="확인이 필요한 항목">
-                    {d.uncertain.map((u, i) => (
-                      <li key={i}>
-                        <strong>{FIELD_LABEL[u.field]} 확인 필요</strong> — {u.reason}
-                      </li>
-                    ))}
-                  </ul>
+                {uncertain.length > 0 && (
+                  <div className="an-uncertain" aria-label="확인이 필요한 항목">
+                    <ul>
+                      {uncertain.map((u, i) => (
+                        <li key={i}>
+                          <strong>{FIELD_LABEL[u.field]} 확인 필요</strong> — {u.reason}
+                          {/* 확인이 필요한 분류는 여기서 바로 고치고, 고친 값으로 사례를 다시 찾아요. */}
+                          {u.field === 'domain' && (
+                            <Select label="맞는 도메인으로 고치기" value={tags.domain} options={DOMAINS} onChange={(v) => change({ domain: v })} />
+                          )}
+                          {u.field === 'userTask' && (
+                            <Select
+                              label="맞는 대표 과업으로 고치기"
+                              value={tags.userTask}
+                              options={TASKS}
+                              grouped
+                              emptyLabel="분류 검토 필요"
+                              onChange={(v) => change({ userTask: v, category: v ? TASK_BY_ID[v].group : tags.category })}
+                            />
+                          )}
+                          {u.field === 'screenType' && (
+                            <Select label="맞는 화면 유형으로 고치기" value={tags.screenType} options={SCREEN_TYPES} onChange={(v) => change({ screenType: v })} />
+                          )}
+                          {u.field === 'uiPatterns' && (
+                            <button type="button" className="link-button" onClick={openEdit}>
+                              UI 패턴 고치기
+                            </button>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                    {fixes.length > 0 && (
+                      <p className="an-refound">
+                        {fixes.join(' · ')} — 고친 분류로 사례를 다시 찾았어요(같은 목적 {rec.purpose.length}개).{' '}
+                        <button type="button" className="link-button" onClick={() => casesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
+                          사례 보기
+                        </button>
+                      </p>
+                    )}
+                  </div>
                 )}
                 <div className="an-tags" aria-label="분류">
                   {tagChips.map((t, i) => (
@@ -476,27 +634,24 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
                 </div>
               </section>
 
-              {/* 2. 핵심 벤치마킹 포인트 */}
+              {/* 2. 핵심 벤치마킹 포인트: 포인트마다 이 방식을 쓴 사례를 붙여요 */}
               <section className="an-section" aria-label="핵심 벤치마킹 포인트">
                 <h3 className="an-h">핵심 벤치마킹 포인트</h3>
-                {d.flow && (
-                  <div className="an-block">
-                    <h4 className="an-label">정보 구조</h4>
-                    <p className="an-flow">{d.flow}</p>
-                    {d.flowNote && <p className="an-evidence">※ {d.flowNote}</p>}
-                  </div>
-                )}
-                {(d.takeaways.pm.length > 0 || d.takeaways.designer.length > 0) && (
+                {d.takeaways.pm.length > 0 || d.takeaways.designer.length > 0 ? (
                   <div className="an-two an-boxed">
-                    <Takeaways title="PM 관점" items={d.takeaways.pm} />
-                    <Takeaways title="디자이너 관점" items={d.takeaways.designer} />
+                    <Takeaways title="PM 관점" items={d.takeaways.pm} casesOf={(i) => pointCases[`pm-${i}`] ?? []} picked={picked} onPick={togglePick} />
+                    <Takeaways title="디자이너 관점" items={d.takeaways.designer} casesOf={(i) => pointCases[`designer-${i}`] ?? []} picked={picked} onPick={togglePick} />
                   </div>
+                ) : (
+                  <p className="an-evidence">이번 분석에서는 벤치마킹 포인트가 나오지 않았어요. ‘다시 분석’을 누르면 새로 뽑아요.</p>
                 )}
-                {(d.composition.length > 0 || a.layout.characteristics.length > 0) && (
-                  <details className="an-more">
-                    <summary>구성 방식 자세히</summary>
-                    <Notes items={d.composition.length ? d.composition : a.layout.characteristics} />
-                  </details>
+                {picked.length > 0 && (
+                  <p className="an-evidence">
+                    비교할 사례 {picked.length}개를 골랐어요.{' '}
+                    <button type="button" className="link-button" onClick={() => casesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
+                      나란히 비교하러 가기
+                    </button>
+                  </p>
                 )}
               </section>
 
@@ -608,7 +763,30 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
                 )}
               </section>
 
-              {/* 4. 접어 두는 영역: 추가 확인 사항 · 분류 수정 · 상세 정보 */}
+              {/* 4. 화면 구성: 핵심 정보 · 주요 행동 · 정보 구조 */}
+              <section className="an-section" aria-label="화면 구성">
+                <h3 className="an-h">화면 구성</h3>
+                <Notes title="핵심 정보" items={d.keyInfo} />
+                <div className="an-block">
+                  <h4 className="an-label">주요 행동</h4>
+                  <p>{a.primaryAction ? `${a.primaryAction.label} — ${a.primaryAction.description}` : '뚜렷한 주요 행동이 보이지 않아요'}</p>
+                </div>
+                {d.flow && (
+                  <div className="an-block">
+                    <h4 className="an-label">정보 구조</h4>
+                    <p className="an-flow">{d.flow}</p>
+                    {d.flowNote && <p className="an-evidence">※ {d.flowNote}</p>}
+                  </div>
+                )}
+                {(d.composition.length > 0 || a.layout.characteristics.length > 0) && (
+                  <details className="an-more">
+                    <summary>구성 방식 자세히</summary>
+                    <Notes items={d.composition.length ? d.composition : a.layout.characteristics} />
+                  </details>
+                )}
+              </section>
+
+              {/* 5. 접어 두는 영역: 추가 확인 사항 · 분류 수정 · 상세 정보 */}
               {(d.openQuestions.pm.length > 0 || d.openQuestions.designer.length > 0 || a.notVisible.length > 0) && (
                 <details className="an-more">
                   <summary>추가 확인 사항</summary>
@@ -623,7 +801,7 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
                 </details>
               )}
 
-              <details className="an-more">
+              <details className="an-more" ref={editRef}>
                 <summary>분류 수정하기{edited && ' · 내가 수정함'}</summary>
                 <div className="an-edit-body">
                   <p className="an-evidence">자동차금융 관련성: {RELEVANCE_LABEL[a.userTask.relevance]}</p>

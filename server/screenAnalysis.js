@@ -21,6 +21,7 @@ const PROMPT = `당신은 자동차·금융 서비스의 UX 벤치마킹 분석�
 - 화면 속 개인정보·계좌·이름 같은 민감 값은 옮겨 적지 않아요(필요하면 "이름 입력란"처럼 종류만 써요).
 - 다크패턴 여부나 법·규정 준수 판단은 하지 않아요. UX 구조 분석만 해요.
 - 각 분류에는 화면에서 보인 근거(evidence)를 한국어 한 줄로 적어요.
+- 사람이 읽는 문장(evidence·reason·reasoning·design의 모든 글)에는 id(예: PAYMENT.HISTORY)나 null·needs_review 같은 내부 값을 쓰지 않고 한국어 이름으로 써요.
 
 ## 사용자 과업 (userTask) — 사용자가 이 화면에서 달성하려는 '목적'만 기준으로 골라요
 사용자 과업·화면 유형·UI 패턴은 서로 독립된 분류예요. 화면 유형('결과')이나 UI 패턴('카드')을 과업으로 쓰지 않아요.
@@ -72,7 +73,14 @@ ${list(DOMAINS)}
 - flow: 정보 구조를 화살표로 이은 한 줄(예: "총지출 → 월별 비교 → 항목별 상세 → 상세 조회 CTA"). 화면이 잘려 전체 배치를 알 수 없으면 flowNote에 "전체 화면에서 실제 배치 확인 필요"처럼 적어요.
 - composition: 카드·차트·리스트·탭 등을 어떻게 묶고 조합했는지 2~4개.
 - takeaways.pm: 기능 범위·진입 구조·흐름 관점에서 다른 서비스가 참고할 만한 접근 1~3개. takeaways.designer: 정보 묶음·위계·표현·인터랙션 관점에서 재사용할 만한 구성 1~3개.
-  각 항목은 설계 선택지로 써요(효과가 검증된 것처럼 단정하지 않아요): text=참고할 방식, when=적용하기 좋은 조건("~할 때"), limit=검토할 한계, idea=우리 서비스에서 검토해 볼 안("~할지 검토"). 칭찬이 아니라 '어떤 방식인지'를 써요.
+  relevance나 status와 상관없이(범위 밖·검토 필요여도) 화면에서 참고할 만한 방식이 보이면 반드시 써요.
+  각 항목은 관찰과 해석을 나눠 써요. 칭찬이 아니라 '어떤 방식인지'를 써요.
+  · text: 참고할 방식을 짧은 이름으로(예: "차트 제목을 요약 문장으로 제공")
+  · observed: 화면에서 확인한 사실만(예: "증가액을 파란색으로 강조했어요"). 해석·효과는 넣지 않아요.
+  · effect: 기대 효과. 검증이 필요한 해석이므로 단정하지 않아요(예: "변화량을 더 빨리 파악하게 할 수 있어요").
+  · consider: 우리 서비스에 적용할 때 검토할 점. 맞는 조건과 한계를 함께 써요(예: "감소가 좋은 지표라면 색 의미가 반대로 읽힐 수 있어 색 규칙을 검토").
+  · patterns: 이 방식과 관련된 UI 패턴 id 0~2개(위 목록의 id만).
+  · keywords: 이 방식을 쓴 다른 화면을 찾을 때 쓸, 앱 화면 이름에 흔히 들어가는 한 단어 명사 1~3개(예: "내역", "명세서", "한도", "견적", "리포트"). 띄어쓰기 없는 한 단어로 쓰고 앱 이름은 넣지 않아요.
 - benchmarkKeywords: 비슷한 사례를 찾을 때 쓸 화면 목적 키워드 3~6개. 다른 앱 화면 이름에 붙을 법한 짧은 명사로 써요(예: "지출", "리포트", "차계부", "소비 분석"). 앱 이름·UI 요소 이름은 넣지 않아요.
 - 사용자가 '참고하려는 점'을 함께 보내면 summary를 뺀 모든 설계 분석(keyInfo·takeaways·openQuestions)을 그 관점에 맞춰 구체적으로 써요. 없으면 일반적인 관점으로 써요.
 - openQuestions.pm: 이미지로 판단할 수 없어 확인해야 할 정책·데이터 기준·앞뒤 흐름 1~3개. openQuestions.designer: 확인해야 할 상태 변화·빈 데이터·오류·예외 화면 1~3개.
@@ -98,7 +106,7 @@ JSON 객체 하나만 출력해요(마크다운·설명 금지). 키:
     "keyInfo": string[],
     "flow": string, "flowNote": string|null,
     "composition": [{"text": string, "basis": "observed"|"inferred"}],
-    "takeaways": {"pm": [{"text": string, "when": string, "limit": string, "idea": string, "basis": "observed"|"inferred"}], "designer": [같은 형식]},
+    "takeaways": {"pm": [{"text": string, "observed": string, "effect": string, "consider": string, "patterns": UI 패턴 id[], "keywords": string[]}], "designer": [같은 형식]},
     "benchmarkKeywords": string[],
     "openQuestions": {"pm": string[], "designer": string[]},
     "uncertain": [{"field": string, "reason": string}]
@@ -128,13 +136,29 @@ function parseImage(dataUrl) {
   return { mediaType: match[1], data: match[2] }
 }
 
-function extractJson(text) {
-  const fenced = /```(?:json)?\s*([\s\S]*?)```/.exec(text ?? '')
-  const body = fenced ? fenced[1] : text ?? ''
-  const start = body.indexOf('{')
-  const end = body.lastIndexOf('}')
-  if (start < 0 || end <= start) throw new Error('AI 응답에서 분석 결과(JSON)를 찾지 못했어요. 다시 시도해 주세요.')
-  return JSON.parse(body.slice(start, end + 1))
+// AI가 JSON 뒤에 설명이나 두 번째 JSON을 붙이는 경우가 있어서, 첫 번째로 완성된 JSON 객체만 읽어요(문자열 안의 괄호는 세지 않아요).
+export function extractJson(text, what = '분석 결과') {
+  const body = text ?? ''
+  for (let start = body.indexOf('{'); start >= 0; start = body.indexOf('{', start + 1)) {
+    let depth = 0
+    let inString = false
+    for (let i = start; i < body.length; i++) {
+      const c = body[i]
+      if (inString) {
+        if (c === '\\') i++
+        else if (c === '"') inString = false
+      } else if (c === '"') inString = true
+      else if (c === '{') depth++
+      else if (c === '}' && --depth === 0) {
+        try {
+          return JSON.parse(body.slice(start, i + 1))
+        } catch {
+          break // 이 위치에서 시작한 객체가 JSON이 아니면 다음 '{'부터 다시 찾아요
+        }
+      }
+    }
+  }
+  throw new Error(`AI 응답에서 ${what}(JSON)를 찾지 못했어요. 다시 시도해 주세요.`)
 }
 
 // 모델이 목록에 없는 id를 만들어 내도 화면에는 목록 안의 값만 나가게 걸러요.
@@ -177,11 +201,21 @@ const noted = (v, max = 4) =>
     .filter((x) => typeof x?.text === 'string' && x.text.trim())
     .slice(0, max)
     .map((x) => ({ text: str(x.text), basis: pick(x.basis, BASIS) ?? 'inferred' }))
+// 벤치마킹 포인트: 확인한 사실(observed) / 기대 효과(effect, 검증 필요) / 적용 시 검토할 점(consider)을 나눠 받아요.
+// 모델이 방식 이름을 text가 아닌 키(title·method 등)로 쓰는 경우도 받아요.
+const pointName = (x) => [x?.text, x?.title, x?.method, x?.name].find((t) => typeof t === 'string' && t.trim()) ?? ''
 const takeaway = (v) =>
-  noted(v, 3).map((t, i) => {
-    const src = (Array.isArray(v) ? v : []).filter((x) => (typeof x === 'string' ? x : x?.text)?.trim())[i] ?? {}
-    return { ...t, when: str(src.when, 160), limit: str(src.limit, 160), idea: str(src.idea, 160) }
-  })
+  (Array.isArray(v) ? v : [])
+    .filter((x) => pointName(x) || (typeof x?.observed === 'string' && x.observed.trim()))
+    .slice(0, 3)
+    .map((x) => ({
+      text: str(pointName(x) || x.observed, 120),
+      observed: pointName(x) ? str(x.observed, 200) : '', // 이름이 없어 사실을 이름으로 쓴 경우 두 번 보이지 않게 해요
+      effect: str(x.effect, 200),
+      consider: str(x.consider, 240),
+      patterns: (Array.isArray(x.patterns) ? x.patterns : []).filter((id) => ids(UI_PATTERNS).includes(id)).slice(0, 2),
+      keywords: strs(x.keywords, 3).map((k) => k.slice(0, 20)),
+    }))
 function validateDesign(raw) {
   return {
     summary: str(raw?.summary, 200),
