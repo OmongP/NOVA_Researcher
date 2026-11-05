@@ -3,16 +3,15 @@
 // 실행: node scripts/cloud-auth.js  → 출력되는 주소를 브라우저에서 열어 UI Bowl에 로그인·허용해 주세요.
 import { createHash, randomBytes } from 'node:crypto'
 import { createServer } from 'node:http'
-import { execFileSync } from 'node:child_process'
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { kv } from './tunnel-kv.js' // server/.cf-token 전용 토큰이 있으면 wrangler 로그인 만료와 상관없이 저장해요
 
 const ISSUER = 'https://uibowl.io'
 const MCP_URL = `${ISSUER}/api/mcp`
 const PORT = 8799
 const REDIRECT = `http://localhost:${PORT}/callback`
-const KV_ID = process.env.UXLENS_KV_ID ?? 'ecf59c5216cf4b76848bb01f381dbad4'
 
 const meta = await (await fetch(`${ISSUER}/.well-known/oauth-authorization-server`)).json()
 const reg = await (
@@ -79,7 +78,7 @@ const dir = mkdtempSync(join(tmpdir(), 'uxlens-'))
 const file = join(dir, 'auth.json')
 writeFileSync(file, JSON.stringify({ client: reg, tokens: { ...tokens, obtainedAt: Date.now() } }), { mode: 0o600 })
 try {
-  execFileSync('npx', ['wrangler', 'kv', 'key', 'put', 'auth', '--path', file, '--namespace-id', KV_ID, '--remote'], { stdio: 'inherit' })
+  kv(['put', 'auth', '--path', file])
 } finally {
   rmSync(dir, { recursive: true, force: true })
 }
