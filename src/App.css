@@ -3982,10 +3982,94 @@ img.brand-mark {
 }
 
 .an-compare tbody th {
-  width: 96px;
+  width: 120px;
   color: var(--text-sub);
   font-size: 12px;
   font-weight: 600;
+}
+
+/* 비교 전: 왜 이 사례인가 */
+.an-cmp-why {
+  display: grid;
+  gap: 6px;
+  margin: 4px 0 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-8);
+}
+
+.an-cmp-why ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+}
+
+.an-cmp-why li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+}
+
+.an-rel {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--text-sub);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.an-rel-same-step {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.an-rel-same-task {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.an-compare thead .an-rel {
+  display: block;
+  width: fit-content;
+  margin-top: 4px;
+}
+
+.an-compare tbody th small {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-sub);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.an-compare td.is-empty {
+  color: var(--text-sub);
+}
+
+.an-cmp-scope {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.an-cmp-scope strong {
+  margin-right: 6px;
+  color: var(--accent);
+}
+
+.an-findings ol {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 18px;
 }
 
 .an-boxed-single {

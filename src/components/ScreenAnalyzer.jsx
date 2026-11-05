@@ -224,6 +224,27 @@ function casesForPoint(pool, point, tags, used, limit = 3) {
   return out
 }
 
+// 비교 전에 '왜 이 사례인가'를 정해요: 원본과 목적(과업)·단계(화면 유형)가 같은지, 아니면 비슷한 UI만 같은지.
+// 대표 과업이 같거나, AI가 뽑은 목적 키워드가 사례 화면 이름에 있으면 '같은 목적'으로 봐요(추천 사례와 같은 기준).
+// 목적이 다른 사례는 화면 전체가 아니라 공통 UI의 표현 방식만 좁혀서 비교해요.
+export function caseRelation(s, tags, keywords = []) {
+  const bm = s.bm ?? { taskIds: [], patternIds: [] }
+  const text = squash([s.title, s.pattern, s.variant, ...(s.keywords ?? [])].join('|'))
+  const word = keywords.find((k) => squash(k).length >= 2 && text.includes(squash(k)))
+  const sameTask = Boolean(tags?.userTask) && bm.taskIds[0] === tags.userTask
+  const samePurpose = sameTask || Boolean(word)
+  const sameType = Boolean(tags?.screenType) && bm.screenTypeId === tags.screenType
+  const shared = bm.patternIds.filter((p) => tags?.uiPatterns?.includes(p)).map((p) => labelOf.pattern(p))
+  const task = bm.taskIds[0] ? labelOf.task(bm.taskIds[0]) : ''
+  const screenType = bm.screenTypeId ? labelOf.screenType(bm.screenTypeId) : ''
+  const why = sameTask ? `같은 과업 · ${task}` : word ? `같은 목적 · ‘${word}’ 화면` : task ? `사례 과업 · ${task}` : '사례 과업 · 확인 필요'
+  const base = { task, screenType, shared, why: screenType ? `${why} · ${screenType}` : why }
+  const how = shared.length ? `${shared.slice(0, 2).join('·')} 표현 방식만 참고해요` : '화면 표현 방식만 좁혀서 참고해요'
+  if (samePurpose && sameType) return { ...base, id: 'same-step', label: '같은 과업·같은 단계', focus: '정보 제공 범위·주요 행동·구성 방식을 비교해요' }
+  if (samePurpose) return { ...base, id: 'same-task', label: '같은 과업·다른 단계', focus: `${screenType ? `${screenType} 단계에서` : '단계별로'} 필요한 정보와 행동의 차이를 비교해요` }
+  return { ...base, id: 'similar-ui', label: task ? '다른 과업·유사한 UI' : '과업 미확인·유사한 UI', focus: how }
+}
+
 // 기획서·디자인 검토에 붙여 넣을 Markdown
 function toMarkdown({ a, tags, result, focus, compare, cases, pointCases }) {
   const d = a.design
@@ -252,12 +273,14 @@ function toMarkdown({ a, tags, result, focus, compare, cases, pointCases }) {
   if (d.flow) parts.push(`## 정보 구조\n${d.flow}${d.flowNote ? `\n※ ${d.flowNote}` : ''}`)
   if (compare) {
     const head = ['비교 항목', '원본', ...cases.map((c, i) => `사례 ${i + 1}`)]
-    const rows = compare.rows.map((r) => [r.label, ...r.cells].map((c) => c.replace(/\|/g, '/')))
+    const rows = compare.rows.map((r) => [r.label, ...r.cells.map((c) => c || '해당 없음')].map((c) => c.replace(/\|/g, '/')))
     parts.push(
-      `## 사례 비교\n${cases.map((c, i) => `- 사례 ${i + 1}: ${c.service} — ${c.title} (UI Bowl 수집월 ${c.dataMonth ?? '확인 필요'}) ${c.uiUrl ?? ''}`).join('\n')}\n\n| ${head.join(' | ')} |\n| ${head.map(() => '---').join(' | ')} |\n${rows.map((r) => `| ${r.join(' | ')} |`).join('\n')}`,
+      `## 사례 비교\n${cases.map((c, i) => `- 사례 ${i + 1}: ${c.service} — ${c.title} · ${c.rel?.label ?? ''}${c.rel?.why ? `(${c.rel.why})` : ''} (UI Bowl 수집월 ${c.dataMonth ?? '확인 필요'}) ${c.uiUrl ?? ''}`).join('\n')}${compare.scope ? `\n\n**비교 범위** ${compare.scope}` : ''}\n\n| ${head.join(' | ')} |\n| ${head.map(() => '---').join(' | ')} |\n${rows.map((r) => `| ${r.join(' | ')} |`).join('\n')}`,
     )
-    if (compare.differences.length) parts.push(`**차이와 적합한 조건**\n${compare.differences.map((x) => `- ${x.text}${x.fitWhen ? ` → ${x.fitWhen}` : ''}`).join('\n')}`)
-    if (compare.suggestion) parts.push(`**검토할 선택지** ${compare.suggestion}`)
+    if (compare.findings?.length)
+      parts.push(
+        `**차이와 참고할 점**\n${compare.findings.map((f) => `- 핵심 차이: ${f.difference}${f.reference ? `\n  - 참고할 점: ${f.reference}` : ''}${f.check ? `\n  - 적용 전 확인: ${f.check}` : ''}`).join('\n')}`,
+      )
   }
   if (d.openQuestions.pm.length || d.openQuestions.designer.length)
     parts.push(`## 추가 확인 사항\n${d.openQuestions.pm.length ? `**정책·데이터·흐름**\n${list(d.openQuestions.pm)}\n` : ''}${d.openQuestions.designer.length ? `**상태·예외**\n${list(d.openQuestions.designer)}` : ''}`)
@@ -417,6 +440,10 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
 
   const togglePick = (id) => setPicked((p) => (p.includes(id) ? p.filter((x) => x !== id) : p.length >= MAX_COMPARE ? p : [...p, id]))
 
+  // 고른 사례마다 원본과의 관계를 붙여요(비교 전에 보여주고, AI에도 보내요).
+  const picks = pickedCases.map((s) => ({ s, rel: caseRelation(s, tags, d?.benchmarkKeywords ?? []) }))
+  const onlySimilar = picks.length > 0 && picks.every((p) => p.rel.id === 'similar-ui')
+
   async function runCompare() {
     setCmp({ status: 'loading' })
     try {
@@ -426,11 +453,23 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
           dataUrl: preview.dataUrl,
           focus,
           summary: d.summary,
-          cases: pickedCases.map((s) => ({ imageUrl: s.image, service: s.service, title: s.title, dataMonth: s.dataMonth })),
+          context: { task: tags.userTask ? labelOf.task(tags.userTask) : '', screenType: tags.screenType ? labelOf.screenType(tags.screenType) : '' },
+          cases: picks.map(({ s, rel }) => ({
+            imageUrl: s.image,
+            service: s.service,
+            title: s.title,
+            dataMonth: s.dataMonth,
+            relation: rel.id,
+            relationLabel: rel.label,
+            why: rel.why,
+            task: rel.task,
+            screenType: rel.screenType,
+            shared: rel.shared.join(', '),
+          })),
         },
         '화면 비교',
       )
-      setCmp({ status: 'done', result: { ...data.compare, comparedAt: data.comparedAt, model: data.model }, cases: pickedCases })
+      setCmp({ status: 'done', result: { ...data.compare, comparedAt: data.comparedAt, model: data.model }, cases: picks.map(({ s, rel }) => ({ ...s, rel })) })
     } catch (e) {
       setCmp({ status: 'error', error: netError(e) })
     }
@@ -698,6 +737,25 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
                         )
                       })}
                     </div>
+                    {picks.length > 0 && (
+                      <div className="an-cmp-why" aria-label="왜 이 사례와 비교하나요">
+                        <p className="an-label">왜 이 사례와 비교하나요</p>
+                        <ul>
+                          {picks.map(({ s, rel }, i) => (
+                            <li key={s.id}>
+                              <span className={`an-rel an-rel-${rel.id}`}>{rel.label}</span>
+                              <span>
+                                <strong>
+                                  사례 {i + 1} · {s.service}
+                                </strong>
+                                {` (${rel.why})`} → {rel.focus}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                        {onlySimilar && <p className="an-evidence">같은 과업의 사례가 없어서 화면 전체가 아니라 공통 UI의 표현 방식만 좁혀서 비교해요. 같은 과업 사례가 있으면 함께 골라 주세요.</p>}
+                      </div>
+                    )}
                     <div className="an-actions">
                       <button type="button" className="button button-primary" disabled={picked.length === 0 || cmp.status === 'loading'} onClick={runCompare}>
                         {cmp.status === 'loading' ? '비교하는 중… (1~2분)' : picked.length ? `선택한 ${picked.length}개와 나란히 비교` : '비교할 사례를 골라 주세요 (최대 3개)'}
@@ -713,51 +771,76 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
                 {cmp.status === 'error' && <p className="an-error">{cmp.error}</p>}
                 {cmp.status === 'done' && (
                   <div className="an-compare">
-                    <div className="an-compare-scroll">
-                      <table>
-                        <thead>
-                          <tr>
-                            <th scope="col">비교 항목</th>
-                            <th scope="col">
-                              <img src={preview.dataUrl} alt="" />
-                              원본
-                            </th>
-                            {cmp.cases.map((s, i) => (
-                              <th key={s.id} scope="col">
-                                <img src={s.image} alt="" />
-                                사례 {i + 1} · {s.service}
+                    {cmp.result.scope && (
+                      <p className="an-cmp-scope">
+                        <strong>비교 범위</strong> {cmp.result.scope}
+                      </p>
+                    )}
+                    {cmp.result.rows.length > 0 && (
+                      <div className="an-compare-scroll">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th scope="col">비교 항목</th>
+                              <th scope="col">
+                                <img src={preview.dataUrl} alt="" />
+                                원본
                               </th>
-                            ))}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {cmp.result.rows.map((r) => (
-                            <tr key={r.id}>
-                              <th scope="row" title={r.question}>
-                                {r.label}
-                              </th>
-                              {r.cells.map((c, i) => (
-                                <td key={i}>{c}</td>
+                              {cmp.cases.map((s, i) => (
+                                <th key={s.id} scope="col">
+                                  <img src={s.image} alt="" />
+                                  사례 {i + 1} · {s.service}
+                                  {s.rel && <span className={`an-rel an-rel-${s.rel.id}`}>{s.rel.label}</span>}
+                                </th>
                               ))}
                             </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                    {cmp.result.differences.length > 0 && (
-                      <div className="an-block an-boxed-single">
-                        <h4 className="an-label">차이와 적합한 조건</h4>
-                        <ul>
-                          {cmp.result.differences.map((x, i) => (
-                            <li key={i}>
-                              {x.text}
-                              {x.fitWhen && <span className="an-cond">{x.fitWhen}</span>}
-                            </li>
-                          ))}
-                        </ul>
+                          </thead>
+                          <tbody>
+                            {cmp.result.rows.map((r) => (
+                              <tr key={r.id}>
+                                <th scope="row" title={r.question}>
+                                  {r.label}
+                                  <small>{r.question}</small>
+                                </th>
+                                {r.cells.map((c, i) => (
+                                  <td key={i} className={c ? '' : 'is-empty'}>
+                                    {c || '해당 없음'}
+                                  </td>
+                                ))}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
                       </div>
                     )}
-                    {cmp.result.suggestion && <p className="an-evidence">검토할 선택지 · {cmp.result.suggestion}</p>}
+                    {cmp.result.findings?.length > 0 && (
+                      <div className="an-block an-boxed-single an-findings">
+                        <h4 className="an-label">차이와 참고할 점</h4>
+                        <ol>
+                          {cmp.result.findings.map((f, i) => (
+                            <li key={i}>
+                              <dl className="an-point-rows">
+                                <dt>핵심 차이</dt>
+                                <dd>{f.difference}</dd>
+                                {f.reference && (
+                                  <>
+                                    <dt>참고할 점</dt>
+                                    <dd>{f.reference}</dd>
+                                  </>
+                                )}
+                                {f.check && (
+                                  <>
+                                    <dt>적용 전 확인</dt>
+                                    <dd>{f.check}</dd>
+                                  </>
+                                )}
+                              </dl>
+                            </li>
+                          ))}
+                        </ol>
+                        <p className="an-note">핵심 차이는 화면에서 관찰한 사실이고, 참고할 점은 적용 아이디어예요. 효과는 검증이 필요해요.</p>
+                      </div>
+                    )}
                     <p className="an-note">사례 날짜는 UI Bowl 수집월({cmp.cases.map((s) => s.dataMonth ?? '확인 필요').join(', ')}), 비교 분석일은 {fmtDate(cmp.result.comparedAt)}이에요.</p>
                   </div>
                 )}
