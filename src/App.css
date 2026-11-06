@@ -4191,3 +4191,23 @@ img.brand-mark {
   margin: 0;
   padding-left: 18px;
 }
+
+/* 이름·비밀번호 입력창 */
+.name-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 8px;
+  margin-top: 12px;
+}
+.name-fields input {
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-8);
+  background: var(--bg);
+}
+@media (max-width: 480px) {
+  .name-fields {
+    grid-template-columns: 1fr;
+  }
+}

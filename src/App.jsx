@@ -156,9 +156,9 @@ export default function App() {
   const [toast, setToast] = useState(null)
   const toastTimer = useRef(null)
   const [view, setView] = useState('search')
-  const [name, setName] = useName()
+  const [name, setName, pin] = useName()
   const [epoch, setEpoch] = useState(0) // 팀 코드를 새로 입력하는 등 서버 연결 조건이 바뀌면 올려서 보관함을 다시 맞춰요
-  const store = useCollections(name, epoch)
+  const store = useCollections(name, epoch, pin)
   const team = useTeamLibrary(name, epoch)
   const [archiveScope, setArchiveScope] = useState('mine')
   const [askName, setAskName] = useState(null) // 이름 입력창: { next } 이름을 입력한 뒤(또는 건너뛴 뒤) 이어서 할 일
@@ -390,6 +390,7 @@ export default function App() {
               onScope={setArchiveScope}
               name={name}
               onChangeName={() => setAskName({ next: () => {}, change: true })}
+              pinError={store.storageMode === 'needPin' ? store.pinError : null}
               team={team}
               mineCount={store.bookmarks.length}
               onConnect={connectTeam}
@@ -629,14 +630,15 @@ export default function App() {
         {askName && (
           <NameDialog
             initial={askName.change ? name : ''}
+            error={askName.change ? store.pinError : null}
             onClose={() => {
               const { next } = askName
               setAskName(null)
               next()
             }}
-            onSubmit={(value) => {
+            onSubmit={(value, newPin) => {
               const { next } = askName
-              setName(value)
+              setName(value, newPin)
               setAskName(null)
               next()
             }}

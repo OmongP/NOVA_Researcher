@@ -1,5 +1,5 @@
 // Archive 위쪽: 내 보관함 / 팀 보관함 전환과 현재 이름.
-export default function ArchiveBar({ scope, onScope, name, onChangeName, team, mineCount, onConnect }) {
+export default function ArchiveBar({ scope, onScope, name, onChangeName, pinError, team, mineCount, onConnect }) {
   const teamLabel = team.bookmarks.length ? `팀 보관함 ${team.bookmarks.length}` : '팀 보관함'
   return (
     <div className="archive-bar">
@@ -30,6 +30,14 @@ export default function ArchiveBar({ scope, onScope, name, onChangeName, team, m
           {name ? '이름 바꾸기' : '이름 입력'}
         </button>
       </p>
+      {scope === 'mine' && name && pinError && (
+        <p className="status status-error archive-note">
+          <span>{pinError}. 지금은 이 브라우저에만 저장돼요.</span>
+          <button type="button" className="button" onClick={onChangeName}>
+            비밀번호 입력
+          </button>
+        </p>
+      )}
       {scope === 'team' && team.status === 'needsCode' && (
         <p className="status archive-note">
           <span>팀 보관함을 보려면 팀 코드가 필요해요.</span>

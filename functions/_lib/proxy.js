@@ -30,6 +30,9 @@ export async function proxyToPc({ request, env, path, requireCode = true }) {
   const headers = new Headers({ 'x-ux-lens-proxy': env.AI_PROXY_SECRET })
   const type = request.headers.get('content-type')
   if (type) headers.set('content-type', type)
+  // 개인 보관함 비밀번호는 PC 서버가 확인해요(이 함수는 값을 보거나 남기지 않아요).
+  const pin = request.headers.get('x-user-pin')
+  if (pin) headers.set('x-user-pin', pin)
 
   try {
     const upstream = await fetch(`${tunnel.replace(/\/$/, '')}${path}${url.search}`, {

@@ -153,7 +153,7 @@ export default function SaveDialog({ screen, store, name, onClose }) {
           완료
         </button>
 
-        <p className="save-hint">이미지는 저장하지 않고 원본 링크와 화면 정보만 {store.storageMode === 'server' ? (name ? '이름 기준으로 서버 PC에' : '접속 IP 기준으로 서버 PC에') : '이 브라우저에'} 보관해요. 팀에 공유하려면 위쪽 ‘Archive’ → 내 보관함에서 ‘팀에 공유’를 눌러 주세요.</p>
+        <p className="save-hint">이미지는 저장하지 않고 원본 링크와 화면 정보만 {store.storageMode === 'server' ? (name ? '이름·비밀번호로 서버 PC에' : '접속 IP 기준으로 서버 PC에') : '이 브라우저에'} 보관해요. 팀에 공유하려면 위쪽 ‘Archive’ → 내 보관함에서 ‘팀에 공유’를 눌러 주세요.</p>
         {store.storageError && <p className="save-hint save-error">저장하지 못했어요: {store.storageError}</p>}
       </div>
     </div>

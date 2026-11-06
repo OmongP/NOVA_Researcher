@@ -63,20 +63,43 @@ const writeMigrated = (name) => {
 // 이름이 있으면 이름 기준(/api/user-library), 없으면 예전처럼 접속 IP 기준(/api/library)이에요.
 const serverUrl = (name) => (name ? `/api/user-library?name=${encodeURIComponent(name)}` : '/api/library')
 
-async function pushToServer(name, next) {
-  const res = await aiFetch(serverUrl(name), { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(next) }, { prompt: false })
-  if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error ?? `HTTP ${res.status}`)
+// 이름 기준 보관함은 비밀번호를 x-user-pin 헤더로 보내요(한글도 쓸 수 있게 인코딩해요).
+const pinHeaders = (name, pin) => (name && pin ? { 'x-user-pin': encodeURIComponent(pin) } : {})
+
+class PinProblem extends Error {
+  constructor(message, code) {
+    super(message)
+    this.code = code
+  }
+}
+
+async function check(res) {
+  if (res.ok) return res.json()
+  const body = await res.json().catch(() => ({}))
+  if (String(body.code ?? '').startsWith('pin-')) throw new PinProblem(body.error, body.code)
+  throw new Error(body.error ?? `HTTP ${res.status}`)
+}
+
+async function pushToServer(name, pin, next) {
+  const res = await aiFetch(
+    serverUrl(name),
+    { method: 'PUT', headers: { 'Content-Type': 'application/json', ...pinHeaders(name, pin) }, body: JSON.stringify(next) },
+    { prompt: false },
+  )
+  await check(res)
 }
 
 // 데모 사이트는 팀 코드를 입력한 뒤에만 서버 PC에 보관해요(그 전에는 이 브라우저에만).
 const canUseServer = () => !IS_DEMO || hasTeamCode()
 
 // epoch: 팀 코드를 새로 입력하는 등 서버 연결 조건이 바뀌었을 때 다시 동기화하려고 올리는 숫자예요.
-export function useCollections(name = '', epoch = 0) {
+// pin: 이름 기준 보관함의 비밀번호예요. 이름은 있는데 비밀번호가 없거나 틀리면 서버에 저장하지 않고 'needPin'으로 알려요.
+export function useCollections(name = '', epoch = 0, pin = '') {
   const [state, setState] = useState(load)
   const [storageError, setStorageError] = useState(null)
-  // 'checking' → 'server'(서버 PC에 보관) | 'local'(이 브라우저에만 보관)
+  // 'checking' → 'server'(서버 PC에 보관) | 'local'(이 브라우저에만 보관) | 'needPin'(비밀번호가 없거나 틀려서 이 브라우저에만 보관)
   const [storageMode, setStorageMode] = useState(canUseServer() ? 'checking' : 'local')
+  const [pinError, setPinError] = useState(null)
   const serverReady = useRef(false)
   const latest = useRef(state)
   const timer = useRef(null)
@@ -85,14 +108,20 @@ export function useCollections(name = '', epoch = 0) {
   useEffect(() => {
     serverReady.current = false
     clearTimeout(timer.current)
+    setPinError(null)
     if (!canUseServer()) {
       setStorageMode('local')
       return
     }
+    if (name && !pin) {
+      setStorageMode('needPin')
+      setPinError('내 보관함 비밀번호를 정해 주세요')
+      return
+    }
     setStorageMode('checking')
     let cancelled = false
-    aiFetch(serverUrl(name), {}, { prompt: false })
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
+    aiFetch(serverUrl(name), { headers: pinHeaders(name, pin) }, { prompt: false })
+      .then(check)
       .then(async (data) => {
         if (cancelled) return
         if (data.state) {
@@ -101,7 +130,7 @@ export function useCollections(name = '', epoch = 0) {
           const migrated = readMigrated()
           if (!name || !migrated || migrated === name) {
             if (latest.current.bookmarks.length > 0) {
-              await pushToServer(name, latest.current)
+              await pushToServer(name, pin, latest.current)
               if (name) writeMigrated(name)
             }
           } else {
@@ -111,11 +140,17 @@ export function useCollections(name = '', epoch = 0) {
         serverReady.current = true
         setStorageMode('server')
       })
-      .catch(() => !cancelled && setStorageMode('local'))
+      .catch((err) => {
+        if (cancelled) return
+        if (err instanceof PinProblem) {
+          setPinError(err.message)
+          setStorageMode('needPin')
+        } else setStorageMode('local')
+      })
     return () => {
       cancelled = true
     }
-  }, [name, epoch])
+  }, [name, pin, epoch])
 
   useEffect(() => {
     latest.current = state
@@ -128,9 +163,15 @@ export function useCollections(name = '', epoch = 0) {
     if (!serverReady.current) return
     clearTimeout(timer.current)
     timer.current = setTimeout(() => {
-      pushToServer(name, latest.current)
+      pushToServer(name, pin, latest.current)
         .then(() => setStorageError(null))
-        .catch((err) => setStorageError(`서버에 보관하지 못했어요: ${err.message}`))
+        .catch((err) => {
+          if (err instanceof PinProblem) {
+            serverReady.current = false
+            setPinError(err.message)
+            setStorageMode('needPin')
+          } else setStorageError(`서버에 보관하지 못했어요: ${err.message}`)
+        })
     }, SAVE_DELAY_MS)
   }, [state]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -216,6 +257,7 @@ export function useCollections(name = '', epoch = 0) {
     bookmarks: state.bookmarks,
     storageError,
     storageMode,
+    pinError,
     createCollection,
     renameCollection,
     deleteCollection,

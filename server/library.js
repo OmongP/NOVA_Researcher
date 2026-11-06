@@ -1,9 +1,11 @@
 // 보관함 API
 //  - 개인 보관함(이름 기준): GET/PUT /api/user-library?name=이름   → server/library/u-<이름 해시>.json
 //  - 팀 공용 보관함: GET /api/team-library, POST /api/team-library/op  → server/library/_team.json
-// 로그인이 없어서 이름은 "내가 누구인지 알려 주는 표시"일 뿐 본인 확인이 아니에요(팀 안에서 신뢰하는 용도).
+// 개인 보관함은 이름 + 비밀번호(x-user-pin 헤더)로 열어요. 처음 비밀번호를 넣은 사람이 그 이름의 주인이 돼요.
+// 비밀번호는 scrypt 해시로만 파일에 남기고, 응답에는 절대 넣지 않아요. 여러 번 틀리면 잠시 잠가요.
+// 팀 보관함의 이름은 여전히 "누가 저장했는지" 표시용이에요.
 // 팀 보관함은 여러 명이 동시에 쓰기 때문에, 통째로 덮어쓰지 않고 작업(op) 단위로 하나씩 순서대로 반영해요.
-import { createHash, randomBytes } from 'node:crypto'
+import { createHash, randomBytes, scryptSync, timingSafeEqual } from 'node:crypto'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 
 const DIR = new URL('./library/', import.meta.url)
@@ -17,6 +19,66 @@ const cleanName = (v) => String(v ?? '').trim().replace(/\s+/g, ' ').slice(0, MA
 const userFile = (name) => new URL(`u-${createHash('sha256').update(`u:${name.toLowerCase()}`).digest('hex').slice(0, 24)}.json`, DIR)
 
 class BadRequest extends Error {}
+class PinError extends Error {
+  constructor(message, status, code) {
+    super(message)
+    this.status = status
+    this.code = code
+  }
+}
+
+// ── 개인 보관함 비밀번호 ───────────────────────────────────
+export const MIN_PIN = 4
+export const MAX_PIN = 30
+const MAX_FAILS = 5
+const LOCK_MS = 5 * 60_000
+const fails = new Map() // 이름 → { count, until }
+
+const readPin = (req) => {
+  try {
+    return decodeURIComponent(String(req.get('x-user-pin') ?? ''))
+  } catch {
+    return ''
+  }
+}
+const hashPin = (pin, salt) => scryptSync(pin, salt, 32).toString('hex')
+export const makePin = (pin) => {
+  const salt = randomBytes(16).toString('hex')
+  return { salt, hash: hashPin(pin, salt) }
+}
+const samePin = (pin, saved) => {
+  const a = Buffer.from(hashPin(pin, saved.salt), 'hex')
+  const b = Buffer.from(String(saved.hash ?? ''), 'hex')
+  return a.length === b.length && timingSafeEqual(a, b)
+}
+
+// 저장된 비밀번호와 맞는지 확인해요. 아직 비밀번호가 없는 이름이면 이번 비밀번호를 새로 쓰도록 돌려줘요.
+export function checkPin(name, saved, pin) {
+  if (!pin) throw new PinError('비밀번호가 필요해요', 401, 'pin-required')
+  if (pin.length < MIN_PIN || pin.length > MAX_PIN) throw new PinError(`비밀번호는 ${MIN_PIN}~${MAX_PIN}자로 정해 주세요`, 400, 'pin-invalid')
+  const key = name.toLowerCase()
+  const f = fails.get(key)
+  if (f?.until > Date.now()) throw new PinError('비밀번호를 여러 번 틀려서 5분 동안 잠겼어요', 429, 'pin-locked')
+  if (!saved?.pin) return makePin(pin)
+  if (samePin(pin, saved.pin)) {
+    fails.delete(key)
+    return saved.pin
+  }
+  const count = (f?.count ?? 0) + 1
+  fails.set(key, count >= MAX_FAILS ? { count: 0, until: Date.now() + LOCK_MS } : { count, until: 0 })
+  throw new PinError('비밀번호가 맞지 않아요', 403, 'pin-wrong')
+}
+
+// 이름 하나에 대한 읽기·쓰기를 한 줄로 세워요(비밀번호를 처음 정할 때 두 요청이 겹치지 않게).
+const userQueues = new Map()
+function withUser(name, fn) {
+  const key = name.toLowerCase()
+  const run = (userQueues.get(key) ?? Promise.resolve()).then(fn)
+  const tail = run.catch(() => {})
+  userQueues.set(key, tail)
+  tail.then(() => userQueues.get(key) === tail && userQueues.delete(key))
+  return run
+}
 
 // ── 개인 보관함 ──────────────────────────────────────────
 async function readJson(file) {
@@ -135,14 +197,24 @@ export function applyTeamOp(state, op) {
   }
 }
 
-const fail = (res, err) => (err instanceof BadRequest ? res.status(400) : res.status(500)).json({ error: err instanceof BadRequest ? err.message : `보관함 처리 중 오류가 났어요: ${err.message}` })
+const fail = (res, err) =>
+  err instanceof PinError ? res.status(err.status).json({ error: err.message, code: err.code }) : failOther(res, err)
+const failOther = (res, err) => (err instanceof BadRequest ? res.status(400) : res.status(500)).json({ error: err instanceof BadRequest ? err.message : `보관함 처리 중 오류가 났어요: ${err.message}` })
 
 export function registerLibraryRoutes(app) {
   app.get('/api/user-library', async (req, res) => {
     try {
       const name = cleanName(req.query.name)
       need(name, '이름이 필요해요')
-      res.json((await readJson(userFile(name))) ?? { state: null, updatedAt: null })
+      const out = await withUser(name, async () => {
+        const file = userFile(name)
+        const saved = await readJson(file)
+        const pin = checkPin(name, saved, readPin(req))
+        // 비밀번호 없이 쓰던 예전 보관함은 지금 비밀번호로 바로 잠가요.
+        if (saved && !saved.pin) await writeFile(file, JSON.stringify({ ...saved, pin }))
+        return { state: saved?.state ?? null, updatedAt: saved?.updatedAt ?? null }
+      })
+      res.json(out)
     } catch (err) {
       fail(res, err)
     }
@@ -154,10 +226,15 @@ export function registerLibraryRoutes(app) {
       need(name, '이름이 필요해요')
       const { collections, bookmarks } = req.body ?? {}
       need(Array.isArray(collections) && Array.isArray(bookmarks), '보관함 형식이 올바르지 않아요')
-      await mkdir(DIR, { recursive: true })
-      const saved = { state: { collections, bookmarks }, updatedAt: new Date().toISOString() }
-      await writeFile(userFile(name), JSON.stringify(saved))
-      res.json({ ok: true, updatedAt: saved.updatedAt })
+      const updatedAt = await withUser(name, async () => {
+        const file = userFile(name)
+        const pin = checkPin(name, await readJson(file), readPin(req))
+        await mkdir(DIR, { recursive: true })
+        const saved = { state: { collections, bookmarks }, updatedAt: new Date().toISOString(), pin }
+        await writeFile(file, JSON.stringify(saved))
+        return saved.updatedAt
+      })
+      res.json({ ok: true, updatedAt })
     } catch (err) {
       fail(res, err)
     }
