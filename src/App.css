@@ -4119,3 +4119,75 @@ img.brand-mark {
   color: var(--text-sub);
 }
 
+
+/* 화면 분석: 고정 조건·핵심 결론, 문제별 묶음(근거 → 개선안 → 비교할 사례) */
+.an-fixed,
+.an-conclusion {
+  display: grid;
+  gap: 4px;
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-8);
+  font-size: 13px;
+}
+
+.an-fixed {
+  border: 1px dashed var(--border);
+}
+
+.an-conclusion {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.an-fixed ul,
+.an-conclusion ul {
+  display: grid;
+  gap: 3px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.an-points {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: an-point;
+}
+
+.an-points > .an-point {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-8);
+  counter-increment: an-point;
+}
+
+.an-point-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+}
+
+.an-point-head strong::before {
+  content: counter(an-point) '. ';
+}
+
+.an-rel-issue {
+  background: color-mix(in srgb, var(--danger, #d92d20) 12%, transparent);
+  color: var(--danger, #d92d20);
+}
+
+.an-role {
+  color: var(--text-sub);
+  font-size: 11px;
+}
+
+.an-proposal {
+  display: grid;
+  gap: 3px;
+  margin: 0;
+  padding-left: 18px;
+}

@@ -72,17 +72,27 @@ ${list(DOMAINS)}
 - keyInfo: 화면이 주는 핵심 정보 3~5개(보이는 순서대로).
 - flow: 정보 구조를 화살표로 이은 한 줄(예: "총지출 → 월별 비교 → 항목별 상세 → 상세 조회 CTA"). 화면이 잘려 전체 배치를 알 수 없으면 flowNote에 "전체 화면에서 실제 배치 확인 필요"처럼 적어요.
 - composition: 카드·차트·리스트·탭 등을 어떻게 묶고 조합했는지 2~4개.
-- takeaways.pm: 기능 범위·진입 구조·흐름 관점에서 다른 서비스가 참고할 만한 접근 1~3개. takeaways.designer: 정보 묶음·위계·표현·인터랙션 관점에서 재사용할 만한 구성 1~3개.
-  relevance나 status와 상관없이(범위 밖·검토 필요여도) 화면에서 참고할 만한 방식이 보이면 반드시 써요.
-  각 항목은 관찰과 해석을 나눠 써요. 칭찬이 아니라 '어떤 방식인지'를 써요.
-  · text: 참고할 방식을 짧은 이름으로(예: "차트 제목을 요약 문장으로 제공")
-  · observed: 화면에서 확인한 사실만(예: "증가액을 파란색으로 강조했어요"). 해석·효과는 넣지 않아요.
-  · effect: 기대 효과. 검증이 필요한 해석이므로 단정하지 않아요(예: "변화량을 더 빨리 파악하게 할 수 있어요").
-  · consider: 우리 서비스에 적용할 때 검토할 점. 맞는 조건과 한계를 함께 써요(예: "감소가 좋은 지표라면 색 의미가 반대로 읽힐 수 있어 색 규칙을 검토").
-  · patterns: 이 방식과 관련된 UI 패턴 id 0~2개(위 목록의 id만).
-  · keywords: 이 방식을 쓴 다른 화면을 찾을 때 쓸, 앱 화면 이름에 흔히 들어가는 한 단어 명사 1~3개(예: "내역", "명세서", "한도", "견적", "리포트"). 띄어쓰기 없는 한 단어로 쓰고 앱 이름은 넣지 않아요.
+- requirements: 사용자가 '참고하려는 점'에 적은 필수 조건·이미 정해진 요구사항(예: "메인의 차량 유지비·교통비 영역에서 각각 진입하고, 진입하면 해당 탭이 활성화된 상태여야 해요"). 이것은 검토 대상이 아니라 고정 조건이에요. 바꾸자고 제안하지 않고, 모든 개선안은 이 조건을 지키는 안으로만 써요. 없으면 빈 배열이에요.
+- conclusion: 이 분석의 핵심 결론 2~5개. 바로 설계 규칙으로 옮길 수 있는 문장으로 써요(예: "소비 내역 탭은 조회 범위를 정하고, 필터는 선택한 범위 안에서 세부 조건을 정해요", "적용된 조건은 목록 위에도 표시해요"). 고정 조건이 있으면 "~하는 흐름은 유지해요"처럼 먼저 적어요.
+- points: 문제(또는 참고할 방식)별로 근거 → 개선안 → 비교할 사례를 한 묶음으로 1~4개 써요. PM·디자이너 관점으로 같은 내용을 두 번 쓰지 않고, 한 묶음에 관련 관점(roles)을 표시해요.
+  relevance나 status와 상관없이(범위 밖·검토 필요여도) 참고할 만한 점이 보이면 반드시 써요.
+  · kind: "issue"(사용자 시안에서 사용성 문제가 생길 수 있는 지점) | "reference"(다른 서비스 화면에서 참고할 방식). 사용자가 자기 시안을 검토하려는 것으로 보이면 issue 위주로 써요.
+  · title: 짧은 이름(예: "탭과 필터 팝업의 역할 겹침", "차트 제목을 요약 문장으로 제공").
+  · roles: ["pm"] | ["designer"] | ["pm","designer"] — 기능 범위·진입 구조·흐름은 pm, 정보 묶음·위계·표현·인터랙션은 designer.
+  · observed: 화면에서 확인한 사실만(근거). 해석·효과는 넣지 않아요.
+  · situation: issue일 때 혼란이 생기는 구체적인 상황. 어떤 선택 조합·상태에서 무엇이 헷갈리는지 써요(예: "차량 유지비 탭에서 필터 팝업을 열면 교통비 카테고리도 보여, 탭과 맞지 않는 조건을 고를 수 있어요"). reference면 빈 문자열이에요.
+  · proposal: 구체적인 개선안(또는 적용 방식) 2~4개. '단순화', '명확하게', '개선' 같은 추상적인 말로 끝내지 않고, 탭 전환·필터 적용·초기화·선택 상태 표시·기본값처럼 '무엇이 어떻게 동작하는지'를 규칙으로 써요(예: "탭을 바꾸면 그 탭에 없는 카테고리 필터는 해제하고 알려 줘요", "필터를 적용하면 목록 위에 적용 조건 칩을 보여 주고 칩에서 바로 해제해요"). 공통 컴포넌트 도입처럼 구조만 바꾸는 안은 사용성이 실제로 어떻게 달라지는지 함께 써요.
+  · effect: 기대 효과. 검증이 필요한 해석이므로 단정하지 않아요.
+  · consider: 적용 전에 확인할 점(정책·데이터·예외 상황).
+  · caseNeed: 이 점을 비교하기에 맞는 사례가 어떤 화면인지 한 줄. 도메인(자동차 관련 여부)보다 조작·정보 구조가 비슷한지를 기준으로 써요(예: "거래 내역 목록과 카테고리 필터를 함께 쓰는 화면").
+  · patterns: 이 점과 관련된 UI 패턴 id 0~3개(위 목록의 id만). caseNeed의 조작을 나타내는 패턴을 넣어요(예: 탭·필터·리스트).
+  · keywords: 이 방식을 쓴 다른 화면을 찾을 때 쓸, 앱 화면 이름에 흔히 들어가는 한 단어 명사 1~3개(예: "내역", "명세서", "한도"). 띄어쓰기 없는 한 단어로 쓰고 앱 이름은 넣지 않아요.
+- caseTarget: 추천·비교 사례를 고르는 기준. 같은 업종·도메인보다 '같은 조작과 정보 구조'를 우선해요.
+  · need: 비교에 가장 맞는 화면을 한 줄로(예: "거래 내역 목록과 카테고리 필터를 함께 쓰는 화면").
+  · patterns: 그 화면이 꼭 가져야 할 UI 패턴 id 1~3개(예: ["list","filter-sort","tab"]).
+  · keywords: 그런 화면 이름에 흔히 들어가는 한 단어 명사 2~4개(예: "내역", "거래내역", "소비").
 - benchmarkKeywords: 비슷한 사례를 찾을 때 쓸 화면 목적 키워드 3~6개. 다른 앱 화면 이름에 붙을 법한 짧은 명사로 써요(예: "지출", "리포트", "차계부", "소비 분석"). 앱 이름·UI 요소 이름은 넣지 않아요.
-- 사용자가 '참고하려는 점'을 함께 보내면 summary를 뺀 모든 설계 분석(keyInfo·takeaways·openQuestions)을 그 관점에 맞춰 구체적으로 써요. 없으면 일반적인 관점으로 써요.
+- 사용자가 '참고하려는 점'을 함께 보내면 summary를 뺀 모든 설계 분석(keyInfo·conclusion·points·openQuestions)을 그 관점에 맞춰 구체적으로 써요. 없으면 일반적인 관점으로 써요.
 - openQuestions.pm: 이미지로 판단할 수 없어 확인해야 할 정책·데이터 기준·앞뒤 흐름 1~3개. openQuestions.designer: 확인해야 할 상태 변화·빈 데이터·오류·예외 화면 1~3개.
 - uncertain: 분류나 해석 중 불확실한 항목과 이유(예: {"field":"userTask","reason":"차량 유지비와 대중교통 소비가 함께 포함돼 대표 과업을 하나로 정하기 어려워요"}). 확실하면 빈 배열이에요. field는 userTask|screenType|domain|uiPatterns|flow|userGoal 중 하나예요.
 
@@ -106,7 +116,10 @@ JSON 객체 하나만 출력해요(마크다운·설명 금지). 키:
     "keyInfo": string[],
     "flow": string, "flowNote": string|null,
     "composition": [{"text": string, "basis": "observed"|"inferred"}],
-    "takeaways": {"pm": [{"text": string, "observed": string, "effect": string, "consider": string, "patterns": UI 패턴 id[], "keywords": string[]}], "designer": [같은 형식]},
+    "requirements": string[],
+    "conclusion": string[],
+    "points": [{"kind": "issue"|"reference", "title": string, "roles": ("pm"|"designer")[], "observed": string, "situation": string, "proposal": string[], "effect": string, "consider": string, "caseNeed": string, "patterns": UI 패턴 id[], "keywords": string[]}],
+    "caseTarget": {"need": string, "patterns": UI 패턴 id[], "keywords": string[]},
     "benchmarkKeywords": string[],
     "openQuestions": {"pm": string[], "designer": string[]},
     "uncertain": [{"field": string, "reason": string}]
@@ -201,21 +214,36 @@ const noted = (v, max = 4) =>
     .filter((x) => typeof x?.text === 'string' && x.text.trim())
     .slice(0, max)
     .map((x) => ({ text: str(x.text), basis: pick(x.basis, BASIS) ?? 'inferred' }))
-// 벤치마킹 포인트: 확인한 사실(observed) / 기대 효과(effect, 검증 필요) / 적용 시 검토할 점(consider)을 나눠 받아요.
-// 모델이 방식 이름을 text가 아닌 키(title·method 등)로 쓰는 경우도 받아요.
-const pointName = (x) => [x?.text, x?.title, x?.method, x?.name].find((t) => typeof t === 'string' && t.trim()) ?? ''
-const takeaway = (v) =>
-  (Array.isArray(v) ? v : [])
+// 문제(또는 참고할 방식)별 묶음: 근거(observed) → 혼란 상황(situation) → 개선안(proposal) → 비교할 사례(caseNeed·patterns·keywords).
+// 모델이 이름을 text·method 같은 다른 키로 쓰는 경우도 받아요. 예전 형식(takeaways.pm/designer)도 묶음으로 바꿔 받아요.
+const pointName = (x) => [x?.title, x?.text, x?.method, x?.name].find((t) => typeof t === 'string' && t.trim()) ?? ''
+const patternIds = (v, max) => (Array.isArray(v) ? v : []).filter((id) => ids(UI_PATTERNS).includes(id)).slice(0, max)
+const words = (v, max) => strs(v, max).map((k) => k.trim().slice(0, 20)).filter(Boolean)
+const ROLES = ['pm', 'designer']
+function points(raw) {
+  const list = Array.isArray(raw?.points)
+    ? raw.points
+    : ROLES.flatMap((role) => (Array.isArray(raw?.takeaways?.[role]) ? raw.takeaways[role].map((x) => ({ ...x, roles: [role], kind: 'reference' })) : []))
+  return list
     .filter((x) => pointName(x) || (typeof x?.observed === 'string' && x.observed.trim()))
-    .slice(0, 3)
-    .map((x) => ({
-      text: str(pointName(x) || x.observed, 120),
-      observed: pointName(x) ? str(x.observed, 200) : '', // 이름이 없어 사실을 이름으로 쓴 경우 두 번 보이지 않게 해요
-      effect: str(x.effect, 200),
-      consider: str(x.consider, 240),
-      patterns: (Array.isArray(x.patterns) ? x.patterns : []).filter((id) => ids(UI_PATTERNS).includes(id)).slice(0, 2),
-      keywords: strs(x.keywords, 3).map((k) => k.slice(0, 20)),
-    }))
+    .slice(0, 4)
+    .map((x) => {
+      const roles = (Array.isArray(x.roles) ? x.roles : []).filter((r) => ROLES.includes(r))
+      return {
+        kind: x.kind === 'issue' ? 'issue' : 'reference',
+        title: str(pointName(x) || x.observed, 120),
+        roles: roles.length ? [...new Set(roles)] : ['pm', 'designer'],
+        observed: pointName(x) ? str(x.observed, 240) : '', // 이름이 없어 사실을 이름으로 쓴 경우 두 번 보이지 않게 해요
+        situation: x.kind === 'issue' ? str(x.situation, 240) : '',
+        proposal: strs(Array.isArray(x.proposal) ? x.proposal : x.proposal ? [x.proposal] : [], 4).map((p) => p.slice(0, 200)),
+        effect: str(x.effect, 200),
+        consider: str(x.consider, 240),
+        caseNeed: str(x.caseNeed, 120),
+        patterns: patternIds(x.patterns, 3),
+        keywords: words(x.keywords, 3),
+      }
+    })
+}
 function validateDesign(raw) {
   return {
     summary: str(raw?.summary, 200),
@@ -224,7 +252,10 @@ function validateDesign(raw) {
     flow: str(raw?.flow, 200),
     flowNote: str(raw?.flowNote, 120) || null,
     composition: noted(raw?.composition),
-    takeaways: { pm: takeaway(raw?.takeaways?.pm), designer: takeaway(raw?.takeaways?.designer) },
+    requirements: strs(raw?.requirements, 4).map((r) => r.slice(0, 200)),
+    conclusion: strs(raw?.conclusion, 5).map((r) => r.slice(0, 200)),
+    points: points(raw),
+    caseTarget: { need: str(raw?.caseTarget?.need, 120), patterns: patternIds(raw?.caseTarget?.patterns, 3), keywords: words(raw?.caseTarget?.keywords, 4) },
     benchmarkKeywords: strs(raw?.benchmarkKeywords, 6).map((k) => k.slice(0, 20)),
     openQuestions: { pm: strs(raw?.openQuestions?.pm, 3), designer: strs(raw?.openQuestions?.designer, 3) },
     uncertain: (Array.isArray(raw?.uncertain) ? raw.uncertain : [])

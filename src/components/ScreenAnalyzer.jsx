@@ -92,75 +92,110 @@ function Notes({ title, items }) {
   )
 }
 
-// 벤치마킹 포인트: 확인한 사실 / 기대 효과(검증 필요한 해석) / 적용 시 검토할 점을 나누고, 이 방식을 쓴 사례를 옆에 붙여요.
-function Takeaways({ title, items, casesOf, picked, onPick }) {
+const ROLE_LABEL = { pm: 'PM', designer: '디자이너' }
+// 내 시안의 문제를 짚은 묶음이 있으면 '문제별 분석', 다른 서비스 화면이면 '핵심 벤치마킹 포인트'예요.
+const pointsTitle = (d) => (d.points.some((t) => t.kind === 'issue') ? '문제별 분석' : '핵심 벤치마킹 포인트')
+
+// 문제(또는 참고할 방식)별로 근거 → 혼란 상황 → 개선안 → 비교할 사례를 한 묶음으로 보여줘요.
+// PM·디자이너 관점을 두 칸으로 나누면 같은 설명이 반복돼서, 한 목록에 관련 관점만 칩으로 붙여요.
+function Points({ items, casesOf, picked, onPick }) {
   if (!items?.length) return null
   return (
-    <div className="an-block">
-      <h4 className="an-label">{title}</h4>
-      <ul className="an-takeaways">
-        {items.map((t, i) => {
-          const cases = casesOf(i)
-          return (
-            <li key={i} className="an-point">
-              <strong>{t.text}</strong>
-              <dl className="an-point-rows">
-                {t.observed && (
-                  <div>
-                    <dt>화면에서 확인한 사실</dt>
-                    <dd>{t.observed}</dd>
-                  </div>
-                )}
-                {t.effect && (
-                  <div>
-                    <dt>
-                      기대 효과 <span className="an-badge">검증 필요</span>
-                    </dt>
-                    <dd>{t.effect}</dd>
-                  </div>
-                )}
-                {t.consider && (
-                  <div>
-                    <dt>우리 서비스 적용 시 검토할 점</dt>
-                    <dd>{t.consider}</dd>
-                  </div>
-                )}
-              </dl>
-              {cases.length > 0 && (
-                <div className="an-point-cases">
-                  <span className="an-point-cases-title">이 방식을 쓴 사례</span>
-                  <div className="an-point-thumbs">
-                    {cases.map(({ s, reason }) => {
-                      const on = picked.includes(s.id)
-                      const full = !on && picked.length >= MAX_COMPARE
-                      return (
-                        <div key={s.id} className={`an-point-case ${on ? 'is-on' : ''}`}>
-                          <a href={s.uiUrl} target="_blank" rel="noreferrer" title={`${s.service} — ${s.title} (UI Bowl 원본 보기)`}>
-                            <img src={s.image} alt="" loading="lazy" />
-                          </a>
-                          <span className="an-similar-name">{s.service}</span>
-                          <span className="an-point-reason">{reason}</span>
-                          <label className={`an-case-pick ${full ? 'is-disabled' : ''}`} title={full ? `최대 ${MAX_COMPARE}개까지 비교할 수 있어요` : undefined}>
-                            <input type="checkbox" checked={on} disabled={full} onChange={() => onPick(s.id)} /> 비교
-                          </label>
-                        </div>
-                      )
-                    })}
-                  </div>
+    <ol className="an-points">
+      {items.map((t, i) => {
+        const cases = casesOf(i)
+        return (
+          <li key={i} className="an-point">
+            <div className="an-point-head">
+              <strong>{t.title}</strong>
+              <span className={`an-rel ${t.kind === 'issue' ? 'an-rel-issue' : ''}`}>{t.kind === 'issue' ? '문제' : '참고할 방식'}</span>
+              {t.roles.map((r) => (
+                <span key={r} className="an-role">
+                  {ROLE_LABEL[r]}
+                </span>
+              ))}
+            </div>
+            <dl className="an-point-rows">
+              {t.observed && (
+                <div>
+                  <dt>화면 근거</dt>
+                  <dd>{t.observed}</dd>
                 </div>
               )}
-            </li>
-          )
-        })}
-      </ul>
-    </div>
+              {t.situation && (
+                <div>
+                  <dt>혼란이 생기는 상황</dt>
+                  <dd>{t.situation}</dd>
+                </div>
+              )}
+              {t.proposal.length > 0 && (
+                <div>
+                  <dt>{t.kind === 'issue' ? '개선안' : '적용 방식'}</dt>
+                  <dd>
+                    <ul className="an-proposal">
+                      {t.proposal.map((p, j) => (
+                        <li key={j}>{p}</li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              )}
+              {t.effect && (
+                <div>
+                  <dt>
+                    기대 효과 <span className="an-badge">검증 필요</span>
+                  </dt>
+                  <dd>{t.effect}</dd>
+                </div>
+              )}
+              {t.consider && (
+                <div>
+                  <dt>적용 전 확인</dt>
+                  <dd>{t.consider}</dd>
+                </div>
+              )}
+            </dl>
+            <div className="an-point-cases">
+              <span className="an-point-cases-title">비교할 사례{t.caseNeed && ` · ${t.caseNeed}`}</span>
+              {cases.length === 0 ? (
+                <p className="an-evidence">직접 비교할 사례가 부족해요. 관련성이 낮은 화면은 채우지 않았어요.</p>
+              ) : (
+                <div className="an-point-thumbs">
+                  {cases.map(({ s, reason }) => {
+                    const on = picked.includes(s.id)
+                    const full = !on && picked.length >= MAX_COMPARE
+                    return (
+                      <div key={s.id} className={`an-point-case ${on ? 'is-on' : ''}`}>
+                        <a href={s.uiUrl} target="_blank" rel="noreferrer" title={`${s.service} — ${s.title} (UI Bowl 원본 보기)`}>
+                          <img src={s.image} alt="" loading="lazy" />
+                        </a>
+                        <span className="an-similar-name">{s.service}</span>
+                        <span className="an-point-reason">{reason}</span>
+                        <label className={`an-case-pick ${full ? 'is-disabled' : ''}`} title={full ? `최대 ${MAX_COMPARE}개까지 비교할 수 있어요` : undefined}>
+                          <input type="checkbox" checked={on} disabled={full} onChange={() => onPick(s.id)} /> 비교
+                        </label>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
+          </li>
+        )
+      })}
+    </ol>
   )
 }
 
-// 추천 사례: 같은 목적 → 같은 화면 유형 → 비슷한 구성 → 같은 도메인 순으로 점수를 매기고, 카드마다 추천 이유를 붙여요.
-// '같은 목적'은 대표 과업이 같거나, AI가 뽑은 목적 키워드가 사례 화면 이름에 들어 있을 때예요.
+// 추천 사례: 업종·도메인보다 '같은 조작과 정보 구조'를 먼저 봐요.
+// 같은 조작 = AI가 정한 비교 기준(caseTarget)의 UI 패턴을 사례도 갖고 있을 때(예: 리스트+필터+탭).
+// 같은 목적 = 대표 과업이 같거나, 목적 키워드가 사례 화면 이름에 들어 있을 때.
+// 직접 비교 사례는 목적과 구조가 함께 비슷한 화면만이에요. 과업만 같고 구조가 다른 화면(예: 지도)이나 구조만 같은 화면은 넓힌 범위로 보내요.
+const DIRECT_ENOUGH = 2
 export function recommend(pool, analysis, tags) {
-  const keywords = analysis.design.benchmarkKeywords ?? []
+  const target = analysis.design.caseTarget ?? { patterns: [], keywords: [] }
+  const keywords = [...new Set([...(target.keywords ?? []), ...(analysis.design.benchmarkKeywords ?? [])])]
+  const want = target.patterns?.length ? target.patterns : []
   const mine = new Set(tags.uiPatterns)
   const seen = new Set()
   const scored = []
@@ -168,30 +203,39 @@ export function recommend(pool, analysis, tags) {
     const key = `${s.service}|${s.title}`
     if (!s.bm || seen.has(key)) continue
     seen.add(key)
-    const text = squash([s.title, s.pattern, s.variant, ...(s.keywords ?? [])].join('|'))
+    const text = squash([s.title, s.variant].join('|')) // 목적 키워드는 화면 이름에서만 찾아요(태그까지 보면 '상품 신청'도 '내역'에 걸려요)
     const sameTask = Boolean(tags.userTask) && s.bm.taskIds[0] === tags.userTask
     const word = keywords.find((k) => squash(k).length >= 2 && text.includes(squash(k)))
     const sameType = Boolean(tags.screenType) && s.bm.screenTypeId === tags.screenType
+    const hit = want.filter((p) => s.bm.patternIds.includes(p))
+    const sameOps = hit.length >= 2 || (want.length === 1 && hit.length === 1 && sameType) // 패턴 하나만 같은 건 너무 넓어요
     const shared = s.bm.patternIds.filter((p) => mine.has(p))
     const sameDomain = Boolean(tags.domain) && s.bm.domainId === tags.domain
+    const structure = sameOps || (!want.length && shared.length >= 2)
     const reasons = []
-    if (sameTask) reasons.push(`같은 과업 · ${labelOf.task(tags.userTask)}`)
-    else if (word) reasons.push(`같은 목적 · ‘${word}’ 화면`)
+    if (sameOps) reasons.push(`같은 조작 · ${hit.map((p) => labelOf.pattern(p)).join('+')}`)
+    if (word) reasons.push(`같은 목적 · ‘${word}’ 화면`)
+    else if (sameTask) reasons.push(`같은 과업 · ${labelOf.task(tags.userTask)}`)
     if (sameType) reasons.push(`같은 화면 유형 · ${labelOf.screenType(tags.screenType)}`)
-    if (shared.length >= 2) reasons.push(`비슷한 구성 · ${shared.slice(0, 2).map((p) => labelOf.pattern(p)).join('+')}`)
+    if (!sameOps && shared.length >= 2) reasons.push(`비슷한 구성 · ${shared.slice(0, 2).map((p) => labelOf.pattern(p)).join('+')}`)
     if (sameDomain) reasons.push(`같은 도메인 · ${labelOf.domain(tags.domain)}`)
-    const score = (sameTask ? 8 : word ? 6 : 0) + (sameType ? 3 : 0) + (shared.length >= 2 ? 2 : 0) + (sameDomain ? 1 : 0)
-    if (score > 0) scored.push({ s, score, reasons, purpose: sameTask || Boolean(word) })
+    const score = (sameOps ? 6 : 0) + hit.length + (word ? 5 : 0) + (sameTask ? 3 : 0) + (sameType ? 3 : 0) + (shared.length >= 2 ? 1 : 0) + (sameDomain ? 0.5 : 0)
+    // UI 패턴 태그는 화면 이름으로 추정한 값이라 넓어요. 구조만 같은 화면(예: FAQ 목록)은 직접 비교에 넣지 않아요.
+    // 목적 키워드가 화면 이름에 있으면서 조작이나 화면 유형이 같거나, 과업이 같으면서 조작까지 같은 화면만 직접 비교예요.
+    // 화면 유형을 AI가 못 정해도(여러 화면이 이어진 시안 등) 목적 키워드 + 비교 기준 조작 하나 이상이면 직접 비교로 봐요.
+    const direct = (Boolean(word) && (structure || sameType || hit.length >= 1)) || (sameTask && sameOps)
+    if (score >= 3) scored.push({ s, score, reasons, direct })
   }
   const byScore = (a, b) => b.score - a.score || (b.s.dataMonth ?? '').localeCompare(a.s.dataMonth ?? '')
   return {
-    purpose: scored.filter((x) => x.purpose).sort(byScore),
-    // 목적이 다르면 '넓힌 참고 범위'예요. 화면 유형·구성이 같은 것만 넣어요(도메인만 같은 건 너무 넓어요).
-    broader: scored.filter((x) => !x.purpose && x.score >= 3).sort(byScore),
+    need: target.need ?? '',
+    purpose: scored.filter((x) => x.direct).sort(byScore),
+    // 직접 비교하기엔 목적이나 구조가 다른 '넓힌 참고 범위'예요. 기본으로는 숨겨요.
+    broader: scored.filter((x) => !x.direct).sort(byScore),
   }
 }
 
-// 벤치마킹 포인트 하나에 맞는 사례: 포인트 키워드가 화면 이름에 들어 있거나, 같은 UI 패턴을 쓰면서 대표 과업도 같은 화면이에요.
+// 묶음 하나에 맞는 사례: 키워드가 화면 이름에 들어 있는 화면 중에서 같은 조작(UI 패턴 둘 이상)을 쓰는 화면을 앞에 둬요.
 // UI 패턴('리스트'·'카드' 등)과 화면 유형('목록' 등)은 범위가 넓어서 그것만 같은 화면은 고르지 않아요.
 // 한 포인트 안에서는 같은 앱을 한 번만, 앞 포인트에서 이미 붙인 사례는 뒤로 미뤄요.
 function casesForPoint(pool, point, tags, used, limit = 3) {
@@ -207,9 +251,11 @@ function casesForPoint(pool, point, tags, used, limit = 3) {
     const word = words.find((k) => text.includes(squash(k)))
     const sameTask = Boolean(tags.userTask) && s.bm.taskIds[0] === tags.userTask
     const sameType = Boolean(tags.screenType) && s.bm.screenTypeId === tags.screenType
-    if (!word && !(shared.length && sameTask)) continue
-    const score = (word ? 4 : 0) + shared.length * 2 + (sameTask ? 3 : 0) + (sameType ? 2 : 0) + (tags.domain && s.bm.domainId === tags.domain ? 1 : 0) - (used.has(s.id) ? 4 : 0)
-    const how = word ? `‘${word}’ 화면` : `같은 방식 · ${labelOf.pattern(shared[0])}`
+    // 패턴 하나(예: 리스트)만 같은 화면은 너무 넓어서, 둘 이상 같거나 화면 유형까지 같을 때만 '같은 조작'으로 봐요.
+    const sameOps = shared.length >= 2 || (want.size === 1 && shared.length === 1 && sameType)
+    if (!word) continue // 패턴만 같은 화면은 너무 넓어서(예: 충전소 지도도 리스트+필터), 화면 이름에 키워드가 있어야 해요
+    const score = 4 + (sameOps ? 4 : 0) + shared.length + (sameTask ? 2 : 0) + (sameType ? 2 : 0) + (tags.domain && s.bm.domainId === tags.domain ? 1 : 0) - (used.has(s.id) ? 4 : 0)
+    const how = sameOps ? `‘${word}’ 화면 · 같은 조작` : `‘${word}’ 화면`
     scored.push({ s, score, reason: sameTask ? `${how} · 같은 과업` : how })
   }
   scored.sort((a, b) => b.score - a.score || (b.s.dataMonth ?? '').localeCompare(a.s.dataMonth ?? ''))
@@ -249,15 +295,17 @@ export function caseRelation(s, tags, keywords = []) {
 function toMarkdown({ a, tags, result, focus, compare, cases, pointCases }) {
   const d = a.design
   const list = (items) => items.map((t) => `- ${typeof t === 'string' ? t : t.text + md(t.basis)}`).join('\n')
-  const tk = (items, side) =>
+  const pt = (items) =>
     items
       .map((t, i) =>
         [
-          `- **${t.text}**`,
-          t.observed && `  - 화면에서 확인한 사실: ${t.observed}`,
-          t.effect && `  - 기대 효과(검증 필요): ${t.effect}`,
-          t.consider && `  - 우리 서비스 적용 시 검토할 점: ${t.consider}`,
-          pointCases[`${side}-${i}`]?.length && `  - 이 방식을 쓴 사례: ${pointCases[`${side}-${i}`].map(({ s }) => `${s.service} — ${s.title}`).join(', ')}`,
+          `${i + 1}. **${t.title}** (${t.kind === 'issue' ? '문제' : '참고할 방식'} · ${t.roles.map((r) => ROLE_LABEL[r]).join('·')})`,
+          t.observed && `   - 화면 근거: ${t.observed}`,
+          t.situation && `   - 혼란이 생기는 상황: ${t.situation}`,
+          t.proposal.length && `   - ${t.kind === 'issue' ? '개선안' : '적용 방식'}\n${t.proposal.map((p) => `     - ${p}`).join('\n')}`,
+          t.effect && `   - 기대 효과(검증 필요): ${t.effect}`,
+          t.consider && `   - 적용 전 확인: ${t.consider}`,
+          `   - 비교할 사례${t.caseNeed ? `(${t.caseNeed})` : ''}: ${pointCases[i]?.length ? pointCases[i].map(({ s }) => `${s.service} — ${s.title}`).join(', ') : '직접 비교할 사례 부족'}`,
         ]
           .filter(Boolean)
           .join('\n'),
@@ -266,8 +314,9 @@ function toMarkdown({ a, tags, result, focus, compare, cases, pointCases }) {
   const parts = [`# 화면 분석${d.summary ? ` — ${d.summary}` : ''}`]
   if (focus) parts.push(`**참고하려는 점** ${focus}`)
   if (d.userGoal) parts.push(`**사용자 목적** ${d.userGoal.text}${md(d.userGoal.basis)}`)
-  if (d.takeaways.pm.length || d.takeaways.designer.length)
-    parts.push(`## 핵심 벤치마킹 포인트\n${d.takeaways.pm.length ? `**PM 관점**\n${tk(d.takeaways.pm, 'pm')}\n` : ''}${d.takeaways.designer.length ? `**디자이너 관점**\n${tk(d.takeaways.designer, 'designer')}` : ''}`)
+  if (d.requirements.length) parts.push(`## 고정 조건\n${list(d.requirements)}`)
+  if (d.conclusion.length) parts.push(`## 핵심 결론\n${list(d.conclusion)}`)
+  if (d.points.length) parts.push(`## ${pointsTitle(d)}\n${pt(d.points)}`)
   if (d.keyInfo.length) parts.push(`## 핵심 정보\n${list(d.keyInfo)}`)
   if (a.primaryAction) parts.push(`**주요 행동** ${a.primaryAction.label} — ${a.primaryAction.description}`)
   if (d.flow) parts.push(`## 정보 구조\n${d.flow}${d.flowNote ? `\n※ ${d.flowNote}` : ''}`)
@@ -417,18 +466,17 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
   const a = result?.analysis
   const d = a?.design
 
-  const rec = useMemo(() => (a && tags ? recommend(pool, a, tags) : { purpose: [], broader: [] }), [pool, a, tags])
-  const shown = rec.purpose.length ? rec.purpose : broaden ? rec.broader : []
-  // 포인트별 사례: 키는 'pm-0', 'designer-1'처럼 관점과 순서예요.
+  const rec = useMemo(() => (a && tags ? recommend(pool, a, tags) : { need: '', purpose: [], broader: [] }), [pool, a, tags])
+  const shown = broaden ? [...rec.purpose, ...rec.broader] : rec.purpose
+  // 묶음별 사례: 키는 묶음 순서예요. 앞 묶음에 붙인 사례는 뒤 묶음에서 뒤로 미뤄요.
   const pointCases = useMemo(() => {
     if (!d || !tags) return {}
     const out = {}
     const used = new Set()
-    for (const side of ['pm', 'designer'])
-      d.takeaways[side].forEach((t, i) => {
-        out[`${side}-${i}`] = casesForPoint(pool, t, tags, used)
-        out[`${side}-${i}`].forEach(({ s }) => used.add(s.id))
-      })
+    d.points.forEach((t, i) => {
+      out[i] = casesForPoint(pool, t, tags, used)
+      out[i].forEach(({ s }) => used.add(s.id))
+    })
     return out
   }, [pool, d, tags])
   const caseById = useMemo(
@@ -441,7 +489,7 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
   const togglePick = (id) => setPicked((p) => (p.includes(id) ? p.filter((x) => x !== id) : p.length >= MAX_COMPARE ? p : [...p, id]))
 
   // 고른 사례마다 원본과의 관계를 붙여요(비교 전에 보여주고, AI에도 보내요).
-  const picks = pickedCases.map((s) => ({ s, rel: caseRelation(s, tags, d?.benchmarkKeywords ?? []) }))
+  const picks = pickedCases.map((s) => ({ s, rel: caseRelation(s, tags, [...(d?.caseTarget?.keywords ?? []), ...(d?.benchmarkKeywords ?? [])]) }))
   const onlySimilar = picks.length > 0 && picks.every((p) => p.rel.id === 'similar-ui')
 
   async function runCompare() {
@@ -623,6 +671,26 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
                     <span className="an-label">사용자 목적</span> {d.userGoal.text} <Basis basis={d.userGoal.basis} />
                   </p>
                 )}
+                {d.requirements.length > 0 && (
+                  <div className="an-fixed" aria-label="고정 조건">
+                    <p className="an-label">고정 조건 · 검토 대상이 아니라 전제로 두고 분석했어요</p>
+                    <ul>
+                      {d.requirements.map((r, i) => (
+                        <li key={i}>{r}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {d.conclusion.length > 0 && (
+                  <div className="an-conclusion" aria-label="핵심 결론">
+                    <p className="an-label">핵심 결론</p>
+                    <ul>
+                      {d.conclusion.map((r, i) => (
+                        <li key={i}>{r}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 {uncertain.length > 0 && (
                   <div className="an-uncertain" aria-label="확인이 필요한 항목">
                     <ul>
@@ -673,16 +741,13 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
                 </div>
               </section>
 
-              {/* 2. 핵심 벤치마킹 포인트: 포인트마다 이 방식을 쓴 사례를 붙여요 */}
-              <section className="an-section" aria-label="핵심 벤치마킹 포인트">
-                <h3 className="an-h">핵심 벤치마킹 포인트</h3>
-                {d.takeaways.pm.length > 0 || d.takeaways.designer.length > 0 ? (
-                  <div className="an-two an-boxed">
-                    <Takeaways title="PM 관점" items={d.takeaways.pm} casesOf={(i) => pointCases[`pm-${i}`] ?? []} picked={picked} onPick={togglePick} />
-                    <Takeaways title="디자이너 관점" items={d.takeaways.designer} casesOf={(i) => pointCases[`designer-${i}`] ?? []} picked={picked} onPick={togglePick} />
-                  </div>
+              {/* 2. 문제별 분석(또는 벤치마킹 포인트): 묶음마다 근거 → 개선안 → 비교할 사례 */}
+              <section className="an-section" aria-label={pointsTitle(d)}>
+                <h3 className="an-h">{pointsTitle(d)}</h3>
+                {d.points.length > 0 ? (
+                  <Points items={d.points} casesOf={(i) => pointCases[i] ?? []} picked={picked} onPick={togglePick} />
                 ) : (
-                  <p className="an-evidence">이번 분석에서는 벤치마킹 포인트가 나오지 않았어요. ‘다시 분석’을 누르면 새로 뽑아요.</p>
+                  <p className="an-evidence">이번 분석에서는 참고할 점이 나오지 않았어요. ‘다시 분석’을 누르면 새로 뽑아요.</p>
                 )}
                 {picked.length > 0 && (
                   <p className="an-evidence">
@@ -697,19 +762,24 @@ export default function ScreenAnalyzer({ pool = [], onFindSimilar }) {
               {/* 3. 추천·비교 사례 */}
               <section className="an-section" aria-label="추천·비교 사례" ref={casesRef}>
                 <h3 className="an-h">추천·비교 사례</h3>
-                {rec.purpose.length > 0 ? (
-                  <p className="an-evidence">같은 목적의 벤치마킹 화면 {rec.purpose.length}개예요. 같은 목적 → 같은 화면 유형 → 비슷한 구성 → 같은 도메인 순으로 골랐어요.</p>
+                {rec.need && (
+                  <p className="an-cmp-scope">
+                    <strong>비교 기준</strong> {rec.need}
+                  </p>
+                )}
+                {rec.purpose.length >= DIRECT_ENOUGH ? (
+                  <p className="an-evidence">직접 비교할 만한 화면 {rec.purpose.length}개예요. 업종보다 같은 조작·정보 구조 → 같은 목적 → 같은 화면 유형 순으로 골랐어요.</p>
                 ) : (
                   <div className="an-empty-cases">
                     <p>
-                      <strong>같은 과업의 사례가 없어요.</strong> 목적이 같은 화면을 벤치마킹 DB에서 찾지 못했어요.
+                      <strong>직접 비교할 사례가 부족해요{rec.purpose.length ? `(${rec.purpose.length}개)` : ''}.</strong> 목적과 조작이 함께 비슷한 화면을 벤치마킹 DB에서 충분히 찾지 못했어요. 관련성이 낮은 화면으로 채우지 않았어요.
                     </p>
                     {rec.broader.length > 0 && !broaden && (
                       <button type="button" className="link-button" onClick={() => setBroaden(true)}>
-                        참고 범위 넓히기 — 같은 화면 유형·비슷한 구성 {rec.broader.length}개 보기
+                        참고 범위 넓히기 — 목적이나 구조만 비슷한 화면 {rec.broader.length}개 보기
                       </button>
                     )}
-                    {broaden && <p className="an-evidence">목적은 다르지만 화면 유형이나 구성이 비슷한 사례예요. 그대로 따라 하기보다 표현 방식을 참고해 주세요.</p>}
+                    {broaden && <p className="an-evidence">목적이나 구조 중 하나만 비슷한 사례예요. 그대로 따라 하기보다 표현 방식만 참고해 주세요.</p>}
                   </div>
                 )}
                 {shown.length > 0 && (
