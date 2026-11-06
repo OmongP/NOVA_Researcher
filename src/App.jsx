@@ -347,17 +347,17 @@ export default function App() {
             <button type="button" className={`view-tab ${view === 'search' ? 'is-active' : ''}`} onClick={() => setView('search')}>
               Explore
             </button>
-            {IS_LITE && (
-              <button type="button" className={`view-tab ${view === 'analyze' ? 'is-active' : ''}`} onClick={() => setView('analyze')}>
-                Analyze
-              </button>
-            )}
             <button type="button" className={`view-tab ${view === 'library' ? 'is-active' : ''}`} onClick={() => withName(() => setView('library'))}>
               Archive <span className="library-count">{store.bookmarks.length}</span>
             </button>
             {SHOW_INSPECT && (
               <button type="button" className={`view-tab ${view === 'dark' ? 'is-active' : ''}`} onClick={() => setView('dark')}>
                 Inspect
+              </button>
+            )}
+            {IS_LITE && (
+              <button type="button" className={`view-tab ${view === 'analyze' ? 'is-active' : ''}`} onClick={() => setView('analyze')}>
+                Analyze
               </button>
             )}
           </nav>
